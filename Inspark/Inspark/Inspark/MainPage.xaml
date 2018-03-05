@@ -9,8 +9,8 @@
         <Label Text="Inspark"
                FontSize="Large"
                HorizontalOptions="Center"/>
-        <Button Text="Registrera" TextColor="White" BackgroundColor="LightGreen" Command="{Binding Register}"/>
-        <Button Text="Logga in" TextColor="White" BackgroundColor="Blue" Command="{Binding Login}"/>
+        <Button Text="Registrera" FontSize="Large" HeightRequest="80" WidthRequest="200" TextColor="White" BackgroundColor="LightGreen" Command="{Binding Register}"/>
+        <Button Text="Logga in" FontSize="Large" HeightRequest="80" TextColor="White" BackgroundColor="Blue" Command="{Binding Login}"/>
 
     </StackLayout>
 
