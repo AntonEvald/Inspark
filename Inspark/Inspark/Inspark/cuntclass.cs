@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Inspark
 {
-    class cuntclass //cuntfuck
+    class cuntclass
     {
+        här ska de va massa kod hehe
     }
 }
