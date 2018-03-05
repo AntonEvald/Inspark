@@ -6,7 +6,9 @@ namespace Inspark
 {
     class cuntclass
     {
-        //ny kommentar skvdlasklvskldskl
+        public void en()
+        {
 
+        }
     }
-}
+}   
