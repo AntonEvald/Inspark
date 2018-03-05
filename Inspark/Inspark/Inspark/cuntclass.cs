@@ -6,7 +6,7 @@ namespace Inspark
 {
     class cuntclass
     {
-        //kommentarrrrrrrrrr okojoj kjjkkllklkllööllöMAX
+        //ny kommentar
 
     }
 }
