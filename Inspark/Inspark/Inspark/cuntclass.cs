@@ -6,6 +6,6 @@ namespace Inspark
 {
     class cuntclass
     {
-        här ska de va massa kod hehe
+        //kommenta
     }
 }
