@@ -3,9 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Inspark"
              x:Class="Inspark.MainPage">
+    <StackLayout Spacing="20" Padding="20"
+                 VerticalOptions="Center"
+                 HorizontalOptions="Center">
+        <Label Text="Inspark"
+               FontSize="Large"
+               HorizontalOptions="Center"/>
+        <Button Text="Registrera" TextColor="White" BackgroundColor="LightGreen" Command="{Binding Register}"/>
+        <Button Text="Logga in" TextColor="White" BackgroundColor="Blue" Command="{Binding Login}"/>
 
-	<Label Text="Welcome to Xamarin.Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+    </StackLayout>
+
 
 </ContentPage>
