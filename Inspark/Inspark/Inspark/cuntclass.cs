@@ -6,7 +6,10 @@ namespace Inspark
 {
     class cuntclass
     {
-        //kommentarrrrrrrrrr okojoj kjjkkllklkllööllöMAX
+        //kommentarrrrrrrrrr Xphilip
+        public void ojoj()
+        {
 
+        }
     }
 }
