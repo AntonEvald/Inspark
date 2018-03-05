@@ -5,6 +5,11 @@ namespace Inspark
     {
         public Class2()
         {
+           
+        }
+        public static void enmetod()
+        {
+
         }
     }
 }
