@@ -9,11 +9,15 @@ namespace Inspark
 {
 	public partial class App : Application
 	{
+
+        public NavigationPage NavigationPage { get; private set; }
+
 		public App ()
 		{
 			InitializeComponent();
 
 			MainPage = new Inspark.MainPage();
+         
 		}
 
 		protected override void OnStart ()
