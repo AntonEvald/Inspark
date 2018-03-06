@@ -13,7 +13,10 @@
                    FontSize="Large"/>
             <Entry Text="Lösenord" 
                    IsPassword="True"/>
-            <Button Text="Logga in"/>
+            <Button Text="Logga in"
+                    Clicked="LoginButton_Clicked"/>
+            <Label Text="Håll mig inloggad:"/>
+            <Switch/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

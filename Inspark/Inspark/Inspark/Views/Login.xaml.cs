@@ -12,5 +12,11 @@ namespace Inspark
             InitializeComponent();
             Title = "Logga in";
         }
+
+        private void LoginButton_Clicked(object sender, EventArgs e)
+        {
+            //kolla lösenord och skit
+            Navigation.PushModalAsync(new MainPage());
+        }
     }
 }

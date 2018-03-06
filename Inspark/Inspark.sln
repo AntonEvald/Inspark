@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inspark.iOS", "Inspark\Insp
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Inspark", "Inspark\Inspark\Inspark.shproj", "{B294B9C2-0D3F-401A-A23B-A6D00C0F4EE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{380AC1D8-3F7C-4B9D-A205-5313581875A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{380AC1D8-3F7C-4B9D-A205-5313581875A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hemsida", "Hemsida\Hemsida.csproj", "{346EBEB6-78B2-46A6-9AC1-98663CEC2630}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hemsida", "Hemsida\Hemsida.csproj", "{346EBEB6-78B2-46A6-9AC1-98663CEC2630}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
