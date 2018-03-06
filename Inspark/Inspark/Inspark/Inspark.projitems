@@ -27,10 +27,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\StartPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Views\App.xaml.cs">
@@ -50,9 +46,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\ConfirmEmail.xaml.cs">
       <DependentUpon>ConfirmEmail.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\StartPage.xaml.cs">
-      <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
