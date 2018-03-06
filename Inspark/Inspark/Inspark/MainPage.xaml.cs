@@ -12,6 +12,12 @@ namespace Inspark
 		public MainPage()
 		{
 			InitializeComponent();
+            Title = "Inspark";
 		}
-	}
+
+        private void LoginButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync(new Login());
+        }
+    }
 }
