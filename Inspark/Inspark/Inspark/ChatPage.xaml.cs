@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace Inspark
 {
-    public partial class StartPage : ContentPage
+    public partial class ChatPage : ContentPage
     {
-        public StartPage()
+        public ChatPage()
         {
             InitializeComponent();
         }
