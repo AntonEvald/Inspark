@@ -15,9 +15,9 @@ namespace Inspark
             Title = "Inspark";
 		}
 
-        private void LoginButton_Clicked(object sender, EventArgs e)
+        private async void LoginButton_Clicked(object sender, EventArgs e)
         {
-            Navigation.PopAsync(new Login());
+            await Navigation.PushAsync(new Login());
         }
     }
 }

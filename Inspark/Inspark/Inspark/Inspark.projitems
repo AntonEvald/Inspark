@@ -35,9 +35,4 @@
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)LoginPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
 </Project>

@@ -10,6 +10,7 @@ namespace Inspark
         public Login()
         {
             InitializeComponent();
+            Title = "Logga in";
         }
     }
 }
