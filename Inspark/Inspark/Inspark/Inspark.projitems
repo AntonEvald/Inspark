@@ -19,6 +19,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)RegisterUserDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)ConfirmEmail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Andreas.cs" />
@@ -33,6 +41,12 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)RegisterUserDetails.xaml.cs">
+      <DependentUpon>RegisterUserDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ConfirmEmail.xaml.cs">
+      <DependentUpon>ConfirmEmail.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
