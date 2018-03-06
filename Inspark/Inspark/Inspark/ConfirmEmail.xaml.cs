@@ -10,6 +10,7 @@ namespace Inspark
         public ConfirmEmail()
         {
             InitializeComponent();
+            Title = "Bekräfta email";
         }
     }
 }

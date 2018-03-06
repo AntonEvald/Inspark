@@ -10,6 +10,7 @@ namespace Inspark
         public RegisterUserDetails()
         {
             InitializeComponent();
+            Title = "Ange användaruppgifter";
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
