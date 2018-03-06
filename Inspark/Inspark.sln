@@ -16,7 +16,6 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Inspark\Inspark\Inspark.projitems*{8713ce31-7bf1-4720-b247-7fb564b5f06a}*SharedItemsImports = 4
-		Inspark\Inspark\Inspark.projitems*{b294b9c2-0d3f-401a-a23b-a6d00c0f4ee5}*SharedItemsImports = 13
 		Inspark\Inspark\Inspark.projitems*{bdc919f8-0bf9-4071-9ac5-3762a03085d9}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
