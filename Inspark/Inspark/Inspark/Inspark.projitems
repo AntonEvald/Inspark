@@ -19,17 +19,16 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)RegisterUserDetails.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\RegisterUserDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)ConfirmEmail.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ConfirmEmail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Andreas.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -42,10 +41,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)RegisterUserDetails.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\RegisterUserDetails.xaml.cs">
       <DependentUpon>RegisterUserDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ConfirmEmail.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ConfirmEmail.xaml.cs">
       <DependentUpon>ConfirmEmail.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
