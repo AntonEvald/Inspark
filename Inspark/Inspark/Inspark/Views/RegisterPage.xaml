@@ -11,7 +11,7 @@
             <Entry Text="Bekräfta lösenord" 
                    IsPassword="True"/>
             <Picker />
-            <Button Text="Gå vidare >"/>
+            <Button Text="Gå vidare >" Clicked="RegisterContinue_Clicked"/>
 
         </StackLayout>
 	</ContentPage.Content>

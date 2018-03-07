@@ -17,9 +17,9 @@
             <Entry Text="Telefon"/>
             <Label Text="Profilbild"
                    FontSize="Large"/>
+            <Button Text="Registrera" Clicked="RegisterContinueEmail"/>
             <Button Text="Välj bild"/>
 
-            <Button Text="Registrera" />
 
         </StackLayout>
 	</ContentPage.Content>
