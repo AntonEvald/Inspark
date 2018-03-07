@@ -11,5 +11,10 @@ namespace Inspark
         {
             InitializeComponent();
         }
+
+        public async void RegisterContinueEmail(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new RegisterConfirmEmailPage());
+        }
     }
 }
