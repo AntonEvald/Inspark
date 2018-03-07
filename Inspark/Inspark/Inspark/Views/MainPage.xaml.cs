@@ -12,17 +12,6 @@ namespace Inspark
 		public MainPage()
 		{
 			InitializeComponent();
-            Title = "Inspark";
 		}
-
-        private async void LoginButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Login());
-        }
-
-        private async void RegisterButton_Clicked(object sender, System.EventArgs e)
-        {
-            await Navigation.PushAsync(new Register());
-        }
-    }
+	}
 }
