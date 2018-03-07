@@ -2,8 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Inspark.Views.LoginPage"
+             xmlns:Viewmodels="clr-namespace:Inspark.Viewmodels;assmebly=Inspark"
              Title="Logga in">
-
+    <ContentPage.BindingContext>
+        <Viewmodels:LoginViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout
             Padding="10"
@@ -20,7 +23,7 @@
             <Entry
                 Placeholder="Lösenord"
                 IsPassword="True"
-                x:Name="Password"/>
+                Text="{Binding Password}"/>
             <Button
                 Text="Logga in"
                 Command="{Binding LoginClick}"/>
@@ -34,7 +37,8 @@
                     HorizontalOptions="Start"/>
                 <Switch
                     VerticalOptions="Start"
-                    HorizontalOptions="Start"/>
+                    HorizontalOptions="Start"
+                    x:Name="KeepLoggedIn"/>
             </StackLayout>
             <Button
                     Text="?"

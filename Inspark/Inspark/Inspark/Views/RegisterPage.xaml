@@ -2,20 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Inspark.RegisterPage"
-    xmlns:vm="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
-    >
-	<ContentPage.BindingContext>
-    <vm:RegisterViewModel/>
+    xmlns:vm="clr-namespace:Inspark.Viewmodels;assembly=Inspark">
+    <ContentPage.BindingContext>
+        <vm:RegisterViewModel/>
     </ContentPage.BindingContext>
-
-            <StackLayout
-                Padding="5">             <Label Text="Email:"
-                   FontSize="Large"/>
-            <Entry Text="{Binding Email}" Placeholder="Email"/>
-
+    <StackLayout Padding="5">
+        <Label Text="Email:" FontSize="Large"/>
+        <Entry Text="{Binding Email}" Placeholder="Email"/>
         <Entry Text="{Binding Password}" Placeholder="Password"/>
         <Entry Text="{Binding ConfirmPassword}" Placeholder="Confirm Password"/>
-            <Picker />
-            <Button Text="Gåidare >" Clicked="UserInformationButton_Clicked"/>         </StackLayout>
-    
+        <Picker/>
+        <Button Text="Gå vidare >" Clicked="RegisterContinue_Clicked"/> 
+    </StackLayout>
 </ContentPage>
