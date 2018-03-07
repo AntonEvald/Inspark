@@ -2,11 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Inspark.Views.LoginPage"
-             xmlns:ViewModels="clr-namespace:Inspark.Viewmodels; assembly=Inspark"
              Title="Logga in">
-    <ContentPage.BindingContext>
-        <Viewmodels.LoginViewModel/>
-    </ContentPage.BindingContext>
+
     <ContentPage.Content>
         <StackLayout
             Padding="10"

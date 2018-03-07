@@ -11,5 +11,10 @@ namespace Inspark
         {
             InitializeComponent();
         }
+
+        public async void Confirm_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new Views.MainPage());
+        }
     }
 }

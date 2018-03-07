@@ -9,7 +9,7 @@
 
             <Button Text="Gör detta senare"/>
 
-            <Button Text="Bekräfta"/>
+            <Button Text="Bekräfta" Clicked="Confirm_Clicked"/>
 
         </StackLayout>
 	</ContentPage.Content>

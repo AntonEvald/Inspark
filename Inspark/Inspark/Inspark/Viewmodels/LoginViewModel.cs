@@ -6,9 +6,9 @@ namespace Inspark.Viewmodels
 {
     class LoginViewModel
     {
-        public bool Login_Clicked()
+        /*public bool Login_Clicked()
         {
             var enteredEmail = 
-        }
+        }*/
     }
 }
