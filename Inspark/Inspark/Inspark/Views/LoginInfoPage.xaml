@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Inspark.Views.LoginInfoPage"
-             Title="Logga in, Info">
+             Title="Hjälp för inloggning">
     <ContentPage.Content>
         <StackLayout Padding="20">
             <Label Text="Hur man loggar in osv visas här."/>
