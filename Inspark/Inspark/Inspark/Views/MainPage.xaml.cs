@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace Inspark
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace Inspark.Views
 {
-	public partial class MainPage : ContentPage
-	{
-		public MainPage()
-		{
-			InitializeComponent();
-		}
-	}
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class MainPage : TabbedPage
+    {
+        public MainPage ()
+        {
+            InitializeComponent();
+        }
+    }
 }
