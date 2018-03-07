@@ -12,9 +12,14 @@ namespace Inspark
             InitializeComponent();
         }
 
-        public async void Login_Clicked(EventArgs e)
+        public async void Login_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new Views.LoginPage());
+        }
+
+        public async void Register_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new RegisterPage());
         }
     }
 }
