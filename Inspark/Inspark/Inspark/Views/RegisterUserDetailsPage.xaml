@@ -19,7 +19,7 @@
                    FontSize="Large"/>
             <Button Text="Välj bild"/>
 
-            <Button Text="Registrera" Clicked="Button_Clicked"/>
+            <Button Text="Registrera" />
 
         </StackLayout>
 	</ContentPage.Content>
