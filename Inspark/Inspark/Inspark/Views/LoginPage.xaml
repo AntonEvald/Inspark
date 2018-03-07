@@ -11,30 +11,35 @@
                 Text="Email:"
                 FontSize="Large"/>
             <Entry
-                Text="Email"/>
+                Placeholder="Email"/>
             <Label
                 Text="Lösenord:"
                 FontSize="Large"/>
             <Entry
-                Text="Lösenord"
+                Placeholder="Lösenord"
                 IsPassword="True"/>
             <Button
                 Text="Logga in"
                 Command="{Binding LoginClick}"/>
-            <StackLayout 
+            <StackLayout
                 Orientation="Horizontal"
-                HorizontalOptions="StartAndExpand">
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
                 <Label
-                Text="Håll mig inloggad:"/>
-                <Switch/>
-                <Button
+                    Text="Håll mig inloggad:"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Start"/>
+                <Switch
+                    VerticalOptions="Start"
+                    HorizontalOptions="Start"/>
+            </StackLayout>
+            <Button
                     Text="?"
                     HeightRequest="50"
                     WidthRequest="50"
-                    Margin="200, 0, 0, 0"
-                    HorizontalOptions="End"/>
-            </StackLayout>
-            
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    Clicked="Info_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

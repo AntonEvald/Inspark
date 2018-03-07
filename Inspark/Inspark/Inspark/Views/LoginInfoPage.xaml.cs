@@ -10,18 +10,17 @@ using Xamarin.Forms.Xaml;
 namespace Inspark.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LoginPage : ContentPage
+	public partial class LoginInfoPage : ContentPage
 	{
-		public LoginPage ()
+		public LoginInfoPage ()
 		{
 			InitializeComponent ();
 		}
 
-        private async void Info_Clicked(object sender, EventArgs e)
+        private void OK_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new LoginInfoPage());
+            Navigation.RemovePage(this);
         }
 
     }
 }
- 
