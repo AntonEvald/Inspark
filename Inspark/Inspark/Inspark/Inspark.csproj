@@ -12,8 +12,17 @@
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\RegisterConfirmEmailPage.xaml.cs">
+      <DependentUpon>RegisterConfirmEmailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\MainPage.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\RegisterPage.xaml.cs">
+      <DependentUpon>RegisterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\RegisterUserDetailsPage.xaml.cs">
+      <DependentUpon>RegisterUserDetailsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 

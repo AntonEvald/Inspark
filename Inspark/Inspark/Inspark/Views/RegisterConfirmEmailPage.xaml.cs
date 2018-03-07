@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace Inspark
 {
-    public partial class ConfirmEmail : ContentPage
+    public partial class RegisterConfirmEmailPage : ContentPage
     {
-        public ConfirmEmail()
+        public RegisterConfirmEmailPage()
         {
             InitializeComponent();
         }

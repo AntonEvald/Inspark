@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace Inspark
 {
-    public partial class Register : ContentPage
+    public partial class RegisterUserDetailsPage : ContentPage
     {
-        public Register()
+        public RegisterUserDetailsPage()
         {
             InitializeComponent();
         }
