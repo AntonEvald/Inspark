@@ -12,7 +12,7 @@
         <Entry Text="{Binding ConfirmPassword}" Placeholder="Confirm Password" IsPassword="true"/>
         <Entry Text="{Binding Role}" Placeholder="Role"/>
         <Label Text="{Binding Message}"/>
-        <Picker Title="Välj din institution" HorizontalOptions="FillAndExpand">
+        <Picker x:Name="Section" Title="Välj din institution" HorizontalOptions="FillAndExpand">
             <Picker.Items>
                 <x:String>Handelshögskolan</x:String>
                 <x:String>Humaniora, utbildnings- och samhällsvetenskap</x:String>
