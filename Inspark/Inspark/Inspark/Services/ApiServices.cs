@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.Text;
 namespace Inspark.Services
 {
     public class ApiServices
@@ -23,7 +24,7 @@ namespace Inspark.Services
             };
 
             var json = JsonConvert.SerializeObject(model);
-            HttpContent content = new StringContent(json);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await client.PostAsync("https://insparkwebapi.azurewebsites.net/api/user",content);
 
             return response.IsSuccessStatusCode;
