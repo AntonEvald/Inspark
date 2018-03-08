@@ -12,9 +12,9 @@ namespace Inspark.Services
             var client = new HttpClient();
             var model = new Models.User
             {
-                Email = email,
                 UserName = email,
                 Password = password,
+                Email = email,
                 Role = role
                 //FirstName = firstname,
                 //LastName = lastname,

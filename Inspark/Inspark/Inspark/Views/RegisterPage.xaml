@@ -13,7 +13,6 @@
         <Entry Text="{Binding ConfirmPassword}" Placeholder="Confirm Password" IsPassword="true"/>
         <Entry Text="{Binding Role}" Placeholder="Role"/>
         <Label Text="{Binding Message}"/>
-
         <Button Text="gå till mainpage" Clicked="RegisterContinue_Clicked"/>
         <Button Text="Registrera" Command="{Binding RegisterCommand}"/> 
     </StackLayout>

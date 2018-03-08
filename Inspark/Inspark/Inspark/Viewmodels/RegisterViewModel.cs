@@ -26,25 +26,24 @@ namespace Inspark.Viewmodels
 
         public string Role { get; set; }
 
-        public ICommand RegisterCommand
-        {
-            
-            get 
-            {
-                return new Command(async()=> {
+        public string Message { get; set; }
 
-                    var isSuccess = await apiServices.RegisterAsync(Role, Email, Password);
-                
-                    if(isSuccess)
-                    {
-                        
-                    }
-                
-                
-                });
+        public ICommand RegisterCommand => new Command(async () =>
+        {
+
+            var isSuccess = await apiServices.RegisterAsync(Role, Email, Password);
+
+            if (isSuccess)
+            {
+                Message = "Registrerad";
+            }
+            else{
+                Message = "try again";
             }
 
-        }
+
+
+        });
 
     }
 }
