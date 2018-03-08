@@ -11,7 +11,8 @@
         <Entry Text="{Binding Email}" Placeholder="Email"/>
         <Entry Text="{Binding Password}" Placeholder="Password"/>
         <Entry Text="{Binding ConfirmPassword}" Placeholder="Confirm Password"/>
+        <Entry Text="{Binding Role}" Placeholder="Role"/>
         <Picker/>
-        <Button Text="Gå vidare >" Clicked="RegisterContinue_Clicked"/> 
+        <Button Text="Gå vidare >" Command="{Binding RegisterCommand}"/> 
     </StackLayout>
 </ContentPage>
