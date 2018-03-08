@@ -13,6 +13,7 @@
         <Entry Text="{Binding ConfirmPassword}" Placeholder="Confirm Password"/>
         <Entry Text="{Binding Role}" Placeholder="Role"/>
         <Picker/>
-        <Button Text="Gå vidare >" Command="{Binding RegisterCommand}"/> 
+        <Button Text="Registrera" Command="{Binding RegisterCommand}"/> 
+        <Button Text="gå till mainpage" Clicked="RegisterContinue_Clicked"/>
     </StackLayout>
 </ContentPage>
