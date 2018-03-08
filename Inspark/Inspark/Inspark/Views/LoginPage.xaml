@@ -16,14 +16,16 @@
                 FontSize="Large"/>
             <Entry
                 Placeholder="Email"
-                x:Name="Email"/>
+                x:Name="Email"
+                Text="{Binding Email, Mode=TwoWay}"/>
             <Label
                 Text="Lösenord:"
                 FontSize="Large"/>
             <Entry
                 Placeholder="Lösenord"
                 IsPassword="True"
-                Text="{Binding Password}"/>
+                x:Name="Password"
+                Text="{Binding Password, Mode=TwoWay}"/>
             <Button
                 Text="Logga in"
                 Command="{Binding LoginClick}"/>
@@ -35,10 +37,11 @@
                     Text="Håll mig inloggad:"
                     VerticalOptions="Start"
                     HorizontalOptions="Start"/>
-                <Switch
+                <Picker
                     VerticalOptions="Start"
                     HorizontalOptions="Start"
-                    x:Name="KeepLoggedIn"/>
+                    x:Name="KeepLoggedIn"
+                    IsEnabled="{Binding KeepLoggedIn, Mode=TwoWay}"/>
             </StackLayout>
             <Button
                     Text="?"
