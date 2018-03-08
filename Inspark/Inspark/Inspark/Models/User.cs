@@ -16,6 +16,6 @@ namespace Inspark.Models
         public int PhoneNumber { get; set; }
         public string Role { get; set; }
         public string Section { get; set; }
-        public bool KeepLoggedIn { get; set; }
+        //public bool KeepLoggedIn { get; set; }
     }
 }

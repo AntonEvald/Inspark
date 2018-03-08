@@ -7,13 +7,24 @@
         <viewModels:RegisterViewModel/>
     </ContentPage.BindingContext>
     <StackLayout Padding="5">
-        <Label Text="Email:" FontSize="Large"/>
         <Entry Text="{Binding Email}" Placeholder="Email"/>
         <Entry Text="{Binding Password}" Placeholder="Password" IsPassword="true"/>
         <Entry Text="{Binding ConfirmPassword}" Placeholder="Confirm Password" IsPassword="true"/>
         <Entry Text="{Binding Role}" Placeholder="Role"/>
         <Label Text="{Binding Message}"/>
-        <Button Text="gå till mainpage" Clicked="RegisterContinue_Clicked"/>
+        <Picker x:Name="Section" Title="Välj din institution" HorizontalOptions="FillAndExpand">
+            <Picker.Items>
+                <x:String>Handelshögskolan</x:String>
+                <x:String>Humaniora, utbildnings- och samhällsvetenskap</x:String>
+                <x:String>Hälsovetenskaper</x:String>
+                <x:String>Juridik, psykologi och socialt arbete</x:String>
+                <x:String>Medicinska vetenskaper</x:String>
+                <x:String>Musikhögskolan</x:String>
+                <x:String>Naturvetenskap och teknik</x:String>
+                <x:String>Restaurang- och hotellhögskolan</x:String>
+            </Picker.Items>
+        </Picker>
+        <Button Text="Gå till mainpage" Clicked="RegisterContinue_Clicked"/>
         <Button Text="Registrera" Command="{Binding RegisterCommand}"/> 
     </StackLayout>
 </ContentPage>
