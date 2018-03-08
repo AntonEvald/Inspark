@@ -12,8 +12,7 @@
         <Entry Text="{Binding ConfirmPassword}" Placeholder="Confirm Password" IsPassword="true"/>
         <Entry Text="{Binding Role}" Placeholder="Role"/>
         <Label Text="{Binding Message}"/>
-        <Label Text="Välj din institution: " FontSize="Large"/>
-        <Picker x:Name="SectionPicker" HorizontalOptions="FillAndExpand">
+        <!--<Picker Title="Välj din institution" SelectedIndex="{Binding Section}" HorizontalOptions="FillAndExpand">
             <Picker.Items>
                 <x:String>Handelshögskolan</x:String>
                 <x:String>Humaniora, utbildnings- och samhällsvetenskap</x:String>
@@ -24,7 +23,7 @@
                 <x:String>Naturvetenskap och teknik</x:String>
                 <x:String>Restaurang- och hotellhögskolan</x:String>
             </Picker.Items>
-        </Picker>
+        </Picker>-->
         <Button Text="Gå till mainpage" Clicked="RegisterContinue_Clicked"/>
         <Button Text="Registrera" Command="{Binding RegisterCommand}"/> 
     </StackLayout>

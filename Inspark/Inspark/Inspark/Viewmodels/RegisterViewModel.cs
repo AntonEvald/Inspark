@@ -28,6 +28,8 @@ namespace Inspark.Viewmodels
 
         public string Message { get; set; }
 
+        public string Section { get; set; }
+
         public ICommand RegisterCommand => new Command(async () =>
         {
 
