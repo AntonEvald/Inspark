@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Inspark.Models
 {
-    class User
+    public class User
     {
         public long Id { get; set; }
         public string UserName { get; set; }
