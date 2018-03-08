@@ -33,7 +33,7 @@ namespace Inspark.Viewmodels
             {
                 return new Command(async()=> {
 
-                    var isSuccess = await apiServices.RegisterAsync(Role, Email, Password, ConfirmPassword, FirstName, LastName, PhoneNumber);
+                    var isSuccess = await apiServices.RegisterAsync(Role, Email, Password);
                 
                     if(isSuccess)
                     {
