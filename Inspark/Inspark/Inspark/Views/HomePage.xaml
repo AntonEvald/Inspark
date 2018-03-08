@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Inspark.Views.CompetitionPage"
-             Icon="ic_accessible_black_24dp.png">
+             x:Class="Inspark.Views.HomePage"
+             Icon="ic_home_black_24dp.png">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Välkommen till tävlingssidan!"
+            <Label Text="Välkommen till Inspark!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

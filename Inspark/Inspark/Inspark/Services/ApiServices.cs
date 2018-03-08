@@ -1,29 +1,32 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Net.Http;
+using Newtonsoft.Json;
 namespace Inspark.Services
 {
     public class ApiServices
     {
 
-        public async Task<bool> RegisterAsync(string email,string password,string confirmpassword,string firstname,string lastname,int phonenumber)
+        public async Task<bool> RegisterAsync(string role, string email,string password)
         {
-            //var client = new HttpClient();
+            var client = new HttpClient();
             var model = new Models.User
             {
-                Email = email,
                 UserName = email,
                 Password = password,
-                FirstName = firstname,
-                LastName = lastname,
-                PhoneNumber = phonenumber
+                Email = email,
+                Role = role
+                //FirstName = firstname,
+                //LastName = lastname,
+                //PhoneNumber = phonenumber
 
             };
 
-            //var json = JsonConvert.SerializeObject(model);
-            //HttpContent content = new StringContent(json);
-            //var response = await client.PostAsync("url to webservice",content,);
+            var json = JsonConvert.SerializeObject(model);
+            HttpContent content = new StringContent(json);
+            var response = await client.PostAsync("https://insparkwebapi.azurewebsites.net/api/user",content);
 
-            return true; //response.isSuccessStatusCode;
+            return response.IsSuccessStatusCode;
         }
 
     }
