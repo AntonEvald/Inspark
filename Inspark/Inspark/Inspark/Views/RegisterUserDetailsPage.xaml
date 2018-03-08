@@ -7,12 +7,10 @@
         <StackLayout 
             Padding="5">
             <Entry Placeholder="Förnamn"/>
-            <Entry Placeholder="Efternamn" /> >
+            <Entry Placeholder="Efternamn" />
             <Entry Placeholder="Telefon"/>
             <Button Text="Registrera" Clicked="RegisterContinueEmail"/>
             <Button Text="Välj bild"/>
-
-
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>
