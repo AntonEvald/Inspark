@@ -6,100 +6,54 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using System.Windows.Input;
 using Inspark.Models;
+using Inspark.Services;
 using System.Collections;
 
 namespace Inspark.Viewmodels
 {
-    public class LoginViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
+    public class LoginViewModel : INotifyPropertyChanged
     {
-        private string _password;
-        public string Password {
-            get
-            {
-                return _password;
-            }
+        Services.ApiServices apiServices = new Services.ApiServices();
+        public string Password { get; set; }
+        public string Email { get; set; }
+        public bool KeepLoggedIn { get; set; }
+        private string alertMessage;
+
+        public string AlertMessage
+        {
+            get { return alertMessage; }
             set
             {
-                if(_password != value)
+                if(alertMessage != value)
                 {
-                    _password = value;
-                    OnPropertyChanged("Password");
+                    alertMessage = value;
+                    OnPropertyChanged("AlertMessage");
                 }
             }
         }
 
-        private string _Email;
-
-        public string Email
+        private void OnPropertyChanged(string property)
         {
-            get { return _Email; }
-            set
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+        }
+
+        public ICommand LoginClick => new Command(async () =>
+        {
+            var list = await apiServices.GetAllUsers();
+
+            foreach (var user in list)
             {
-                if (_Email != value)
+                if (user.Email == Email && user.Password == Password)
                 {
-                    _Email = value;
-                    OnPropertyChanged("Email");
-                }
-            }
-        }
-
-        private bool keepLoggedIn;
-
-        public bool KeepLoggedIn
-        {
-            get { return keepLoggedIn; }
-            set
-            {
-                if (keepLoggedIn != value)
-                {
-                    keepLoggedIn = value;
-                    OnPropertyChanged("KeepLoggedIn");
-                }
-            }
-        }
-        public ICommand LoginClick { get; private set; }
-
-        public bool HasErrors => throw new NotImplementedException();
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public LoginViewModel()
-        {
-            LoginClick = new Command (ValidateLogin);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-
-        void ValidateLogin()
-        {
-            var listofusers = new List<User>();
-            var user = new User
-            {
-                Email = "anton@evald.se",
-                Password = "hej"
-            };
-            listofusers.Add(user);
-
-            foreach(var x in listofusers)
-            {
-                if(x.Email == Email && x.Password == Password)
-                {
-                    Debug.WriteLine("Funkar");
+                    Debug.WriteLine("Ja");
                 }
                 else
                 {
-                    Debug.WriteLine("Funkar");
+                    AlertMessage = "Fel användarnamn eller lösenord";
                 }
             }
-        }
+        });
 
-        public IEnumerable GetErrors(string propertyName)
-        {
-            throw new NotImplementedException();
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -11,16 +11,10 @@
         <StackLayout
             Padding="10"
             VerticalOptions="Fill">
-            <Label
-                Text="Email:"
-                FontSize="Large"/>
             <Entry
                 Placeholder="Email"
                 x:Name="Email"
                 Text="{Binding Email, Mode=TwoWay}"/>
-            <Label
-                Text="Lösenord:"
-                FontSize="Large"/>
             <Entry
                 Placeholder="Lösenord"
                 IsPassword="True"
@@ -37,12 +31,17 @@
                     Text="Håll mig inloggad:"
                     VerticalOptions="Start"
                     HorizontalOptions="Start"/>
-                <Picker
+                <Switch
                     VerticalOptions="Start"
                     HorizontalOptions="Start"
                     x:Name="KeepLoggedIn"
-                    IsEnabled="{Binding KeepLoggedIn, Mode=TwoWay}"/>
+                    IsToggled="{Binding KeepLoggedIn, Mode=TwoWay}"/>
             </StackLayout>
+            <Label
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                Text="{Binding AlertMessage, Mode=TwoWay}"
+                TextColor="Red"/>
             <Button
                     Text="?"
                     HeightRequest="50"
