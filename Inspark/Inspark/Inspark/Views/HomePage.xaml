@@ -3,11 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Inspark.Views.HomePage"
              Icon="ic_home_black_24dp.png">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Välkommen till Inspark!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+    <Grid RowSpacing="25">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackLayout Grid.Row="0" 
+              Grid.Column="0"  
+              Grid.ColumnSpan="2"
+              BackgroundColor="LightPink">
+            <Label Text="Nyheter" HorizontalOptions="Center"/>
+            <ListView>
+               
+            </ListView>
         </StackLayout>
-    </ContentPage.Content>
+
+        <StackLayout Grid.Row="1" 
+              Grid.Column="0"  
+              Grid.ColumnSpan="2"
+              BackgroundColor="LightBlue">
+            <Label Text="Grupp" HorizontalOptions="Center"/>
+            <ListView>
+                
+            </ListView>
+        </StackLayout>
+
+    </Grid>
 </ContentPage>
