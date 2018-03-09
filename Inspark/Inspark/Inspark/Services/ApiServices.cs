@@ -2,7 +2,11 @@
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
+using Inspark.Models;
 using System.Text;
+using System.Collections.Generic;
+using System.Diagnostics;
+
 namespace Inspark.Services
 {
     public class ApiServices
@@ -11,7 +15,7 @@ namespace Inspark.Services
         public async Task<bool> RegisterAsync(string role, string email,string password)
         {
             var client = new HttpClient();
-            var model = new Models.User
+            var model = new User
             {
                 UserName = email,
                 Password = password,
@@ -28,6 +32,17 @@ namespace Inspark.Services
             var response = await client.PostAsync("https://insparkwebapi.azurewebsites.net/api/user",content);
 
             return response.IsSuccessStatusCode;
+        }
+
+        public async Task<List<User>> GetAllUsers()
+        {
+            var client = new HttpClient();
+            var response = await client.GetAsync("https://insparkwebapi.azurewebsites.net/api/user");
+            response.EnsureSuccessStatusCode();
+            var json = await response.Content.ReadAsStringAsync();
+            Debug.WriteLine(json);
+            var list = JsonConvert.DeserializeObject<List<User>>(json);
+            return list;
         }
 
     }
