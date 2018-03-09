@@ -20,6 +20,9 @@
               Grid.ColumnSpan="2"
               BackgroundColor="LightPink">
             <Label Text="Nyheter" HorizontalOptions="Center"/>
+            <ListView>
+               
+            </ListView>
         </StackLayout>
 
         <StackLayout Grid.Row="1" 
@@ -27,6 +30,9 @@
               Grid.ColumnSpan="2"
               BackgroundColor="LightBlue">
             <Label Text="Grupp" HorizontalOptions="Center"/>
+            <ListView>
+                
+            </ListView>
         </StackLayout>
 
     </Grid>
