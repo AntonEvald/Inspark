@@ -71,6 +71,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable\DefaultPic.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -84,7 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Inspark\Inspark.csproj">
-      <Project>{3A7FC0BE-1F7A-48A2-ADB9-C2B75B986E73}</Project>
+      <Project>{A4BC6AE8-C1C6-45BA-A416-7CBD579F1D81}</Project>
       <Name>Inspark</Name>
     </ProjectReference>
   </ItemGroup>
