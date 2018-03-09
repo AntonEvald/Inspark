@@ -4,6 +4,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using Inspark.Models;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Inspark.Services
 {
