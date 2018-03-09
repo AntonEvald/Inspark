@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using Inspark.Models;
 using System.Text;
 using System.Collections.Generic;
-using System.Text;
+using System.Diagnostics;
 
 namespace Inspark.Services
 {
@@ -38,7 +38,9 @@ namespace Inspark.Services
         {
             var client = new HttpClient();
             var response = await client.GetAsync("https://insparkwebapi.azurewebsites.net/api/user");
-            var json = response.ToString();
+            response.EnsureSuccessStatusCode();
+            var json = await response.Content.ReadAsStringAsync();
+            Debug.WriteLine(json);
             var list = JsonConvert.DeserializeObject<List<User>>(json);
             return list;
         }
