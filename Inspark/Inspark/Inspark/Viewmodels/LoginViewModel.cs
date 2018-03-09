@@ -13,7 +13,7 @@ namespace Inspark.Viewmodels
 {
     public class LoginViewModel : INotifyPropertyChanged
     {
-        Services.ApiServices apiServices = new Services.ApiServices();
+        ApiServices apiServices = new ApiServices();
         public string Password { get; set; }
         public string Email { get; set; }
         public bool KeepLoggedIn { get; set; }
@@ -39,18 +39,26 @@ namespace Inspark.Viewmodels
 
         public ICommand LoginClick => new Command(async () =>
         {
-            var list = await apiServices.GetAllUsers();
-
-            foreach (var user in list)
+            Debug.WriteLine(Email, Password);
+            if(Email != "" || Email != "Email" || Password != null || Password != "Lösenord")
             {
-                if (user.Email == Email && user.Password == Password)
+                var list = await apiServices.GetAllUsers();
+                foreach (var user in list)
                 {
-                    Debug.WriteLine("Ja");
+                    if (user.Email == Email && user.Password == Password)
+                    {
+                        Debug.WriteLine("Ja");
+                    }
+                    else
+                    {
+                        AlertMessage = "Fel Email eller lösenord";
+                    }
                 }
-                else
-                {
-                    AlertMessage = "Fel användarnamn eller lösenord";
-                }
+
+            }
+            else
+            {
+                AlertMessage = "Vänligen ange en Email och ett lösenord.";
             }
         });
 

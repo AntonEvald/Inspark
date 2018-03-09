@@ -39,9 +39,8 @@ namespace Inspark.Services
             var client = new HttpClient();
             var response = await client.GetAsync("https://insparkwebapi.azurewebsites.net/api/user");
             response.EnsureSuccessStatusCode();
-            var json = await response.Content.ReadAsStringAsync();
-            Debug.WriteLine(json);
-            var list = JsonConvert.DeserializeObject<List<User>>(json);
+            var result = await response.Content.
+            var list = JsonConvert.DeserializeObject<List<User>>(result);
             return list;
         }
 
