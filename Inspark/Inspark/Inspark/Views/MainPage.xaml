@@ -3,18 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Inspark.Views"
              x:Class="Inspark.Views.MainPage">
-
+    
+    <!-- Skapar fem stycken rader för hela sidan. -->
     <Grid ColumnSpacing="0" RowSpacing="0">
         <Grid.RowDefinitions>
+            <RowDefinition Height="38"/>
+            <RowDefinition Height="1"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="1"/>
             <RowDefinition Height="44"/>
         </Grid.RowDefinitions>
-        <ContentView x:Name="PlaceHolder" Grid.Row="0"/>
-        <BoxView BackgroundColor="#DCDCDC" Grid.Row="1"/>
 
-
-        <Grid ColumnSpacing="0" RowSpacing="0" Grid.Row="2">
+        <!-- Skapar fem kolumner i den första raden. -->
+        <Grid ColumnSpacing="0" RowSpacing="0" Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -23,51 +24,86 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackLayout Spacing="0" Grid.Column="0" BackgroundColor="AliceBlue">
+            <!-- Specificerar värdet för varje kolumn i första raden. -->
+            <StackLayout Spacing="0" Grid.Column="0" BackgroundColor="WhiteSmoke">
+                <Image HeightRequest="30" Source="hammenu.png"/>
+            </StackLayout>
+            
+            <StackLayout Spacing="0" Grid.Column="1" BackgroundColor="WhiteSmoke">
+            </StackLayout>
+            
+            <StackLayout Spacing="0" Grid.Column="2" BackgroundColor="WhiteSmoke">
+            </StackLayout>
+            
+            <StackLayout Spacing="0" Grid.Column="3" BackgroundColor="WhiteSmoke">
+            </StackLayout>
+            
+            <StackLayout Spacing="0" Grid.Column="4" BackgroundColor="WhiteSmoke">
+                <Image HeightRequest="30" Source="profile.png"/>
+            </StackLayout>
+        </Grid>
+        
+        <!-- Specificerar vad de övriga raderna ska göra/innehålla. Rad 1 och 3 är en "border" rad. 
+             Rad 2 är en ContentView där allt vårt innehåll från en View hamnar efter knapptryck. -->
+        <BoxView BackgroundColor="LightGray" Grid.Row="1"/>
+        <ContentView x:Name="Inspark" Grid.Row="2"/>
+        <BoxView BackgroundColor="LightGray" Grid.Row="3"/>
+
+        <!-- Skapar fem kolumner i den sista raden. -->
+        <Grid ColumnSpacing="0" RowSpacing="0" Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Specificerar värdet för varje kolumn i sista raden. -->
+            <StackLayout Spacing="0" Grid.Column="0" BackgroundColor="WhiteSmoke">
                 <Image HeightRequest="30" Source="home.png"/>
                 <Label Text="Hem" FontSize="10"
                        HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Icon1_Tapped"/>
+                    <TapGestureRecognizer Tapped="HomeIconTapped"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
-            <StackLayout Spacing="0" Grid.Column="1" BackgroundColor="AliceBlue">
+            <StackLayout Spacing="0" Grid.Column="1" BackgroundColor="WhiteSmoke">
                 <Image HeightRequest="30" Source="group.png"/>
                 <Label Text="Grupp" FontSize="10"
                        HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Icon2_Tapped"/>
+                    <TapGestureRecognizer Tapped="GroupIconTapped"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
-            <StackLayout Spacing="0" Grid.Column="2" BackgroundColor="AliceBlue">
+            <StackLayout Spacing="0" Grid.Column="2" BackgroundColor="WhiteSmoke">
                 <Image HeightRequest="30" Source="competition.png"/>
                 <Label Text="Tävling" FontSize="10"
                        HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Icon3_Tapped"/>
+                    <TapGestureRecognizer Tapped="CompetitionIconTapped"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
-            <StackLayout Spacing="0" Grid.Column="3" BackgroundColor="AliceBlue">
+            <StackLayout Spacing="0" Grid.Column="3" BackgroundColor="WhiteSmoke">
                 <Image HeightRequest="30" Source="chat.png"/>
                 <Label Text="Chatt" FontSize="10"
                        HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Icon4_Tapped"/>
+                    <TapGestureRecognizer Tapped="ChatIconTapped"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
-            <StackLayout Spacing="0" Grid.Column="4" BackgroundColor="AliceBlue">
+            <StackLayout Spacing="0" Grid.Column="4" BackgroundColor="WhiteSmoke">
                 <Image HeightRequest="30" Source="schedule.png"/>
                 <Label Text="Schema" FontSize="10"
                        HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Icon5_Tapped"/>
+                    <TapGestureRecognizer Tapped="ScheduleIconTapped"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
-
         </Grid>
     </Grid>
 </ContentPage>
