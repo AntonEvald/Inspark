@@ -10,7 +10,7 @@
             <RowDefinition Height="1"/>
             <RowDefinition Height="44"/>
         </Grid.RowDefinitions>
-        <ContentView x:Name="PlaceHolder" Grid.Row="0"/>
+        <ContentView x:Name="Inspark" Grid.Row="0"/>
         <BoxView BackgroundColor="#DCDCDC" Grid.Row="1"/>
 
 
@@ -28,7 +28,7 @@
                 <Label Text="Hem" FontSize="10"
                        HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Icon1_Tapped"/>
+                    <TapGestureRecognizer Tapped="HomeIconTapped"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
@@ -37,7 +37,7 @@
                 <Label Text="Grupp" FontSize="10"
                        HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Icon2_Tapped"/>
+                    <TapGestureRecognizer Tapped="GroupIconTapped"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
@@ -46,7 +46,7 @@
                 <Label Text="Tävling" FontSize="10"
                        HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Icon3_Tapped"/>
+                    <TapGestureRecognizer Tapped="CompetitionIconTapped"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
@@ -55,7 +55,7 @@
                 <Label Text="Chatt" FontSize="10"
                        HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Icon4_Tapped"/>
+                    <TapGestureRecognizer Tapped="ChatIconTapped"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
@@ -64,7 +64,7 @@
                 <Label Text="Schema" FontSize="10"
                        HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Icon5_Tapped"/>
+                    <TapGestureRecognizer Tapped="ScheduleIconTapped"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
