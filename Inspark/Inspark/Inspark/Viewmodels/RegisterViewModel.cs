@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Inspark.Services;
 namespace Inspark.Viewmodels
 {
     public class RegisterViewModel
@@ -30,9 +31,9 @@ namespace Inspark.Viewmodels
 
         public string Section { get; set; }
 
+
         public ICommand RegisterCommand => new Command(async () =>
         {
-            
                 var isSuccess = await apiServices.RegisterAsync(Role, Email, Password);
 
                 if (isSuccess)

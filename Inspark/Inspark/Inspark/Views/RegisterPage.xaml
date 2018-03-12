@@ -13,9 +13,16 @@
                 <validation:EmailBehaviors/>
             </Entry.Behaviors>
             </Entry>
-        <Entry Text="{Binding Password}" Placeholder="Password" IsPassword="true"/>
-        <Entry Text="{Binding ConfirmPassword}" Placeholder="Confirm Password" IsPassword="true"/>
-        <Entry Text="{Binding Role}" Placeholder="Role"/>
+      <Entry x:Name="password" Placeholder="New Password" IsPassword="true">
+    <Entry.Behaviors>
+        <validation:PasswordBehavior x:Name="passwordValidator"/>   
+    </Entry.Behaviors>
+</Entry>
+<Entry x:Name="confirmPassword" Placeholder="Confirm Password" IsPassword="true">
+    <Entry.Behaviors>
+        <validation:ConfirmPasswordBehaviour x:Name="confirmPasswordBehavior" CompareToEntry="{Binding Source={x:Reference password}}" />
+    </Entry.Behaviors>
+</Entry>
         <Label Text="{Binding Message}"/>
         <Picker x:Name="Section" Title="Välj din institution" HorizontalOptions="FillAndExpand">
             <Picker.Items>
@@ -29,7 +36,7 @@
                 <x:String>Restaurang- och hotellhögskolan</x:String>
             </Picker.Items>
         </Picker>
-        <Button Text="Gå till mainpage" Clicked="RegisterContinue_Clicked"/>
+
         <Button Text="Registrera" Command="{Binding RegisterCommand}"/> 
     </StackLayout>
 </ContentPage>
