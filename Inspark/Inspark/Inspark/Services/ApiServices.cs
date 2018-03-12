@@ -46,15 +46,15 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<List<User>> GetAllUsers()
-        {
-            var client = new HttpClient();
-            var response = await client.GetAsync("https://insparkwebapi.azurewebsites.net/api/user");
-            response.EnsureSuccessStatusCode();
-            var result = await response.Content.
-            var list = JsonConvert.DeserializeObject<List<User>>(result);
-            return list;
-        }
+        //public async Task<List<User>> GetAllUsers()
+        //{
+        //    var client = new HttpClient();
+        //    var response = await client.GetAsync("https://insparkwebapi.azurewebsites.net/api/user");
+        //    response.EnsureSuccessStatusCode();
+        //    var result = await response.Content.
+        //    var list = JsonConvert.DeserializeObject<List<User>>(result);
+        //    return list;
+        //}
 
     }
 }

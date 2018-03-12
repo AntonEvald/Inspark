@@ -132,48 +132,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_home_black_24dp.png" />
+    <BundleResource Include="Resources\chat.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_home_black_24dp_2x.png" />
+    <BundleResource Include="Resources\competition.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_home_black_24dp_3x.png" />
+    <BundleResource Include="Resources\group.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_accessible_black_24dp.png" />
+    <BundleResource Include="Resources\home.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_accessible_black_24dp_2x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_accessible_black_24dp_3x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_chat_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_chat_black_24dp_2x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_chat_black_24dp_3x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_supervisor_account.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_supervisor_account_2x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_supervisor_account_3x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_today_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_today_black_24dp_2x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_today_black_24dp_3x.png" />
+    <BundleResource Include="Resources\schedule.png" />
   </ItemGroup>
 </Project>

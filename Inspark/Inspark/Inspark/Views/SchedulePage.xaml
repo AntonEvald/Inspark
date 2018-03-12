@@ -6,7 +6,9 @@
              xmlns:vm="clr-namespace:Inspark.Viewmodels; assembly=inspark">
     <ContentPage.Content>
         <StackLayout>
-            <Label/>
+            <Label Text="Välkommen till schemasidan!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

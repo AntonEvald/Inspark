@@ -13,7 +13,7 @@ namespace Inspark
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage(new FrontPage());
+            MainPage = new Views.MainPage();
 		}
 
 		protected override void OnStart ()
