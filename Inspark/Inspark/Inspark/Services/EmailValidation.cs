@@ -5,6 +5,8 @@ namespace Inspark.Services
 {
     public class EmailBehaviors : Behavior<Entry>
     {
+
+
 		protected override void OnAttachedTo(Entry bindable)
 		{
             base.OnAttachedTo(bindable);
@@ -32,11 +34,12 @@ namespace Inspark.Services
 
             if (Regex.IsMatch(email, pattern))
             {
-                emailEntry.BackgroundColor = Color.Transparent;
+                emailEntry.TextColor = Color.Green;
             }
             else
             {
-                emailEntry.BackgroundColor = Color.Red;
+                emailEntry.TextColor = Color.Red;
+
             }
         }
 

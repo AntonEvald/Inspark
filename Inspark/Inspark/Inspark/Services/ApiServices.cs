@@ -12,19 +12,24 @@ namespace Inspark.Services
 {
     public class ApiServices
     {
+     
         public async Task<bool> RegisterAsync(string role, string email,string password)
         {
+            
+
+            
             var client = new HttpClient();
             var model = new User
             {
                 UserName = email,
                 Password = password,
                 Email = email,
-                Role = role,
+                Role = "Admin",
                 //ProfilePicture = pic
                 //FirstName = firstname,
                 //LastName = lastname,
                 //PhoneNumber = phonenumber
+
             };
 
             var json = JsonConvert.SerializeObject(model);
@@ -36,12 +41,12 @@ namespace Inspark.Services
 
         public async Task<List<User>> GetAllUsers()
         {
-            var client = new HttpClient();
-            var response = await client.GetAsync("https://insparkwebapi.azurewebsites.net/api/user");
-            response.EnsureSuccessStatusCode();
+        var client = new HttpClient();
+           var response = await client.GetAsync("https://insparkwebapi.azurewebsites.net/api/user");
+           response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsStringAsync();
-            var list = JsonConvert.DeserializeObject<List<User>>(result);
-            return list;
+           var list = JsonConvert.DeserializeObject<List<User>>(result);
+           return list;
         }
 
     }
