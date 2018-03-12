@@ -32,19 +32,18 @@ namespace Inspark.Viewmodels
 
         public ICommand RegisterCommand => new Command(async () =>
         {
+            
+                var isSuccess = await apiServices.RegisterAsync(Role, Email, Password);
 
-            var isSuccess = await apiServices.RegisterAsync(Role, Email, Password);
-
-            if (isSuccess)
-            {
-                Message = "Registrerad";
-            }
-            else{
-                Message = "try again";
-            }
-
-
-
+                if (isSuccess)
+                {
+                    Message = "Registrerad";
+                }
+                else
+                {
+                    Message = "try again";
+                }
+   
         });
 
     }
