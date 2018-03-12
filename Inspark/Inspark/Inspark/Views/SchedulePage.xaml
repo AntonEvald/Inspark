@@ -4,11 +4,32 @@
              x:Class="Inspark.Views.SchedulePage"
              Icon="ic_today_black_24dp.png"
              xmlns:vm="clr-namespace:Inspark.Viewmodels; assembly=inspark">
+    <ContentPage.BindingContext>
+        <vm:ScheduleViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Välkommen till schemasidan!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout
+            Padding="10">
+            <Entry
+                Placeholder="Sök i Schema"/>
+            <StackLayout
+                Padding="10"
+                Orientation="Horizontal">
+                <Label
+                    Text="Dagens datum"
+                    FontSize="Large"/>
+                <Picker
+                    ItemsSource="{Binding Schedules}"/>
+            </StackLayout>
+                <ScrollView>
+                    <ListView>
+
+                    </ListView>
+                </ScrollView>
+                <Button
+                    Text="Inställningar"/>
+            
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -37,30 +37,29 @@ namespace Inspark.Viewmodels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
-        //public ICommand LoginClick => new Command(async () =>
-        //{
-        //    Debug.WriteLine(Email, Password);
-        //    if(Email != "" || Email != "Email" || Password != null || Password != "Lösenord")
-        //    {
-        //        var list = await apiServices.GetAllUsers();
-        //        foreach (var user in list)
-        //        {
-        //            if (user.Email == Email && user.Password == Password)
-        //            {
-        //                Debug.WriteLine("Ja");
-        //            }
-        //            else
-        //            {
-        //                AlertMessage = "Fel Email eller lösenord";
-        //            }
-        //        }
-
-        //    }
-        //    else
-        //    {
-        //        AlertMessage = "Vänligen ange en Email och ett lösenord.";
-        //    }
-        //});
+        public ICommand LoginClick => new Command(async () =>
+        {
+            Debug.WriteLine(Email, Password);
+            if (Email != "" || Email != "Email" || Password != null || Password != "Lösenord")
+            {
+                var list = await apiServices.GetAllUsers();
+                foreach (var user in list)
+                {
+                    if (user.Email == Email && user.Password == Password)
+                    {
+                        Debug.WriteLine("Ja");
+                    }
+                    else
+                    {
+                        AlertMessage = "Fel Email eller lösenord";
+                    }
+                }
+            }
+            else
+            {
+                AlertMessage = "Vänligen ange en Email och ett lösenord.";
+            }
+        });
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

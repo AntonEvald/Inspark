@@ -16,5 +16,12 @@ namespace Inspark.Views
 		{
 			InitializeComponent ();
 		}
-	}
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            //var list = Viewmodels.ScheduleViewModel.GetSchedule();
+
+        }
+    }
 }
