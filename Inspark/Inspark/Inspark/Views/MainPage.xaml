@@ -11,7 +11,7 @@
             <RowDefinition Height="44"/>
         </Grid.RowDefinitions>
         <ContentView x:Name="Inspark" Grid.Row="0"/>
-        <BoxView BackgroundColor="#DCDCDC" Grid.Row="1"/>
+        <BoxView BackgroundColor="White" Grid.Row="1"/>
 
 
         <Grid ColumnSpacing="0" RowSpacing="0" Grid.Row="2">
@@ -23,7 +23,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackLayout Spacing="0" Grid.Column="0" BackgroundColor="AliceBlue">
+            <StackLayout Spacing="0" Grid.Column="0" BackgroundColor="WhiteSmoke">
                 <Image HeightRequest="30" Source="home.png"/>
                 <Label Text="Hem" FontSize="10"
                        HorizontalOptions="Center"/>
@@ -32,7 +32,7 @@
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
-            <StackLayout Spacing="0" Grid.Column="1" BackgroundColor="AliceBlue">
+            <StackLayout Spacing="0" Grid.Column="1" BackgroundColor="WhiteSmoke">
                 <Image HeightRequest="30" Source="group.png"/>
                 <Label Text="Grupp" FontSize="10"
                        HorizontalOptions="Center"/>
@@ -41,7 +41,7 @@
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
-            <StackLayout Spacing="0" Grid.Column="2" BackgroundColor="AliceBlue">
+            <StackLayout Spacing="0" Grid.Column="2" BackgroundColor="WhiteSmoke">
                 <Image HeightRequest="30" Source="competition.png"/>
                 <Label Text="Tävling" FontSize="10"
                        HorizontalOptions="Center"/>
@@ -50,7 +50,7 @@
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
-            <StackLayout Spacing="0" Grid.Column="3" BackgroundColor="AliceBlue">
+            <StackLayout Spacing="0" Grid.Column="3" BackgroundColor="WhiteSmoke">
                 <Image HeightRequest="30" Source="chat.png"/>
                 <Label Text="Chatt" FontSize="10"
                        HorizontalOptions="Center"/>
@@ -59,7 +59,7 @@
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
-            <StackLayout Spacing="0" Grid.Column="4" BackgroundColor="AliceBlue">
+            <StackLayout Spacing="0" Grid.Column="4" BackgroundColor="WhiteSmoke">
                 <Image HeightRequest="30" Source="schedule.png"/>
                 <Label Text="Schema" FontSize="10"
                        HorizontalOptions="Center"/>
