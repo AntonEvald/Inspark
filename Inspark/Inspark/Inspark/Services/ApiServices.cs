@@ -6,33 +6,24 @@ using Inspark.Models;
 using System.Text;
 using System.Collections.Generic;
 using System.IO;
-using System.Diagnostics;
+using Xamarin.Forms;
 
 namespace Inspark.Services
 {
     public class ApiServices
     {
-        private byte[] pic;
 
         public async Task<bool> RegisterAsync(string role, string email,string password)
         {
-            
-#if __ANDROID__
-                Uri fileuri = Uri.parse("android.resource://drawable"+ R.drawable.DefaultPic);
-                var path = new File(fileuri.getPath());
-                pic = File.ReadAllBytes(path);
 
-#endif
-
-            
             var client = new HttpClient();
-            var model = new User
-            {
+            var model = new User { 
+            
                 UserName = email,
                 Password = password,
                 Email = email,
                 Role = role,
-                ProfilePicture = pic
+                //ProfilePicture = pic
                 //FirstName = firstname,
                 //LastName = lastname,
                 //PhoneNumber = phonenumber
@@ -51,7 +42,7 @@ namespace Inspark.Services
             var client = new HttpClient();
             var response = await client.GetAsync("https://insparkwebapi.azurewebsites.net/api/user");
             response.EnsureSuccessStatusCode();
-            var result = await response.Content.
+            var result = await response.Content.ReadAsStringAsync();
             var list = JsonConvert.DeserializeObject<List<User>>(result);
             return list;
         }
