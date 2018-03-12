@@ -2,12 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Inspark.RegisterPage"
-    xmlns:viewModels="clr-namespace:Inspark.Viewmodels;assembly=Inspark">
+    xmlns:viewModels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
+    xmlns:validation="clr-namespace:Inspark.Services;assembly=Inspark">
     <ContentPage.BindingContext>
         <viewModels:RegisterViewModel/>
     </ContentPage.BindingContext>
     <StackLayout Padding="5">
-        <Entry Text="{Binding Email}" Placeholder="Email"/>
+        <Entry Text="{Binding Email}" x:Name="EmailV" Placeholder="Email">
+            <Entry.Behaviors>
+                <validation:EmailBehaviors/>
+            </Entry.Behaviors>
+            </Entry>
         <Entry Text="{Binding Password}" Placeholder="Password" IsPassword="true"/>
         <Entry Text="{Binding ConfirmPassword}" Placeholder="Confirm Password" IsPassword="true"/>
         <Entry Text="{Binding Role}" Placeholder="Role"/>
