@@ -2192,7 +2192,6 @@ namespace Inspark.Droid
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-<<<<<<< Updated upstream
 			// aapt resource value: 0x7f020115
 			public const int avd_hide_password_1 = 2130837781;
 			
@@ -2201,21 +2200,10 @@ namespace Inspark.Droid
 			
 			// aapt resource value: 0x7f020117
 			public const int avd_hide_password_3 = 2130837783;
-=======
-			// aapt resource value: 0x7f020113
-			public const int avd_hide_password_1 = 2130837779;
-			
-			// aapt resource value: 0x7f020114
-			public const int avd_hide_password_2 = 2130837780;
-			
-			// aapt resource value: 0x7f020115
-			public const int avd_hide_password_3 = 2130837781;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
-<<<<<<< Updated upstream
 			// aapt resource value: 0x7f020118
 			public const int avd_show_password_1 = 2130837784;
 			
@@ -2224,16 +2212,6 @@ namespace Inspark.Droid
 			
 			// aapt resource value: 0x7f02011a
 			public const int avd_show_password_3 = 2130837786;
-=======
-			// aapt resource value: 0x7f020116
-			public const int avd_show_password_1 = 2130837782;
-			
-			// aapt resource value: 0x7f020117
-			public const int avd_show_password_2 = 2130837783;
-			
-			// aapt resource value: 0x7f020118
-			public const int avd_show_password_3 = 2130837784;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f020055
 			public const int chat = 2130837589;
@@ -2263,7 +2241,6 @@ namespace Inspark.Droid
 			public const int group = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-<<<<<<< Updated upstream
 			public const int hammenu = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
@@ -2373,120 +2350,9 @@ namespace Inspark.Droid
 			
 			// aapt resource value: 0x7f020082
 			public const int ic_group_expand_14 = 2130837634;
-=======
-			public const int home = 2130837598;
-			
-			// aapt resource value: 0x7f02005f
-			public const int ic_audiotrack_dark = 2130837599;
-			
-			// aapt resource value: 0x7f020060
-			public const int ic_audiotrack_light = 2130837600;
-			
-			// aapt resource value: 0x7f020061
-			public const int ic_dialog_close_dark = 2130837601;
-			
-			// aapt resource value: 0x7f020062
-			public const int ic_dialog_close_light = 2130837602;
-			
-			// aapt resource value: 0x7f020063
-			public const int ic_group_collapse_00 = 2130837603;
-			
-			// aapt resource value: 0x7f020064
-			public const int ic_group_collapse_01 = 2130837604;
-			
-			// aapt resource value: 0x7f020065
-			public const int ic_group_collapse_02 = 2130837605;
-			
-			// aapt resource value: 0x7f020066
-			public const int ic_group_collapse_03 = 2130837606;
-			
-			// aapt resource value: 0x7f020067
-			public const int ic_group_collapse_04 = 2130837607;
-			
-			// aapt resource value: 0x7f020068
-			public const int ic_group_collapse_05 = 2130837608;
-			
-			// aapt resource value: 0x7f020069
-			public const int ic_group_collapse_06 = 2130837609;
-			
-			// aapt resource value: 0x7f02006a
-			public const int ic_group_collapse_07 = 2130837610;
-			
-			// aapt resource value: 0x7f02006b
-			public const int ic_group_collapse_08 = 2130837611;
-			
-			// aapt resource value: 0x7f02006c
-			public const int ic_group_collapse_09 = 2130837612;
-			
-			// aapt resource value: 0x7f02006d
-			public const int ic_group_collapse_10 = 2130837613;
-			
-			// aapt resource value: 0x7f02006e
-			public const int ic_group_collapse_11 = 2130837614;
-			
-			// aapt resource value: 0x7f02006f
-			public const int ic_group_collapse_12 = 2130837615;
-			
-			// aapt resource value: 0x7f020070
-			public const int ic_group_collapse_13 = 2130837616;
-			
-			// aapt resource value: 0x7f020071
-			public const int ic_group_collapse_14 = 2130837617;
-			
-			// aapt resource value: 0x7f020072
-			public const int ic_group_collapse_15 = 2130837618;
-			
-			// aapt resource value: 0x7f020073
-			public const int ic_group_expand_00 = 2130837619;
-			
-			// aapt resource value: 0x7f020074
-			public const int ic_group_expand_01 = 2130837620;
-			
-			// aapt resource value: 0x7f020075
-			public const int ic_group_expand_02 = 2130837621;
-			
-			// aapt resource value: 0x7f020076
-			public const int ic_group_expand_03 = 2130837622;
-			
-			// aapt resource value: 0x7f020077
-			public const int ic_group_expand_04 = 2130837623;
-			
-			// aapt resource value: 0x7f020078
-			public const int ic_group_expand_05 = 2130837624;
-			
-			// aapt resource value: 0x7f020079
-			public const int ic_group_expand_06 = 2130837625;
-			
-			// aapt resource value: 0x7f02007a
-			public const int ic_group_expand_07 = 2130837626;
-			
-			// aapt resource value: 0x7f02007b
-			public const int ic_group_expand_08 = 2130837627;
-			
-			// aapt resource value: 0x7f02007c
-			public const int ic_group_expand_09 = 2130837628;
-			
-			// aapt resource value: 0x7f02007d
-			public const int ic_group_expand_10 = 2130837629;
-			
-			// aapt resource value: 0x7f02007e
-			public const int ic_group_expand_11 = 2130837630;
-			
-			// aapt resource value: 0x7f02007f
-			public const int ic_group_expand_12 = 2130837631;
-			
-			// aapt resource value: 0x7f020080
-			public const int ic_group_expand_13 = 2130837632;
-			
-			// aapt resource value: 0x7f020081
-			public const int ic_group_expand_14 = 2130837633;
 			
 			// aapt resource value: 0x7f020082
 			public const int ic_group_expand_15 = 2130837634;
->>>>>>> Stashed changes
-			
-			// aapt resource value: 0x7f020083
-			public const int ic_group_expand_15 = 2130837635;
 			
 			// aapt resource value: 0x7f020084
 			public const int ic_media_pause_dark = 2130837636;
@@ -2795,14 +2661,9 @@ namespace Inspark.Droid
 			public const int ic_mr_button_disconnected_light = 2130837737;
 			
 			// aapt resource value: 0x7f0200ea
-<<<<<<< Updated upstream
 			public const int ic_mr_button_grey = 2130837738;
-=======
+
 			public const int ic_vol_type_speaker_dark = 2130837738;
->>>>>>> Stashed changes
-			
-			// aapt resource value: 0x7f0200eb
-			public const int ic_vol_type_speaker_dark = 2130837739;
 			
 			// aapt resource value: 0x7f0200ec
 			public const int ic_vol_type_speaker_group_dark = 2130837740;
@@ -2904,7 +2765,6 @@ namespace Inspark.Droid
 			public const int notification_bg_normal = 2130837772;
 			
 			// aapt resource value: 0x7f02010d
-<<<<<<< Updated upstream
 			public const int notification_bg_normal_pressed = 2130837773;
 			
 			// aapt resource value: 0x7f02010e
@@ -2915,24 +2775,11 @@ namespace Inspark.Droid
 			
 			// aapt resource value: 0x7f020114
 			public const int notification_template_icon_low_bg = 2130837780;
-=======
-			public const int notification_icon_background = 2130837773;
-			
-			// aapt resource value: 0x7f020111
-			public const int notification_template_icon_bg = 2130837777;
-			
-			// aapt resource value: 0x7f020112
-			public const int notification_template_icon_low_bg = 2130837778;
-			
+
 			// aapt resource value: 0x7f02010e
 			public const int notification_tile_bg = 2130837774;
->>>>>>> Stashed changes
-			
-			// aapt resource value: 0x7f02010f
-			public const int notification_tile_bg = 2130837775;
 			
 			// aapt resource value: 0x7f020110
-<<<<<<< Updated upstream
 			public const int notify_panel_notification_icon_bg = 2130837776;
 			
 			// aapt resource value: 0x7f020111
@@ -2940,10 +2787,7 @@ namespace Inspark.Droid
 			
 			// aapt resource value: 0x7f020112
 			public const int schedule = 2130837778;
-=======
-			public const int schedule = 2130837776;
->>>>>>> Stashed changes
-			
+	
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
