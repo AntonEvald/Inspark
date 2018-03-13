@@ -13,7 +13,8 @@
                 <validation:EmailBehaviors/>
             </Entry.Behaviors>
             </Entry>
-      <Entry x:Name="password" Placeholder="New Password" IsPassword="true">
+      <Entry x:Name="password" Placeholder="Password" IsPassword="true"
+             Text="{Binding Password}">
     <Entry.Behaviors>
         <validation:PasswordBehavior x:Name="passwordValidator"/>   
     </Entry.Behaviors>
@@ -37,6 +38,6 @@
             </Picker.Items>
         </Picker>
 
-        <Button Text="Registrera" Command="{Binding RegisterCommand}"/> 
+        <Button x:Name="RegisterButton" Text="Registrera" Command="{Binding RegisterCommand}"/> 
     </StackLayout>
 </ContentPage>

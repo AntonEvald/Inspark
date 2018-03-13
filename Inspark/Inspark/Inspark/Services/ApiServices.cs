@@ -25,6 +25,7 @@ namespace Inspark.Services
                 Password = password,
                 Email = email,
                 Role = "Admin",
+                Section = "Handelshögskolan"
                 //ProfilePicture = pic
                 //FirstName = firstname,
                 //LastName = lastname,
