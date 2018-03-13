@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using System.Windows.Input;
 using Inspark.Models;
 using Inspark.Services;
+using System.Linq;
 using System.Collections;
 
 namespace Inspark.Viewmodels
@@ -39,13 +40,15 @@ namespace Inspark.Viewmodels
 
         public ICommand LoginClick => new Command(async () =>
         {
-            Debug.WriteLine(Email, Password);
             if (Email != "" || Email != "Email" || Password != null || Password != "Lösenord")
             {
-                var list = await apiServices.GetAllUsers();
-                foreach (var user in list)
+                try
                 {
-                    if (user.Email == Email && user.Password == Password)
+                    var list = await apiServices.GetAllUsers();
+                    var loginEmail = Email;
+                    var result = list.First(user => user.Email == loginEmail);
+
+                    if (result.Email == Email && result.Password == Password)
                     {
                         Debug.WriteLine("Ja");
                     }
@@ -54,6 +57,12 @@ namespace Inspark.Viewmodels
                         AlertMessage = "Fel Email eller lösenord";
                     }
                 }
+                catch (Exception ex)
+                {
+                    
+                    AlertMessage = "Fel Email eller lösenord";
+                }
+                     
             }
             else
             {
