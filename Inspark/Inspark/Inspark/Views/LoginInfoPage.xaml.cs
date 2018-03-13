@@ -17,7 +17,7 @@ namespace Inspark.Views
 			InitializeComponent ();
 		}
 
-        private void OK_Clicked(object sender, EventArgs e)
+        private void OkButton_Clicked(object sender, EventArgs e)
         {
             Navigation.RemovePage(this);
         }

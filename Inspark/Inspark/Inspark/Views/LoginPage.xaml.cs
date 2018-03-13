@@ -16,7 +16,7 @@ namespace Inspark.Views
 			InitializeComponent ();
 		}
 
-        private async void Info_Clicked(object sender, EventArgs e)
+        private async void InfoButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new LoginInfoPage());
         }

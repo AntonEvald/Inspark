@@ -17,31 +17,31 @@ namespace Inspark.Views
             InitializeComponent();
         }
 
-        public void HomeIconTapped(object sender, EventArgs e)
+        public void HomeIcon_Tapped(object sender, EventArgs e)
         {
             var page = new HomePage();
             Inspark.Content = page.Content;
         }
 
-        public void GroupIconTapped(object sender, EventArgs e)
+        public void GroupIcon_Tapped(object sender, EventArgs e)
         {
             var page = new GroupPage();
             Inspark.Content = page.Content;
         }
 
-        public void CompetitionIconTapped(object sender, EventArgs e)
+        public void CompetitionIcon_Tapped(object sender, EventArgs e)
         {
             var page = new CompetitionPage();
             Inspark.Content = page.Content;
         }
 
-        public void ChatIconTapped(object sender, EventArgs e)
+        public void ChatIcon_Tapped(object sender, EventArgs e)
         {
             var page = new ChatPage();
             Inspark.Content = page.Content;
         }
 
-        public void ScheduleIconTapped(object sender, EventArgs e)
+        public void ScheduleIcon_Tapped(object sender, EventArgs e)
         {
             var page = new SchedulePage();
             Inspark.Content = page.Content;

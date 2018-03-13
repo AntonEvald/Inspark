@@ -7,7 +7,7 @@
         <StackLayout Padding="20">
             <Label Text="Hur man loggar in osv visas här."/>
             <Button Text="OK"
-                    Clicked="OK_Clicked"/>
+                    Clicked="OkButton_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

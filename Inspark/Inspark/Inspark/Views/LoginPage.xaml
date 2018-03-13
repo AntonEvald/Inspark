@@ -48,7 +48,7 @@
                     WidthRequest="50"
                     HorizontalOptions="End"
                     VerticalOptions="End"
-                    Clicked="Info_Clicked"/>
+                    Clicked="InfoButton_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -65,7 +65,7 @@
                 <Label Text="Hem" FontSize="10"
                        HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="HomeIconTapped"/>
+                    <TapGestureRecognizer Tapped="HomeIcon_Tapped"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
@@ -74,7 +74,7 @@
                 <Label Text="Grupp" FontSize="10"
                        HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="GroupIconTapped"/>
+                    <TapGestureRecognizer Tapped="GroupIcon_Tapped"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
@@ -83,7 +83,7 @@
                 <Label Text="Tävling" FontSize="10"
                        HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="CompetitionIconTapped"/>
+                    <TapGestureRecognizer Tapped="Competition_IconTapped"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
@@ -92,7 +92,7 @@
                 <Label Text="Chatt" FontSize="10"
                        HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ChatIconTapped"/>
+                    <TapGestureRecognizer Tapped="ChatIcon_Tapped"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
@@ -101,7 +101,7 @@
                 <Label Text="Schema" FontSize="10"
                        HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ScheduleIconTapped"/>
+                    <TapGestureRecognizer Tapped="ScheduleIcon_Tapped"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
         </Grid>
