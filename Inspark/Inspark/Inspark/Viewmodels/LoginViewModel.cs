@@ -6,6 +6,7 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using System.Windows.Input;
 using Inspark.Models;
+using Inspark.Views;
 using Inspark.Services;
 using System.Linq;
 using System.Collections;
@@ -15,8 +16,36 @@ namespace Inspark.Viewmodels
     public class LoginViewModel : INotifyPropertyChanged
     {
         ApiServices apiServices = new ApiServices();
-        public string Password { get; set; }
-        public string Email { get; set; }
+        private string password = "";
+
+        public string Password
+        {
+            get { return password; }
+            set
+            {
+                if(password != value)
+                {
+                    password = value;
+                    OnPropertyChanged("Password");
+                }
+                
+            }
+        }
+
+
+        private string email = "";
+        public string Email
+        {
+            get { return email; }
+            set
+            {
+                if (email != value)
+                {
+                    email = value;
+                    OnPropertyChanged("Email");
+                }
+            }
+        }
         public bool KeepLoggedIn { get; set; }
         private string alertMessage;
 
@@ -40,26 +69,26 @@ namespace Inspark.Viewmodels
 
         public ICommand LoginClick => new Command(async () =>
         {
-            if (Email != "" || Email != "Email" || Password != null || Password != "Lösenord")
+            if (!email.Equals("") && !password.Equals(""))
             {
                 try
                 {
                     var list = await apiServices.GetAllUsers();
-                    var loginEmail = Email;
+                    var loginEmail = email;
                     var result = list.First(user => user.Email == loginEmail);
 
                     if (result.Email == Email && result.Password == Password)
                     {
-                        Debug.WriteLine("Ja");
+                        Application.Current.MainPage = new MainPage();
                     }
                     else
                     {
-                        AlertMessage = "Fel Email eller lösenord";
+                        AlertMessage = "Fel Email eller lösenord" + Email + Password;
                     }
                 }
                 catch (Exception ex)
                 {
-                    
+
                     AlertMessage = "Fel Email eller lösenord";
                 }
                      
