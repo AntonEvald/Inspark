@@ -21,5 +21,10 @@ namespace Inspark
         {
             await Navigation.PushAsync(new RegisterPage());
         }
+
+        public async void MainPage_Clicked(object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new Views.MainPage());
+        }
     }
 }

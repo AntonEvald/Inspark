@@ -1,34 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Inspark.Views.SchedulePage"
-             xmlns:vm="clr-namespace:Inspark.Viewmodels; assembly=inspark">
-    <ContentPage.BindingContext>
+             xmlns:vm="clr-namespace:Inspark.Viewmodels; assembly=inspark"
+             xmlns:controls="clr-namespace:XamForms.Controls;assembly=XamForms.Controls.Calendar">
+             <ContentPage.BindingContext>
         <vm:ScheduleViewModel/>
     </ContentPage.BindingContext>
-    <ContentPage.Content>
-        <StackLayout
-            Padding="10">
-            <Entry
-                Placeholder="Sök i Schema"/>
-            <StackLayout
-                Padding="10"
-                Orientation="Horizontal">
-                <Label
-                    Text="Dagens datum"
-                    FontSize="Large"/>
-                <Picker
-                    ItemsSource="{Binding Schedules}"/>
-            </StackLayout>
-                <ScrollView>
-                    <ListView>
-
-                    </ListView>
-                </ScrollView>
-                <Button
-                    Text="Inställningar"/>
-            
-            
-        </StackLayout>
-    </ContentPage.Content>
+    <controls:Calendar Padding="10,0,10,0" StartDay="Monday" DateCommand="{Binding DateChosen}" SelectedBorderWidth="4" DisabledBorderColor="Black" SelectedDate="{Binding Date}"/>
 </ContentPage>
