@@ -14,7 +14,8 @@
             <Entry
                 Placeholder="Email"
                 x:Name="Email"
-                Text="{Binding Email, Mode=TwoWay}"/>
+                Text="{Binding Email, Mode=TwoWay}"
+                Keyboard="Email"/>
             <Entry
                 Placeholder="Lösenord"
                 IsPassword="True"

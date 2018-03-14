@@ -2,15 +2,26 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="Inspark.RegisterUserDetailsPage"
-             Title="Registrera användaruppgifter">
+             Title="Registrera användaruppgifter"
+             xmlns:vm="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
+             xmlns:validation="clr-namespace:Inspark.Services;assembly=Inspark">
+    
+    <ContentPage.BindingContext>
+        <vm:RegisterUserDetailsViewModel/>
+    </ContentPage.BindingContext>
 	<ContentPage.Content>
         <StackLayout 
             Padding="5">
-            <Entry Placeholder="Förnamn"/>
-            <Entry Placeholder="Efternamn" />
-            <Entry Placeholder="Telefon"/>
-            <Button Text="Registrera" Clicked="RegisterContinueEmail"/>
-            <Button Text="Välj bild"/>
+            <Entry Placeholder="Förnamn"
+                   Text="{Binding FirstName}"/>
+            <Entry Placeholder="Efternamn" 
+                   Text="{Binding LastName}"/>
+            <Entry Placeholder="Telefon"
+                   Text="{Binding PhoneNumber}"/>
+            <Button Text="Välj bild"
+                    Command="{Binding PickPic}"/>
+            <Button Text="Registrera"
+                    Command="{Binding RegisterCommand}"/>
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

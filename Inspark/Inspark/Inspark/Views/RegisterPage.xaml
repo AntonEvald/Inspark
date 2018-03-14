@@ -8,7 +8,7 @@
         <viewModels:RegisterViewModel/>
     </ContentPage.BindingContext>
     <StackLayout Padding="5">
-        <Entry Text="{Binding Email}" x:Name="EmailV" Placeholder="Email">
+        <Entry Text="{Binding Email}" x:Name="EmailV" Placeholder="Email" Keyboard="Email">
             <Entry.Behaviors>
                 <validation:EmailBehaviors/>
             </Entry.Behaviors>
@@ -38,6 +38,7 @@
             </Picker.Items>
         </Picker>
 
-        <Button x:Name="RegisterButton" Text="Registrera" Command="{Binding RegisterCommand}"/> 
+        <Button x:Name="RegisterButton" Text="Registrera" Command="{Binding RegisterCommand}"/>
+        <Button Text="Skip" Clicked="Skip_Clicked"/>
     </StackLayout>
 </ContentPage>

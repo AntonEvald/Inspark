@@ -38,8 +38,7 @@ namespace Inspark.Viewmodels
 
             if (isSuccess)
             {
-                Message = "Registrerad";
-                Debug.WriteLine("Ja");
+                await Application.Current.MainPage.Navigation.PushAsync(new RegisterUserDetailsPage());
             }
             else{
                 Message = "try again";
