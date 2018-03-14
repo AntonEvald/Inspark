@@ -2351,8 +2351,8 @@ namespace Inspark.Droid
 			// aapt resource value: 0x7f020082
 			public const int ic_group_expand_14 = 2130837634;
 			
-			// aapt resource value: 0x7f020082
-			public const int ic_group_expand_15 = 2130837634;
+			// aapt resource value: 0x7f020083
+			public const int ic_group_expand_15 = 2130837635;
 			
 			// aapt resource value: 0x7f020084
 			public const int ic_media_pause_dark = 2130837636;
@@ -2662,8 +2662,9 @@ namespace Inspark.Droid
 			
 			// aapt resource value: 0x7f0200ea
 			public const int ic_mr_button_grey = 2130837738;
-
-			public const int ic_vol_type_speaker_dark = 2130837738;
+			
+			// aapt resource value: 0x7f0200eb
+			public const int ic_vol_type_speaker_dark = 2130837739;
 			
 			// aapt resource value: 0x7f0200ec
 			public const int ic_vol_type_speaker_group_dark = 2130837740;
@@ -2775,9 +2776,9 @@ namespace Inspark.Droid
 			
 			// aapt resource value: 0x7f020114
 			public const int notification_template_icon_low_bg = 2130837780;
-
-			// aapt resource value: 0x7f02010e
-			public const int notification_tile_bg = 2130837774;
+			
+			// aapt resource value: 0x7f02010f
+			public const int notification_tile_bg = 2130837775;
 			
 			// aapt resource value: 0x7f020110
 			public const int notify_panel_notification_icon_bg = 2130837776;
@@ -2787,7 +2788,7 @@ namespace Inspark.Droid
 			
 			// aapt resource value: 0x7f020112
 			public const int schedule = 2130837778;
-
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
