@@ -12,9 +12,10 @@
                 <Button Text="Ändra profilbild" BackgroundColor="LightBlue"/>
             </StackLayout>
 
-            <StackLayout VerticalOptions="End">
+            <StackLayout>
                 <Button Text="Logga ut" BackgroundColor="LightCoral"/>
             </StackLayout>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
