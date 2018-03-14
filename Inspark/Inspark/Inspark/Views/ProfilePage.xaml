@@ -4,35 +4,35 @@
              x:Class="Inspark.Views.ProfilePage">
     
     <ContentPage.Content>
-        <StackLayout Padding="10">
+        <StackLayout Padding="20, 40">
             <Image Source="picture.jpg"/>
             
-            <StackLayout Padding="10" Orientation="Horizontal">
+            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                 <Label Text="Förnamn:"/>
                 <Label Text="Här ska förnamnet stå"/>
             </StackLayout>
 
-            <StackLayout Padding="10" Orientation="Horizontal">
+            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                 <Label Text="Efternamn:"/>
                 <Label Text="Här ska efternamnet stå"/>
             </StackLayout>
 
-            <StackLayout Padding="10" Orientation="Horizontal">
+            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                 <Label Text="Mail:"/>
                 <Label Text="Här ska mailen stå"/>
             </StackLayout>
 
-            <StackLayout Padding="10" Orientation="Horizontal">
+            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                 <Label Text="Telefonnummer:"/>
                 <Label Text="Här ska telefonnumret stå"/>
             </StackLayout>
 
-            <StackLayout Padding="10" Orientation="Horizontal">
+            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                 <Label Text="Sektion:"/>
                 <Label Text="Här ska sektionen stå"/>
             </StackLayout>
             
-            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+            <StackLayout HorizontalOptions="Center">
                 <Button Text="Skicka meddelande" BackgroundColor="LightBlue"/>
             </StackLayout>
             

@@ -16,10 +16,5 @@ namespace Inspark.Views
 		{
 			InitializeComponent ();
 		}
-
-        public async void ShowProfilePageButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new ProfilePage());
-        }
     }
 }

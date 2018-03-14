@@ -7,7 +7,7 @@
             <Label Text="Välj ett alternativ" FontSize="Medium" HorizontalOptions="Center"/>
 
             <StackLayout>
-                <Button Text="Visa profilsidan" BackgroundColor="LightBlue" Clicked="ShowProfilePageButton_Clicked"/>
+                <Button Text="Visa profilsidan" BackgroundColor="LightBlue"/>
                 <Button Text="Ändra användaruppgifter" BackgroundColor="LightBlue"/>
                 <Button Text="Ändra profilbild" BackgroundColor="LightBlue"/>
             </StackLayout>
