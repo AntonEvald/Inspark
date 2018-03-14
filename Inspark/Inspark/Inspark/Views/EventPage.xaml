@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Inspark.Views.EventPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Titel: "
+                VerticalOptions="CenterAndExpand"/>
+                <Label/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Datum: " 
+                   VerticalOptions="CenterAndExpand"/>
+                <Label/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Tid: " 
+                   VerticalOptions="CenterAndExpand"/>
+                <Label/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Beskrivning: " 
+                   VerticalOptions="CenterAndExpand"/>
+                <Button Text="Visa på karta" 
+                    VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+            <StackLayout>
+                <Label/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Jag kommer!"/>
+                <Button Text="Jag kommer INTE!"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
