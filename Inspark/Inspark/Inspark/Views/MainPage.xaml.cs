@@ -46,5 +46,11 @@ namespace Inspark.Views
             var page = new SchedulePage();
             Inspark.Content = page.Content;
         }
+
+        public void ProfileIcon_Tapped(object sender, EventArgs e)
+        {
+            var page = new AccountPage();
+            Inspark.Content = page.Content;
+        }
     }
 }

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Inspark.Views.AccountPage">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label Text="Välj ett alternativ" FontSize="Medium" HorizontalOptions="Center"/>
+
+            <StackLayout>
+                <Button Text="Visa profilsidan" BackgroundColor="LightBlue" Clicked="ShowProfilePageButton_Clicked"/>
+                <Button Text="Ändra användaruppgifter" BackgroundColor="LightBlue"/>
+                <Button Text="Ändra profilbild" BackgroundColor="LightBlue"/>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="End">
+                <Button Text="Logga ut" BackgroundColor="LightCoral"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
