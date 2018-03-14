@@ -7,11 +7,11 @@
     <!-- Skapar fem stycken rader för hela sidan. -->
     <Grid ColumnSpacing="0" RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="38"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="1"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="1"/>
-            <RowDefinition Height="44"/>
+            <RowDefinition Height="56"/>
         </Grid.RowDefinitions>
 
         <!-- Skapar fem kolumner i den första raden. -->
@@ -25,20 +25,20 @@
             </Grid.ColumnDefinitions>
 
             <!-- Specificerar värdet för varje kolumn i första raden. -->
-            <StackLayout Spacing="0" Grid.Column="0" BackgroundColor="WhiteSmoke">
+            <StackLayout VerticalOptions="Center" Spacing="0" Grid.Column="0">
                 <Image HeightRequest="30" Source="hammenu.png"/>
             </StackLayout>
             
-            <StackLayout Spacing="0" Grid.Column="1" BackgroundColor="WhiteSmoke">
+            <StackLayout Spacing="0" Grid.Column="1">
             </StackLayout>
             
-            <StackLayout Spacing="0" Grid.Column="2" BackgroundColor="WhiteSmoke">
+            <StackLayout Spacing="0" Grid.Column="2">
             </StackLayout>
             
-            <StackLayout Spacing="0" Grid.Column="3" BackgroundColor="WhiteSmoke">
+            <StackLayout Spacing="0" Grid.Column="3">
             </StackLayout>
-            
-            <StackLayout Spacing="0" Grid.Column="4" BackgroundColor="WhiteSmoke">
+
+            <StackLayout VerticalOptions="Center" Spacing="0" Grid.Column="4">
                 <Image HeightRequest="30" Source="profile.png"/>
             </StackLayout>
         </Grid>
@@ -60,7 +60,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Specificerar värdet för varje kolumn i sista raden. -->
-            <StackLayout Spacing="0" Grid.Column="0" BackgroundColor="WhiteSmoke">
+            <StackLayout VerticalOptions="Center" Spacing="0" Grid.Column="0">
                 <Image HeightRequest="30" Source="home.png"/>
                 <Label Text="Hem" FontSize="10"
                        HorizontalOptions="Center"/>
@@ -69,7 +69,7 @@
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
-            <StackLayout Spacing="0" Grid.Column="1" BackgroundColor="WhiteSmoke">
+            <StackLayout VerticalOptions="Center" Spacing="0" Grid.Column="1">
                 <Image HeightRequest="30" Source="group.png"/>
                 <Label Text="Grupp" FontSize="10"
                        HorizontalOptions="Center"/>
@@ -78,7 +78,7 @@
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
-            <StackLayout Spacing="0" Grid.Column="2" BackgroundColor="WhiteSmoke">
+            <StackLayout VerticalOptions="Center" Spacing="0" Grid.Column="2">
                 <Image HeightRequest="30" Source="competition.png"/>
                 <Label Text="Tävling" FontSize="10"
                        HorizontalOptions="Center"/>
@@ -87,7 +87,7 @@
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
-            <StackLayout Spacing="0" Grid.Column="3" BackgroundColor="WhiteSmoke">
+            <StackLayout VerticalOptions="Center" Spacing="0" Grid.Column="3">
                 <Image HeightRequest="30" Source="chat.png"/>
                 <Label Text="Chatt" FontSize="10"
                        HorizontalOptions="Center"/>
@@ -96,7 +96,7 @@
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
-            <StackLayout Spacing="0" Grid.Column="4" BackgroundColor="WhiteSmoke">
+            <StackLayout VerticalOptions="Center" Spacing="0" Grid.Column="4">
                 <Image HeightRequest="30" Source="schedule.png"/>
                 <Label Text="Schema" FontSize="10"
                        HorizontalOptions="Center"/>
