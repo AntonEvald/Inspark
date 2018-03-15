@@ -13,7 +13,7 @@ namespace Inspark.Services
     public class ApiServices
     {
      
-        public async Task<bool> RegisterAsync(string firstName, string lastName, string email, string password, string phoneNumber, string section, byte[] pic, bool isLoggedIn)
+        public async Task<bool> RegisterAsync(string firstName, string lastName, string email, string password, string section)
         {
             var client = new HttpClient();
             var model = new User
@@ -24,9 +24,9 @@ namespace Inspark.Services
                 Section = section,
                 FirstName = firstName,
                 LastName = lastName,
-                PhoneNumber = phoneNumber,
-                ProfilePicture = pic,
-                IsLoggedIn = isLoggedIn
+                //PhoneNumber = phoneNumber,
+                //ProfilePicture = pic,
+                //IsLoggedIn = isLoggedIn
             };
 
             var json = JsonConvert.SerializeObject(model);
@@ -38,7 +38,7 @@ namespace Inspark.Services
 
         public async Task<List<User>> GetAllUsers()
         {
-        var client = new HttpClient();
+           var client = new HttpClient();
            var response = await client.GetAsync("http://aktuelltwebapi.azurewebsites.net/api/user");
            response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsStringAsync();
