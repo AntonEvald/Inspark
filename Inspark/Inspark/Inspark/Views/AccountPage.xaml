@@ -14,7 +14,7 @@
                 </StackLayout>
 
                 <StackLayout>
-                    <Button Text="Logga ut" BackgroundColor="LightCoral"/>
+                    <Button Text="Logga ut" BackgroundColor="LightCoral" Clicked="LogOutButton_Clicked"/>
                 </StackLayout>
 
             </StackLayout>

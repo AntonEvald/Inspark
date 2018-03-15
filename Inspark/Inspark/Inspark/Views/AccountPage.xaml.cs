@@ -35,5 +35,10 @@ namespace Inspark.Views
             InsparkAccount.Content = page.Content;
         }
 
+        public void LogOutButton_Clicked(object sender, EventArgs e)
+        {
+            // Kod som loggar ut personen. 
+        }
+
     }
 }
