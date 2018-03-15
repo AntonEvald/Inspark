@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inspark.Android", "Inspark\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inspark.iOS", "Inspark\Inspark.iOS\Inspark.iOS.csproj", "{9100D5FE-30C0-4F2E-9F33-E9D2549BB811}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inspark", "Inspark\Inspark\Inspark.csproj", "{A4BC6AE8-C1C6-45BA-A416-7CBD579F1D81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inspark", "Inspark\Inspark\Inspark.csproj", "{A4BC6AE8-C1C6-45BA-A416-7CBD579F1D81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

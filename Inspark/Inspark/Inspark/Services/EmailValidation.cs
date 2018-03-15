@@ -43,5 +43,21 @@ namespace Inspark.Services
             }
         }
 
+        public static bool IsEmail(string email)
+        {
+            if(email != "" && email != null)
+            {
+                var pattern = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+                if (Regex.IsMatch(email, pattern))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
 	}
 }

@@ -13,29 +13,25 @@ namespace Inspark.Services
     public class ApiServices
     {
      
-        public async Task<bool> RegisterAsync(string role, string email,string password)
+        public async Task<bool> RegisterAsync(string firstName, string lastName, string email, string password, string phoneNumber, string section, byte[] pic, bool isLoggedIn)
         {
-            
-
-            
             var client = new HttpClient();
             var model = new User
             {
                 UserName = email,
                 Password = password,
                 Email = email,
-                Role = "Admin",
-                Section = "Handelshögskolan"
-                //ProfilePicture = pic
-                //FirstName = firstname,
-                //LastName = lastname,
-                //PhoneNumber = phonenumber
-
+                Section = section,
+                FirstName = firstName,
+                LastName = lastName,
+                PhoneNumber = phoneNumber,
+                ProfilePicture = pic,
+                IsLoggedIn = isLoggedIn
             };
 
             var json = JsonConvert.SerializeObject(model);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("https://insparkwebapi.azurewebsites.net/api/user",content);
+            var response = await client.PostAsync("http://aktuelltwebapi.azurewebsites.net/api/user", content);
 
             return response.IsSuccessStatusCode;
         }
@@ -43,7 +39,7 @@ namespace Inspark.Services
         public async Task<List<User>> GetAllUsers()
         {
         var client = new HttpClient();
-           var response = await client.GetAsync("https://insparkwebapi.azurewebsites.net/api/user");
+           var response = await client.GetAsync("http://aktuelltwebapi.azurewebsites.net/api/user");
            response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsStringAsync();
            var list = JsonConvert.DeserializeObject<List<User>>(result);

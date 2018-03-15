@@ -13,9 +13,9 @@ namespace Inspark.Models
         public byte[] ProfilePicture { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         public string Role { get; set; }
         public string Section { get; set; }
-        //public bool KeepLoggedIn { get; set; }
+        public bool IsLoggedIn { get; set; }
     }
 }
