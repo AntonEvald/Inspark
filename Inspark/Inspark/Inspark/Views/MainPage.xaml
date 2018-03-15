@@ -7,7 +7,7 @@
     <!-- Skapar fem stycken rader för hela sidan. -->
     <Grid ColumnSpacing="0" RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="1"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="1"/>
@@ -40,6 +40,8 @@
 
             <StackLayout Grid.Column="4" VerticalOptions="Center" Spacing="0">
                 <Image HeightRequest="30" Source="profile.png"/>
+                <Label Text="Profil" FontSize="10"
+                       HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ProfileIcon_Tapped"/>
                 </StackLayout.GestureRecognizers>

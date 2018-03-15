@@ -16,5 +16,11 @@ namespace Inspark.Views
 		{
 			InitializeComponent ();
 		}
+
+        public void ShowProfilePageButton_Clicked(object sender, EventArgs e)
+        {
+            var page = new ProfilePage();
+            InsparkAcc.Content = page.Content;
+        }
     }
 }
