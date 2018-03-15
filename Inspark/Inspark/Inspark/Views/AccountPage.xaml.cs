@@ -20,7 +20,20 @@ namespace Inspark.Views
         public void ShowProfilePageButton_Clicked(object sender, EventArgs e)
         {
             var page = new ProfilePage();
-            InsparkAcc.Content = page.Content;
+            InsparkAccount.Content = page.Content;
         }
+
+        public void ChangeUserDetailsButton_Clicked(object sender, EventArgs e)
+        {
+            var page = new ChangeUserDetails();
+            InsparkAccount.Content = page.Content;
+        }
+
+        public void ChangeProfilePictureButton_Clicked(object sender, EventArgs e)
+        {
+            var page = new ChangeProfilePicture();
+            InsparkAccount.Content = page.Content;
+        }
+
     }
 }
