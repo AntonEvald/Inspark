@@ -13,7 +13,7 @@ namespace Inspark.Services
     public class ApiServices
     {
      
-        public async Task<bool> RegisterAsync(string firstName, string lastName, string email, string password, string section)
+        public async Task<bool> RegisterAsync(string firstName, string lastName, string email, string password, string section, string phoneNumber, byte[] pic, bool isLoggedIn)
         {
             var client = new HttpClient();
             var model = new User
@@ -21,31 +21,18 @@ namespace Inspark.Services
                 UserName = email,
                 Password = password,
                 Email = email,
-<<<<<<< Updated upstream
                 Section = section,
                 FirstName = firstName,
                 LastName = lastName,
-                //PhoneNumber = phoneNumber,
-                //ProfilePicture = pic,
-                //IsLoggedIn = isLoggedIn
-=======
                 Role = "Admin",
-                Section = "Handelshögskolan",
-                //ProfilePicture = pic
-                FirstName = "andreas",
-                LastName = "Daun"
-                //PhoneNumber = phonenumber
-
->>>>>>> Stashed changes
+                PhoneNumber = phoneNumber,
+                ProfilePicture = pic,
+                IsLoggedIn = isLoggedIn
             };
 
             var json = JsonConvert.SerializeObject(model);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-<<<<<<< Updated upstream
             var response = await client.PostAsync("http://aktuelltwebapi.azurewebsites.net/api/user", content);
-=======
-            var response = await client.PostAsync("http://aktuelltwebapi.azurewebsites.net/api/user",content);
->>>>>>> Stashed changes
 
             return response.IsSuccessStatusCode;
         }

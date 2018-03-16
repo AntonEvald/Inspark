@@ -28,7 +28,7 @@ namespace Inspark.Models
         public byte[] Picture { get; set; }
         public User Sender { get; set; }
         public int senderId { get; set; }
-        public Group Group { get; set; }
+        //public Group Group { get; set; }
         public int GroupId { get; set; }
     }
 }
