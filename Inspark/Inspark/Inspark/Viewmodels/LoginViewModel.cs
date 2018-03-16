@@ -86,7 +86,7 @@ namespace Inspark.Viewmodels
                         AlertMessage = "Fel Email eller lösenord" + Email + Password;
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
 
                     AlertMessage = "Fel Email eller lösenord";

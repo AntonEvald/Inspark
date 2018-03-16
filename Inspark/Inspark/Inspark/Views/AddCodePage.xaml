@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Inspark.Views.AddCodePage">
     <ContentPage.Content>
-        <StackLayout>
-            <Entry Placeholder="Ange din introduktionskod!"/>
-            <Button Text="OK" Command=""/>
+        <StackLayout Padding="40">
+            <Label Text="Ange din introduktionkod: " FontSize="Large" HorizontalOptions="Center"/>
+            <Entry Text="{Binding EnteredCode}" HorizontalOptions="Center" WidthRequest="150"/>
+            <Button Text="OK" Command="{Binding OK_Command}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

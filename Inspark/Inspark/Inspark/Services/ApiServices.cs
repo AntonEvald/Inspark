@@ -13,10 +13,10 @@ namespace Inspark.Services
     public class ApiServices
     {
      
-        public async Task<bool> RegisterAsync(string firstName, string lastName, string email, string password, string section)
+        public async Task<bool> RegisterAsync(string firstName, string lastName, string email, string password, string section, string phoneNumber, byte[] pic, bool isLoggedIn)
         {
             var client = new HttpClient();
-            var model = new User
+            var user = new User
             {
                 UserName = email,
                 Password = password,
@@ -24,16 +24,15 @@ namespace Inspark.Services
                 Section = section,
                 FirstName = firstName,
                 LastName = lastName,
-                //PhoneNumber = phoneNumber,
-                //ProfilePicture = pic,
-                //IsLoggedIn = isLoggedIn
+                PhoneNumber = phoneNumber,
+                ProfilePicture = pic,
+                IsLoggedIn = isLoggedIn
             };
 
-            var json = JsonConvert.SerializeObject(model);
+            var json = JsonConvert.SerializeObject(user);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await client.PostAsync("http://aktuelltwebapi.azurewebsites.net/api/user", content);
-
-            return response.IsSuccessStatusCode;
+                return response.IsSuccessStatusCode;
         }
 
         public async Task<List<User>> GetAllUsers()
@@ -41,7 +40,7 @@ namespace Inspark.Services
            var client = new HttpClient();
            var response = await client.GetAsync("http://aktuelltwebapi.azurewebsites.net/api/user");
            response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadAsStringAsync();
+           var result = await response.Content.ReadAsStringAsync();
            var list = JsonConvert.DeserializeObject<List<User>>(result);
            return list;
         }

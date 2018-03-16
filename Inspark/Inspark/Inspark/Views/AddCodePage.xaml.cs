@@ -16,5 +16,11 @@ namespace Inspark.Views
 		{
 			InitializeComponent ();
 		}
-	}
+
+        private void Later_Clicked(EventArgs e, Object sender)
+        {
+            Navigation.PushAsync(new MainPage());
+        }
+
+    }
 }

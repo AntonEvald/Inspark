@@ -80,7 +80,7 @@ namespace Inspark.Viewmodels
             {
                 if(Section != null && Section != "")
                 {
-                    var isSuccess = await apiServices.RegisterAsync(FirstName, LastName, Email, Password, section);
+                var isSuccess = await apiServices.RegisterAsync(FirstName, LastName, Email, Password, section, PhoneNumber, Pic, IsLoggedIn = true);
 
                     if (isSuccess)
                     {
