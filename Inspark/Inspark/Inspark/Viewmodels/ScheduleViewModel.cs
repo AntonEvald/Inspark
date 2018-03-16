@@ -11,7 +11,6 @@ namespace Inspark.Viewmodels
 {
     class ScheduleViewModel : INotifyPropertyChanged
     {
-        public ICollection<Event> Events { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propertyName)
@@ -19,12 +18,39 @@ namespace Inspark.Viewmodels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+
+       // public ObservableCollection<XamForms.Controls.SpecialDate> Events;
+
+
+        private DateTime? _date;
+        public DateTime? Date
+        {
+            get
+            {
+                return _date;
+            }
+            set
+            {
+                _date = value;
+                NotifyPropertyChanged(nameof(Date));
+            }
+        }
+
+        private ObservableCollection<XamForms.Controls.SpecialDate> attendances;
+        public ObservableCollection<XamForms.Controls.SpecialDate> Attendances
+        {
+            get { return attendances; }
+            set { attendances = value; NotifyPropertyChanged(nameof(Attendances)); }
+        }
+
+
         public ICommand DateChosen
         {
             get
             {
                 return new Command((obj) => {
                     System.Diagnostics.Debug.WriteLine(obj as DateTime?);
+                   
                 });
             }
         }
