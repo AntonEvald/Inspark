@@ -38,10 +38,10 @@ namespace Inspark.Services
 
         public async Task<List<User>> GetAllUsers()
         {
-        var client = new HttpClient();
+           var client = new HttpClient();
            var response = await client.GetAsync("http://aktuelltwebapi.azurewebsites.net/api/user");
            response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadAsStringAsync();
+           var result = await response.Content.ReadAsStringAsync();
            var list = JsonConvert.DeserializeObject<List<User>>(result);
            return list;
         }

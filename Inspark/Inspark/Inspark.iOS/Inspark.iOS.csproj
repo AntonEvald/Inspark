@@ -155,4 +155,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\profile.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\admin.png" />
+  </ItemGroup>
 </Project>
