@@ -4,8 +4,30 @@
              x:Class="Inspark.Views.SchedulePage"
              xmlns:vm="clr-namespace:Inspark.Viewmodels; assembly=inspark"
              xmlns:controls="clr-namespace:XamForms.Controls;assembly=XamForms.Controls.Calendar">
-             <ContentPage.BindingContext>
-        <vm:ScheduleViewModel/>
-    </ContentPage.BindingContext>
-    <controls:Calendar Padding="10,0,10,0" StartDay="Monday" DateCommand="{Binding DateChosen}" SelectedBorderWidth="4" DisabledBorderColor="Black" SelectedDate="{Binding Date}"/>
+        <Grid RowSpacing="25">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+    <StackLayout Grid.Row="0" 
+              Grid.Column="0"  
+              Grid.ColumnSpan="2">
+    <controls:Calendar x:Name="Schedule" Padding="10,0,10,0" DateClicked="Handle_DateClicked"/>
+            
+</StackLayout>
+    <StackLayout Grid.Row="1" 
+              Grid.Column="0"  
+              Grid.ColumnSpan="2">
+        <Label Text="hej" x:Name="selectedDate"></Label>
+            <ListView>
+                
+            </ListView>
+    </StackLayout>
+        </Grid>
 </ContentPage>
