@@ -36,6 +36,12 @@
             </StackLayout>
 
             <StackLayout Grid.Column="3" Spacing="0">
+                <Image HeightRequest="30" Source="admin.png"/>
+                <Label Text="Admin" FontSize="10"
+                       HorizontalOptions="Center"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="AdminIcon_Tapped"/>
+                </StackLayout.GestureRecognizers>
             </StackLayout>
 
             <StackLayout Grid.Column="4" VerticalOptions="Center" Spacing="0">
