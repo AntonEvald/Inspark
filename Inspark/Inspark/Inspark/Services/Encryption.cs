@@ -12,7 +12,7 @@ namespace Inspark.Services
 
         public static string Decrypt(string encrypted)
         {
-            byte[] encBytes = ASCIIEncoding.ASCII.GetBytes(encrypted);
+            byte[] encBytes = Convert.FromBase64String(encrypted);
             AesCryptoServiceProvider endec = new AesCryptoServiceProvider();
             endec.BlockSize = 128;
             endec.KeySize = 256;
@@ -21,12 +21,12 @@ namespace Inspark.Services
             endec.Padding = PaddingMode.PKCS7;
             endec.Mode = CipherMode.CBC;
 
-            ICryptoTransform icrypt = endec.CreateEncryptor(endec.Key, endec.IV);
+            ICryptoTransform icrypt = endec.CreateDecryptor(endec.Key, endec.IV);
 
             byte[] dec = icrypt.TransformFinalBlock(encBytes, 0, encBytes.Length);
             icrypt.Dispose();
 
-            return Convert.ToBase64String(dec);
+            return ASCIIEncoding.ASCII.GetString(dec);
         }
     }
 }

@@ -76,8 +76,9 @@ namespace Inspark.Viewmodels
                     var list = await apiServices.GetAllUsers();
                     var loginEmail = email;
                     var result = list.First(user => user.Email == loginEmail);
+                    var dPassword = Encryption.Decrypt(result.Password);
 
-                    if (result.Email == Email && result.Password == Password)
+                    if (result.Email == Email && dPassword == Password)
                     {
                         Application.Current.MainPage = new MainPage();
                     }

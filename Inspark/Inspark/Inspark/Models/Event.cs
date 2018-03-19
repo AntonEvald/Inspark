@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Inspark.Models
 {
-    class Event
+    public class Event
     {
         public string Title { get; set; }
         public string Id { get; set; }
@@ -16,7 +16,7 @@ namespace Inspark.Models
 
     }
 
-    class groupEvent
+    public class GroupEvent
     {
 
         public int Id { get; set; }
@@ -31,4 +31,5 @@ namespace Inspark.Models
         //public Group Group { get; set; }
         public int GroupId { get; set; }
     }
+
 }

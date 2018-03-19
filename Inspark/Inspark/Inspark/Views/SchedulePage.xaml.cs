@@ -24,6 +24,7 @@ namespace Inspark.Views
         {
             var date = Schedule.SelectedDates;
             selectedDate.Text = date.FirstOrDefault<DateTime>().ToString("dd/MM/yyyy");
+
         }
 
         protected override void OnAppearing()

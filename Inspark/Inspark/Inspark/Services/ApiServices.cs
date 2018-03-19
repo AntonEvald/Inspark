@@ -12,6 +12,18 @@ namespace Inspark.Services
 {
     public class ApiServices
     {
+
+
+        public async Task<List<GroupEvent>> GetAllGroupEvents()
+        {
+            var client = new HttpClient();
+            var response = await client.GetAsync("http://aktuelltwebapi.azurewebsites.net/api/GroupEvent");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<List<GroupEvent>>(result);
+            return list;
+
+        }
      
         public async Task<bool> RegisterAsync(string firstName, string lastName, string email, string password, string section, string phoneNumber, byte[] pic, bool isLoggedIn)
         {
