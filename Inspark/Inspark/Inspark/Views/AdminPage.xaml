@@ -12,8 +12,17 @@
                 <StackLayout>
                     <StackLayout Orientation="Vertical">
                         <SearchBar Placeholder="Sök efter användare" Text="{Binding SearchUser}" SearchCommand="{Binding SearchPressed}" HeightRequest="50"/>
-                        <ListView ItemsSource="{Binding UserList}"/>
                         <Label Text="{Binding ErrorMessage, Mode=TwoWay}"/>
+                        <ListView ItemsSource="{Binding UserList}"/>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ImageCell>
+                                        <ImageCell.ContextActions>
+                                            <MenuItem></MenuItem>
+                                        </ImageCell.ContextActions>
+                                    </ImageCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
                     </StackLayout>
 
                     <StackLayout>
