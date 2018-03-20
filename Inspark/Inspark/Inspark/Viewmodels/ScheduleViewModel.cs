@@ -6,22 +6,21 @@ using Inspark.Models;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.ComponentModel;
+using XamForms.Controls;
 
 namespace Inspark.Viewmodels
 {
-    class ScheduleViewModel : INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
-
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+    }
 
-
-       // public ObservableCollection<XamForms.Controls.SpecialDate> Events;
-
-
+    public class ScheduleViewModel : BaseViewModel
+    {
         private DateTime? _date;
         public DateTime? Date
         {
@@ -43,18 +42,19 @@ namespace Inspark.Viewmodels
             set { attendances = value; NotifyPropertyChanged(nameof(Attendances)); }
         }
 
-
         public ICommand DateChosen
         {
             get
             {
                 return new Command((obj) => {
                     System.Diagnostics.Debug.WriteLine(obj as DateTime?);
-                   
                 });
             }
         }
 
-
     }
 }
+
+                
+
+        

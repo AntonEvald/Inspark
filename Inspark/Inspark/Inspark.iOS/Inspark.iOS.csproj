@@ -161,4 +161,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\admin.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\search.png" />
+  </ItemGroup>
 </Project>
