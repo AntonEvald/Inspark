@@ -19,10 +19,13 @@ namespace Inspark.Viewmodels
         }
     }
 
+
+
     public class ScheduleViewModel : BaseViewModel
     {
 
-        public List<Event> Event { get; set; }
+        public ObservableCollection<string> SpecificDates = new ObservableCollection<string>();
+        public List<Event> Events = new List<Event>();
         public List<GroupEvent> GroupEvent { get; set; }
         private DateTime? _date;
         public DateTime? Date
@@ -38,7 +41,35 @@ namespace Inspark.Viewmodels
             }
         }
 
+        public void TestList()
+        {
+            var e = new Event
+            {
+                Title = "EfterFest",
+                Id = "01",
+                Location = "Landsvägsgatan",
+                date = new DateTime(2018, 03, 30, 16, 45, 0),
+                //IEnumerable<User> Invited 
+                //IEnumerable<User> Attending 
+                Description = "HejHEj"
+            };
 
+            var a = new Event
+            {
+                Title = "EfterFest2",
+                Id = "01",
+                Location = "Landsvägsgatan",
+                date = new DateTime(2018, 03, 28, 16, 45, 0),
+                //IEnumerable<User> Invited 
+                //IEnumerable<User> Attending 
+                Description = "HejHEj"
+            };
+
+
+            Events.Add(e);
+            Events.Add(a);
+
+        }
 
         private ObservableCollection<XamForms.Controls.SpecialDate> attendances;
         public ObservableCollection<XamForms.Controls.SpecialDate> Attendances
