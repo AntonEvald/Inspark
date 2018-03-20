@@ -28,6 +28,8 @@ namespace Inspark.Views
             dates.Add(specialDate);
             cal.SpecialDates = dates;
             cal.StartDay = DayOfWeek.Monday;
+            cal.StartDate = DateTime.Now;
+            cal.MinDate = DateTime.Now.AddDays(-1);
             cal.BindingContext = contex;
             contex.Attendances = new ObservableCollection<SpecialDate>(dates);
             cal.SelectedDate = (DateTime.Now);
