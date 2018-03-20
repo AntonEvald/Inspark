@@ -4,8 +4,10 @@
              x:Class="Inspark.Views.SchedulePage"
              xmlns:vm="clr-namespace:Inspark.Viewmodels; assembly=inspark"
              xmlns:controls="clr-namespace:XamForms.Controls;assembly=XamForms.Controls.Calendar">
-        <Grid RowSpacing="25">
-        
+             <ContentPage.BindingContext>
+        <vm:ScheduleViewModel/>
+    </ContentPage.BindingContext>
+    <Grid RowSpacing="25">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -18,13 +20,13 @@
     <StackLayout Grid.Row="0" 
               Grid.Column="0"  
               Grid.ColumnSpan="2">
-    <controls:Calendar x:Name="Schedule" Padding="10,0,10,0" DateClicked="Handle_DateClicked"/>
-            
+    <controls:Calendar  
+      HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" DateClicked="Handle_DateClicked"  x:Name="cal"/>   
 </StackLayout>
     <StackLayout Grid.Row="1" 
               Grid.Column="0"  
               Grid.ColumnSpan="2">
-        <Label Text="hej" x:Name="selectedDate"></Label>
+        <Label Text="hej" x:Name="selectedDateLb"></Label>
             <ListView>
                 
             </ListView>
