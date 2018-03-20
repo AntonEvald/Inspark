@@ -52,7 +52,8 @@
                     <x:String>Restaurang- och hotellhögskolan</x:String>
                 </Picker.Items>
             </Picker>
-            <Button Text="Välj bild" Command="{Binding PickPic}"/>
+            <Button Text="Välj bild" Command="{Binding PickPhotoCommand}"/>
+            <Image Source="{Binding ImagePath}"/>
             <Button x:Name="RegisterButton" Text="Registrera" Command="{Binding RegisterCommand}"/>
             <Label Text="{Binding Message}" TextColor="Red"/>
         </StackLayout>

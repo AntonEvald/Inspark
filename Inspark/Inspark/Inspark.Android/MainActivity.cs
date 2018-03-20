@@ -9,18 +9,21 @@ using Android.OS;
 using System.IO;
 using System.Threading.Tasks;
 using Android.Content;
+using Plugin.Media;
 
 namespace Inspark.Droid
 {
     [Activity(Label = "Inspark", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        protected override void OnCreate(Bundle bundle)
+        protected async override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
+
+            await CrossMedia.Current.Initialize();
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             XamForms.Controls.Droid.Calendar.Init();

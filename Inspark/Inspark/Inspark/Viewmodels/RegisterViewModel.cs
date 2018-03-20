@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Inspark.Services;
+using Plugin.Media;
+using System.IO;
+
 namespace Inspark.Viewmodels
 {
     public class RegisterViewModel : INotifyPropertyChanged
@@ -30,6 +33,20 @@ namespace Inspark.Viewmodels
         public string Role { get; set; }
 
         public byte[] Pic { get; set; }
+
+        private string imagePath;
+        public string ImagePath
+        {
+            get { return imagePath; }
+            set
+            {
+                if (imagePath != value)
+                {
+                    imagePath = value;
+                    OnPropertyChanged("ImagePath");
+                }
+            }
+        }
 
         public bool IsLoggedIn { get; set; }
 
@@ -73,14 +90,32 @@ namespace Inspark.Viewmodels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
+        public ICommand PickPhotoCommand => new Command(async () =>
+        {
+            await CrossMedia.Current.Initialize();
 
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                Message = "Att välja bild stöds inte på denna enhet.";
+            }
+            var file = await CrossMedia.Current.PickPhotoAsync();
+            if(file == null)
+            {
+                return;
+            }
+
+            ImagePath = file.Path;
+            
+             
+        });
         public ICommand RegisterCommand => new Command(async () =>
         {
             if(TextOnlyBehavior.IsTextOnly(FirstName) && TextOnlyBehavior.IsTextOnly(LastName) && EmailBehaviors.IsEmail(Email) && NumberBehavior.IsNumbers(PhoneNumber) && PasswordBehavior.IsValidPassword(Password) && PasswordBehavior.IsPasswordMatch(Password, ConfirmPassword))
             {
                 if(Section != null && Section != "")
                 {
-                var isSuccess = await apiServices.RegisterAsync(FirstName, LastName, Email, Password, section, PhoneNumber, Pic, true);
+                    Pic = File.ReadAllBytes(ImagePath);
+                    var isSuccess = await apiServices.RegisterAsync(FirstName, LastName, Email, Password, section, PhoneNumber, Pic, true);
 
                     if (isSuccess)
                     {
