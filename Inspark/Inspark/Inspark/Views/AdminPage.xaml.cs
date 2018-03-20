@@ -17,5 +17,17 @@ namespace Inspark.Views
 		{
 			InitializeComponent ();
 		}
+
+        public void CreateGroupButton_Clicked(object sender, EventArgs e)
+        {
+            var page = new CreateGroup();
+            InsparkAdmin.Content = page.Content;
+        }
+
+        public void ChangeGroupButton_Clicked(object sender, EventArgs e)
+        {
+            var page = new ChangeGroup();
+            InsparkAdmin.Content = page.Content;
+        }
     }
 }

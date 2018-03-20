@@ -1,14 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Inspark.Views.CompetitionPage">
+             x:Class="Inspark.Views.ChangeGroup">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <Label Text="Välkommen till tävlingssidan!"
+        <StackLayout>
+            <Label Text="Ändra introduktionsgrupp!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            </StackLayout>
-        </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
