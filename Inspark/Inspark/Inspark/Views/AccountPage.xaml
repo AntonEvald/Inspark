@@ -1,25 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Inspark.Views.AccountPage">
+             x:Class="Inspark.Views.AccountPage"
+             xmlns:viewModels="clr-namespace:Inspark.Viewmodels;assembly=Inspark">
     <ContentView x:Name="InsparkAccount">
+        <ContentPage.BindingContext>
+            <viewModels:ProfilePictureViewModel/>
+        </ContentPage.BindingContext>
         <ContentPage.Content>
-            <ScrollView>
-                <StackLayout Padding="20">
-                    <Label Text="Välj ett alternativ" FontSize="Medium" HorizontalOptions="Center"/>
+            <StackLayout Padding="20">
+                <Label Text="Välj ett alternativ" FontSize="Medium" HorizontalOptions="Center"/>
 
-                    <StackLayout>
-                        <Button Text="Visa profilsidan" BackgroundColor="LightBlue" Clicked="ShowProfilePageButton_Clicked"/>
-                        <Button Text="Ändra användaruppgifter" BackgroundColor="LightBlue" Clicked="ChangeUserDetailsButton_Clicked"/>
-                        <Button Text="Ändra profilbild" BackgroundColor="LightBlue" Clicked="ChangeProfilePictureButton_Clicked"/>
-                    </StackLayout>
-
-                    <StackLayout>
-                        <Button Text="Logga ut" BackgroundColor="LightCoral" Clicked="LogOutButton_Clicked"/>
-                    </StackLayout>
-
+                <StackLayout>
+                    <Button Text="Visa profilsidan" BackgroundColor="LightBlue" Clicked="ShowProfilePageButton_Clicked"/>
+                    <Button Text="Ändra användaruppgifter" BackgroundColor="LightBlue" Clicked="ChangeUserDetailsButton_Clicked"/>
+                    <Button Text="Ändra profilbild" BackgroundColor="LightBlue" Command="{Binding PickPhotoCommand}"/>
                 </StackLayout>
-            </ScrollView>
+
+                <StackLayout>
+                    <Button Text="Logga ut" BackgroundColor="LightCoral" Clicked="LogOutButton_Clicked"/>
+                </StackLayout>
+
+            </StackLayout>
         </ContentPage.Content>
     </ContentView>
 </ContentPage>

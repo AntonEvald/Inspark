@@ -21,6 +21,9 @@ namespace Inspark.Viewmodels
 
     public class ScheduleViewModel : BaseViewModel
     {
+
+        public List<Event> Event { get; set; }
+        public List<GroupEvent> GroupEvent { get; set; }
         private DateTime? _date;
         public DateTime? Date
         {
@@ -34,6 +37,8 @@ namespace Inspark.Viewmodels
                 NotifyPropertyChanged(nameof(Date));
             }
         }
+
+
 
         private ObservableCollection<XamForms.Controls.SpecialDate> attendances;
         public ObservableCollection<XamForms.Controls.SpecialDate> Attendances

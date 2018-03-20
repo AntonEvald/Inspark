@@ -50,5 +50,7 @@
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
 	<string>Inspark</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app need access to you photo gallery.</string>
 </dict>
 </plist>
