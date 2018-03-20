@@ -4,46 +4,48 @@
              x:Class="Inspark.Views.EventPage">
     
     <ContentPage.Content>
-        <StackLayout Padding="20">
-            <Image Source="bowling.jpg" />
-            
-            <StackLayout HorizontalOptions="Center">
-                <Button Text="Karta"
+        <ScrollView>
+            <StackLayout Padding="20">
+                <Image Source="bowling.jpg" />
+
+                <StackLayout HorizontalOptions="Center">
+                    <Button Text="Karta"
                     HeightRequest="40"
                     WidthRequest="100"
                     VerticalOptions="CenterAndExpand" />
-            </StackLayout>
+                </StackLayout>
 
-            <StackLayout Padding="10, 0, 10, 0" Orientation="Horizontal">
-                <Label Text="Titel:"
+                <StackLayout Padding="10, 0, 10, 0" Orientation="Horizontal">
+                    <Label Text="Titel:"
                     FontSize="Medium"/>
-                <Label Text="Titel står här" VerticalOptions="CenterAndExpand"/>
-            </StackLayout>
-            
-            <StackLayout Padding="10, 0, 10, 0" Orientation="Horizontal">
-                <Label Text="Datum:" 
-                       FontSize="Medium"/>
-                <Label Text="Datum står här" VerticalOptions="CenterAndExpand"/>
-            </StackLayout>
+                    <Label Text="Titel står här" VerticalOptions="CenterAndExpand"/>
+                </StackLayout>
 
-            <StackLayout Padding="10, 0, 10, 0" Orientation="Horizontal">
-                <Label Text="Tid:" 
+                <StackLayout Padding="10, 0, 10, 0" Orientation="Horizontal">
+                    <Label Text="Datum:" 
                        FontSize="Medium"/>
-                <Label Text="Tiden står här" VerticalOptions="CenterAndExpand"/>
-            </StackLayout>
-            
-            <StackLayout Padding="10" Orientation="Vertical">
-                <Label Text="Om evenemanget:" 
+                    <Label Text="Datum står här" VerticalOptions="CenterAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Padding="10, 0, 10, 0" Orientation="Horizontal">
+                    <Label Text="Tid:" 
+                       FontSize="Medium"/>
+                    <Label Text="Tiden står här" VerticalOptions="CenterAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Padding="10" Orientation="Vertical">
+                    <Label Text="Om evenemanget:" 
                        FontSize="Medium"
                    VerticalOptions="CenterAndExpand"/>
-                <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a leo sit amet neque laoreet mollis vitae ac risus. Maecenas viverra feugiat placerat. Quisque ultrices tempus suscipit. Suspendisse sit amet sapien quis sem euismod cursus. Vestibulum ultrices leo odio, vitae tristique elit varius in. Donec consequat odio nec turpis aliquam pretium."/>
-            </StackLayout>
+                    <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a leo sit amet neque laoreet mollis vitae ac risus. Maecenas viverra feugiat placerat. Quisque ultrices tempus suscipit. Suspendisse sit amet sapien quis sem euismod cursus. Vestibulum ultrices leo odio, vitae tristique elit varius in. Donec consequat odio nec turpis aliquam pretium."/>
+                </StackLayout>
 
-            <StackLayout Padding="20" Orientation="Horizontal">
-                <Button Text="Jag kommer!" BackgroundColor="LightGreen"/>
-                <Button Text="Jag kommer INTE!" BackgroundColor="LightCoral"/>
-            </StackLayout>
+                <StackLayout Padding="20" Orientation="Horizontal">
+                    <Button Text="Jag kommer!" BackgroundColor="LightGreen"/>
+                    <Button Text="Jag kommer INTE!" BackgroundColor="LightCoral"/>
+                </StackLayout>
 
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

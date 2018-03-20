@@ -7,29 +7,33 @@
              <ContentPage.BindingContext>
         <vm:ScheduleViewModel/>
     </ContentPage.BindingContext>
-    <Grid RowSpacing="25">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+    <ScrollView>
+        <Grid RowSpacing="25">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="300"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-    <StackLayout Grid.Row="0" 
-              Grid.Column="0"  
-              Grid.ColumnSpan="2">
-    <controls:Calendar  
-      HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" DateClicked="Handle_DateClicked"  x:Name="cal"/>   
-</StackLayout>
-    <StackLayout Grid.Row="1" 
-              Grid.Column="0"  
-              Grid.ColumnSpan="2">
-        <Label Text="hej" x:Name="selectedDateLb"></Label>
-            <ListView>
-                
-            </ListView>
-    </StackLayout>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="300"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+                <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <controls:Calendar  
+                        HorizontalOptions="FillAndExpand" 
+                        VerticalOptions="CenterAndExpand" 
+                        DateClicked="Handle_DateClicked"  
+                        x:Name="cal"/>
+                </StackLayout>
+            
+                <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Label Text="hej" x:Name="selectedDateLb"></Label>
+                    <ListView>
+
+                    </ListView>
+                </StackLayout>
         </Grid>
+    </ScrollView>
+
 </ContentPage>

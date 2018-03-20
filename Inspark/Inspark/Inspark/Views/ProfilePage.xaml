@@ -4,38 +4,40 @@
              x:Class="Inspark.Views.ProfilePage">
     
     <ContentPage.Content>
-        <StackLayout Padding="20, 40">
-            <Image Source="picture.jpg"/>
-            
-            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                <Label Text="Förnamn:"/>
-                <Label Text="Här ska förnamnet stå"/>
-            </StackLayout>
+        <ScrollView>
+            <StackLayout Padding="20, 40">
+                <Image Source="picture.jpg"/>
 
-            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                <Label Text="Efternamn:"/>
-                <Label Text="Här ska efternamnet stå"/>
-            </StackLayout>
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Label Text="Förnamn:"/>
+                    <Label Text="Här ska förnamnet stå"/>
+                </StackLayout>
 
-            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                <Label Text="Mail:"/>
-                <Label Text="Här ska mailen stå"/>
-            </StackLayout>
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Label Text="Efternamn:"/>
+                    <Label Text="Här ska efternamnet stå"/>
+                </StackLayout>
 
-            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                <Label Text="Telefonnummer:"/>
-                <Label Text="Här ska telefonnumret stå"/>
-            </StackLayout>
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Label Text="Mail:"/>
+                    <Label Text="Här ska mailen stå"/>
+                </StackLayout>
 
-            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                <Label Text="Sektion:"/>
-                <Label Text="Här ska sektionen stå"/>
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Label Text="Telefonnummer:"/>
+                    <Label Text="Här ska telefonnumret stå"/>
+                </StackLayout>
+
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Label Text="Sektion:"/>
+                    <Label Text="Här ska sektionen stå"/>
+                </StackLayout>
+
+                <StackLayout HorizontalOptions="Center">
+                    <Button Text="Skicka meddelande" BackgroundColor="LightBlue"/>
+                </StackLayout>
+
             </StackLayout>
-            
-            <StackLayout HorizontalOptions="Center">
-                <Button Text="Skicka meddelande" BackgroundColor="LightBlue"/>
-            </StackLayout>
-            
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
