@@ -27,8 +27,8 @@
                         </StackLayout>
 
                         <StackLayout>
-                            <Button Text="Skapa introduktionsgrupp" BackgroundColor="LightBlue"/>
-                            <Button Text="Ändra introduktionsgrupp" BackgroundColor="LightBlue"/>
+                            <Button Text="Skapa introduktionsgrupp" BackgroundColor="LightBlue" Clicked="CreateGroupButton_Clicked"/>
+                            <Button Text="Ändra introduktionsgrupp" BackgroundColor="LightBlue" Clicked="ChangeGroupButton_Clicked"/>
                             <Button Text="Ta bort introduktionsgrupp" BackgroundColor="LightBlue"/>
                             <Button Text="Lägg till användare från introduktionsgrupp" BackgroundColor="LightBlue"/>
                             <Button Text="Ta bort användare från introduktionsgrupp" BackgroundColor="LightBlue"/>
