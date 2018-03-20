@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Collections.ObjectModel;
 using Inspark.Viewmodels;
+using Inspark.Models;
 
 namespace Inspark.Views
 {
@@ -16,30 +17,45 @@ namespace Inspark.Views
     {
         List<SpecialDate> dates = new List<SpecialDate>();
         ScheduleViewModel contex = new ScheduleViewModel();
+
        
         public SchedulePage()
         {
             InitializeComponent();
-            var specialDate = new SpecialDate(new DateTime(2018, 03, 26));
-            specialDate.BackgroundColor = Color.Green;
-            specialDate.TextColor = Color.White;
-            specialDate.Selectable = true;
+            contex.TestList();
+            foreach (var item in contex.Events)
+            {
+                var specialDate = new SpecialDate(item.date);
+                specialDate.BackgroundColor = Color.Green;
+                specialDate.TextColor = Color.White;
+                specialDate.Selectable = true;
 
-            dates.Add(specialDate);
-            cal.SpecialDates = dates;
+                dates.Add(specialDate);
+            }
             cal.StartDay = DayOfWeek.Monday;
             cal.StartDate = DateTime.Now;
             cal.MinDate = DateTime.Now.AddDays(-1);
             cal.BindingContext = contex;
             contex.Attendances = new ObservableCollection<SpecialDate>(dates);
             cal.SelectedDate = (DateTime.Now);
+            cal.SpecialDates = contex.Attendances;
+  
+
         }
+
 
         void Handle_DateClicked(object sender, XamForms.Controls.DateTimeEventArgs e)
         {
             var select = cal.SelectedDate.Value;
+            contex.SpecificDates.Clear();
+            var result = contex.Events.Where(x => x.date.ToString("yyyy/MM/dd") == select.ToString("yyyy/MM/dd"));
 
-
+            foreach (var item in result)
+            {
+                var title = item.Title;
+                contex.SpecificDates.Add(title);
+            }
+            EventView.ItemsSource = contex.SpecificDates;
         }
 
         protected override void OnAppearing()
