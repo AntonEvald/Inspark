@@ -120,7 +120,7 @@ namespace Inspark.Viewmodels
                     if (isSuccess)
                     {
                         Message = "Ja!";
-                        var page = new Views.MainPage();
+                        var page = new Views.MainPage(new Views.HomePage());
                         NavigationPage.SetHasNavigationBar(page, false);
                         await Application.Current.MainPage.Navigation.PushAsync(page);
                     }
