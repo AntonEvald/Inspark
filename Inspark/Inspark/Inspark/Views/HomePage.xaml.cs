@@ -17,11 +17,16 @@ namespace Inspark.Views
 			InitializeComponent ();
 		}
 
-        public void News_Tapped(object sender, EventArgs e)
+        public void NewsTapped(object sender, EventArgs e)
         {
             var page = new NewsPage();
             HomePageContent.Content = page.Content;
         }
 
+        public void GroupTapped(object sender, EventArgs e)
+        {
+            var page = new MainPage(new GroupPage());
+            Navigation.PushAsync(page);
+        }
     }
 }
