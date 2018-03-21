@@ -16,6 +16,7 @@ namespace Inspark.Views
         EventViewModel model;
         public EventPage (Event e)
 		{
+
             model = new EventViewModel{
                 Title = e.Title,
                 Id = e.Id,
@@ -23,8 +24,8 @@ namespace Inspark.Views
                 date = e.date,
                 Description = e.Description
             };
-
 			InitializeComponent ();
+            Content.BindingContext = model;
 		}
 	}
 }
