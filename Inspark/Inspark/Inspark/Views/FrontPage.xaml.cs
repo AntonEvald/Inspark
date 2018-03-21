@@ -24,7 +24,7 @@ namespace Inspark
 
         public async void MainPage_Clicked(object sender, System.EventArgs e)
         {
-            var page = new Views.MainPage();
+            var page = new Views.MainPage(new Views.HomePage());
             NavigationPage.SetHasNavigationBar(page, false);
             await Navigation.PushAsync(page);
         }

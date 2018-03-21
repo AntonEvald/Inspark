@@ -7,29 +7,30 @@
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ContentView x:Name="HomePageContent">
+        <ContentView x:Name="HomePageContent" Grid.RowSpan="2">
             <ContentView.Content>
-                <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="LightPink">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="News_Tapped"/>
-                    </StackLayout.GestureRecognizers>
-                    <Label Text="Nyheter" HorizontalOptions="Center"/>
-                    <ListView>
+                <StackLayout Grid.RowSpan="2" Grid.Column="0">
+                    <StackLayout Grid.Row="0" Grid.Column="0" BackgroundColor="LightPink">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="News_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+                        <Label Text="Nyheter" HorizontalOptions="Center"/>
+                        <ListView x:Name="NewsList">
 
-                    </ListView>
-                </StackLayout>
-                <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="LightBlue">
-                    <Label Text="Grupp" HorizontalOptions="Center"/>
-                    <ListView>
+                        </ListView>
+                    </StackLayout>
+                    <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="LightBlue">
+                        <Label Text="Grupp" HorizontalOptions="Center"/>
+                        <ListView x:Name="GroupList">
 
-                    </ListView>
+                        </ListView>
+                    </StackLayout>
                 </StackLayout>
             </ContentView.Content>
         </ContentView>
