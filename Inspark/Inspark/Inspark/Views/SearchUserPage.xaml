@@ -1,11 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Inspark.Views.SearchUserPage">
+             x:Class="Inspark.Views.SearchUserPage"
+             xmlns:viewModels="clr-namespace:Inspark.Viewmodels">
+    <ContentPage.BindingContext>
+        <viewModels:SearchUserViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <SearchBar x:Name="SearchUser" SearchButtonPressed="SearchClicked" HeightRequest="50"/>
-            <ListView x:Name="UserList"/>
+        <StackLayout Orientation="Vertical" 
+                     Spacing="0" 
+                     Margin="10, 20, 10, 0">
+            <Label Text="Skriv en bokstav för att börja filtrera"
+                   FontSize="16"
+                   TextColor="Gray"/>
+            <SearchBar x:Name="UserSearchBar"
+                       TextChanged="Handle_TextChanged"
+                       HeightRequest="40"/>
+            <ListView x:Name="SuggestionsListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding FirstName}" Detail="{Binding LastName}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

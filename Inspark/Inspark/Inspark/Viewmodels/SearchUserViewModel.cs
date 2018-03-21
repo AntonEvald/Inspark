@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using Inspark.Views;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Inspark.Services;
 
 namespace Inspark.Viewmodels
 {
-    class AdminViewModel
+    class SearchUserViewModel
     {
-         
+        
     }
 }

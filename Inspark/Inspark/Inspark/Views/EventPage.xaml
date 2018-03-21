@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Inspark.Views.EventPage">
-    
+             x:Class="Inspark.Views.EventPage"
+             xmlns:vm="clr-namespace:Inspark.Viewmodels; assembly=inspark"
+             >  
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="20">
@@ -18,26 +19,26 @@
                 <StackLayout Padding="10, 0, 10, 0" Orientation="Horizontal">
                     <Label Text="Titel:"
                     FontSize="Medium"/>
-                    <Label Text="Titel står här" VerticalOptions="CenterAndExpand"/>
+                    <Label Text="{Binding Title}" VerticalOptions="CenterAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Padding="10, 0, 10, 0" Orientation="Horizontal">
                     <Label Text="Datum:" 
                        FontSize="Medium"/>
-                    <Label Text="Datum står här" VerticalOptions="CenterAndExpand"/>
+                    <Label Text="{Binding date, StringFormat='{}{0:yyyy/MM/dd}'}" VerticalOptions="CenterAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Padding="10, 0, 10, 0" Orientation="Horizontal">
                     <Label Text="Tid:" 
                        FontSize="Medium"/>
-                    <Label Text="Tiden står här" VerticalOptions="CenterAndExpand"/>
+                    <Label Text="{Binding date, StringFormat='{}{0:HH:mm}'}" VerticalOptions="CenterAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Padding="10" Orientation="Vertical">
                     <Label Text="Om evenemanget:" 
                        FontSize="Medium"
                    VerticalOptions="CenterAndExpand"/>
-                    <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a leo sit amet neque laoreet mollis vitae ac risus. Maecenas viverra feugiat placerat. Quisque ultrices tempus suscipit. Suspendisse sit amet sapien quis sem euismod cursus. Vestibulum ultrices leo odio, vitae tristique elit varius in. Donec consequat odio nec turpis aliquam pretium."/>
+                    <Label Text="{Binding Description}"/>
                 </StackLayout>
 
                 <StackLayout Padding="20" Orientation="Horizontal">

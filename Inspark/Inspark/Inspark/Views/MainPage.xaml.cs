@@ -37,7 +37,7 @@ namespace Inspark.Views
 
         public void CompetitionIcon_Tapped(object sender, EventArgs e)
         {
-            var page = new CompetitionPage();
+            var page = new EventListPage();
             Inspark.Content = page.Content;
         }
 
