@@ -16,6 +16,8 @@ namespace Inspark.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SearchUserPage : ContentPage
 	{
+        // OBS: Ta bort kommentar när WEB Api fungerar och se om listan fungerar
+
         //ApiServices apiServices = new ApiServices();
 
         //public async void GetUsers()
