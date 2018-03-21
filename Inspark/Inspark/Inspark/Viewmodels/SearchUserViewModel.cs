@@ -12,6 +12,15 @@ namespace Inspark.Viewmodels
     class SearchUserViewModel : INotifyPropertyChanged
     {
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string
+            propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs
+                (propertyName));
+        }
+
         List<string> colors = new List<string>()
         {
             "Andreas","Philip","Anton","Jesper","Pedram","Patrik","Max","Jonatan","Carl-Adam","Richard","Fredrik","Kim","Marcus","Victor"
@@ -77,15 +86,6 @@ namespace Inspark.Viewmodels
             {
                 //SuggestionsListView.IsVisible = false;
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string 
-            propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs
-                (propertyName));
         }
     }
 }

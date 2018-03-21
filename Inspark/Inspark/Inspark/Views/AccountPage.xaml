@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Inspark.Views.AccountPage"
              xmlns:viewModels="clr-namespace:Inspark.Viewmodels;assembly=Inspark">
-    <ContentView x:Name="InsparkAccount">
-        <ContentPage.BindingContext>
+    <ContentPage.BindingContext>
             <viewModels:ProfilePictureViewModel/>
         </ContentPage.BindingContext>
+    <ContentView x:Name="InsparkAccount">
         <ContentPage.Content>
             <ScrollView>
                 <StackLayout Padding="20">
