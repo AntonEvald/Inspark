@@ -28,10 +28,11 @@
                 </StackLayout>
             
                 <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-                    <Label Text="hej" x:Name="selectedDateLb"></Label>
-                    <ListView>
+                    <ListView x:Name="EventView"></ListView>
+                             
+                      
 
-                    </ListView>
+                    
                 </StackLayout>
         </Grid>
     </ScrollView>

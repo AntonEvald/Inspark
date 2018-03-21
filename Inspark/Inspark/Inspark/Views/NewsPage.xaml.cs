@@ -10,18 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace Inspark.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class HomePage : ContentPage
+	public partial class NewsPage : ContentPage
 	{
-		public HomePage ()
+		public NewsPage ()
 		{
 			InitializeComponent ();
 		}
-
-        public void News_Tapped(object sender, EventArgs e)
-        {
-            var page = new NewsPage();
-            HomePageContent.Content = page.Content;
-        }
-
-    }
+	}
 }

@@ -19,7 +19,7 @@ namespace Inspark.Views
 
         private void OkButton_Clicked(object sender, EventArgs e)
         {
-            Navigation.RemovePage(this);
+            Navigation.PopAsync();
         }
 
     }

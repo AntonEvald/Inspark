@@ -17,6 +17,12 @@ namespace Inspark.Views
             InitializeComponent();
         }
 
+        public MainPage(ContentPage page)
+        {
+            InitializeComponent();
+            Inspark.Content = page.Content;
+        }
+
         public void HomeIcon_Tapped(object sender, EventArgs e)
         {
             var page = new HomePage();
