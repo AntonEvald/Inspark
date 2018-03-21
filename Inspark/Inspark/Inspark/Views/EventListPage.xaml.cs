@@ -8,14 +8,14 @@ namespace Inspark.Views
 {
     public partial class EventListPage : ContentPage
     {
-        public EventListViewModel eventListViewModel = new EventListViewModel();
+        //public EventListViewModel eventListViewModel = new EventListViewModel();
 
-        public EventListPage()
-        {
-            InitializeComponent();
-            eventListViewModel.PopulateList();
-            EventList.ItemsSource = eventListViewModel.events;
-        }
+        //public EventListPage()
+        //{
+        //    InitializeComponent();
+        //    eventListViewModel.PopulateList();
+        //    EventList.ItemsSource = eventListViewModel.events;
+        //}
 
         void Handle_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
         {

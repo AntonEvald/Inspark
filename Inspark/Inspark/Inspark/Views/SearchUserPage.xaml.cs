@@ -1,4 +1,6 @@
-﻿using Inspark.Viewmodels;
+﻿using Inspark.Models;
+using Inspark.Services;
+using Inspark.Viewmodels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,49 +16,52 @@ namespace Inspark.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SearchUserPage : ContentPage
 	{
-        List<string> colors = new List<string>()
-        {
-            "Andreas","Philip","Anton","Jesper","Pedram","Patrik","Max","Jonatan","Carl-Adam","Richard","Fredrik","Kim","Marcus","Victor"
-        };
+        //ApiServices apiServices = new ApiServices();
 
-        ObservableCollection<string> myColors = new ObservableCollection<string>();
+        //public async void GetUsers()
+        //{
+        //    var user = await apiServices.GetAllUsers();
+
+        //    foreach (var item in user)
+        //    {
+        //        users.Add(item);
+        //    }
+        //}
+
+        ObservableCollection<User> users = new ObservableCollection<User>()
+        {
+            new User() { Id = 1, FirstName = "Andreas", LastName = "Dahlin"},
+            new User() { Id = 2, FirstName = "Anton", LastName = "Evald"},
+            new User() { Id = 3, FirstName = "Philip", LastName = "Karlsson"},
+            new User() { Id = 4, FirstName = "Max", LastName = "Engberg"},
+            new User() { Id = 5, FirstName = "Andreas", LastName = "Daun"},
+            new User() { Id = 6, FirstName = "Pedram", LastName = "Shabani"},
+            new User() { Id = 7, FirstName = "Patrik", LastName = "Sandström"},
+            new User() { Id = 8, FirstName = "Jesper", LastName = "Bergmark"}
+        };
 
         public SearchUserPage()
 		{
 			InitializeComponent();
         }
 
-        public void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        public void Handle_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var color = e.Item as string;
+            string keyword = UserSearchBar.Text;
 
-            myColors.Add(color);
+            if (keyword.Length >= 1)
+            {
+                var suggestions = users.Where(c => c.FirstName.ToLower().Contains
+                 (keyword.ToLower()) || c.LastName.ToLower().Contains(keyword.ToLower()));
 
-            ColorsListView.ItemsSource = myColors;
+                SuggestionsListView.ItemsSource = suggestions;
 
-            SuggestionsListView.IsVisible = false;
+                SuggestionsListView.IsVisible = true;
+            }
+            else
+            {
+                SuggestionsListView.IsVisible = false;
+            }
         }
-
-        //public void Handle_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    string keyword = ColorsSearchBar.Text;
-
-        //    if (keyword.Length >= 1)
-        //    {
-        //        var suggestions = colors.Where(c => c.ToLower().Contains
-        //         (keyword.ToLower()));
-
-        //        SuggestionsListView.ItemsSource = suggestions;
-
-        //        SuggestionsListView.IsVisible = true;
-        //    }
-        //    else
-        //    {
-        //        SuggestionsListView.IsVisible = false;
-        //    }
-
-        //}
-
-
     }
 }

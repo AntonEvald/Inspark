@@ -12,21 +12,17 @@
                      Margin="10, 20, 10, 0">
             <Label Text="Skriv en bokstav för att börja filtrera"
                    FontSize="16"
-                   TextColor="LightGray"/>
-            <SearchBar x:Name="ColorsSearchBar"
-                       Text="{Binding Keyword}"
-                       SearchCommand="{Binding SearchCommand}"
+                   TextColor="Gray"/>
+            <SearchBar x:Name="UserSearchBar"
+                       TextChanged="Handle_TextChanged"
                        HeightRequest="40"/>
-
-            <!-- TextChanged="Handle_TextChanged"-->
-            
-            <Grid>
-                <ListView x:Name="ColorsListView"/>
-                <ListView x:Name="SuggestionsListView"
-                          ItemsSource="{Binding Suggestions}"
-                          ItemTapped="Handle_ItemTapped"
-                          BackgroundColor="Silver"/>
-            </Grid>
+            <ListView x:Name="SuggestionsListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding FirstName}" Detail="{Binding LastName}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
