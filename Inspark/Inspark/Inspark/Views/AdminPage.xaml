@@ -11,29 +11,12 @@
             <ScrollView>
                 <StackLayout Padding="20">
                     <StackLayout>
-                        <StackLayout Orientation="Vertical">
-                            <SearchBar Placeholder="Sök efter användare" Text="{Binding SearchUser}" SearchCommand="{Binding SearchPressed}" HeightRequest="50"/>
-                            <Label Text="{Binding ErrorMessage, Mode=TwoWay}"/>
-                            <ListView ItemsSource="{Binding UserList}"/>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ImageCell>
-                                        <ImageCell.ContextActions>
-                                            <MenuItem></MenuItem>
-                                        </ImageCell.ContextActions>
-                                    </ImageCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </StackLayout>
-
-                        <StackLayout>
                             <Button Text="Skapa introduktionsgrupp" BackgroundColor="LightBlue" Clicked="CreateGroupButton_Clicked"/>
                             <Button Text="Ändra introduktionsgrupp" BackgroundColor="LightBlue" Clicked="ChangeGroupButton_Clicked"/>
                             <Button Text="Ta bort introduktionsgrupp" BackgroundColor="LightBlue"/>
                             <Button Text="Lägg till användare från introduktionsgrupp" BackgroundColor="LightBlue"/>
                             <Button Text="Ta bort användare från introduktionsgrupp" BackgroundColor="LightBlue"/>
                             <Button Text="Lägg in resultat från tävling" BackgroundColor="LightBlue"/>
-                        </StackLayout>
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
