@@ -2,10 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Inspark.Views.SchedulePage"
-             xmlns:vm="clr-namespace:Inspark.Viewmodels; assembly=inspark"
-             xmlns:controls="clr-namespace:XamForms.Controls;assembly=XamForms.Controls.Calendar">
+             xmlns:controls="clr-namespace:XamForms.Controls;assembly=XamForms.Controls.Calendar"
+             xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark">
+    <ContentView x:Name="InsparkScheduleList">
              <ContentPage.BindingContext>
-        <vm:ScheduleViewModel/>
+        <viewmodels:ScheduleViewModel/>
     </ContentPage.BindingContext>
     <ScrollView>
         <Grid RowSpacing="25">
@@ -24,17 +25,20 @@
                         HorizontalOptions="FillAndExpand" 
                         VerticalOptions="CenterAndExpand" 
                         DateClicked="Handle_DateClicked"  
-                        x:Name="cal"/>
+                        x:Name="Cal"/>
                 </StackLayout>
             
                 <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-                    <ListView x:Name="EventView"></ListView>
-                             
-                      
-
-                    
+                    <ListView ItemTapped="EventView_OnItemTapped" x:Name="EventView">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Title}"
+                                      Detail="{Binding date}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    </ListView>
                 </StackLayout>
         </Grid>
     </ScrollView>
-
+</ContentView>
 </ContentPage>

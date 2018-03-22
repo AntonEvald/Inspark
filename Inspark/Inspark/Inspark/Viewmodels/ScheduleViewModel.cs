@@ -24,7 +24,7 @@ namespace Inspark.Viewmodels
     public class ScheduleViewModel : BaseViewModel
     {
 
-        public ObservableCollection<string> SpecificDates = new ObservableCollection<string>();
+        public ObservableCollection<Event> SpecificDates = new ObservableCollection<Event>();
         public List<Event> Events = new List<Event>();
         public List<GroupEvent> GroupEvent { get; set; }
         private DateTime? _date;

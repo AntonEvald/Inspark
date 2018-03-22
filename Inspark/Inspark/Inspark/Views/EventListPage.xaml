@@ -9,7 +9,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                       <TextCell Text="{Binding Title}"
-                                Detail="{Binding date}"
+                                Detail="{Binding date, StringFormat='{}{0:HH:mm}'}"
                                 />
                     </DataTemplate>
                 </ListView.ItemTemplate>

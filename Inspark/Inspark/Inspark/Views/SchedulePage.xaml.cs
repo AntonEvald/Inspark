@@ -32,13 +32,13 @@ namespace Inspark.Views
 
                 dates.Add(specialDate);
             }
-            cal.StartDay = DayOfWeek.Monday;
-            cal.StartDate = DateTime.Now;
-            cal.MinDate = DateTime.Now.AddDays(-1);
-            cal.BindingContext = contex;
+            Cal.StartDay = DayOfWeek.Monday;
+            Cal.StartDate = DateTime.Now;
+            Cal.MinDate = DateTime.Now.AddDays(-1);
+            Cal.BindingContext = contex;
             contex.Attendances = new ObservableCollection<SpecialDate>(dates);
-            cal.SelectedDate = (DateTime.Now);
-            cal.SpecialDates = contex.Attendances;
+            Cal.SelectedDate = (DateTime.Now);
+            Cal.SpecialDates = contex.Attendances;
   
 
         }
@@ -46,14 +46,13 @@ namespace Inspark.Views
 
         void Handle_DateClicked(object sender, XamForms.Controls.DateTimeEventArgs e)
         {
-            var select = cal.SelectedDate.Value;
+            var select = Cal.SelectedDate.Value;
             contex.SpecificDates.Clear();
             var result = contex.Events.Where(x => x.date.ToString("yyyy/MM/dd") == select.ToString("yyyy/MM/dd"));
 
             foreach (var item in result)
-            {
-                var title = item.Title;
-                contex.SpecificDates.Add(title);
+            {             
+                contex.SpecificDates.Add(item);
             }
             EventView.ItemsSource = contex.SpecificDates;
         }
@@ -62,6 +61,13 @@ namespace Inspark.Views
         {
             base.OnAppearing();
 
+        }
+
+        private void EventView_OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            Event selected = e.Item as Event;
+            var page = new EventPage(selected);
+            InsparkScheduleList.Content = page.Content;
         }
     }
 }
