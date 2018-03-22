@@ -7,7 +7,7 @@
     <!-- Skapar fem stycken rader för hela sidan. -->
     <Grid ColumnSpacing="0" RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="56"/>
             <RowDefinition Height="1"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="1"/>
@@ -29,10 +29,10 @@
                 <Image HeightRequest="30" Source="hammenu.png"/>
             </StackLayout>
 
-            <StackLayout Grid.Column="1" Spacing="0">
+            <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
             </StackLayout>
 
-            <StackLayout Grid.Column="2" Spacing="0">
+            <StackLayout Grid.Column="2" VerticalOptions="Center" Spacing="0">
                 <Image HeightRequest="30" Source="search.png"/>
                 <Label Text="Sök" FontSize="10"
                        HorizontalOptions="Center"/>
@@ -41,7 +41,7 @@
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
-            <StackLayout Grid.Column="3" Spacing="0">
+            <StackLayout Grid.Column="3" VerticalOptions="Center" Spacing="0">
                 <Image HeightRequest="30" Source="admin.png"/>
                 <Label Text="Admin" FontSize="10"
                        HorizontalOptions="Center"/>
