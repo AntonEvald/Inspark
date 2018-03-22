@@ -3,9 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Inspark.Views.AdminPage"
              xmlns:Viewmodels="clr-namespace:Inspark.Viewmodels;assmebly=Inspark">
-    <ContentPage.BindingContext>
-        <Viewmodels:AdminViewModel/>
-    </ContentPage.BindingContext>
     <ContentView x:Name="InsparkAdmin">
         <ContentPage.Content>
             <ScrollView>
