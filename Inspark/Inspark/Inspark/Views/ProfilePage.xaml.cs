@@ -20,8 +20,11 @@ namespace Inspark.Views
 		    {
 		        Id = e.Id,
                 FirstName = e.FirstName,
-                LastName = e.LastName
-		    };
+                LastName = e.LastName,
+                Email = e.Email,
+		        PhoneNumber = e.PhoneNumber,
+		        Section = e.Section
+            };
 
 			InitializeComponent ();
 		    Content.BindingContext = model;

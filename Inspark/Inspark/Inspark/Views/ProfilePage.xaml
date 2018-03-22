@@ -24,17 +24,17 @@
 
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                     <Label Text="Mail:"/>
-                    <Label Text="Här ska mailen stå"/>
+                    <Label Text="{Binding Email}"/>
                 </StackLayout>
 
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                     <Label Text="Telefonnummer:"/>
-                    <Label Text="Här ska telefonnumret stå"/>
+                    <Label Text="{Binding PhoneNumber}"/>
                 </StackLayout>
 
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                     <Label Text="Sektion:"/>
-                    <Label Text="Här ska sektionen stå"/>
+                    <Label Text="{Binding Section}"/>
                 </StackLayout>
 
                 <StackLayout HorizontalOptions="Center">
