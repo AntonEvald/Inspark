@@ -9,7 +9,7 @@ using Inspark.Services;
 
 namespace Inspark.Viewmodels
 {
-    class AdminViewModel
+    public class AdminViewModel
     {
          
     }

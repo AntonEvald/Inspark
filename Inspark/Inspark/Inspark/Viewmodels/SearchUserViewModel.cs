@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
-    class SearchUserViewModel
+    public class SearchUserViewModel
     {
         
     }

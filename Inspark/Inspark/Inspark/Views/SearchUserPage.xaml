@@ -3,26 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Inspark.Views.SearchUserPage"
              xmlns:viewModels="clr-namespace:Inspark.Viewmodels">
-    <ContentPage.BindingContext>
-        <viewModels:SearchUserViewModel/>
-    </ContentPage.BindingContext>
-    <ContentPage.Content>
-        <StackLayout Orientation="Vertical" 
-                     Spacing="0" 
-                     Margin="10, 20, 10, 0">
-            <Label Text="Skriv en bokstav för att börja filtrera"
-                   FontSize="16"
-                   TextColor="Gray"/>
-            <SearchBar x:Name="UserSearchBar"
-                       TextChanged="Handle_TextChanged"
-                       HeightRequest="40"/>
-            <ListView x:Name="SuggestionsListView">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextCell Text="{Binding FirstName}" Detail="{Binding LastName}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
-    </ContentPage.Content>
+    <ContentView x:Name="InsparkSearch">
+        <ContentPage.Content>
+            <StackLayout Orientation="Vertical" 
+                         Spacing="0" 
+                         Margin="10, 20, 10, 0">
+                <Label Text="Skriv en bokstav för att börja filtrera"
+                       FontSize="16"
+                       TextColor="Gray"/>
+                <SearchBar x:Name="UserSearchBar"
+                           TextChanged="Handle_TextChanged"
+                           HeightRequest="40"/>
+                <ListView x:Name="SuggestionsListView" ItemTapped="Handle_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding FirstName}" Detail="{Binding LastName}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentView>
 </ContentPage>

@@ -1,13 +1,6 @@
 ﻿using Inspark.Models;
-using Inspark.Services;
-using Inspark.Viewmodels;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -64,6 +57,13 @@ namespace Inspark.Views
             {
                 SuggestionsListView.IsVisible = false;
             }
+        }
+
+	    public void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+	    {
+	        User selected = e.Item as User;
+	        var page = new ProfilePage(selected);
+	        InsparkSearch.Content = page.Content;
         }
     }
 }
