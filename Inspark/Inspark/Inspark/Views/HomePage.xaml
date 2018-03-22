@@ -15,26 +15,48 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <ContentView x:Name="HomePageContent" Grid.RowSpan="2">
+            <ContentView.BindingContext>
+                <Viewmodels:HomeViewModel/>
+            </ContentView.BindingContext>
             <ContentView.Content>
                 <StackLayout Grid.RowSpan="2" Grid.Column="0">
-                    <StackLayout Grid.Row="0" Grid.Column="0" BackgroundColor="LightPink">
-                        <StackLayout.BindingContext>
-                            <Viewmodels:NewsViewModel/>
-                        </StackLayout.BindingContext>
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="NewsTapped" NumberOfTapsRequired="1"/>
-                        </StackLayout.GestureRecognizers>
-                        <Label Text="Nyheter" HorizontalOptions="Center"/>
-                        <ListView x:Name="NewsList" ItemsSource="{Binding News}">
+                    <StackLayout Grid.Row="0" Grid.Column="0" Padding="30, 5, 30, 5">
+                        <Label Text="Nyheter" FontSize="Large" HorizontalOptions="Center"/>
+                        <ListView x:Name="NewsList" ItemsSource="{Binding NewsPosts}" RowHeight="60">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="NewsTapped" NumberOfTapsRequired="1"/>
+                                            </StackLayout.GestureRecognizers>
+                                            <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
+                                            <Label Text="{Binding Text}"  TextColor="DarkGray" FontSize="Small" />
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
                         </ListView>
                     </StackLayout>
-                    <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="LightBlue">
+                    <StackLayout Grid.Row="1" Grid.Column="0" Padding="30, 5, 30, 5">
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="GroupTapped" NumberOfTapsRequired="1"/>
                         </StackLayout.GestureRecognizers>
-                        <Label Text="Grupp" HorizontalOptions="Center"/>
-                        <ListView x:Name="GroupList">
-
+                        <Label Text="Grupp" FontSize="Large" HorizontalOptions="Center"/>
+                        <ListView x:Name="GroupList" ItemsSource="{Binding GroupPosts}" RowHeight="60">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="GroupTapped" NumberOfTapsRequired="1"/>
+                                            </StackLayout.GestureRecognizers>
+                                            <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
+                                            <Label Text="{Binding Text}"  TextColor="DarkGray" FontSize="Small" />
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
                         </ListView>
                     </StackLayout>
                 </StackLayout>

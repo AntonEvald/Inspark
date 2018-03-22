@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inspark.Viewmodels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace Inspark.Views
 	{
 		public HomePage ()
 		{
-			InitializeComponent ();
+            InitializeComponent();
 		}
 
         public void NewsTapped(object sender, EventArgs e)
@@ -25,8 +26,8 @@ namespace Inspark.Views
 
         public void GroupTapped(object sender, EventArgs e)
         {
-            var page = new MainPage(new GroupPage());
-            Navigation.PushAsync(page);
+            var page = new GroupPage();
+            HomePageContent.Content = page.Content;
         }
     }
 }
