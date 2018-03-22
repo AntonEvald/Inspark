@@ -33,9 +33,7 @@
                             <TapGestureRecognizer Tapped="GroupTapped" NumberOfTapsRequired="1"/>
                         </StackLayout.GestureRecognizers>
                         <Label Text="Grupp" HorizontalOptions="Center"/>
-                        <ListView x:Name="GroupList">
-
-                        </ListView>
+                        <ListView x:Name="GroupList" />
                     </StackLayout>
                 </StackLayout>
             </ContentView.Content>
