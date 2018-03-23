@@ -1,12 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Inspark.Views.NewsPage">
+             x:Class="Inspark.Views.NewsPage"
+             xmlns:vm="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
+             xmlns:conv="clr-namespace:Inspark.Services;assembly=Inspark">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <conv:ByteArrayToImageSourceConverter x:Key="bic" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout.BindingContext>
+                    <vm:NewsViewModel/>
+                </StackLayout.BindingContext>
+                <Label Text="Skriv ett inlägg..."/>
+                <Entry Text="{Binding PostTitle}" Placeholder="Title"/>
+                <Entry Text="{Binding PostText}" Placeholder="Text"/>
+                <Button Text="Lägg till bild" Command="{Binding AddPicCommand}"/>
+                <Image Source="{Binding ImagePath}"/>
+                <Button Text="Posta inlägg" Command="{Binding PostCommand}"/>
+                <ListView x:Name="NewsList" ItemsSource="{Binding NewsPosts}" RowHeight="60">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
+                                    <Label Text="{Binding Text}"  TextColor="DarkGray" FontSize="Small" />
+                                    <Image Source="{Binding Picture, Converter={StaticResource bic}}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

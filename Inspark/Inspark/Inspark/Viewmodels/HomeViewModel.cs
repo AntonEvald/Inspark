@@ -31,8 +31,11 @@ namespace Inspark.Viewmodels
             get { return newsPosts; }
             set
             {
-                newsPosts = value;
-                OnPropertyChanged("NewsPosts");
+                if(newsPosts != value)
+                {
+                    newsPosts = value;
+                    OnPropertyChanged("NewsPosts");
+                }
             }
         }
 

@@ -10,7 +10,7 @@ namespace Inspark.Viewmodels
     {
         public string Code { get; set; }
 
-        public ICommand OK_Command => new Command(async () =>
+        public ICommand OK_Command => new Command( () =>
         {
             //Kod
         });

@@ -90,12 +90,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Inspark\Inspark.csproj">
-      <Project>{A4BC6AE8-C1C6-45BA-A416-7CBD579F1D81}</Project>
-      <Name>Inspark</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\chat.png" />
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +124,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Inspark\Inspark.csproj">
+      <Project>{a4bc6ae8-c1c6-45ba-a416-7cbd579f1d81}</Project>
+      <Name>Inspark</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
