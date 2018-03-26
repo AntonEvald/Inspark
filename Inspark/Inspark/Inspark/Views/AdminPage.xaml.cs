@@ -29,7 +29,7 @@ namespace Inspark.Views
 
         public void ChangeGroupButton_Clicked(object sender, EventArgs e)
         {
-            var page = new ChangeGroup();
+            var page = new ChangeGroupPage();
             InsparkAdmin.Content = page.Content;
         }
 
