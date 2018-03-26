@@ -21,7 +21,7 @@ namespace Inspark.Views
                 Title = e.Title,
                 Id = e.Id,
                 Location = e.Location,
-                date = e.date,
+                date = e.Date,
                 Description = e.Description
             };
 			InitializeComponent ();
