@@ -25,7 +25,7 @@ namespace Inspark.Views
             contex.TestList();
             foreach (var item in contex.Events)
             {
-                var specialDate = new SpecialDate(item.date);
+                var specialDate = new SpecialDate(item.Date);
                 specialDate.BackgroundColor = Color.Green;
                 specialDate.TextColor = Color.White;
                 specialDate.Selectable = true;
@@ -48,7 +48,7 @@ namespace Inspark.Views
         {
             var select = Cal.SelectedDate.Value;
             contex.SpecificDates.Clear();
-            var result = contex.Events.Where(x => x.date.ToString("yyyy/MM/dd") == select.ToString("yyyy/MM/dd"));
+            var result = contex.Events.Where(x => x.Date.ToString("yyyy/MM/dd") == select.ToString("yyyy/MM/dd"));
 
             foreach (var item in result)
             {             
