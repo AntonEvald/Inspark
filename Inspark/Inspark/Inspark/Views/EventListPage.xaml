@@ -5,15 +5,18 @@
     <ContentView x:Name="InsparkEventList">
     <ContentPage.Content>
         <ScrollView>
+            <StackLayout>
+                <Button Text="Skapa Event" Clicked="CreateEvent_OnClicked"/>
         <ListView ItemTapped="Handle_ItemTapped" x:Name="EventList">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                       <TextCell Text="{Binding Title}"
-                                Detail="{Binding date, StringFormat='{}{0:HH:mm}'}"
+                                Detail="{Binding Date, StringFormat='{}{0:HH:mm}'}"
                                 />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
         </ContentView>
