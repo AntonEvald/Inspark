@@ -18,7 +18,8 @@ namespace Inspark.Views
 		public AdminPage ()
 		{
 			InitializeComponent ();
-		}
+		    SuggestionsListView.IsVisible = false;
+        }
 
         public void CreateGroupButton_Clicked(object sender, EventArgs e)
         {
