@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -109,8 +110,38 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private bool isRefreshing = false;
 
+        public bool IsRefreshing
+        {
+            get { return isRefreshing; }
+            set
+            {
+                isRefreshing = value;
+                OnPropertyChanged("IsRefreshing");
+            }
+        }
 
+        private NewsPost itemSelected;
+
+        public NewsPost ItemSelected
+        {
+            get { return itemSelected; }
+            set
+            {
+                if(itemSelected != value)
+                {
+                    itemSelected = value;
+                    OnPropertyChanged("ItemSelected");
+                }
+            }
+        }
+
+        public ICommand ItemTappedCommand => new Command(() =>
+        {
+            NewsPost post = ItemSelected;
+            new NavigationPage(new MainPage(new PostPage(post)));
+        });
 
         public ICommand AddPicCommand => new Command(async () =>
         {
@@ -141,6 +172,27 @@ namespace Inspark.Viewmodels
             NewsPosts.Add(post);
             
         });
+
+
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new Command(() =>
+                {
+                    IsRefreshing = true;
+
+                    RefreshListView();
+
+                    IsRefreshing = false;
+                });
+            }
+        }
+
+        private void RefreshListView()
+        {
+            NewsPosts = newsPosts;
+        }
 
         private void OnPropertyChanged(string property)
         {

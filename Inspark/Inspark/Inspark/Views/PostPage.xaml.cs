@@ -1,4 +1,4 @@
-﻿using Inspark.Viewmodels;
+﻿using Inspark.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +11,17 @@ using Xamarin.Forms.Xaml;
 namespace Inspark.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NewsPage : ContentPage
+	public partial class PostPage : ContentPage
 	{
-		public NewsPage ()
+		public PostPage ()
 		{
-			InitializeComponent();
+			InitializeComponent ();
 		}
+
+        public PostPage(NewsPost post)
+        {
+
+            InitializeComponent();
+        }
 	}
 }
