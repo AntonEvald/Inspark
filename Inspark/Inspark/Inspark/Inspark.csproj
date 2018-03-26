@@ -23,6 +23,12 @@
     <Compile Update="Views\AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\ChangeGroupPage.xaml.cs">
+      <DependentUpon>ChangeGroupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ChangeUserDetailsPage.xaml.cs">
+      <DependentUpon>ChangeUserDetailsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\RegisterConfirmEmailPage.xaml.cs">
       <DependentUpon>RegisterConfirmEmailPage.xaml</DependentUpon>
     </Compile>
@@ -44,7 +50,7 @@
     <EmbeddedResource Update="Views\AddCodePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ChangeGroup.xaml">
+    <EmbeddedResource Update="Views\ChangeGroupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ChatPage.xaml">

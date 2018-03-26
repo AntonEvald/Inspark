@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Inspark.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ChangeGroup : ContentPage
+	public partial class ChangeGroupPage : ContentPage
 	{
-		public ChangeGroup ()
+		public ChangeGroupPage ()
 		{
 			InitializeComponent ();
 		}

@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Inspark.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ChangeUserDetails : ContentPage
+	public partial class ChangeUserDetailsPage : ContentPage
 	{
-		public ChangeUserDetails ()
+		public ChangeUserDetailsPage ()
 		{
 			InitializeComponent ();
 		}
