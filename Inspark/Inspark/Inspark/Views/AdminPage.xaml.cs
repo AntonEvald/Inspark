@@ -23,7 +23,7 @@ namespace Inspark.Views
 
         public void CreateGroupButton_Clicked(object sender, EventArgs e)
         {
-            var page = new CreateGroup();
+            var page = new CreateGroupPage();
             InsparkAdmin.Content = page.Content;
         }
 
