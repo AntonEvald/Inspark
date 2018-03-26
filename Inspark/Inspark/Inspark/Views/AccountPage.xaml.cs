@@ -25,7 +25,7 @@ namespace Inspark.Views
 
         public void ChangeUserDetailsButton_Clicked(object sender, EventArgs e)
         {
-            var page = new ChangeUserDetails();
+            var page = new ChangeUserDetailsPage();
             InsparkAccount.Content = page.Content;
         }
 

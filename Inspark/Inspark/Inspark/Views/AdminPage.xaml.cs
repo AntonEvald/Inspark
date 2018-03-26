@@ -18,17 +18,18 @@ namespace Inspark.Views
 		public AdminPage ()
 		{
 			InitializeComponent ();
-		}
+		    SuggestionsListView.IsVisible = false;
+        }
 
         public void CreateGroupButton_Clicked(object sender, EventArgs e)
         {
-            var page = new CreateGroup();
+            var page = new CreateGroupPage();
             InsparkAdmin.Content = page.Content;
         }
 
         public void ChangeGroupButton_Clicked(object sender, EventArgs e)
         {
-            var page = new ChangeGroup();
+            var page = new ChangeGroupPage();
             InsparkAdmin.Content = page.Content;
         }
 
