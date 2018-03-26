@@ -1,5 +1,46 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Inspark.Views.CreateEventPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
+             x:Class="Inspark.Views.CreateEventPage">
     <ContentPage.Content>
+        <ContentPage.BindingContext>
+            <viewmodels:CreateEventViewModel/>
+        </ContentPage.BindingContext>
+        <ScrollView>
+            <StackLayout Padding="20, 40">
+
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Label Text="Titel:"/>
+                    <Label Text="{Binding Title}"/>
+                </StackLayout>
+
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Label Text="Adress:"/>
+                    <Label Text="{Binding Location}"/>
+                </StackLayout>
+
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Label Text="Beskrivning:"/>
+                    <Label Text="{Binding Description}"/>
+                </StackLayout>
+                <StackLayout>  
+                <DatePicker x:Name="StartDatePicker" Format="dd/MM/yyyy" Date="{Binding Item.StartDate}" MinimumDate="{Binding Item.StartDate}" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Start Time" Grid.Row="0" Grid.Column="0"/>
+                    <TimePicker x:Name="StartTime" Time="{Binding Item.StartTime}" Grid.Row="1" Grid.Column="0"/>
+                </Grid>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>   
     </ContentPage.Content>
 </ContentPage>

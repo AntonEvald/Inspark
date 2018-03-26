@@ -8,19 +8,25 @@ namespace Inspark.Views
 {
     public partial class EventListPage : ContentPage
     {
-        public EventListViewModel eventListViewModel = new EventListViewModel();
+        public readonly EventListViewModel EventListViewModel = new EventListViewModel();
 
-        //public EventListPage()
-        //{
-        //    InitializeComponent();
-        //    eventListViewModel.PopulateList();
-        //    EventList.ItemsSource = eventListViewModel.events;
-        //}
+        public EventListPage()
+        {
+            InitializeComponent();
+            EventListViewModel.PopulateList();
+            EventList.ItemsSource = EventListViewModel.events;
+        }
 
         void Handle_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
         {
             Event selected = e.Item as Event;
             var page = new EventPage(selected);
+            InsparkEventList.Content = page.Content;
+        }
+
+        public void CreateEvent_OnClicked(object sender, EventArgs e)
+        {
+            var page = new CreateEventPage();
             InsparkEventList.Content = page.Content;
         }
     }
