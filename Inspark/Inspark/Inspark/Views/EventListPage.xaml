@@ -4,8 +4,8 @@
              x:Class="Inspark.Views.EventListPage">
     <ContentView x:Name="InsparkEventList">
     <ContentPage.Content>
-        <ScrollView>
-        <ListView ItemTapped="Handle_ItemTapped" x:Name="EventList">
+            <ScrollView>
+                <ListView ItemTapped="Handle_ItemTapped" x:Name="EventList">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                       <TextCell Text="{Binding Title}"

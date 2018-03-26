@@ -8,7 +8,7 @@ namespace Inspark.Views
 {
     public partial class EventListPage : ContentPage
     {
-        //public EventListViewModel eventListViewModel = new EventListViewModel();
+        public EventListViewModel eventListViewModel = new EventListViewModel();
 
         //public EventListPage()
         //{
