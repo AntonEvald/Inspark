@@ -16,15 +16,19 @@
             <ContentView.Content>
                 <StackLayout Grid.RowSpan="2" Grid.Column="0">
                     <StackLayout Grid.Row="0" Grid.Column="0" Padding="30, 5, 30, 5">
-                        <Label Text="Nyheter" FontSize="Large" HorizontalOptions="Center"/>
-                        <ListView x:Name="NewsList" ItemsSource="{Binding NewsPosts}" RowHeight="60">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Nyheter" FontSize="Large" HorizontalOptions="Center"/>
+                            <Label Text="Visa alla" FontSize="Medium">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ViewAllTapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                        <ListView x:Name="NewsList" ItemsSource="{Binding NewsPosts}" RowHeight="60" ItemTapped="NewsItemTapped">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
                                         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                            <StackLayout.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="NewsTapped" NumberOfTapsRequired="1"/>
-                                            </StackLayout.GestureRecognizers>
                                             <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
                                             <Label Text="{Binding Text}"  TextColor="DarkGray" FontSize="Small" />
                                         </StackLayout>
@@ -34,18 +38,12 @@
                         </ListView>
                     </StackLayout>
                     <StackLayout Grid.Row="1" Grid.Column="0" Padding="30, 5, 30, 5">
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="GroupTapped" NumberOfTapsRequired="1"/>
-                        </StackLayout.GestureRecognizers>
                         <Label Text="Grupp" FontSize="Large" HorizontalOptions="Center"/>
                         <ListView x:Name="GroupList" ItemsSource="{Binding GroupPosts}" RowHeight="60">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
                                         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                            <StackLayout.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="GroupTapped" NumberOfTapsRequired="1"/>
-                                            </StackLayout.GestureRecognizers>
                                             <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
                                             <Label Text="{Binding Text}"  TextColor="DarkGray" FontSize="Small" />
                                         </StackLayout>
