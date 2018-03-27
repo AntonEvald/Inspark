@@ -24,9 +24,9 @@
                     <StackLayout>
                             <Button Text="Skapa introduktionsgrupp" BackgroundColor="LightBlue" Clicked="CreateGroupButton_Clicked"/>
                             <Button Text="Ändra introduktionsgrupp" BackgroundColor="LightBlue" Clicked="ChangeGroupButton_Clicked"/>
-                            <Button Text="Ta bort introduktionsgrupp" BackgroundColor="LightBlue"/>
+                            <Button Text="Ta bort introduktionsgrupp" BackgroundColor="LightCoral" Clicked="DeleteGroupButton_Clicked"/>
                             <Button Text="Lägg till användare från introduktionsgrupp" BackgroundColor="LightBlue"/>
-                            <Button Text="Ta bort användare från introduktionsgrupp" BackgroundColor="LightBlue"/>
+                            <Button Text="Ta bort användare från introduktionsgrupp" BackgroundColor="LightCoral"/>
                             <Button Text="Lägg in resultat från tävling" BackgroundColor="LightBlue"/>
                     </StackLayout>
                 </StackLayout>

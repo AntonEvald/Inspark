@@ -70,7 +70,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Specifies the value for each kolumn in the last row. -->
+            <!-- Specifies the value for each column in the last row. -->
             <StackLayout Grid.Column="0" VerticalOptions="Center" Spacing="0">
                 <Image HeightRequest="30" Source="home.png"/>
                 <Label Text="Hem" FontSize="10"

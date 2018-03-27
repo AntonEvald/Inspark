@@ -33,6 +33,12 @@ namespace Inspark.Views
             InsparkAdmin.Content = page.Content;
         }
 
+	    public void DeleteGroupButton_Clicked(object sender, EventArgs e)
+	    {
+	        var page = new DeleteGroupPage();
+	        InsparkAdmin.Content = page.Content;
+	    }
+
         //ApiServices apiServices = new ApiServices();
 
         //public async void GetUsers()
@@ -85,5 +91,7 @@ namespace Inspark.Views
             var page = new ProfilePage(selected);
             InsparkAdmin.Content = page.Content;
         }
-    }
+
+
+	}
 }

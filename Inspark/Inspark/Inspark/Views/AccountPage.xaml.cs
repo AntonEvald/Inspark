@@ -17,7 +17,7 @@ namespace Inspark.Views
 			InitializeComponent ();
 		}
 
-	    private void ShowProfileButton_Clicked(object sender, EventArgs e)
+	    public void ShowProfileButton_Clicked(object sender, EventArgs e)
 	    {
 	        var page = new ProfilePage();
 	        InsparkAccount.Content = page.Content;
