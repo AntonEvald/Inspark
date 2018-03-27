@@ -16,7 +16,7 @@ namespace Inspark.Viewmodels
 {
     public class LoginViewModel : INotifyPropertyChanged
     {
-        ApiServices apiServices = new ApiServices();
+        private ApiServices apiServices = new ApiServices();
         private string password = "";
 
         public string Password
@@ -70,13 +70,15 @@ namespace Inspark.Viewmodels
 
         public ICommand LoginClick => new Command(async () =>
         {
-            
-            
+            var e = email;
+            var p = password;
+            var a = Password;
+            var b = Email;
             if (password != null)
             {
                 if (Email != null)
                 {
-                var response =  await apiServices.LoginAsync(Email, password);
+                    var response =  await apiServices.LoginAsync(Email, Password);
                     if (response)
                     {
                         Application.Current.MainPage = new MainPage();
