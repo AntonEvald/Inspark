@@ -14,17 +14,19 @@ namespace Inspark.Views
 	public partial class EventPage : ContentPage
 	{
         EventViewModel model;
+
         public EventPage (Event e)
 		{
-
             model = new EventViewModel{
                 Title = e.Title,
                 Id = e.Id,
                 Location = e.Location,
-                date = e.Date,
+                Date = e.Date,
                 Description = e.Description
             };
+
 			InitializeComponent ();
+
             Content.BindingContext = model;
 		}
 	}

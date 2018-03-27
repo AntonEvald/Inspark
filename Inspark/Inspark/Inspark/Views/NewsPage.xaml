@@ -4,14 +4,8 @@
              x:Class="Inspark.Views.NewsPage"
              xmlns:vm="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              xmlns:conv="clr-namespace:Inspark.Services;assembly=Inspark">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <conv:ByteArrayToImageSourceConverter x:Key="bic" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
+        <StackLayout>
                 <StackLayout.BindingContext>
                     <vm:NewsViewModel/>
                 </StackLayout.BindingContext>
@@ -19,22 +13,32 @@
                 <Entry Text="{Binding PostTitle}" Placeholder="Title"/>
                 <Entry Text="{Binding PostText}" Placeholder="Text"/>
                 <Button Text="Lägg till bild" Command="{Binding AddPicCommand}"/>
-                <Image Source="{Binding ImagePath}"/>
                 <Button Text="Posta inlägg" Command="{Binding PostCommand}"/>
-                <ListView x:Name="NewsList" ItemsSource="{Binding NewsPosts}" RowHeight="60">
-                    <ListView.ItemTemplate>
+            <ListView x:Name="NewsList" 
+                      ItemsSource="{Binding NewsPosts}" 
+                      RowHeight="60" 
+                      IsPullToRefreshEnabled="True" 
+                      IsRefreshing="{Binding IsRefreshing}" 
+                      RefreshCommand="{Binding RefreshCommand}" 
+                      HasUnevenRows="True"
+                      ItemTapped="PostTapped">
+                <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <ViewCell>
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <StackLayout.Resources>
+                                        <ResourceDictionary>
+                                            <conv:ByteArrayToImageSourceConverter x:Key="bic"/>
+                                        </ResourceDictionary>
+                                    </StackLayout.Resources>
                                     <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
                                     <Label Text="{Binding Text}"  TextColor="DarkGray" FontSize="Small" />
-                                    <Image Source="{Binding Picture, Converter={StaticResource bic}}"/>
+                                    <Image Source="{Binding Picture, Converter={StaticResource bic}}" />
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -6,12 +6,13 @@
     <ContentPage.BindingContext>
         <viewmodels:ProfileViewModel/>
     </ContentPage.BindingContext>
-    
+
+    <!-- Gets the value from the database from data bindings and displays the data in the correct label. -->
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="20, 40">
                 <Image Source="picture.jpg"/>
-
+                
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                     <Label Text="Förnamn:"/>
                     <Label Text="{Binding FirstName}"/>
