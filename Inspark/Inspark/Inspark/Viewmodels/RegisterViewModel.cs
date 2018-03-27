@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using Inspark.Services;
 using Plugin.Media;
 using System.IO;
+using Inspark.Helpers;
 
 namespace Inspark.Viewmodels
 {

@@ -3,27 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              x:Class="Inspark.Views.CreateEventPage">
+    <ContentPage.BindingContext>
+        <viewmodels:CreateEventViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <ContentPage.BindingContext>
-            <viewmodels:CreateEventViewModel/>
-        </ContentPage.BindingContext>
         <ScrollView>
-            <StackLayout Padding="20, 40">
+            <StackLayout Padding="40">
 
-                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                    <Label Text="Titel:"/>
-                    <Label Text="{Binding Title}"/>
+                <StackLayout>
+                    <Entry Placeholder="Titel" Text="{Binding Title}"/>
                 </StackLayout>
 
-                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                    <Label Text="Adress:"/>
-                    <Label Text="{Binding Location}"/>
+                <StackLayout>
+                    <Entry Placeholder="Adress" Text="{Binding Location}"/>
                 </StackLayout>
 
-                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                    <Label Text="Beskrivning:"/>
-                    <Label Text="{Binding Description}"/>
+                <StackLayout>
+                    <Entry Placeholder="Beskrivning" Text="{Binding Description}"/>
                 </StackLayout>
+
                 <StackLayout>  
                 <DatePicker x:Name="StartDatePicker" Format="dd/MM/yyyy" Date="{Binding Item.StartDate}" MinimumDate="{Binding Item.StartDate}" />
                 <Grid>
