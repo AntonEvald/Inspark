@@ -15,6 +15,11 @@ namespace Inspark.Views
 	{
 	    private ProfileViewModel model;
 
+	    public ProfilePage()
+	    {
+	        InitializeComponent();
+        }
+
 		public ProfilePage (User e)
 		{
 		    model = new ProfileViewModel

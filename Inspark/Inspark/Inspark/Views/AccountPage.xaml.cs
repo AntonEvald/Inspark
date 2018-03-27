@@ -17,11 +17,11 @@ namespace Inspark.Views
 			InitializeComponent ();
 		}
 
-        //public void ShowProfilePageButton_Clicked(object sender, EventArgs e)
-        //{
-        //    var page = new ProfilePage();
-        //    InsparkAccount.Content = page.Content;
-        //}
+	    private void ShowProfileButton_Clicked(object sender, EventArgs e)
+	    {
+	        var page = new ProfilePage();
+	        InsparkAccount.Content = page.Content;
+	    }
 
         public void ChangeUserDetailsButton_Clicked(object sender, EventArgs e)
         {
@@ -40,5 +40,6 @@ namespace Inspark.Views
             // Kod som loggar ut personen. 
         }
 
-    }
+
+	}
 }
