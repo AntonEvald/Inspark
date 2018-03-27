@@ -11,6 +11,7 @@ using Inspark.Services;
 using System.Linq;
 using System.Collections;
 using System.Net;
+using Inspark.Helpers;
 
 namespace Inspark.Viewmodels
 {
@@ -77,6 +78,11 @@ namespace Inspark.Viewmodels
                     var response =  await apiServices.LoginAsync(Email, Password);
                     if (response)
                     {
+                        if (Settings.UserName == "")
+                        {
+                            Settings.UserName = Email;
+                            Settings.UserPassword = Password;
+                        }
                         Application.Current.MainPage = new MainPage();
                     }
                     else
@@ -86,6 +92,12 @@ namespace Inspark.Viewmodels
                 }
             }
         });
+
+        public LoginViewModel()
+        {
+            Email = Settings.UserName;
+            Password = Settings.UserPassword;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

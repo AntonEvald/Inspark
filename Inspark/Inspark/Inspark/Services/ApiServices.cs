@@ -7,7 +7,9 @@ using System.Text;
 using System.Collections.Generic;
 using System.IO;
 using System.Diagnostics;
+using Inspark.Helpers;
 using Inspark.Views;
+using Newtonsoft.Json.Linq;
 
 namespace Inspark.Services
 {
@@ -40,6 +42,10 @@ namespace Inspark.Services
             
             var client = new HttpClient();
             var response = await client.SendAsync(request);
+            var jwt = await response.Content.ReadAsStringAsync();
+            JObject jwtDynamic = JsonConvert.DeserializeObject<dynamic>(jwt);
+            var accessToken = jwtDynamic.Value<string>("access_token");
+            Settings.AccessToken = accessToken;
             return response.IsSuccessStatusCode;
 
 
