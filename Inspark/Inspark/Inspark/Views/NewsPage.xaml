@@ -14,11 +14,18 @@
                 <Entry Text="{Binding PostText}" Placeholder="Text"/>
                 <Button Text="Lägg till bild" Command="{Binding AddPicCommand}"/>
                 <Button Text="Posta inlägg" Command="{Binding PostCommand}"/>
-                <ListView x:Name="NewsList" ItemsSource="{Binding NewsPosts}" RowHeight="60" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing}" RefreshCommand="{Binding RefreshCommand}" ItemSelected="{Binding ItemSelected}" ItemTapped="{Binding ItemTappedCommand}">
-                    <ListView.ItemTemplate>
+            <ListView x:Name="NewsList" 
+                      ItemsSource="{Binding NewsPosts}" 
+                      RowHeight="60" 
+                      IsPullToRefreshEnabled="True" 
+                      IsRefreshing="{Binding IsRefreshing}" 
+                      RefreshCommand="{Binding RefreshCommand}" 
+                      HasUnevenRows="True"
+                      ItemTapped="PostTapped">
+                <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <ViewCell>
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                     <StackLayout.Resources>
                                         <ResourceDictionary>
                                             <conv:ByteArrayToImageSourceConverter x:Key="bic"/>

@@ -1,4 +1,5 @@
-﻿using Inspark.Viewmodels;
+﻿using Inspark.Models;
+using Inspark.Viewmodels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,13 @@ namespace Inspark.Views
 		{
 			InitializeComponent();
 		}
-	}
+
+        private async void PostTapped(object sender, ItemTappedEventArgs e)
+        {
+            NewsPost selected = e.Item as NewsPost;
+            var page = new PostPage(selected);
+            await Navigation.PushAsync(page);
+        }
+
+    }
 }

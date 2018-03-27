@@ -137,11 +137,7 @@ namespace Inspark.Viewmodels
             }
         }
 
-        public ICommand ItemTappedCommand => new Command(() =>
-        {
-            NewsPost post = ItemSelected;
-            new NavigationPage(new MainPage(new PostPage(post)));
-        });
+        
 
         public ICommand AddPicCommand => new Command(async () =>
         {
