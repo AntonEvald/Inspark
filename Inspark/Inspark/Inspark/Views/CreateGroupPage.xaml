@@ -1,17 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Inspark.Views.CreateGroupPage">
+             x:Class="Inspark.Views.CreateGroupPage"
+             xmlns:viewModels="clr-namespace:Inspark.Viewmodels;assembly=Inspark">
+    <ContentPage.BindingContext>
+        <viewModels:CreateGroupViewModel/>
+    </ContentPage.BindingContext>
     <ContentView>
         <ContentPage.Content>
             <ScrollView>
-                <StackLayout>
+                <StackLayout Padding="40">
                     <Label Text="Skapa introduktionsgrupp" FontSize="Large" HorizontalOptions="Center"/>
-                        <StackLayout>
-                        <Entry Placeholder="Namn på introduktionsgrupp"/>
-                    </StackLayout>
+                        
                     <StackLayout>
-                        <Picker x:Name="Section" Title="Välj institution som gruppen ska tillhöra" HorizontalOptions="FillAndExpand">
+                        <Entry Placeholder="Namn på introduktionsgrupp" Text="{Binding Name}"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Picker x:Name="Section" Title="Välj institution som gruppen ska tillhöra" HorizontalOptions="FillAndExpand" SelectedItem="{Binding Section}">
                             <Picker.Items>
                                 <x:String>Handelshögskolan</x:String>
                                 <x:String>Humaniora, utbildnings- och samhällsvetenskap</x:String>
@@ -24,7 +30,11 @@
                             </Picker.Items>
                         </Picker>
                     </StackLayout>
-                    <Button Text="Skapa introduktionsgrupp" BackgroundColor="LightBlue"/>
+
+                    <StackLayout>
+                        <Button Text="Skapa introduktionsgrupp" BackgroundColor="LightBlue"/>
+                    </StackLayout>
+
                 </StackLayout>
             </ScrollView>
         </ContentPage.Content>
