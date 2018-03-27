@@ -34,10 +34,6 @@ namespace Inspark.Services
                 new KeyValuePair<string, string>("Password", password),
                 new KeyValuePair<string, string>("grant_type", "Password")
             };
-            
-            
-            
-
 
             var request = new HttpRequestMessage(HttpMethod.Post, "http://insparkapi2018.azurewebsites.net/token");
             request.Content = new FormUrlEncodedContent(keyValue);

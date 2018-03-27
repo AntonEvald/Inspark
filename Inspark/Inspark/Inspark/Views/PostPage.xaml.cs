@@ -1,4 +1,4 @@
-﻿using Inspark.Models;
+using Inspark.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +17,14 @@ namespace Inspark.Views
 		{
 			InitializeComponent ();
 		}
+<<<<<<< Updated upstream
+=======
+
+        //public PostPage(NewsPost post)
+        //{
+
+        //    InitializeComponent();
+        //}
+>>>>>>> Stashed changes
 	}
 }
