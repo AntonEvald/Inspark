@@ -25,7 +25,7 @@ namespace Inspark.Helpers
             set { AppSettings.AddOrUpdateValue(UserPasswordKey, value); }
         }
         
-        private const string AccessTokenKey = "userpassword_key";
+        private const string AccessTokenKey = "AccessToken_key";
         private static readonly string AccessTokenDefault = string.Empty;
         public static string AccessToken
         {
