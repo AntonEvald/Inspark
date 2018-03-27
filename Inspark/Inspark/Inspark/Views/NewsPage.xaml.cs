@@ -1,4 +1,4 @@
-using Inspark.Models;
+﻿using Inspark.Models;
 using Inspark.Viewmodels;
 using System;
 using System.Collections.Generic;
@@ -22,16 +22,9 @@ namespace Inspark.Views
         public void PostTapped(object sender, ItemTappedEventArgs e)
         {
             NewsPost selected = e.Item as NewsPost;
-<<<<<<< HEAD
             var page = new PostPage(selected);
             News.Content = page.Content;
-=======
 
-            var page = new PostPage(selected);
-            News.Content = page.Content;
-           //var page = new PostPage(selected);
-            //await Navigation.PushAsync(page);
->>>>>>> 52bb5c4... new register  and login functions
         }
 
     }
