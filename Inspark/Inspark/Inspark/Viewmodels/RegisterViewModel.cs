@@ -85,6 +85,22 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private bool isLoading;
+
+        public bool IsLoading
+        {
+            get { return isLoading; }
+            set
+            {
+                if(isLoading != value)
+                {
+                    isLoading = value;
+                    OnPropertyChanged("IsLoading");
+                }
+            }
+        }
+
+
         private void OnPropertyChanged(string property)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
@@ -114,19 +130,21 @@ namespace Inspark.Viewmodels
             {
                 if(Section != null && Section != "")
                 {
+                    IsLoading = true;
                     Pic = File.ReadAllBytes(ImagePath);
                     var isSuccess = await apiServices.RegisterAsync(FirstName, LastName, Email, Password, section, PhoneNumber, Pic, true);
 
                     if (isSuccess)
                     {
-                        Message = "Ja!";
                         var page = new Views.MainPage(new Views.HomePage());
                         NavigationPage.SetHasNavigationBar(page, false);
                         await Application.Current.MainPage.Navigation.PushAsync(page);
+                        IsLoading = false;
                     }
                     else
                     {
                         Message = "Försök igen!";
+                        IsLoading = false;
                     }
                 }
                 else

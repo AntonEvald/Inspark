@@ -23,7 +23,7 @@ namespace Inspark.Services
 
         private void BindableonTextChanged(object sender, TextChangedEventArgs textChangedEventArgs)
         {
-            var passwordPattern = @"(?=^[^\s]{6,}$)(?=.*\d)(?=.*[a-zA-Z])";
+            var passwordPattern = @"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$";
 
             var password = textChangedEventArgs.NewTextValue;
 
@@ -44,7 +44,7 @@ namespace Inspark.Services
         {
             if(password != "" && password != null)
             {
-                var passwordPattern = @"(?=^[^\s]{6,}$)(?=.*\d)(?=.*[a-zA-Z])";
+                var passwordPattern = @"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$";
                 if (Regex.IsMatch(password, passwordPattern))
                 {
                     return true;

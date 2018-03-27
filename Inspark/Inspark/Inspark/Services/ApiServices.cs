@@ -95,8 +95,26 @@ namespace Inspark.Services
             var response = await client.PostAsync("http://aktuelltwebapi.azurewebsites.net/api/user", content);
 
             return response.IsSuccessStatusCode;
-            
         }
 
+        public async Task<bool> CreatePost(NewsPost post)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(post);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("http://aktuelltwebapi.azurewebsites.net/api/user", content);
+
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<List<NewsPost>> GetAllPosts()
+        {
+            var client = new HttpClient();
+            var response = await client.GetAsync("http://aktuelltwebapi.azurewebsites.net/api/user");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<List<NewsPost>>(result);
+            return list;
+        }
     }
 }
