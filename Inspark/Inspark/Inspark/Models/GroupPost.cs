@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Inspark.Models
 {
-    class GroupPost
+    public class GroupPost
     {
         public int Id { get; set; }
         public string Title { get; set; }
