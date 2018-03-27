@@ -22,13 +22,8 @@ namespace Inspark.Views
         public void PostTapped(object sender, ItemTappedEventArgs e)
         {
             NewsPost selected = e.Item as NewsPost;
-<<<<<<< Updated upstream
             var page = new PostPage(selected);
             News.Content = page.Content;
-=======
-           //var page = new PostPage(selected);
-            //await Navigation.PushAsync(page);
->>>>>>> Stashed changes
         }
 
     }
