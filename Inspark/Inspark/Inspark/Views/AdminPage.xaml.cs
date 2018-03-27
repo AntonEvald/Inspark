@@ -39,6 +39,24 @@ namespace Inspark.Views
 	        InsparkAdmin.Content = page.Content;
 	    }
 
+	    public void AddUserToGroupButton_Clicked(object sender, EventArgs e)
+	    {
+            var page = new AddUserToGroupPage();
+	        InsparkAdmin.Content = page.Content;
+	    }
+
+	    public void DeleteUserFromGroupButton_Clicked(object sender, EventArgs e)
+	    {
+            var page = new DeleteUserFromGroupPage();
+	        InsparkAdmin.Content = page.Content;
+	    }
+
+	    public void AddScoreFromEventButton_Clicked(object sender, EventArgs e)
+	    {
+            var page = new AddScoreFromEventPage();
+	        InsparkAdmin.Content = page.Content;
+	    }
+
         //ApiServices apiServices = new ApiServices();
 
         //public async void GetUsers()
