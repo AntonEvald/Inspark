@@ -13,6 +13,8 @@ namespace Inspark.Viewmodels
 
         public string Section { get; set; }
 
+        public bool IsIntroGroup { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

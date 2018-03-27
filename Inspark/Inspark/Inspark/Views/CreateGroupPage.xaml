@@ -10,10 +10,15 @@
         <ContentPage.Content>
             <ScrollView>
                 <StackLayout Padding="40">
-                    <Label Text="Skapa introduktionsgrupp" FontSize="Large" HorizontalOptions="Center"/>
+                    <Label Text="Skapa grupp" FontSize="Large" HorizontalOptions="Center"/>
                         
                     <StackLayout>
-                        <Entry Placeholder="Namn på introduktionsgrupp" Text="{Binding Name}"/>
+                        <Entry Placeholder="Namn på grupp" Text="{Binding Name}"/>
+                    </StackLayout>
+                    
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Är gruppen en introgrupp?"/>
+                        <Switch x:Name="IsIntroGroup" IsToggled="{Binding IsIntroGroup}"/>
                     </StackLayout>
 
                     <StackLayout>
