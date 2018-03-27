@@ -7,6 +7,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.IO;
 using System.Diagnostics;
+using Inspark.Views;
 
 namespace Inspark.Services
 {
@@ -24,7 +25,30 @@ namespace Inspark.Services
             return list;
 
         }
-     
+
+        public async Task<bool> LoginAsync(string userName, string password)
+        {
+            var keyValue = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("UserName", userName),
+                new KeyValuePair<string, string>("Password", password),
+                new KeyValuePair<string, string>("grant_type", "Password")
+            };
+            
+            
+            
+
+
+            var request = new HttpRequestMessage(HttpMethod.Post, "http://insparkapi2018.azurewebsites.net/token");
+            request.Content = new FormUrlEncodedContent(keyValue);
+            
+            var client = new HttpClient();
+            var response = await client.SendAsync(request);
+            return response.IsSuccessStatusCode;
+
+
+        }
+
         public async Task<bool> RegisterAsync(string firstName, string lastName, string email, string password, string section, string phoneNumber, byte[] pic, bool isLoggedIn)
         {
             var client = new HttpClient();
@@ -57,6 +81,24 @@ namespace Inspark.Services
            var result = await response.Content.ReadAsStringAsync();
            var list = JsonConvert.DeserializeObject<List<User>>(result);
            return list;
+        }
+
+        public async Task<bool> CreateEvent(string tile, string location, DateTime date, string desc)
+        {
+            var client = new HttpClient();
+             var model = new Event()
+            {
+                Title = tile,
+                Location = location,
+                Date = date,
+                Description = desc
+            };
+            var json = JsonConvert.SerializeObject(model);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("http://aktuelltwebapi.azurewebsites.net/api/user", content);
+
+            return response.IsSuccessStatusCode;
+            
         }
 
     }

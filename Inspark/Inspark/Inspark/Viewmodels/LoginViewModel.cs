@@ -10,6 +10,7 @@ using Inspark.Views;
 using Inspark.Services;
 using System.Linq;
 using System.Collections;
+using System.Net;
 
 namespace Inspark.Viewmodels
 {
@@ -69,35 +70,51 @@ namespace Inspark.Viewmodels
 
         public ICommand LoginClick => new Command(async () =>
         {
-            if (!email.Equals("") && !password.Equals(""))
+            
+            
+            if (password != null)
             {
-                try
+                if (Email != null)
                 {
-                    var list = await apiServices.GetAllUsers();
-                    var loginEmail = email;
-                    var result = list.First(user => user.Email == loginEmail);
-                    var dPassword = Encryption.Decrypt(result.Password);
-
-                    if (result.Email == Email && dPassword == Password)
+                var response =  await apiServices.LoginAsync(Email, password);
+                    if (response)
                     {
                         Application.Current.MainPage = new MainPage();
                     }
-                    else
-                    {
-                        AlertMessage = "Fel Email eller lösenord" + Email + Password;
-                    }
                 }
-                catch
-                {
+            }
 
-                    AlertMessage = "Fel Email eller lösenord";
-                }
-                     
-            }
-            else
-            {
-                AlertMessage = "Vänligen ange en Email och ett lösenord.";
-            }
+
+
+//            if (!email.Equals("") && !password.Equals(""))
+//            {
+//                try
+//                {
+//                    var list = await apiServices.GetAllUsers();
+//                    var loginEmail = email;
+//                    var result = list.First(user => user.Email == loginEmail);
+//                    var dPassword = Encryption.Decrypt(result.Password);
+//
+//                    if (result.Email == Email && dPassword == Password)
+//                    {
+//                        Application.Current.MainPage = new MainPage();
+//                    }
+//                    else
+//                    {
+//                        AlertMessage = "Fel Email eller lösenord" + Email + Password;
+//                    }
+//                }
+//                catch
+//                {
+//
+//                    AlertMessage = "Fel Email eller lösenord";
+//                }
+//                     
+//            }
+//            else
+//            {
+//                AlertMessage = "Vänligen ange en Email och ett lösenord.";
+//            }
         });
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -11,5 +11,7 @@ namespace Inspark.Views
         {
             InitializeComponent();
         }
+
+     
     }
 }
