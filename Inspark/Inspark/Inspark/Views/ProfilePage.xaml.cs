@@ -14,6 +14,7 @@ namespace Inspark.Views
 	public partial class ProfilePage : ContentPage
 	{
 	    private ProfileViewModel model;
+
 		public ProfilePage (User e)
 		{
 		    model = new ProfileViewModel
@@ -27,6 +28,7 @@ namespace Inspark.Views
             };
 
 			InitializeComponent ();
+
 		    Content.BindingContext = model;
         }
 	}

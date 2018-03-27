@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Inspark.Views"
              x:Class="Inspark.Views.MainPage">
     
-    <!-- Skapar fem stycken rader för hela sidan. -->
+    <!-- Creating five rows for the whole page. -->
     <Grid ColumnSpacing="0" RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="56"/>
@@ -14,7 +14,7 @@
             <RowDefinition Height="56"/>
         </Grid.RowDefinitions>
 
-        <!-- Skapar fem kolumner i den första raden. -->
+        <!-- Creating five columns in the first row. -->
         <Grid Grid.Row="0" ColumnSpacing="0" RowSpacing="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -24,7 +24,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Specificerar värdet för varje kolumn i första raden. -->
+            <!-- Specifies the value for each column in the first row. -->
             <StackLayout Grid.Column="0" VerticalOptions="Center" Spacing="0">
                 <Image HeightRequest="30" Source="hammenu.png"/>
             </StackLayout>
@@ -54,13 +54,13 @@
             </StackLayout>
         </Grid>
         
-        <!-- Specificerar vad de övriga raderna ska göra/innehålla. Rad 1 och 3 är en "border" rad. 
-             Rad 2 är en ContentView där allt vårt innehåll från en View hamnar efter knapptryck. -->
+        <!-- Specifies what the other rows will do/contain. Row 1 and 3 is both a "border row". 
+        Row 2 is a ContentView where all the content from any view will be put for display. -->
         <BoxView Grid.Row="1" BackgroundColor="LightGray"/>
         <ContentView Grid.Row="2" x:Name="Inspark"/>
         <BoxView Grid.Row="3" BackgroundColor="LightGray"/>
 
-        <!-- Skapar fem kolumner i den sista raden. -->
+        <!-- Creating five columns in the last row. -->
         <Grid Grid.Row="4" ColumnSpacing="0" RowSpacing="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -70,7 +70,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Specificerar värdet för varje kolumn i sista raden. -->
+            <!-- Specifies the value for each kolumn in the last row. -->
             <StackLayout Grid.Column="0" VerticalOptions="Center" Spacing="0">
                 <Image HeightRequest="30" Source="home.png"/>
                 <Label Text="Hem" FontSize="10"

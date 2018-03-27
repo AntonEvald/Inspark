@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Inspark.Views.EventPage">  
+             x:Class="Inspark.Views.EventPage">
+
+    <!-- Gets the value from the database from data bindings and displays the data in the correct label. -->
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="20">
@@ -23,13 +25,13 @@
                 <StackLayout Padding="10, 0, 10, 0" Orientation="Horizontal">
                     <Label Text="Datum:" 
                        FontSize="Medium"/>
-                    <Label Text="{Binding date, StringFormat='{}{0:yyyy/MM/dd}'}" VerticalOptions="CenterAndExpand"/>
+                    <Label Text="{Binding Date, StringFormat='{}{0:yyyy/MM/dd}'}" VerticalOptions="CenterAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Padding="10, 0, 10, 0" Orientation="Horizontal">
                     <Label Text="Tid:" 
                        FontSize="Medium"/>
-                    <Label Text="{Binding date, StringFormat='{}{0:HH:mm}'}" VerticalOptions="CenterAndExpand"/>
+                    <Label Text="{Binding Date, StringFormat='{}{0:HH:mm}'}" VerticalOptions="CenterAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Padding="10" Orientation="Vertical">

@@ -33,8 +33,6 @@ namespace Inspark.Views
             InsparkAdmin.Content = page.Content;
         }
 
-        // OBS: Ta bort kommentar när WEB Api fungerar och se om listan fungerar
-
         //ApiServices apiServices = new ApiServices();
 
         //public async void GetUsers()
@@ -47,6 +45,7 @@ namespace Inspark.Views
         //    }
         //}
 
+        // Collection of users, repalce with the database content when API works. 
         ObservableCollection<User> users = new ObservableCollection<User>
         {
             new User { Id = 1, FirstName = "Andreas", LastName = "Dahlin", Email = "andreas@dahlin.se", PhoneNumber = "0707499911", Section = "Handelshögskolan"},
@@ -59,6 +58,7 @@ namespace Inspark.Views
             new User { Id = 8, FirstName = "Jesper", LastName = "Bergmark", Email = "jesper@bergmark.se", PhoneNumber = "0707499911", Section = "Handelshögskolan"}
         };
 
+	    // Gets the name of the user where the firstname or the lastname matches the keyword from the searchbar and adds the user to the ListView. 
         public void Handle_TextChanged(object sender, TextChangedEventArgs e)
         {
             string keyword = UserSearchBar.Text;
@@ -78,6 +78,7 @@ namespace Inspark.Views
             }
         }
 
+        // Displays a ProfilePage of the user that is tapped on from the ListView. 
         public void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             User selected = e.Item as User;
