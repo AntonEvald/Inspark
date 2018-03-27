@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Inspark.Models
 {
-    class NewsPost
+    public class NewsPost
     {
         public int Id { get; set; }
         public string Title { get; set; }

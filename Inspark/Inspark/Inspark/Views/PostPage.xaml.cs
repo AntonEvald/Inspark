@@ -13,15 +13,9 @@ namespace Inspark.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PostPage : ContentPage
 	{
-		public PostPage ()
+		public PostPage(NewsPost post)
 		{
 			InitializeComponent ();
 		}
-
-        public PostPage(NewsPost post)
-        {
-
-            InitializeComponent();
-        }
 	}
 }
