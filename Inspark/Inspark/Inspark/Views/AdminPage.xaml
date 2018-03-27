@@ -22,12 +22,13 @@
                         </ListView>
                     </StackLayout>
                     <StackLayout>
-                            <Button Text="Skapa introduktionsgrupp" BackgroundColor="LightBlue" Clicked="CreateGroupButton_Clicked"/>
-                            <Button Text="Ändra introduktionsgrupp" BackgroundColor="LightBlue" Clicked="ChangeGroupButton_Clicked"/>
-                            <Button Text="Ta bort introduktionsgrupp" BackgroundColor="LightCoral" Clicked="DeleteGroupButton_Clicked"/>
-                            <Button Text="Lägg till användare till introduktionsgrupp" BackgroundColor="LightBlue" Clicked="AddUserToGroupButton_Clicked"/>
-                            <Button Text="Ta bort användare från introduktionsgrupp" BackgroundColor="LightCoral" Clicked="DeleteUserFromGroupButton_Clicked"/>
-                            <Button Text="Lägg in resultat från tävling" BackgroundColor="LightBlue" Clicked="AddScoreFromEventButton_Clicked"/>
+                        <Button Text="Skapa introduktionsgrupp" BackgroundColor="LightBlue" Clicked="CreateGroupButton_Clicked"/>
+                        <Button Text="Ändra introduktionsgrupp" BackgroundColor="LightBlue" Clicked="ChangeGroupButton_Clicked"/>
+                        <Button Text="Ta bort introduktionsgrupp" BackgroundColor="LightCoral" Clicked="DeleteGroupButton_Clicked"/>
+                        <Button Text="Lägg till användare till introduktionsgrupp" BackgroundColor="LightBlue" Clicked="AddUserToGroupButton_Clicked"/>
+                        <Button Text="Ta bort användare från introduktionsgrupp" BackgroundColor="LightCoral" Clicked="DeleteUserFromGroupButton_Clicked"/>
+                        <Button Text="Lägg in resultat från tävling" BackgroundColor="LightBlue" Clicked="AddScoreFromEventButton_Clicked"/>
+                        <Button Text="Skapa ett inlägg" BackgroundColor="LightBlue" Clicked="CreateNewsPostButton_Clicked"/>
                     </StackLayout>
                 </StackLayout>
             </ScrollView>

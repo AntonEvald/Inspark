@@ -32,7 +32,7 @@ namespace Inspark.Services
             {
                 new KeyValuePair<string, string>("UserName", userName),
                 new KeyValuePair<string, string>("Password", password),
-                new KeyValuePair<string, string>("grant_type", "Password")
+                new KeyValuePair<string, string>("grant_type", "password")
             };
 
             var request = new HttpRequestMessage(HttpMethod.Post, "http://insparkapi2018.azurewebsites.net/token");
@@ -50,21 +50,22 @@ namespace Inspark.Services
             var client = new HttpClient();
             var model = new User
             {
-                UserName = email,
+                //UserName = email,
                 Password = password,
                 Email = email,
-                Section = section,
-                FirstName = firstName,
-                LastName = lastName,
-                Role = "Admin",
-                PhoneNumber = phoneNumber,
-                ProfilePicture = pic,
-                IsLoggedIn = isLoggedIn
+                //Section = section,
+                //FirstName = firstName,
+                //LastName = lastName,
+                //Role = "Admin",
+                ConfirmPassword = password
+                //PhoneNumber = phoneNumber,
+                //ProfilePicture = pic,
+                //IsLoggedIn = isLoggedIn
             };
 
             var json = JsonConvert.SerializeObject(model);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("http://aktuelltwebapi.azurewebsites.net/api/user", content);
+            var response = await client.PostAsync("http://insparkapi2018.azurewebsites.net/api/account/register", content);
 
             return response.IsSuccessStatusCode;
         }

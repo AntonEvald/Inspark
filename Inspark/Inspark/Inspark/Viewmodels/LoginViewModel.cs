@@ -70,10 +70,6 @@ namespace Inspark.Viewmodels
 
         public ICommand LoginClick => new Command(async () =>
         {
-            var e = email;
-            var p = password;
-            var a = Password;
-            var b = Email;
             if (password != null)
             {
                 if (Email != null)
@@ -83,40 +79,12 @@ namespace Inspark.Viewmodels
                     {
                         Application.Current.MainPage = new MainPage();
                     }
+                    else
+                    {
+                        AlertMessage = "Fel Email eller lösenord";
+                    }
                 }
             }
-
-
-
-//            if (!email.Equals("") && !password.Equals(""))
-//            {
-//                try
-//                {
-//                    var list = await apiServices.GetAllUsers();
-//                    var loginEmail = email;
-//                    var result = list.First(user => user.Email == loginEmail);
-//                    var dPassword = Encryption.Decrypt(result.Password);
-//
-//                    if (result.Email == Email && dPassword == Password)
-//                    {
-//                        Application.Current.MainPage = new MainPage();
-//                    }
-//                    else
-//                    {
-//                        AlertMessage = "Fel Email eller lösenord" + Email + Password;
-//                    }
-//                }
-//                catch
-//                {
-//
-//                    AlertMessage = "Fel Email eller lösenord";
-//                }
-//                     
-//            }
-//            else
-//            {
-//                AlertMessage = "Vänligen ange en Email och ett lösenord.";
-//            }
         });
 
         public event PropertyChangedEventHandler PropertyChanged;
