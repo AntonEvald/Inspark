@@ -57,6 +57,12 @@ namespace Inspark.Views
 	        InsparkAdmin.Content = page.Content;
 	    }
 
+	    public void CreateNewsPostButton_Clicked(object sender, EventArgs e)
+	    {
+            var page = new CreateNewsPostPage();
+	        InsparkAdmin.Content = page.Content;
+	    }
+
         //ApiServices apiServices = new ApiServices();
 
         //public async void GetUsers()
