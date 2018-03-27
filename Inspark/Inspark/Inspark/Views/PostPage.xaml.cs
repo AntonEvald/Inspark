@@ -1,4 +1,4 @@
-﻿using Inspark.Models;
+using Inspark.Models;
 using Inspark.Viewmodels;
 using System;
 using System.Collections.Generic;
@@ -32,5 +32,14 @@ namespace Inspark.Views
             };
             Content.BindingContext = model;
 		}
+<<<<<<< HEAD
+=======
+
+        //public PostPage(NewsPost post)
+        //{
+
+        //    InitializeComponent();
+        //}
+>>>>>>> 52bb5c4... new register  and login functions
 	}
 }
