@@ -3,26 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              x:Class="Inspark.Views.CreateEventPage">
+    <ContentPage.BindingContext>
+        <viewmodels:CreateEventViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <ContentPage.BindingContext>
-            <viewmodels:CreateEventViewModel/>
-        </ContentPage.BindingContext>
         <ScrollView>
             <StackLayout Padding="20, 40">
 
-                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal">
                     <Label Text="Titel:"/>
-                    <Label Text="{Binding Title}"/>
+                    <Entry HorizontalOptions="FillAndExpand" Text="{Binding Title}"/>
                 </StackLayout>
 
-                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal">
                     <Label Text="Adress:"/>
-                    <Label Text="{Binding Location}"/>
+                    <Entry HorizontalOptions="FillAndExpand" Text="{Binding Location}"/>
                 </StackLayout>
 
-                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal">
                     <Label Text="Beskrivning:"/>
-                    <Label Text="{Binding Description}"/>
+                    <Entry HorizontalOptions="FillAndExpand" Text="{Binding Description}"/>
                 </StackLayout>
                 <StackLayout>  
                 <DatePicker x:Name="StartDatePicker" Format="dd/MM/yyyy" Date="{Binding Item.StartDate}" MinimumDate="{Binding Item.StartDate}" />
@@ -38,6 +38,9 @@
                     <Label Text="Start Time" Grid.Row="0" Grid.Column="0"/>
                     <TimePicker x:Name="StartTime" Time="{Binding Item.StartTime}" Grid.Row="1" Grid.Column="0"/>
                 </Grid>
+                </StackLayout>
+                <StackLayout>
+                    <Button Text="Skapa Event" Command="{Binding CreateEventCommand}"/>
                 </StackLayout>
 
             </StackLayout>
