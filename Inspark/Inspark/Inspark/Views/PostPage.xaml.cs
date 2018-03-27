@@ -11,14 +11,14 @@ using Xamarin.Forms.Xaml;
 
 namespace Inspark.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class PostPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class PostPage : ContentPage
+    {
         PostViewModel model;
 
-		public PostPage(NewsPost post)
-		{
-			InitializeComponent ();
+        public PostPage(NewsPost post)
+        {
+            InitializeComponent();
             model = new PostViewModel()
             {
                 Id = post.Id,
@@ -31,15 +31,6 @@ namespace Inspark.Views
                 DateTime = post.DateTime,
             };
             Content.BindingContext = model;
-		}
-<<<<<<< HEAD
-=======
-
-        //public PostPage(NewsPost post)
-        //{
-
-        //    InitializeComponent();
-        //}
->>>>>>> 52bb5c4... new register  and login functions
-	}
+        }
+    }
 }
