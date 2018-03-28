@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Inspark.Helpers;
+using Inspark.Views;
 using Xamarin.Forms;
 
 namespace Inspark
@@ -12,9 +13,9 @@ namespace Inspark
 		public App ()
 		{
 			InitializeComponent();
-
             MainPage = new NavigationPage(new FrontPage());
 		}
+
 
 		protected override void OnStart ()
 		{

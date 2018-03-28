@@ -49,6 +49,19 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private bool keepLoggedIn;
+        public bool KeepLoggedIn
+        { 
+            get 
+            {
+                return keepLoggedIn;
+            } set
+            {
+                keepLoggedIn = value;
+                OnPropertyChanged("KeepLoggedIn");
+            } 
+        }
+
         private bool isLoading;
 
         public bool IsLoading
@@ -90,6 +103,7 @@ namespace Inspark.Viewmodels
             {
                 if (Email != null)
                 {
+                    var a = KeepLoggedIn;
                     IsLoading = true;
                     var response =  await apiServices.LoginAsync(Email, Password);
                     if (response)
@@ -99,6 +113,7 @@ namespace Inspark.Viewmodels
                             Settings.UserName = Email;
                             Settings.UserPassword = Password;
                         }
+                        Settings.KeepLoggedIn = KeepLoggedIn;
                         IsLoading = false;
                         Application.Current.MainPage = new MainPage();
                     }
