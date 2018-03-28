@@ -15,7 +15,6 @@
                     <StackLayout>
                         <Button Text="Visa profilsidan" BackgroundColor="LightBlue" Clicked="ShowProfileButton_Clicked"/>
                         <Button Text="Ändra användaruppgifter" BackgroundColor="LightBlue" Clicked="ChangeUserDetailsButton_Clicked"/>
-                        <Button Text="Ändra profilbild" BackgroundColor="LightBlue" Command="{Binding PickPhotoCommand}"/>
                     </StackLayout>
 
                     <StackLayout>
