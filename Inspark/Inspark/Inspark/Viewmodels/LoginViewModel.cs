@@ -48,7 +48,35 @@ namespace Inspark.Viewmodels
                 }
             }
         }
-        public bool KeepLoggedIn { get; set; }
+
+        private bool keepLoggedIn;
+        public bool KeepLoggedIn
+        { 
+            get 
+            {
+                return keepLoggedIn;
+            } set
+            {
+                keepLoggedIn = value;
+                OnPropertyChanged("KeepLoggedIn");
+            } 
+        }
+
+        private bool isLoading;
+
+        public bool IsLoading
+        {
+            get { return isLoading; }
+            set
+            {
+                if (isLoading != value)
+                {
+                    isLoading = value;
+                    OnPropertyChanged("IsLoading");
+                }
+            }
+        }
+
         private string alertMessage;
 
         public string AlertMessage
@@ -75,6 +103,8 @@ namespace Inspark.Viewmodels
             {
                 if (Email != null)
                 {
+                    var a = KeepLoggedIn;
+                    IsLoading = true;
                     var response =  await apiServices.LoginAsync(Email, Password);
                     if (response)
                     {
@@ -83,10 +113,13 @@ namespace Inspark.Viewmodels
                             Settings.UserName = Email;
                             Settings.UserPassword = Password;
                         }
+                        Settings.KeepLoggedIn = KeepLoggedIn;
+                        IsLoading = false;
                         Application.Current.MainPage = new MainPage();
                     }
                     else
                     {
+                        IsLoading = false;
                         AlertMessage = "Fel Email eller lösenord";
                     }
                 }

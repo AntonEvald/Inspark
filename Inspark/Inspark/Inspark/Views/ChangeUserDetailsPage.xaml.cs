@@ -16,5 +16,11 @@ namespace Inspark.Views
 		{
 			InitializeComponent ();
 		}
+
+        private void Abort_Clicked(object sender, EventArgs e)
+        {
+            var page = new AccountPage();
+            ChangeUserDetailsContent.Content = page.Content;
+        }
 	}
 }

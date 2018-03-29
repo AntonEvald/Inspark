@@ -29,12 +29,6 @@ namespace Inspark.Views
             InsparkAccount.Content = page.Content;
         }
 
-        public void ChangeProfilePictureButton_Clicked(object sender, EventArgs e)
-        {
-            var page = new ChangeProfilePicture();
-            InsparkAccount.Content = page.Content;
-        }
-
         public void LogOutButton_Clicked(object sender, EventArgs e)
         {
             // Kod som loggar ut personen. 
