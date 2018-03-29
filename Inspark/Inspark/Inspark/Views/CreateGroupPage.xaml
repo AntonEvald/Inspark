@@ -1,39 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Inspark.Views.CreateGroupPage"
-             xmlns:viewModels="clr-namespace:Inspark.Viewmodels;assembly=Inspark">
-    <ContentPage.BindingContext>
-        <viewModels:CreateGroupViewModel/>
-    </ContentPage.BindingContext>
+             x:Class="Inspark.Views.CreateGroupPage">
     <ContentView>
         <ContentPage.Content>
             <ScrollView>
                 <StackLayout Padding="40">
-                    <Label Text="Skapa grupp" FontSize="Large" HorizontalOptions="Center"/>
+                    <Label Text="Skapa grupp" HorizontalOptions="Center"/>
                         
                     <StackLayout>
-                        <Entry Placeholder="Namn på grupp" Text="{Binding Name}"/>
+                        <Entry Placeholder="Namn på grupp"/>
+                        <!--Text="{Binding Name}"-->
                     </StackLayout>
                     
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Är gruppen en introgrupp?"/>
-                        <Switch x:Name="IsIntroGroup" IsToggled="{Binding IsIntroGroup}"/>
+                        <Switch x:Name="IsIntroGroup"/>
+                        <!--IsToggled="{Binding IsIntroGroup}"-->
                     </StackLayout>
 
                     <StackLayout>
-                        <Picker x:Name="Section" Title="Välj institution som gruppen ska tillhöra" HorizontalOptions="FillAndExpand" SelectedItem="{Binding Section}">
-                            <Picker.Items>
-                                <x:String>Handelshögskolan</x:String>
-                                <x:String>Humaniora, utbildnings- och samhällsvetenskap</x:String>
-                                <x:String>Hälsovetenskaper</x:String>
-                                <x:String>Juridik, psykologi och socialt arbete</x:String>
-                                <x:String>Medicinska vetenskaper</x:String>
-                                <x:String>Musikhögskolan</x:String>
-                                <x:String>Naturvetenskap och teknik</x:String>
-                                <x:String>Restaurang- och hotellhögskolan</x:String>
-                            </Picker.Items>
-                        </Picker>
+                        <Picker Title="Välj institution som gruppen ska tillhöra" HorizontalOptions="FillAndExpand" 
+                                ItemsSource="{Binding SectionsList}" 
+                                ItemDisplayBinding="{Binding Namn}"/>
                     </StackLayout>
 
                     <StackLayout>
