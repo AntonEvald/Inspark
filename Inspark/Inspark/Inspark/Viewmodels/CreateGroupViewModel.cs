@@ -10,42 +10,43 @@ using Inspark.Models;
 
 namespace Inspark.Viewmodels
 {
-    public class CreateGroupViewModel
+    public class CreateGroupViewModel : INotifyPropertyChanged
     {
-        //public string Name { get; set; }
+        private ObservableCollection<Section> sectionList;
 
-        ////public Section Section { get; set; }
-
-        ////public bool IsIntroGroup { get; set; }
-
-        public List<Section> SectionsList { get; set; }
+        public ObservableCollection<Section> SectionsList
+        {
+            get {return sectionList; }
+            set
+            {
+                if(sectionList != value)
+                {
+                    sectionList = value;
+                    OnPropertyChanged("SectionList");
+                }
+            }
+        }
 
         public CreateGroupViewModel()
         {
-            SectionsList = GetSections().OrderBy(t => t.Namn).ToList();
-        }
-
-        public List<Section> GetSections()
-        {
-            var sections = new List<Section>()
+            SectionsList = new ObservableCollection<Section>()
             {
-                new Section {Id = 1, Namn = "Handelshögskolan"},
-                new Section {Id = 2, Namn = "Humaniora, utbildnings- och samhällsvetenskap"},
-                new Section {Id = 3, Namn = "Hälsovetenskaper"},
-                new Section {Id = 4, Namn = "Juridik, psykologi och socialt arbete"},
-                new Section {Id = 5, Namn = "Medicinska vetenskaper"},
-                new Section {Id = 6, Namn = "Musikhögskolan"},
-                new Section {Id = 7, Namn = "Naturvetenskap och teknik"},
-                new Section {Id = 8, Namn = "Restaurang- och hotellhögskolan"}
+                new Section() {Id = 1, Name = "Handelshögskolan"},
+                new Section() {Id = 2, Name = "Humaniora, utbildnings- och samhällsvetenskap"},
+                new Section() {Id = 3, Name = "Hälsovetenskaper"},
+                new Section() {Id = 4, Name = "Juridik, psykologi och socialt arbete"},
+                new Section() {Id = 5, Name = "Medicinska vetenskaper"},
+                new Section() {Id = 6, Name = "Musikhögskolan"},
+                new Section() {Id = 7, Name = "Naturvetenskap och teknik"},
+                new Section() {Id = 8, Name = "Restaurang- och hotellhögskolan"}
             };
-
-            return sections;
         }
 
-        public class Section
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string property)
         {
-            public int Id { get; set; }
-            public string Namn { get; set; }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
     }
 }

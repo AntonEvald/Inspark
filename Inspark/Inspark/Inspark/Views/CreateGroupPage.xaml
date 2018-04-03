@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              x:Class="Inspark.Views.CreateGroupPage">
+    <ContentPage..BindingContext>
+        <viewModel:CreateGroupViewModel/>
+    </ContentPage..BindingContext>
     <ContentView>
         <ContentPage.Content>
             <ScrollView>
@@ -22,7 +26,7 @@
                     <StackLayout>
                         <Picker Title="Välj institution som gruppen ska tillhöra" HorizontalOptions="FillAndExpand" 
                                 ItemsSource="{Binding SectionsList}" 
-                                ItemDisplayBinding="{Binding Namn}"/>
+                                ItemDisplayBinding="{Binding Name}"/>
                     </StackLayout>
 
                     <StackLayout>

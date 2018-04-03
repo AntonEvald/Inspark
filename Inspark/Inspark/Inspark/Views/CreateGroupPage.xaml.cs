@@ -17,7 +17,6 @@ namespace Inspark.Views
 		public CreateGroupPage()
 		{
 			InitializeComponent();
-		    BindingContext = new CreateGroupViewModel();
 		}
     }
 }
