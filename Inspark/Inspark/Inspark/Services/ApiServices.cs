@@ -10,6 +10,7 @@ using System.Diagnostics;
 using Inspark.Helpers;
 using Inspark.Views;
 using Newtonsoft.Json.Linq;
+using System.Net.Http.Headers;
 
 namespace Inspark.Services
 {
@@ -88,7 +89,7 @@ namespace Inspark.Services
         {
             var userName = Settings.UserName;
             var client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Settings.AccessToken);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Settings.AccessToken);
             var json = await client.GetStringAsync("http://aktuelltwebapi.azurewebsites.net/api/user/"+userName);
             var user = JsonConvert.DeserializeObject<User>(json);
             return user;
