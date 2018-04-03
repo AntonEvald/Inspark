@@ -46,6 +46,8 @@ namespace Inspark.Services
             var jwt = await response.Content.ReadAsStringAsync();
             JObject jwtDynamic = JsonConvert.DeserializeObject<dynamic>(jwt);
             var accessToken = jwtDynamic.Value<string>("access_token");
+            var accessTokenExpires = jwtDynamic.Value<DateTime>(".expires");
+            Settings.AccessTokenExpires = accessTokenExpires;
             Settings.AccessToken = accessToken;
             return response.IsSuccessStatusCode;
         }

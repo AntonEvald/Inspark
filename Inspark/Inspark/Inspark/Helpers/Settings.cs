@@ -1,4 +1,5 @@
-﻿using Plugin.Settings;
+﻿using System;
+using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 
 namespace Inspark.Helpers
@@ -31,6 +32,14 @@ namespace Inspark.Helpers
         {
             get { return AppSettings.GetValueOrDefault(AccessTokenKey, AccessTokenDefault); }
             set { AppSettings.AddOrUpdateValue(AccessTokenKey, value); }
+        }
+
+        private const string AccessTokenExpiresKey = "AccessExpiresToken_key";
+        private static readonly DateTime AccessTokenExpiresDefault = DateTime.UtcNow;
+        public static DateTime AccessTokenExpires
+        {
+            get { return AppSettings.GetValueOrDefault(AccessTokenExpiresKey, AccessTokenExpiresDefault); }
+            set { AppSettings.AddOrUpdateValue(AccessTokenExpiresKey, value); }
         }
 
         private const string KeepLoggedInKey = "KeepLoggedIn_key";
