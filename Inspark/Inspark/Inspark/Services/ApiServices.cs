@@ -10,6 +10,7 @@ using System.Diagnostics;
 using Inspark.Helpers;
 using Inspark.Views;
 using Newtonsoft.Json.Linq;
+using System.Net.Http.Headers;
 
 namespace Inspark.Services
 {
@@ -47,8 +48,6 @@ namespace Inspark.Services
             var accessToken = jwtDynamic.Value<string>("access_token");
             Settings.AccessToken = accessToken;
             return response.IsSuccessStatusCode;
-
-
         }
 
         public async Task<bool> RegisterAsync(string firstName, string lastName, string email, string password, string section, string phoneNumber, byte[] pic, bool isLoggedIn)
@@ -95,6 +94,16 @@ namespace Inspark.Services
            return list;
         }
 
+        public async Task<User> GetLoggedInUser()
+        {
+            var userName = Settings.UserName;
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Settings.AccessToken);
+            var json = await client.GetStringAsync("http://aktuelltwebapi.azurewebsites.net/api/user/"+userName);
+            var user = JsonConvert.DeserializeObject<User>(json);
+            return user;
+        }
+ 
         public async Task<bool> CreateEvent(string tile, string location, DateTime date, string desc)
         {
             var client = new HttpClient();
