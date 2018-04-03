@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Inspark.Helpers;
+using Inspark.Viewmodels;
 using Inspark.Views;
 using Xamarin.Forms;
 
@@ -13,6 +14,11 @@ namespace Inspark
 		public App ()
 		{
 			InitializeComponent();
+            if (DateTime.UtcNow.AddHours(1) > Settings.AccessTokenExpires)
+            {
+                var vm = new LoginViewModel();
+                vm.LoginClick.Execute(null);
+            }
             MainPage = new NavigationPage(new FrontPage());
 		}
 

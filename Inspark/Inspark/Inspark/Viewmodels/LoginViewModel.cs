@@ -103,7 +103,6 @@ namespace Inspark.Viewmodels
             {
                 if (Email != null)
                 {
-                    var a = KeepLoggedIn;
                     IsLoading = true;
                     var response =  await apiServices.LoginAsync(Email, Password);
                     if (response)
