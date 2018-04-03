@@ -13,6 +13,7 @@ namespace Inspark.Viewmodels
 {
     public class EditUserViewModel : INotifyPropertyChanged
     {
+        ApiServices apiServices = new ApiServices();
         public User User { get; set; }
         public string ImagePath { get; set; }
 
@@ -108,9 +109,6 @@ namespace Inspark.Viewmodels
             }
         }
 
-
-
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string property)
@@ -135,8 +133,10 @@ namespace Inspark.Viewmodels
             NewPic = File.ReadAllBytes(ImagePath);
         });
 
-        public ICommand ConfirmCommand => new Command(() =>
+        public ICommand ConfirmCommand => new Command(async() =>
         {
+            IsLoading = true;
+            User = Services.GetLoggedinUser();
             if(CurrentPassword == User.Password)
             {
                 if(NewPassword != null && NewPassword != "")
@@ -151,17 +151,26 @@ namespace Inspark.Viewmodels
                         else
                         {
                             Message = "Ditt nya lösenord och det bekräftade lösenordet stämmer inte överens";
+                            IsLoading = false;
                         }
                     }
                     else
                     {
                         Message = "Ditt nya lösenord måste vara minst 6 tecken långt och innehålla minst en siffra, en versal och gemen.";
+                        IsLoading = false;
                     }
 
                 }
                 if(NewPhoneNumber != null && NewPhoneNumber != "")
                 {
-                    User.PhoneNumber = NewPhoneNumber;
+                    if (NumberBehavior.IsNumbers(NewPhoneNumber))
+                    {
+                        User.PhoneNumber = NewPhoneNumber;
+                    }
+                    else
+                    {
+                        Message = "Ange ett telefonnummer med 10 siffror.";
+                    }
                 }
                 if(NewPic != null)
                 {
@@ -171,6 +180,19 @@ namespace Inspark.Viewmodels
             else
             {
                 Message = "Fel lösenord!";
+                IsLoading = false;
+            }
+
+            var isSuccess = await apiServices.EditUser(User);
+            if(isSuccess == true)
+            {
+                Message = "Ändringarna sparade!";
+                IsLoading = false;
+            }
+            else
+            {
+                Message = "Något gick fel :(";
+                IsLoading = false;
             }
         });
     }

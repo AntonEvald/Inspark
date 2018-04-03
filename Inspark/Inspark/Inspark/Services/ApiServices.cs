@@ -76,6 +76,15 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<bool> EditUser(User user)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(user);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("http://insparkapi2018.azurewebsites.net/api/User/" + user.Id.ToString(), content);
+            return response.IsSuccessStatusCode;
+        }
+
         public async Task<List<User>> GetAllUsers()
         {
            var client = new HttpClient();
