@@ -136,7 +136,7 @@ namespace Inspark.Viewmodels
         public ICommand ConfirmCommand => new Command(async() =>
         {
             IsLoading = true;
-            User = Services.GetLoggedinUser();
+            User =  await apiServices.GetLoggedInUser();
             if(CurrentPassword == User.Password)
             {
                 if(NewPassword != null && NewPassword != "")
