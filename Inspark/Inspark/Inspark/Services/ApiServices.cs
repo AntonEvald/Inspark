@@ -11,6 +11,7 @@ using Inspark.Helpers;
 using Inspark.Views;
 using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
+using System.Xml.Xsl;
 
 namespace Inspark.Services
 {
@@ -29,6 +30,12 @@ namespace Inspark.Services
 
         }
 
+        
+        /*
+         * funktion som skapar keyvalupairs som skickas till ett webapi med asp.net identity for so skickar
+         * tillbaka en acesstoken som kan sparas lokalt för att senare användas för säkrare calls mellan
+         * client och databas via ett webapi
+         */
         public async Task<bool> LoginAsync(string userName, string password)
         {
             var keyValue = new List<KeyValuePair<string, string>>
@@ -52,6 +59,8 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
+        
+         // skapare en ny användae från input i viewmodelen. skickar vidare till databsen via webapi
         public async Task<bool> RegisterAsync(string firstName, string lastName, string email, string password, string section, string phoneNumber, byte[] pic, bool isLoggedIn)
         {
             var client = new HttpClient();
@@ -110,7 +119,7 @@ namespace Inspark.Services
         { 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Settings.AccessToken);
-            var json = await client.GetStringAsync("http://aktuelltwebapi.azurewebsites.net/api/GetUserName/"+id);
+            var json = await client.GetStringAsync("http://aktuelltwebapi.azurewebsites.net/api/User/"+id);
             var user = JsonConvert.DeserializeObject<User>(json);
             return user;
         }
