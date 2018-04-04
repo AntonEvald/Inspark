@@ -10,10 +10,10 @@
         <ContentPage.Content>
             <ScrollView>
                 <StackLayout Padding="40">
-                    <Label Text="Skapa grupp" HorizontalOptions="Center"/>
+                    <Label Text="test grupp" HorizontalOptions="Center"/>
                         
                     <StackLayout>
-                        <Entry Placeholder="Namn på grupp"/>
+                        <Entry x:Name="EntryName" Placeholder="Namn på grupp"/>
                         <!--Text="{Binding Name}"-->
                     </StackLayout>
                     

@@ -33,9 +33,6 @@
                         <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
                             <Label Text="Håll mig inloggad:"/>
                         </StackLayout>
-                        <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
-                            <Switch IsToggled="{Binding KeepLoggedIn, Mode=TwoWay}" HorizontalOptions="End"/>
-                        </StackLayout>
                     </StackLayout>
                     <Button
                         Text="Logga in"
