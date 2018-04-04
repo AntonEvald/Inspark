@@ -29,9 +29,9 @@ namespace Inspark.Views
             InsparkAccount.Content = page.Content;
         }
 
-        public void LogOutButton_Clicked(object sender, EventArgs e)
-        {
-	        Navigation.PushAsync(new FrontPage());
-        }
+		private async void LogOut_Clicked(object sender, EventArgs e)
+		{
+			Application.Current.MainPage = new NavigationPage(new FrontPage());
+		}
 	}
 }

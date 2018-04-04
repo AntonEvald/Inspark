@@ -112,7 +112,6 @@ namespace Inspark.Viewmodels
                             Settings.UserName = Email;
                             Settings.UserPassword = Password;
                         }
-                        Settings.KeepLoggedIn = KeepLoggedIn;
                         IsLoading = false;
                         Application.Current.MainPage = new MainPage();
                     }
