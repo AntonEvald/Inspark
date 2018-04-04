@@ -41,13 +41,5 @@ namespace Inspark.Helpers
             get { return AppSettings.GetValueOrDefault(AccessTokenExpiresKey, AccessTokenExpiresDefault); }
             set { AppSettings.AddOrUpdateValue(AccessTokenExpiresKey, value); }
         }
-
-        private const string KeepLoggedInKey = "KeepLoggedIn_key";
-        private static readonly bool KeepLoggedInDefault = false;
-        public static bool KeepLoggedIn
-        {
-            get { return AppSettings.GetValueOrDefault(KeepLoggedInKey, KeepLoggedInDefault); }
-            set { AppSettings.AddOrUpdateValue(KeepLoggedInKey, value); }
-        }
     }
 }
