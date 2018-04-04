@@ -168,6 +168,7 @@ namespace Inspark.Viewmodels
                 Title = postTitle,
                 Text = postText,
                 Picture = PostImage,
+                Sender = user,
                 SenderId = user.Id,
                 DateTime = DateTime.Now,
                 Description = postText
