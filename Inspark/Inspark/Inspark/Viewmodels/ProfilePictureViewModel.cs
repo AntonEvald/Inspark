@@ -62,7 +62,6 @@ namespace Inspark.Viewmodels
                         Settings.AccessToken = "";
                         Settings.UserName = "";
                         Settings.UserPassword = "";
-                        Settings.KeepLoggedIn = false;
                     });
             }
         }
