@@ -18,7 +18,7 @@
                     </StackLayout>
 
                     <StackLayout>
-                        <Button Text="Logga ut" BackgroundColor="LightCoral" Clicked="LogOutButton_Clicked" Command="{Binding LogOutCommand}"/>
+                        <Button Text="Logga ut" BackgroundColor="LightCoral" Clicked="LogOut_Clicked" Command="{Binding LogOutCommand}"/>
                     </StackLayout>
 
                 </StackLayout>
