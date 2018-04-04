@@ -97,11 +97,20 @@ namespace Inspark.Services
         }
 
         public async Task<User> GetLoggedInUser()
-        {
-            var userName = Settings.UserName;
+                 {
+                     var userName = Settings.UserName;
+                     var client = new HttpClient();
+                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Settings.AccessToken);
+                     var json = await client.GetStringAsync("http://aktuelltwebapi.azurewebsites.net/api/GetByUserName/"+userName);
+                     var user = JsonConvert.DeserializeObject<User>(json);
+                     return user;
+                 }
+        
+        public async Task<User> GetSingelUser(string id)
+        { 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Settings.AccessToken);
-            var json = await client.GetStringAsync("http://aktuelltwebapi.azurewebsites.net/api/GetUserName/"+userName);
+            var json = await client.GetStringAsync("http://aktuelltwebapi.azurewebsites.net/api/GetUserName/"+id);
             var user = JsonConvert.DeserializeObject<User>(json);
             return user;
         }
