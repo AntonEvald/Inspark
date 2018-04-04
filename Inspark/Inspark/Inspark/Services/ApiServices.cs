@@ -21,7 +21,7 @@ namespace Inspark.Services
         public async Task<List<GroupEvent>> GetAllGroupEvents()
         {
             var client = new HttpClient();
-            var response = await client.GetAsync("http://aktuelltwebapi.azurewebsites.net/api/GroupEvent");
+            var response = await client.GetAsync("http://insparkapi2018.azurewebsites.net/api/GroupEvent");
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsStringAsync();
             var list = JsonConvert.DeserializeObject<List<GroupEvent>>(result);
@@ -89,7 +89,7 @@ namespace Inspark.Services
         public async Task<List<User>> GetAllUsers()
         {
            var client = new HttpClient();
-           var response = await client.GetAsync("http://aktuelltwebapi.azurewebsites.net/api/user");
+           var response = await client.GetAsync("http://insparkapi2018.azurewebsites.net/api/User/");
            response.EnsureSuccessStatusCode();
            var result = await response.Content.ReadAsStringAsync();
            var list = JsonConvert.DeserializeObject<List<User>>(result);
@@ -101,7 +101,7 @@ namespace Inspark.Services
                      var userName = Settings.UserName;
                      var client = new HttpClient();
                      client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Settings.AccessToken);
-                     var json = await client.GetStringAsync("http://aktuelltwebapi.azurewebsites.net/api/GetByUserName/"+userName);
+                     var json = await client.GetStringAsync("http://insparkapi2018.azurewebsites.net/api/GetByUserName/" + userName);
                      var user = JsonConvert.DeserializeObject<User>(json);
                      return user;
                  }
@@ -110,7 +110,7 @@ namespace Inspark.Services
         { 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Settings.AccessToken);
-            var json = await client.GetStringAsync("http://aktuelltwebapi.azurewebsites.net/api/GetUserName/"+id);
+            var json = await client.GetStringAsync("http://insparkapi2018.azurewebsites.net/api/GetUserName/" + id);
             var user = JsonConvert.DeserializeObject<User>(json);
             return user;
         }
@@ -127,7 +127,7 @@ namespace Inspark.Services
             };
             var json = JsonConvert.SerializeObject(model);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("http://aktuelltwebapi.azurewebsites.net/api/user", content);
+            var response = await client.PostAsync("http://insparkapi2018.azurewebsites.net/api/user", content);
 
             return response.IsSuccessStatusCode;
         }
@@ -137,7 +137,7 @@ namespace Inspark.Services
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(post);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("http://aktuelltwebapi.azurewebsites.net/api/user", content);
+            var response = await client.PostAsync("http://insparkapi2018.azurewebsites.net/api/user", content);
 
             return response.IsSuccessStatusCode;
         }
@@ -145,7 +145,7 @@ namespace Inspark.Services
         public async Task<List<NewsPost>> GetAllPosts()
         {
             var client = new HttpClient();
-            var response = await client.GetAsync("http://aktuelltwebapi.azurewebsites.net/api/user");
+            var response = await client.GetAsync("http://insparkapi2018.azurewebsites.net/api/user");
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsStringAsync();
             var list = JsonConvert.DeserializeObject<List<NewsPost>>(result);
