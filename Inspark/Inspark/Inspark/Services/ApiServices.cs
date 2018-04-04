@@ -101,7 +101,7 @@ namespace Inspark.Services
             var userName = Settings.UserName;
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Settings.AccessToken);
-            var json = await client.GetStringAsync("http://aktuelltwebapi.azurewebsites.net/api/user/"+userName);
+            var json = await client.GetStringAsync("http://aktuelltwebapi.azurewebsites.net/api/GetUserName/"+userName);
             var user = JsonConvert.DeserializeObject<User>(json);
             return user;
         }
