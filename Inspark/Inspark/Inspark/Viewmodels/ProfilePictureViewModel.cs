@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Windows.Input;
+using Inspark.Helpers;
 using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
@@ -51,6 +52,20 @@ namespace Inspark.Viewmodels
             var bild = File.ReadAllBytes(ImagePath);
             //Sätt användarens bild till variabeln bild här när det finns en funktion för att hämta ut nuvarande användare.
         });
+
+        public ICommand LogOutCommand
+        {
+            get
+            {
+                return new Command(() =>
+                    {
+                        Settings.AccessToken = "";
+                        Settings.UserName = "";
+                        Settings.UserPassword = "";
+                        Settings.KeepLoggedIn = false;
+                    });
+            }
+        }
 
     }
 }

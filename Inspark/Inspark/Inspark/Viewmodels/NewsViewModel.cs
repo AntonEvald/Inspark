@@ -11,11 +11,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Inspark.Services;
 
 namespace Inspark.Viewmodels
 {
     class NewsViewModel : INotifyPropertyChanged
     {
+        public ApiServices api = new ApiServices();
+
         private ObservableCollection<NewsPost> newsPosts;
 
         public ObservableCollection<NewsPost> NewsPosts
@@ -157,15 +160,24 @@ namespace Inspark.Viewmodels
             
         });
 
-        public ICommand PostCommand => new Command(() =>
+        public ICommand PostCommand => new Command(async() =>
         {
+            var user = api.GetLoggedInUser();
             var post = new NewsPost()
             {
                 Title = postTitle,
                 Text = postText,
-                Picture = PostImage
+                Picture = PostImage,
+                SenderId = user.Id.ToString()
             };
-            NewsPosts.Add(post);
+            if(await api.CreatePost(post))
+            {
+                Message = "En post har skapats!";
+            }
+            else
+            {
+                Message = "Något gick fel";
+            }
             
         });
 
@@ -174,11 +186,11 @@ namespace Inspark.Viewmodels
         {
             get
             {
-                return new Command(() =>
+                return new Command(async () =>
                 {
                     IsRefreshing = true;
 
-                    RefreshListView();
+                    var list = await api.GetAllPosts();
 
                     IsRefreshing = false;
                 });
