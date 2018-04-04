@@ -162,13 +162,15 @@ namespace Inspark.Viewmodels
 
         public ICommand PostCommand => new Command(async() =>
         {
-            var user = api.GetLoggedInUser();
+            var user = await api.GetLoggedInUser();
             var post = new NewsPost()
             {
                 Title = postTitle,
                 Text = postText,
                 Picture = PostImage,
-                SenderId = user.Id.ToString()
+                SenderId = user.Id,
+                DateTime = DateTime.Now,
+                Description = postText
             };
             if(await api.CreatePost(post))
             {
@@ -186,20 +188,20 @@ namespace Inspark.Viewmodels
         {
             get
             {
-                return new Command(async () =>
+                return new Command(() =>
                 {
                     IsRefreshing = true;
 
-                    var list = await api.GetAllPosts();
+                    RefreshListView();
 
                     IsRefreshing = false;
                 });
             }
         }
 
-        private void RefreshListView()
+        private async void RefreshListView()
         {
-            NewsPosts = newsPosts;
+            NewsPosts = await api.GetAllNewsPosts();
         }
 
         private void OnPropertyChanged(string property)
@@ -211,15 +213,9 @@ namespace Inspark.Viewmodels
 
         public NewsViewModel()
         {
-            NewsPosts = new ObservableCollection<NewsPost>()
-            {
-                new NewsPost() { Id = 1, Description = "Info", Text = "Ja", Title = "Titel" },
-                new NewsPost() { Id = 2, Description = "Info", Text = "Ja", Title = "Titel" },
-                new NewsPost() { Id = 3, Description = "Info", Text = "Ja", Title = "Titel" },
-                new NewsPost() { Id = 4, Description = "Info", Text = "Ja", Title = "Titel" },
-                new NewsPost() { Id = 5, Description = "Info", Text = "Ja", Title = "Titel" },
-                new NewsPost() { Id = 6, Description = "Info", Text = "Ja", Title = "Titel" }
-            };
+            IsRefreshing = true;
+            RefreshListView();
+            IsRefreshing = false;
         }
     }
 }

@@ -4,11 +4,14 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using Inspark.Models;
+using Inspark.Services;
 
 namespace Inspark.Viewmodels
 {
     class HomeViewModel : INotifyPropertyChanged
     {
+        private ApiServices api = new ApiServices();
+        
         private ObservableCollection<GroupPost> groupPosts;
 
         public ObservableCollection<GroupPost> GroupPosts
@@ -46,17 +49,14 @@ namespace Inspark.Viewmodels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private async void RefreshNewsListView()
+        {
+            NewsPosts = await api.GetAllNewsPosts();
+        }
+
         public HomeViewModel()
         {
-            NewsPosts = new ObservableCollection<NewsPost>()
-            {
-                new NewsPost() { Id = 1, Description = "Info", Text = "Ja", Title = "Titel" },
-                new NewsPost() { Id = 2, Description = "Info", Text = "Ja", Title = "Titel" },
-                new NewsPost() { Id = 3, Description = "Info", Text = "Ja", Title = "Titel" },
-                new NewsPost() { Id = 4, Description = "Info", Text = "Ja", Title = "Titel" },
-                new NewsPost() { Id = 5, Description = "Info", Text = "Ja", Title = "Titel" },
-                new NewsPost() { Id = 6, Description = "Info", Text = "Ja", Title = "Titel" }
-            };
+            RefreshNewsListView();
 
             GroupPosts = new ObservableCollection<GroupPost>()
             {
