@@ -31,9 +31,7 @@ namespace Inspark.Views
 
         public void LogOutButton_Clicked(object sender, EventArgs e)
         {
-            // Kod som loggar ut personen. 
+	        Navigation.PushAsync(new FrontPage());
         }
-
-
 	}
 }
