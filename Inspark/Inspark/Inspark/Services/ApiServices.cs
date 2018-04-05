@@ -137,5 +137,15 @@ namespace Inspark.Services
             var list = JsonConvert.DeserializeObject<ObservableCollection<NewsPost>>(result);
             return list;
         }
+        
+        public async Task<ObservableCollection<Group>> GetAllGroups()
+        {
+            var client = new HttpClient();
+            var response = await client.GetAsync("http://insparkapi2018.azurewebsites.net/api/Group");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<ObservableCollection<Group>>(result);
+            return list;
+        }
     }
 }

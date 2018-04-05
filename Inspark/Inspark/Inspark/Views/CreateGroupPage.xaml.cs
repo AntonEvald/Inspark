@@ -14,9 +14,11 @@ namespace Inspark.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CreateGroupPage : ContentPage
 	{
+
 		public CreateGroupPage()
 		{
 			InitializeComponent();
-		}
+
+        }
     }
 }
