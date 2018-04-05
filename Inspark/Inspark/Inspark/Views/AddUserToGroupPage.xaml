@@ -13,15 +13,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <ContentView IsVisible="{Binding IsLoading, Converter={StaticResource bnc}}">
         <StackLayout>
             <StackLayout>
-                <Picker ItemsSource="{Binding GroupList}"/>
-            </StackLayout>
-            <StackLayout>
-                <ListView ItemsSource="{Binding UserList}"/>
+                <Picker x:Name="test"/>
             </StackLayout>
         </StackLayout>
-        </ContentView>
     </ContentPage.Content>
 </ContentPage>
