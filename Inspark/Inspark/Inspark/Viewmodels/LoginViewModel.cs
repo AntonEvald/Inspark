@@ -107,7 +107,7 @@ namespace Inspark.Viewmodels
                     var response =  await apiServices.LoginAsync(Email, Password);
                     if (response)
                     {
-                        if (Settings.UserName == "")
+                        if (Settings.UserName != Email)
                         {
                             Settings.UserName = Email;
                             Settings.UserPassword = Password;

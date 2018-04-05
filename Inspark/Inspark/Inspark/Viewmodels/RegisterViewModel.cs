@@ -152,6 +152,8 @@ namespace Inspark.Viewmodels
 
                     if (isSuccess)
                     {
+                        Settings.UserName = Email;
+                        Settings.UserPassword = Password;
                         var page = new Views.MainPage(new Views.HomePage());
                         NavigationPage.SetHasNavigationBar(page, false);
                         await Application.Current.MainPage.Navigation.PushAsync(page);
