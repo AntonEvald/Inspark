@@ -3,14 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModel="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              x:Class="Inspark.Views.CreateGroupPage">
-    <ContentPage.BindingContext>
-        <viewModel:CreateGroupViewModel/>
-    </ContentPage.BindingContext>
     <ContentView>
         <ContentPage.Content>
             <ScrollView>
                 <StackLayout Padding="40">
-                    <Label Text="test grupp" HorizontalOptions="Center"/>
+                    <Label Text="Skapa grupp" HorizontalOptions="Center"/>
                         
                     <StackLayout>
                         <Entry x:Name="EntryName" Placeholder="Namn på grupp"/>
@@ -24,7 +21,10 @@
                     </StackLayout>
 
                     <StackLayout>
-                        <Picker Title="Välj institution som gruppen ska tillhöra" HorizontalOptions="FillAndExpand" 
+                        <StackLayout.BindingContext>
+                            <viewModel:CreateGroupViewModel/>
+                        </StackLayout.BindingContext>
+                        <Picker x:Name="Sections" Title="Välj institution som gruppen ska tillhöra" HorizontalOptions="FillAndExpand" 
                                 ItemsSource="{Binding SectionsList}" 
                                 ItemDisplayBinding="{Binding Name}"/>
                     </StackLayout>
