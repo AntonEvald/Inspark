@@ -82,6 +82,16 @@ namespace Inspark.Services
            return list;
         }
 
+        public async Task<ObservableCollection<Section>> GetAllSections()
+        {
+            var client = new HttpClient();
+            var response = await client.GetAsync("https://insparkapi2018.azurewebsites.net/api/Section/");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<ObservableCollection<Section>>(result);
+            return list;
+        }
+
         public async Task<User> GetLoggedInUser()
         {
             var userName = Settings.UserName;

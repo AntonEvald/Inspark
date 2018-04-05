@@ -7,7 +7,7 @@
         <ContentPage.Content>
             <ScrollView>
                 <StackLayout Padding="40">
-                    <Label Text="Skapa grupp" HorizontalOptions="Center"/>
+                    <Label Text="Antons grupp" HorizontalOptions="Center"/>
                         
                     <StackLayout>
                         <Entry x:Name="EntryName" Placeholder="Namn på grupp"/>
