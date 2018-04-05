@@ -16,5 +16,10 @@ namespace Inspark.Views
 		{
 			InitializeComponent ();
 		}
-	}
+
+        public void Abort_Clicked(object sender, EventArgs e)
+        {
+            CreatePostContent.Content = new AdminPage().Content;
+        }
+    }
 }

@@ -8,13 +8,28 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Inspark.Services;
+using Inspark.Helpers;
 
 namespace Inspark.Viewmodels
 {
     public class EditUserViewModel : INotifyPropertyChanged
     {
-        ApiServices apiServices = new ApiServices();
-        public User User { get; set; }
+        ApiServices api = new ApiServices();
+        private User _user;
+
+        public User User
+        {
+            get { return _user; }
+            set {
+                if(_user != value)
+                {
+                    _user = value;
+                    OnPropertyChanged("User");
+                }
+            }
+        }
+
+
         public string ImagePath { get; set; }
 
         private string _message;
@@ -136,8 +151,8 @@ namespace Inspark.Viewmodels
         public ICommand ConfirmCommand => new Command(async() =>
         {
             IsLoading = true;
-            User =  await apiServices.GetLoggedInUser();
-            if(CurrentPassword == User.Password)
+            User = await api.GetLoggedInUser();
+            if(CurrentPassword == Settings.UserPassword)
             {
                 if(NewPassword != null && NewPassword != "")
                 {
@@ -176,22 +191,22 @@ namespace Inspark.Viewmodels
                 {
                     User.ProfilePicture = NewPic;
                 }
+
+                var isSuccess = await api.EditUser(User);
+                if (isSuccess)
+                {
+                    Message = "Ändringarna sparade!";
+                    IsLoading = false;
+                }
+                else
+                {
+                    Message = "Något gick fel :(";
+                    IsLoading = false;
+                }
             }
             else
             {
                 Message = "Fel lösenord!";
-                IsLoading = false;
-            }
-
-            var isSuccess = await apiServices.EditUser(User);
-            if(isSuccess)
-            {
-                Message = "Ändringarna sparade!";
-                IsLoading = false;
-            }
-            else
-            {
-                Message = "Något gick fel :(";
                 IsLoading = false;
             }
         });

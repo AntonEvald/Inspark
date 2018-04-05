@@ -140,7 +140,23 @@ namespace Inspark.Viewmodels
             }
         }
 
-        
+        private bool _isVisible;
+
+        public bool IsVisible
+        {
+            get { return _isVisible; }
+            set
+            {
+                if(_isVisible != value)
+                {
+                    _isVisible = value;
+                    OnPropertyChanged("IsVisible");
+                }
+            }
+        }
+
+
+
 
         public ICommand AddPicCommand => new Command(async () =>
         {
@@ -157,7 +173,15 @@ namespace Inspark.Viewmodels
             }
             ImagePath = file.Path;
             PostImage = File.ReadAllBytes(ImagePath);
+            IsVisible = true;
             
+        });
+
+        public ICommand RemovePicCommand => new Command(() =>
+        {
+            ImagePath = "";
+            PostImage = null;
+            IsVisible = false;
         });
 
         public ICommand PostCommand => new Command(async() =>
@@ -168,7 +192,7 @@ namespace Inspark.Viewmodels
                 Title = postTitle,
                 Text = postText,
                 Picture = PostImage,
-                Sender = user,
+                Author = user.FirstName + " " + user.LastName,
                 SenderId = user.Id,
                 DateTime = DateTime.Now,
             };
