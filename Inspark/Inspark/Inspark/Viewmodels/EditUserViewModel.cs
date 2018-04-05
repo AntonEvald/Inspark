@@ -184,7 +184,7 @@ namespace Inspark.Viewmodels
             }
 
             var isSuccess = await apiServices.EditUser(User);
-            if(isSuccess == true)
+            if(isSuccess)
             {
                 Message = "Ändringarna sparade!";
                 IsLoading = false;

@@ -171,7 +171,6 @@ namespace Inspark.Viewmodels
                 Sender = user,
                 SenderId = user.Id,
                 DateTime = DateTime.Now,
-                Description = postText
             };
             if(await api.CreatePost(post))
             {
