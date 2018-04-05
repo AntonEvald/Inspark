@@ -7,25 +7,59 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
     public class AdminViewModel : INotifyPropertyChanged
     {
+        private int count;
+        private int height;
+
+        public int Height
+        {
+            get { return height; }
+            set
+            {
+                height = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public AdminViewModel()
+        {
+            OnLoad();
+            ChangeListViewSizeCommand = new Command(ChangeListViewSize);
+        }
+
+        public async void OnLoad()
+        {
+            Users = await apiServices.GetAllUsers();
+        }
+
         // https://www.youtube.com/watch?v=GP-HTddAKqQ 
 
-        ObservableCollection<User> users = new ObservableCollection<User>
+        private ObservableCollection<User> users;
+
+        public ObservableCollection<User> Users
         {
-            new User() { FirstName = "Andreas", LastName = "Dahlin", Email = "andreas@dahlin.se", PhoneNumber = "0707499911", Section = "Handelshögskolan"},
-            new User() { FirstName = "Anton", LastName = "Evald", Email = "anton@evald.se", PhoneNumber = "0707499911", Section = "Handelshögskolan"},
-            new User() { FirstName = "Philip", LastName = "Karlsson", Email = "philip@karlsson.se", PhoneNumber = "0707499911", Section = "Handelshögskolan"},
-            new User() { FirstName = "Max", LastName = "Engberg", Email = "max@engberg.se", PhoneNumber = "0707499911", Section = "Handelshögskolan"},
-            new User() { FirstName = "Andreas", LastName = "Daun", Email = "andreas@daun.se", PhoneNumber = "0707499911", Section = "Handelshögskolan"},
-            new User() { FirstName = "Pedram", LastName = "Shabani", Email = "pedram@shabani.se", PhoneNumber = "0707499911", Section = "Handelshögskolan"},
-            new User() { FirstName = "Patrik", LastName = "Sandström", Email = "patrik@sandstrom.se", PhoneNumber = "0707499911", Section = "Handelshögskolan"},
-            new User() { FirstName = "Jesper", LastName = "Bergmark", Email = "jesper@bergmark.se", PhoneNumber = "0707499911", Section = "Handelshögskolan"}
-        };
+            get { return users; }
+            set
+            {
+                users = value;
+                Height = (users.Count * 40) + (users.Count * 10);
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand ChangeListViewSizeCommand { get; }
+
+        void ChangeListViewSize()
+        {
+            count = users.Count + 1;
+            Height = (users.Count * 40) + (users.Count * 10);
+        }
 
         private string keyword;
 
@@ -75,7 +109,7 @@ namespace Inspark.Viewmodels
         {
             if (keyword.Length >= 1)
             {
-                var suggestionsList = users.Where(c => c.FirstName.ToLower().Contains
+                var suggestionsList = Users.Where(c => c.FirstName.ToLower().Contains
                  (keyword.ToLower()) || c.LastName.ToLower().Contains(keyword.ToLower()));
 
                 var suggestionListCollection = new ObservableCollection<User>(suggestionsList);
@@ -89,17 +123,7 @@ namespace Inspark.Viewmodels
             }
         }
 
-        //ApiServices apiServices = new ApiServices();
-
-        //public async void GetUsers()
-        //{
-        //    var user = await apiServices.GetAllUsers();
-
-        //    foreach (var item in user)
-        //    {
-        //        users.Add(item);
-        //    }
-        //}
+        ApiServices apiServices = new ApiServices();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
