@@ -48,7 +48,7 @@ namespace Inspark.Viewmodels
                 Title = "EfterFest",
                 Id = "01",
                 Location = "Landsvägsgatan",
-                Date = new DateTime(2018, 03, 30, 16, 45, 0),
+                Date = new DateTime(2018, 04, 30, 16, 45, 0),
                 //IEnumerable<User> Invited 
                 //IEnumerable<User> Attending 
                 Description = "HejHEj"
@@ -59,7 +59,7 @@ namespace Inspark.Viewmodels
                 Title = "EfterFest2",
                 Id = "01",
                 Location = "Landsvägsgatan",
-                Date = new DateTime(2018, 03, 28, 16, 45, 0),
+                Date = new DateTime(2018, 04, 28, 16, 45, 0),
                 //IEnumerable<User> Invited 
                 //IEnumerable<User> Attending 
                 Description = "HejHEj"

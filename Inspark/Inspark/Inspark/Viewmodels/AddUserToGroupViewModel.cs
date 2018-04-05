@@ -1,6 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Inspark.Models;
 using Inspark.Services;
@@ -8,32 +11,47 @@ using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
-    public class AddUserToGroupViewModel
+    public class AddUserToGroupViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<User> UserList { get; set; }
         public ObservableCollection<Group> GroupList { get; set; }
         private readonly ApiServices _api = new ApiServices();
 
-        public AddUserToGroupViewModel()
+        private bool isLoading;
+
+        public bool IsLoading
         {
-            GetAllUsersCommand.Execute(null);
-            
+            get { return isLoading; }
+            set
+            {
+                if (isLoading != value)
+                {
+                    isLoading = value;
+                    OnPropertyChanged("IsLoading");
+                }
+            }
         }
 
-        private ICommand GetAllUsersCommand
+        private void OnPropertyChanged(string property)
         {
-            get
-            {
-                return new Command(async () => UserList = await _api.GetAllUsers());
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
-        
-        private ICommand GetAllGroupsCommand
+
+        public AddUserToGroupViewModel()
         {
-            get
-            {
-                return new Command(async () => { GroupList = await _api.GetAllGroups(); });
-            }
+            loadDate();
+            var a = UserList.Count();
         }
+
+        private async void loadDate()
+        {
+            var result = await _api.GetAllUsers();
+            UserList =  new ObservableCollection<User>(result);
+            var result2 = await _api.GetAllGroups();
+            GroupList = new ObservableCollection<Group>(result2);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
     }
 }
