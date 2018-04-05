@@ -1,4 +1,5 @@
 ﻿using Inspark.Models;
+using Inspark.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -38,6 +39,18 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private bool isVisible;
+
+        public bool IsVisible
+        {
+            get { return isVisible; }
+            set
+            {
+                isVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ObservableCollection<User> suggestions;
 
         public ObservableCollection<User> Suggestions
@@ -68,12 +81,25 @@ namespace Inspark.Viewmodels
                 var suggestionListCollection = new ObservableCollection<User>(suggestionsList);
                 Suggestions = suggestionListCollection;
 
+                IsVisible = true;
             }
             else
             {
-
+                IsVisible = false;
             }
         }
+
+        //ApiServices apiServices = new ApiServices();
+
+        //public async void GetUsers()
+        //{
+        //    var user = await apiServices.GetAllUsers();
+
+        //    foreach (var item in user)
+        //    {
+        //        users.Add(item);
+        //    }
+        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
 
