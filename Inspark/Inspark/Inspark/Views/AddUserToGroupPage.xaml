@@ -1,12 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
+             xmlns:services="clr-namespace:Inspark.Services;assembly=Inspark"
              x:Class="Inspark.Views.AddUserToGroupPage">
     <ContentPage.BindingContext>
         <viewmodels:AddUserToGroupViewModel/>
     </ContentPage.BindingContext>
+        <ContentPage.Resources>
+        <ResourceDictionary>
+            <services:BooleanNegationConverter x:Key="bnc"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
+        <ContentView IsVisible="{Binding IsLoading, Converter={StaticResource bnc}}">
         <StackLayout>
             <StackLayout>
                 <Picker ItemsSource="{Binding GroupList}"/>
@@ -15,5 +22,6 @@
                 <ListView ItemsSource="{Binding UserList}"/>
             </StackLayout>
         </StackLayout>
+        </ContentView>
     </ContentPage.Content>
 </ContentPage>
