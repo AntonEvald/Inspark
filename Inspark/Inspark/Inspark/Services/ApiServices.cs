@@ -53,25 +53,10 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> RegisterAsync(string firstName, string lastName, string email, string password, string section, string phoneNumber, byte[] pic, bool isLoggedIn)
+        public async Task<bool> RegisterAsync(User user)
         {
             var client = new HttpClient();
-            var model = new User
-            {
-                //UserName = email,
-                Password = password,
-                Email = email,
-                //Section = section,
-                //FirstName = firstName,
-                //LastName = lastName,
-                //Role = "Admin",
-                ConfirmPassword = password
-                //PhoneNumber = phoneNumber,
-                //ProfilePicture = pic,
-                //IsLoggedIn = isLoggedIn
-            };
-
-            var json = JsonConvert.SerializeObject(model);
+            var json = JsonConvert.SerializeObject(user);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await client.PostAsync("http://insparkapi2018.azurewebsites.net/api/account/register", content);
 

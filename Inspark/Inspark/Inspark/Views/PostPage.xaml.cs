@@ -22,13 +22,13 @@ namespace Inspark.Views
             model = new PostViewModel()
             {
                 Id = post.Id,
-                Description = post.Description,
                 Title = post.Title,
                 Text = post.Text,
                 Picture = post.Picture,
                 Sender = post.Sender,
                 SenderId = post.SenderId,
                 DateTime = post.DateTime,
+                Author = post.Sender.FirstName + " " + post.Sender.LastName
             };
             Content.BindingContext = model;
 		}

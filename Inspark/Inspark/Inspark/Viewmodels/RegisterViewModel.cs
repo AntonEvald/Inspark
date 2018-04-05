@@ -11,6 +11,7 @@ using Inspark.Services;
 using Plugin.Media;
 using System.IO;
 using Inspark.Helpers;
+using Inspark.Models;
 
 namespace Inspark.Viewmodels
 {
@@ -133,7 +134,21 @@ namespace Inspark.Viewmodels
                 {
                     IsLoading = true;
                     Pic = File.ReadAllBytes(ImagePath);
-                    var isSuccess = await apiServices.RegisterAsync(FirstName, LastName, Email, Password, section, PhoneNumber, Pic, true);
+                    var user = new User
+                    {
+                        UserName = Email,
+                        Password = Password,
+                        Email = Email,
+                        Section = Section,
+                        FirstName = FirstName,
+                        LastName = LastName,
+                        Role = "Admin",
+                        ConfirmPassword = Password,
+                        PhoneNumber = PhoneNumber,
+                        ProfilePicture = Pic,
+                        IsLoggedIn = true
+                    };
+                    var isSuccess = await apiServices.RegisterAsync(user);
 
                     if (isSuccess)
                     {
