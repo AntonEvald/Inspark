@@ -14,31 +14,25 @@ namespace Inspark.Viewmodels
 {
     public class AdminViewModel : INotifyPropertyChanged
     {
-        private int count;
-        private int height;
+        //private int count;
+        //private int height;
 
-        public int Height
-        {
-            get { return height; }
-            set
-            {
-                height = value;
-                OnPropertyChanged();
-            }
-        }
+        //public int Height
+        //{
+        //    get { return height; }
+        //    set
+        //    {
+        //        height = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        public AdminViewModel()
-        {
-            OnLoad();
-            ChangeListViewSizeCommand = new Command(ChangeListViewSize);
-        }
+        ApiServices api = new ApiServices();
 
         public async void OnLoad()
         {
-            Users = await apiServices.GetAllUsers();
+            Users = await api.GetAllUsers();
         }
-
-        // https://www.youtube.com/watch?v=GP-HTddAKqQ 
 
         private ObservableCollection<User> users;
 
@@ -48,18 +42,18 @@ namespace Inspark.Viewmodels
             set
             {
                 users = value;
-                Height = (users.Count * 40) + (users.Count * 10);
+                //Height = (users.Count * 40) + (users.Count * 10);
                 OnPropertyChanged();
             }
         }
 
-        public ICommand ChangeListViewSizeCommand { get; }
+        //public ICommand ChangeListViewSizeCommand { get; }
 
-        void ChangeListViewSize()
-        {
-            count = users.Count + 1;
-            Height = (users.Count * 40) + (users.Count * 10);
-        }
+        //void ChangeListViewSize()
+        //{
+        //    count = users.Count + 1;
+        //    Height = (users.Count * 40) + (users.Count * 10);
+        //}
 
         private string keyword;
 
@@ -123,8 +117,6 @@ namespace Inspark.Viewmodels
             }
         }
 
-        ApiServices apiServices = new ApiServices();
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -132,6 +124,10 @@ namespace Inspark.Viewmodels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
+        public AdminViewModel()
+        {
+            OnLoad();
+            //ChangeListViewSizeCommand = new Command(ChangeListViewSize);
+        }
     }
 }
