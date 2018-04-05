@@ -18,7 +18,6 @@ namespace Inspark.Views
 		public AdminPage ()
 		{
 			InitializeComponent ();
-		    SuggestionsListView.IsVisible = false;
         }
 
         public void CreateGroupButton_Clicked(object sender, EventArgs e)
@@ -62,51 +61,6 @@ namespace Inspark.Views
             var page = new CreateNewsPostPage();
 	        InsparkAdmin.Content = page.Content;
 	    }
-
-        //ApiServices apiServices = new ApiServices();
-
-        //public async void GetUsers()
-        //{
-        //    var user = await apiServices.GetAllUsers();
-
-        //    foreach (var item in user)
-        //    {
-        //        users.Add(item);
-        //    }
-        //}
-
-        // Collection of users, repalce with the database content when API works. 
-        ObservableCollection<User> users = new ObservableCollection<User>
-        {
-            new User { FirstName = "Andreas", LastName = "Dahlin", Email = "andreas@dahlin.se", PhoneNumber = "0707499911", Section = "Handelshögskolan"},
-            new User { FirstName = "Anton", LastName = "Evald", Email = "anton@evald.se", PhoneNumber = "0707499911", Section = "Handelshögskolan"},
-            new User { FirstName = "Philip", LastName = "Karlsson", Email = "philip@karlsson.se", PhoneNumber = "0707499911", Section = "Handelshögskolan"},
-            new User { FirstName = "Max", LastName = "Engberg", Email = "max@engberg.se", PhoneNumber = "0707499911", Section = "Handelshögskolan"},
-            new User { FirstName = "Andreas", LastName = "Daun", Email = "andreas@daun.se", PhoneNumber = "0707499911", Section = "Handelshögskolan"},
-            new User { FirstName = "Pedram", LastName = "Shabani", Email = "pedram@shabani.se", PhoneNumber = "0707499911", Section = "Handelshögskolan"},
-            new User { FirstName = "Patrik", LastName = "Sandström", Email = "patrik@sandstrom.se", PhoneNumber = "0707499911", Section = "Handelshögskolan"},
-            new User { FirstName = "Jesper", LastName = "Bergmark", Email = "jesper@bergmark.se", PhoneNumber = "0707499911", Section = "Handelshögskolan"}
-        };
-
-	    // Gets the name of the user where the firstname or the lastname matches the keyword from the searchbar and adds the user to the ListView. 
-        public void Handle_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string keyword = UserSearchBar.Text;
-
-            if (keyword.Length >= 1)
-            {
-                var suggestions = users.Where(c => c.FirstName.ToLower().Contains
-                 (keyword.ToLower()) || c.LastName.ToLower().Contains(keyword.ToLower()));
-
-                SuggestionsListView.ItemsSource = suggestions;
-
-                SuggestionsListView.IsVisible = true;
-            }
-            else
-            {
-                SuggestionsListView.IsVisible = false;
-            }
-        }
 
         // Displays a ProfilePage of the user that is tapped on from the ListView. 
         public void Handle_ItemTapped(object sender, ItemTappedEventArgs e)

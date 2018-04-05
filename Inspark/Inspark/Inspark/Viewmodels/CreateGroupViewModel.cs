@@ -7,11 +7,14 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Inspark.Annotations;
 using Inspark.Models;
+using Inspark.Services;
 
 namespace Inspark.Viewmodels
 {
     public class CreateGroupViewModel : INotifyPropertyChanged
     {
+        private ApiServices api = new ApiServices();
+
         private ObservableCollection<Section> sectionList;
 
         public ObservableCollection<Section> SectionsList
@@ -27,8 +30,15 @@ namespace Inspark.Viewmodels
             }
         }
 
+        //public async void FillPickerWithSections()
+        //{
+        //    SectionsList = await api.GetAllSections();
+        //}
+
         public CreateGroupViewModel()
         {
+            //FillPickerWithSections();
+
             SectionsList = new ObservableCollection<Section>()
             {
                 new Section() {Id = 1, Name = "Handelshögskolan"},
