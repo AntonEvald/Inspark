@@ -20,7 +20,6 @@
                         <Image Source="{Binding ImagePath}" HeightRequest="75" WidthRequest="75"/>
                         <Button Text="Ta bort bild" Command="{Binding RemovePicCommand}" IsVisible="{Binding IsVisible}"/>
                     </StackLayout>
-                    
                     <Button Text="Posta inlägg" Command="{Binding PostCommand}" BackgroundColor="LightGreen"/>
                     <Button Text="Avbryt" Clicked="Abort_Clicked" BackgroundColor="PaleVioletRed"/>
                 </StackLayout>

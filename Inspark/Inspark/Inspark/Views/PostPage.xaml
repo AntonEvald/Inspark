@@ -5,7 +5,7 @@
              xmlns:vm="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              xmlns:conv="clr-namespace:Inspark.Services;assembly=Inspark">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="20">
             <StackLayout.Resources>
                 <ResourceDictionary>
                     <conv:ByteArrayToImageSourceConverter x:Key="bic"/>
@@ -13,18 +13,16 @@
             </StackLayout.Resources>
             <Label Text="{Binding Title}"
                    FontSize="Large"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand"/>
+                    VerticalOptions="StartAndExpand" 
+                    HorizontalOptions="StartAndExpand"/>
             <Label Text="{Binding Text}"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand" />
+                    VerticalOptions="StartAndExpand" 
+                    HorizontalOptions="StartAndExpand" />
             <Image Source="{Binding Picture, Converter={StaticResource bic}}"/>
-            <Label Text="{Binding Author}"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand" />
-            <Label Text="{Binding DateTime}"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding Author}" 
+                    HorizontalOptions="End" />
+            <Label Text="{Binding DateTime}" 
+                    HorizontalOptions="End" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
