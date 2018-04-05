@@ -15,12 +15,12 @@
     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <ScrollView IsVisible="{Binding IsLoading, Converter={StaticResource not}}">
             <StackLayout Padding="40">
-                <Entry Placeholder="Förnamn" x:Name="FirstName" Text="{Binding FirstName}">
+                <Entry Placeholder="Förnamn" x:Name="FirstName" Text="{Binding FirstName}" Keyboard="Text">
                     <Entry.Behaviors>
                         <validation:TextOnlyBehavior x:Name="FirstNameBehavior"/>
                     </Entry.Behaviors>
                 </Entry>
-                <Entry Placeholder="Efternamn" x:Name="LastName" Text="{Binding LastName}">
+                <Entry Placeholder="Efternamn" x:Name="LastName" Text="{Binding LastName}" Keyboard="Text">
                     <Entry.Behaviors>
                         <validation:TextOnlyBehavior x:Name="LastNameBehavior"/>
                     </Entry.Behaviors>

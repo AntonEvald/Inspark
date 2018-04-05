@@ -4,16 +4,27 @@
              x:Class="Inspark.Views.CreateNewsPostPage"
              xmlns:vm="clr-namespace:Inspark.Viewmodels;assembly=Inspark">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout.BindingContext>
-                <vm:NewsViewModel/>
-            </StackLayout.BindingContext>
-            <Label Text="Skriv ett inlägg..."/>
-            <Entry Text="{Binding PostTitle}" Placeholder="Title"/>
-            <Editor Text="{Binding PostText}"/>
-            <Button Text="Lägg till bild" Command="{Binding AddPicCommand}"/>
-            <Button Text="Posta inlägg" Command="{Binding PostCommand}"/>
-            <Button Text="Avbryt"/>
-        </StackLayout>
+        <ContentView x:Name="CreatePostContent">
+            <ScrollView>
+                <StackLayout Padding="20">
+                    <StackLayout.BindingContext>
+                        <vm:NewsViewModel/>
+                    </StackLayout.BindingContext>
+                    <Label Text="Skriv ett inlägg:" FontSize="Large"/>
+                    <Label Text="Titel:"/>
+                    <Editor Text="{Binding PostTitle}" Keyboard="Text"/>
+                    <Label Text="Text:"/>
+                    <Editor Text="{Binding PostText}" HeightRequest="100" Keyboard="Text"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Button Text="Lägg till bild" Command="{Binding AddPicCommand}"/>
+                        <Image Source="{Binding ImagePath}" HeightRequest="75" WidthRequest="75"/>
+                        <Button Text="Ta bort bild" Command="{Binding RemovePicCommand}" IsVisible="{Binding IsVisible}"/>
+                    </StackLayout>
+                    
+                    <Button Text="Posta inlägg" Command="{Binding PostCommand}" BackgroundColor="LightGreen"/>
+                    <Button Text="Avbryt" Clicked="Abort_Clicked" BackgroundColor="PaleVioletRed"/>
+                </StackLayout>
+            </ScrollView>
+        </ContentView>
     </ContentPage.Content>
 </ContentPage>

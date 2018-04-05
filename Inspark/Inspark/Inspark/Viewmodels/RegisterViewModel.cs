@@ -146,7 +146,6 @@ namespace Inspark.Viewmodels
                         ConfirmPassword = Password,
                         PhoneNumber = PhoneNumber,
                         ProfilePicture = Pic,
-                        IsLoggedIn = true
                     };
                     var isSuccess = await apiServices.RegisterAsync(user);
 
