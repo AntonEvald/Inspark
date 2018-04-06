@@ -34,7 +34,6 @@
                 <StackLayout.BindingContext>
                     <vm:MainPageViewModel/>
                 </StackLayout.BindingContext>
-                <Label Text="{Binding User}"/>
             </StackLayout>
 
             <StackLayout Grid.Column="2" VerticalOptions="Center" Spacing="0">

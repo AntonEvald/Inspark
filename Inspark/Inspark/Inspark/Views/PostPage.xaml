@@ -21,7 +21,7 @@
             <Image Source="{Binding Picture, Converter={StaticResource bic}}"/>
             <Label Text="{Binding Author}" 
                     HorizontalOptions="End" />
-            <Label Text="{Binding DateTime}" 
+            <Label Text="{Binding DisplayDate}" 
                     HorizontalOptions="End" />
         </StackLayout>
     </ContentPage.Content>

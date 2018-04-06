@@ -21,12 +21,9 @@ namespace Inspark.Views
 			InitializeComponent ();
             model = new PostViewModel()
             {
-                Id = post.Id,
                 Title = post.Title,
                 Text = post.Text,
                 Picture = post.Picture,
-                SenderId = post.SenderId,
-                DateTime = post.DateTime,
                 Author = post.Author
             };
             Content.BindingContext = model;
