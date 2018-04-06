@@ -58,7 +58,7 @@ namespace Inspark.Viewmodels
             }
             else
             {
-                DisplayDate = DateTime.ToShortDateString();
+                DisplayDate = DateTime.ToLongDateString();
             }
         }
 

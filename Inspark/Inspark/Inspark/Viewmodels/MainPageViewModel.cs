@@ -41,7 +41,7 @@ namespace Inspark.Viewmodels
 
         public MainPageViewModel()
         {
-            OnLoad();
+            //OnLoad();
         }
 
     }
