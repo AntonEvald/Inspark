@@ -23,7 +23,7 @@
                                 </Label.GestureRecognizers>
                             </Label>
                         </StackLayout>
-                        <ListView x:Name="NewsList" ItemsSource="{Binding NewsPosts}" RowHeight="60" ItemTapped="NewsItemTapped">
+                        <ListView x:Name="NewsList" ItemsSource="{Binding NewsPosts}" RowHeight="60" ItemTapped="NewsItemTapped" IsRefreshing="{Binding IsRefreshing}" RefreshCommand="{Binding RefreshCommand}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>

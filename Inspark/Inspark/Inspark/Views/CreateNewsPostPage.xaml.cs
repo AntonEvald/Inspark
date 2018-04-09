@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inspark.Viewmodels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,11 @@ namespace Inspark.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CreateNewsPostPage : ContentPage
 	{
-		public CreateNewsPostPage ()
+		public CreateNewsPostPage (NewsViewModel vm)
 		{
 			InitializeComponent ();
+            BindingContext = vm;
+            vm.Navigation = Navigation;
 		}
 
         public void Abort_Clicked(object sender, EventArgs e)

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
+using System.Windows.Input;
 using Inspark.Models;
 using Inspark.Services;
+using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
@@ -42,6 +44,22 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private bool _isRefreshing;
+
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                if(_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    OnPropertyChanged("IsRefreshing");
+                }
+            }
+        }
+
+
         private void OnPropertyChanged(string property)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
@@ -49,9 +67,36 @@ namespace Inspark.Viewmodels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new Command(() =>
+                {
+                    IsRefreshing = true;
+
+                    RefreshNewsListView();
+
+                    IsRefreshing = false;
+                });
+            }
+        }
+
         private async void RefreshNewsListView()
         {
             NewsPosts = await api.GetAllNewsPosts();
+            if (NewsPosts.Count == 0)
+            {
+                var post = new NewsPost()
+                {
+                    Author = "Admin",
+                    Text = "Det finns inga poster ännu.",
+                    Title = "Det finns inga poster ännu.",
+                    DateTime = DateTime.Now,
+                    Picture = null
+                };
+                NewsPosts.Add(post);
+            }
         }
 
         public HomeViewModel()

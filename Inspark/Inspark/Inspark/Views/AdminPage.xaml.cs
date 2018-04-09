@@ -58,7 +58,7 @@ namespace Inspark.Views
 
 	    public void CreateNewsPostButton_Clicked(object sender, EventArgs e)
 	    {
-            var page = new CreateNewsPostPage();
+            var page = new CreateNewsPostPage(new Viewmodels.NewsViewModel());
 	        InsparkAdmin.Content = page.Content;
 	    }
 

@@ -15,14 +15,17 @@ using Inspark.Services;
 
 namespace Inspark.Viewmodels
 {
-    class NewsViewModel : INotifyPropertyChanged
+    public class NewsViewModel : INotifyPropertyChanged
     {
         public ApiServices api = new ApiServices();
+
+        public INavigation Navigation { get; set; }
 
         private ObservableCollection<NewsPost> newsPosts;
 
         public ObservableCollection<NewsPost> NewsPosts
         {
+
             get { return newsPosts; }
             set
             {
@@ -199,6 +202,9 @@ namespace Inspark.Viewmodels
             if(await api.CreatePost(post))
             {
                 Message = "En post har skapats!";
+                var page = new MainPage(new HomePage());
+                NavigationPage.SetHasNavigationBar(page, false);
+                await Application.Current.MainPage.Navigation.PushAsync(page);
             }
             else
             {
@@ -226,6 +232,18 @@ namespace Inspark.Viewmodels
         private async void RefreshListView()
         {
             NewsPosts = await api.GetAllNewsPosts();
+            if(NewsPosts.Count == 0)
+            {
+                var post = new NewsPost()
+                {
+                    Author = "Admin",
+                    Text = "Det finns inga poster ännu.",
+                    Title = "Det finns inga poster ännu.",
+                    DateTime = DateTime.Now,
+                    Picture = null
+                };
+                NewsPosts.Add(post);
+            }
         }
 
         private void OnPropertyChanged(string property)
