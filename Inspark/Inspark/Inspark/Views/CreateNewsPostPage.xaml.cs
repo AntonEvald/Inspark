@@ -13,11 +13,9 @@ namespace Inspark.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CreateNewsPostPage : ContentPage
 	{
-		public CreateNewsPostPage (NewsViewModel vm)
+		public CreateNewsPostPage ()
 		{
 			InitializeComponent ();
-            BindingContext = vm;
-            vm.Navigation = Navigation;
 		}
 
         public void Abort_Clicked(object sender, EventArgs e)

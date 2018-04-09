@@ -19,8 +19,6 @@ namespace Inspark.Viewmodels
     {
         public ApiServices api = new ApiServices();
 
-        public INavigation Navigation { get; set; }
-
         private ObservableCollection<NewsPost> newsPosts;
 
         public ObservableCollection<NewsPost> NewsPosts
@@ -35,84 +33,6 @@ namespace Inspark.Viewmodels
                     OnPropertyChanged("NewsPosts");
                 }
 
-            }
-        }
-
-        private string postTitle;
-
-        public string PostTitle
-        {
-            get { return postTitle; }
-            set
-            {
-                if(postTitle != value)
-                {
-                    postTitle = value;
-                    OnPropertyChanged("PostTitle");
-                }
-                
-            }
-        }
-
-        private string postText;
-
-        public string PostText
-        {
-            get { return postText; }
-            set
-            {
-                if(postText != value)
-                {
-                    postText = value;
-                    OnPropertyChanged("PostText");
-                }
-                
-            }
-        }
-
-        private string message;
-
-        public string Message
-        {
-            get { return message; }
-            set
-            {
-                if(message != value)
-                {
-                    message = value;
-                    OnPropertyChanged("Message");
-                }
-            }
-        }
-
-        public string imagePath;
-
-        public string ImagePath
-        {
-            get { return imagePath; }
-            set
-            {
-                if(imagePath != value)
-                {
-                    imagePath = value;
-                    OnPropertyChanged("ImagePath");
-                }
-            }
-        }
-
-        private byte[] postImage;
-
-        public byte[] PostImage
-        {
-            get { return postImage; }
-            set
-            {
-                if(postImage != value)
-                {
-                    postImage = value;
-                    OnPropertyChanged("PostImage");
-                }
-                
             }
         }
 
@@ -158,62 +78,6 @@ namespace Inspark.Viewmodels
             }
         }
 
-
-
-
-        public ICommand AddPicCommand => new Command(async () =>
-        {
-            await CrossMedia.Current.Initialize();
-
-            if (!CrossMedia.Current.IsPickPhotoSupported)
-            {
-                Message = "Att välja bild stöds inte på denna enhet";
-            }
-            var file = await CrossMedia.Current.PickPhotoAsync();
-            if (file == null)
-            {
-                return;
-            }
-            ImagePath = file.Path;
-            PostImage = File.ReadAllBytes(ImagePath);
-            IsVisible = true;
-            
-        });
-
-        public ICommand RemovePicCommand => new Command(() =>
-        {
-            ImagePath = "";
-            PostImage = null;
-            IsVisible = false;
-        });
-
-        public ICommand PostCommand => new Command(async() =>
-        {
-            var user = await api.GetLoggedInUser();
-            var post = new NewsPost()
-            {
-                Title = postTitle,
-                Text = postText,
-                Picture = PostImage,
-                Author = user.FirstName + " " + user.LastName,
-                SenderId = user.Id,
-                DateTime = DateTime.Now,
-            };
-            if(await api.CreatePost(post))
-            {
-                Message = "En post har skapats!";
-                var page = new MainPage(new HomePage());
-                NavigationPage.SetHasNavigationBar(page, false);
-                await Application.Current.MainPage.Navigation.PushAsync(page);
-            }
-            else
-            {
-                Message = "Något gick fel";
-            }
-            
-        });
-
-
         public ICommand RefreshCommand
         {
             get
@@ -232,14 +96,14 @@ namespace Inspark.Viewmodels
         private async void RefreshListView()
         {
             NewsPosts = await api.GetAllNewsPosts();
-            if(NewsPosts.Count == 0)
+            if(NewsPosts.Count < 2)
             {
                 var post = new NewsPost()
                 {
                     Author = "Admin",
                     Text = "Det finns inga poster ännu.",
                     Title = "Det finns inga poster ännu.",
-                    DateTime = DateTime.Now,
+                    Date = DateTime.Now,
                     Picture = null
                 };
                 NewsPosts.Add(post);

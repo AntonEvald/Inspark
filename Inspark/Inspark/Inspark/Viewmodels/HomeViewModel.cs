@@ -85,14 +85,14 @@ namespace Inspark.Viewmodels
         private async void RefreshNewsListView()
         {
             NewsPosts = await api.GetAllNewsPosts();
-            if (NewsPosts.Count == 0)
+            if (NewsPosts.Count < 2)
             {
                 var post = new NewsPost()
                 {
                     Author = "Admin",
                     Text = "Det finns inga poster ännu.",
                     Title = "Det finns inga poster ännu.",
-                    DateTime = DateTime.Now,
+                    Date = DateTime.Now,
                     Picture = null
                 };
                 NewsPosts.Add(post);
