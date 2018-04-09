@@ -46,17 +46,10 @@
                         <validation:NumberBehavior x:Name="NumberValidator"/>
                     </Entry.Behaviors>
                 </Entry>
-                <Picker x:Name="Section" Title="Välj din institution" HorizontalOptions="FillAndExpand" SelectedItem="{Binding Section}">
-                    <Picker.Items>
-                        <x:String>Handelshögskolan</x:String>
-                        <x:String>Humaniora, utbildnings- och samhällsvetenskap</x:String>
-                        <x:String>Hälsovetenskaper</x:String>
-                        <x:String>Juridik, psykologi och socialt arbete</x:String>
-                        <x:String>Medicinska vetenskaper</x:String>
-                        <x:String>Musikhögskolan</x:String>
-                        <x:String>Naturvetenskap och teknik</x:String>
-                        <x:String>Restaurang- och hotellhögskolan</x:String>
-                    </Picker.Items>
+                <Picker x:Name="Section" Title="Välj din institution" HorizontalOptions="FillAndExpand" 
+                        ItemsSource="{Binding SectionsList}" 
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedItem="{Binding Section}">
                 </Picker>
                 <Button Text="Välj bild" Command="{Binding PickPhotoCommand}"/>
                 <Image Source="{Binding ImagePath}"/>

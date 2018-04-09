@@ -7,30 +7,32 @@
         <ContentPage.Content>
             <ScrollView>
                 <StackLayout Padding="40">
+                    <StackLayout.BindingContext>
+                        <viewModel:CreateGroupViewModel/>
+                    </StackLayout.BindingContext>
                     <Label Text="Antons grupp" HorizontalOptions="Center"/>
                         
                     <StackLayout>
-                        <Entry x:Name="EntryName" Placeholder="Namn på grupp"/>
-                        <!--Text="{Binding Name}"-->
+                        <Entry x:Name="EntryName" Placeholder="Namn på grupp"
+                               Text="{Binding GroupName}"/>
                     </StackLayout>
                     
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Är gruppen en introgrupp?"/>
-                        <Switch x:Name="IsIntroGroup"/>
-                        <!--IsToggled="{Binding IsIntroGroup}"-->
+                        <Switch x:Name="IsIntroGroup"
+                                IsToggled="{Binding IsIntroGroup}"/>
                     </StackLayout>
 
                     <StackLayout>
-                        <StackLayout.BindingContext>
-                            <viewModel:CreateGroupViewModel/>
-                        </StackLayout.BindingContext>
                         <Picker x:Name="Sections" Title="Välj institution som gruppen ska tillhöra" HorizontalOptions="FillAndExpand" 
                                 ItemsSource="{Binding SectionsList}" 
-                                ItemDisplayBinding="{Binding Name}"/>
+                                ItemDisplayBinding="{Binding Name}"
+                                SelectedItem="{Binding GroupSection}"/>
                     </StackLayout>
 
                     <StackLayout>
-                        <Button Text="Skapa introduktionsgrupp" BackgroundColor="LightBlue"/>
+                        <Button Text="Skapa introduktionsgrupp" BackgroundColor="LightBlue"
+                                Command="{Binding GroupCommand}"/>
                     </StackLayout>
 
                 </StackLayout>
