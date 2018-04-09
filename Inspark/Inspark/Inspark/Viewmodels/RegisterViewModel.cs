@@ -12,6 +12,7 @@ using Plugin.Media;
 using System.IO;
 using Inspark.Helpers;
 using Inspark.Models;
+using System.Collections.ObjectModel;
 
 namespace Inspark.Viewmodels
 {
@@ -50,6 +51,36 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private ObservableCollection<Section> sectionList;
+
+        public ObservableCollection<Section> SectionsList
+        {
+            get { return sectionList; }
+            set
+            {
+                if (sectionList != value)
+                {
+                    sectionList = value;
+                    OnPropertyChanged("SectionList");
+                }
+            }
+        }
+
+        public RegisterViewModel()
+        {
+            SectionsList = new ObservableCollection<Section>()
+            {
+                new Section() {Id = 1, Name = "Handelshögskolan"},
+                new Section() {Id = 2, Name = "Humaniora, utbildnings- och samhällsvetenskap"},
+                new Section() {Id = 3, Name = "Hälsovetenskaper"},
+                new Section() {Id = 4, Name = "Juridik, psykologi och socialt arbete"},
+                new Section() {Id = 5, Name = "Medicinska vetenskaper"},
+                new Section() {Id = 6, Name = "Musikhögskolan"},
+                new Section() {Id = 7, Name = "Naturvetenskap och teknik"},
+                new Section() {Id = 8, Name = "Restaurang- och hotellhögskolan"}
+            };
+        }
+
         public bool IsLoggedIn { get; set; }
 
         private string section;
@@ -68,10 +99,7 @@ namespace Inspark.Viewmodels
                 
         }
 
-
         private string message;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public string Message
         {
@@ -102,6 +130,7 @@ namespace Inspark.Viewmodels
             }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string property)
         {

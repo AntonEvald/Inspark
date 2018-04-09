@@ -5,9 +5,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Input;
 using Inspark.Annotations;
 using Inspark.Models;
 using Inspark.Services;
+using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
@@ -25,10 +27,56 @@ namespace Inspark.Viewmodels
                 if(sectionList != value)
                 {
                     sectionList = value;
-                    OnPropertyChanged("SectionList");
+                    OnPropertyChanged();
                 }
             }
         }
+
+        private string groupName;
+
+        public string GroupName
+        {
+            get { return groupName; }
+            set
+            {
+                groupName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool isIntroGroup;
+
+        public bool IsIntroGroup
+        {
+            get { return isIntroGroup; }
+            set
+            {
+                isIntroGroup = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Section groupSection;
+
+        public Section GroupSection
+        {
+            get { return groupSection; }
+            set
+            {
+                groupSection = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand GroupCommand => new Command(async () =>
+        {
+            var group = new Group()
+            {
+                Name = GroupName,
+                IsIntroGroup = IsIntroGroup,
+                Section = GroupSection
+            };
+        });
 
         //public async void FillPickerWithSections()
         //{
@@ -54,9 +102,9 @@ namespace Inspark.Viewmodels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void OnPropertyChanged(string property)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
