@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Inspark.Annotations;
 using Inspark.Models;
 using Inspark.Services;
+using Inspark.Views;
 using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
@@ -94,6 +95,8 @@ namespace Inspark.Viewmodels
             if(await api.CreateGroup(group))
             {
                 Message = "Gruppen har skapats!";
+
+                Application.Current.MainPage = new MainPage(new HomePage());
             }
             else
             {

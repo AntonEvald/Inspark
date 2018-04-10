@@ -135,7 +135,7 @@ namespace Inspark.Services
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(group);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("http://insparkapi2018.azurewebsites.net/api/Group", content);
+            var response = await client.PostAsync(ConnectionString+"Api/Group", content);
 
             return response.IsSuccessStatusCode;
         }

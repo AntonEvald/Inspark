@@ -31,7 +31,7 @@
                     </StackLayout>
 
                     <StackLayout>
-                        <Label Text="{Binding Message}"/>
+                        <Label Text="{Binding Message}" TextColor="Red"/>
                     </StackLayout>
 
                     <StackLayout>
