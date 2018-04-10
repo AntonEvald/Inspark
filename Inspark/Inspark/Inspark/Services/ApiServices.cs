@@ -144,10 +144,18 @@ namespace Inspark.Services
         {
             var client = new HttpClient();
             var response = await client.GetAsync(ConnectionString+"api/newspost");
-            response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadAsStringAsync();
-            var list = JsonConvert.DeserializeObject<ObservableCollection<NewsPost>>(result);
-            return list;
+            var success = response.IsSuccessStatusCode;
+            if (success)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                var list = JsonConvert.DeserializeObject<ObservableCollection<NewsPost>>(result);
+                return list;
+            }
+            else
+            {
+                var list = new ObservableCollection<NewsPost>();
+                return list;
+            }
         }
         
         public async Task<ObservableCollection<Group>> GetAllGroups()

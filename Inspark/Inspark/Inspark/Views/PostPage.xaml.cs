@@ -19,14 +19,7 @@ namespace Inspark.Views
 		public PostPage(NewsPost post)
 		{
 			InitializeComponent ();
-            model = new PostViewModel()
-            {
-                Title = post.Title,
-                Text = post.Text,
-                Picture = post.Picture,
-                Author = post.Author,
-                Date = post.Date
-            };
+            model = new PostViewModel(post);
             Content.BindingContext = model;
 		}
 	}

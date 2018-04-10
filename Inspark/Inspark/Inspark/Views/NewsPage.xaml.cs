@@ -24,7 +24,6 @@ namespace Inspark.Views
             NewsPost selected = e.Item as NewsPost;
             var page = new PostPage(selected);
             News.Content = page.Content;
-
         }
 
     }
