@@ -14,57 +14,57 @@ namespace Inspark.Viewmodels
 {
     public class AdminViewModel : INotifyPropertyChanged
     {
-        ApiServices api = new ApiServices();
+        private ApiServices _api = new ApiServices();
 
         public async void OnLoad()
         {
-            Users = await api.GetAllUsers();
+            Users = await _api.GetAllUsers();
         }
 
-        private ObservableCollection<User> users;
+        private ObservableCollection<User> _users;
 
         public ObservableCollection<User> Users
         {
-            get { return users; }
+            get { return _users; }
             set
             {
-                users = value;
+                _users = value;
                 OnPropertyChanged();
             }
         }
 
-        private string keyword;
+        private string _keyword;
 
         public string Keyword
         {
-            get { return keyword; }
+            get { return _keyword; }
             set
             {
-                keyword = value;
+                _keyword = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool isVisible;
+        private bool _isVisible;
 
         public bool IsVisible
         {
-            get { return isVisible; }
+            get { return _isVisible; }
             set
             {
-                isVisible = value;
+                _isVisible = value;
                 OnPropertyChanged();
             }
         }
 
-        private ObservableCollection<User> suggestions;
+        private ObservableCollection<User> _suggestions;
 
         public ObservableCollection<User> Suggestions
         {
-            get { return suggestions; }
+            get { return _suggestions; }
             set
             {
-                suggestions = value;
+                _suggestions = value;
                 OnPropertyChanged();
             }
         }
@@ -79,10 +79,10 @@ namespace Inspark.Viewmodels
 
         private void Search()
         {
-            if (keyword.Length >= 1)
+            if (_keyword.Length >= 1)
             {
                 var suggestionsList = Users.Where(c => c.FirstName.ToLower().Contains
-                 (keyword.ToLower()) || c.LastName.ToLower().Contains(keyword.ToLower()));
+                 (_keyword.ToLower()) || c.LastName.ToLower().Contains(_keyword.ToLower()));
 
                 var suggestionListCollection = new ObservableCollection<User>(suggestionsList);
                 Suggestions = suggestionListCollection;

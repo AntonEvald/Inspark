@@ -16,69 +16,69 @@ namespace Inspark.Viewmodels
 {
     public class CreateGroupViewModel : INotifyPropertyChanged
     {
-        private ApiServices api = new ApiServices();
+        private ApiServices _api = new ApiServices();
 
-        private ObservableCollection<Section> sectionList;
+        private ObservableCollection<Section> _sectionList;
 
         public ObservableCollection<Section> SectionsList
         {
-            get {return sectionList; }
+            get {return _sectionList; }
             set
             {
-                if(sectionList != value)
+                if(_sectionList != value)
                 {
-                    sectionList = value;
+                    _sectionList = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private string groupName;
+        private string _groupName;
 
         public string GroupName
         {
-            get { return groupName; }
+            get { return _groupName; }
             set
             {
-                groupName = value;
+                _groupName = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool isIntroGroup;
+        private bool _isIntroGroup;
 
         public bool IsIntroGroup
         {
-            get { return isIntroGroup; }
+            get { return _isIntroGroup; }
             set
             {
-                isIntroGroup = value;
+                _isIntroGroup = value;
                 OnPropertyChanged();
             }
         }
 
-        private Section groupSection;
+        private Section _groupSection;
 
         public Section GroupSection
         {
-            get { return groupSection; }
+            get { return _groupSection; }
             set
             {
-                groupSection = value;
+                _groupSection = value;
                 OnPropertyChanged();
             }
         }
 
-        private string message;
+        private string _message;
 
         public string Message
         {
-            get { return message; }
+            get { return _message; }
             set
             {
-                if (message != value)
+                if (_message != value)
                 {
-                    message = value;
+                    _message = value;
                     OnPropertyChanged();
                 }
             }
@@ -88,11 +88,11 @@ namespace Inspark.Viewmodels
         {
             var group = new Group()
             {
-                Name = groupName,
-                IsIntroGroup = isIntroGroup,
-                Section = groupSection
+                Name = _groupName,
+                IsIntroGroup = _isIntroGroup,
+                Section = _groupSection
             };
-            if(await api.CreateGroup(group))
+            if(await _api.CreateGroup(group))
             {
                 Message = "Gruppen har skapats!";
 

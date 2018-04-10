@@ -18,13 +18,12 @@ namespace Inspark.Services
 {
     public class ApiServices
     {
-        private string ConnectionString = "https://insparkwebapi.azurewebsites.net/";
-
+        private string _connectionString = "https://insparkwebapi.azurewebsites.net/";
 
         public async Task<ObservableCollection<GroupEvent>> GetAllGroupEvents()
         {
             var client = new HttpClient();
-            var response = await client.GetAsync(ConnectionString+"api/GroupEvent");
+            var response = await client.GetAsync(_connectionString+"api/GroupEvent");
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsStringAsync();
             var list = JsonConvert.DeserializeObject<ObservableCollection<GroupEvent>>(result);
@@ -41,7 +40,7 @@ namespace Inspark.Services
                 new KeyValuePair<string, string>("grant_type", "password")
             };
 
-            var request = new HttpRequestMessage(HttpMethod.Post, ConnectionString+"token");
+            var request = new HttpRequestMessage(HttpMethod.Post, _connectionString+"token");
             request.Content = new FormUrlEncodedContent(keyValue);
             
             var client = new HttpClient();
@@ -60,7 +59,7 @@ namespace Inspark.Services
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(user);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(ConnectionString+"api/account/register", content);
+            var response = await client.PostAsync(_connectionString+"api/account/register", content);
 
             return response.IsSuccessStatusCode;
         }
@@ -70,14 +69,14 @@ namespace Inspark.Services
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(user);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(ConnectionString+"api/User/" + user.Id.ToString() + "/", content);
+            var response = await client.PostAsync(_connectionString+"api/User/" + user.Id.ToString() + "/", content);
             return response.IsSuccessStatusCode;
         }
 
         public async Task<ObservableCollection<User>> GetAllUsers()
         {
            var client = new HttpClient();
-           var response = await client.GetAsync(ConnectionString+"api/user/");
+           var response = await client.GetAsync(_connectionString+"api/user/");
            response.EnsureSuccessStatusCode();
            var result = await response.Content.ReadAsStringAsync();
            var list = JsonConvert.DeserializeObject<ObservableCollection<User>>(result);
@@ -87,7 +86,7 @@ namespace Inspark.Services
         public async Task<ObservableCollection<Section>> GetAllSections()
         {
             var client = new HttpClient();
-            var response = await client.GetAsync(ConnectionString+"api/section/");
+            var response = await client.GetAsync(_connectionString+"api/section/");
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsStringAsync();
             var list = JsonConvert.DeserializeObject<ObservableCollection<Section>>(result);
@@ -99,7 +98,7 @@ namespace Inspark.Services
             var userName = Settings.UserName;
             var client = new HttpClient();
             //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Settings.AccessToken);
-            var json = await client.GetStringAsync(ConnectionString+"api/user/getbyusername/" + userName + "/");
+            var json = await client.GetStringAsync(_connectionString+"api/user/getbyusername/" + userName + "/");
             var user = JsonConvert.DeserializeObject<User>(json);
             return user;
         }
@@ -108,7 +107,7 @@ namespace Inspark.Services
         { 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Settings.AccessToken);
-            var json = await client.GetStringAsync(ConnectionString+"api/getusername/" + id);
+            var json = await client.GetStringAsync(_connectionString+"api/getusername/" + id);
             var user = JsonConvert.DeserializeObject<User>(json);
             return user;
         }
@@ -125,7 +124,7 @@ namespace Inspark.Services
             };
             var json = JsonConvert.SerializeObject(model);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(ConnectionString+"api/user", content);
+            var response = await client.PostAsync(_connectionString+"api/user", content);
 
             return response.IsSuccessStatusCode;
         }
@@ -135,7 +134,7 @@ namespace Inspark.Services
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(group);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(ConnectionString+"api/group", content);
+            var response = await client.PostAsync(_connectionString+"api/group", content);
 
             return response.IsSuccessStatusCode;
         }
@@ -145,7 +144,7 @@ namespace Inspark.Services
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(post);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(ConnectionString+"api/newspost/", content);
+            var response = await client.PostAsync(_connectionString+"api/newspost", content);
 
             return response.IsSuccessStatusCode;
         }
@@ -153,7 +152,7 @@ namespace Inspark.Services
         public async Task<ObservableCollection<NewsPost>> GetAllNewsPosts()
         {
             var client = new HttpClient();
-            var response = await client.GetAsync(ConnectionString+"api/newspost");
+            var response = await client.GetAsync(_connectionString+"api/newspost");
             var success = response.IsSuccessStatusCode;
             if (success)
             {
@@ -171,7 +170,7 @@ namespace Inspark.Services
         public async Task<ObservableCollection<Group>> GetAllGroups()
         {
             var client = new HttpClient();
-            var response = await client.GetAsync(ConnectionString+"api/group");
+            var response = await client.GetAsync(_connectionString+"api/group");
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsStringAsync();
             var list = JsonConvert.DeserializeObject<ObservableCollection<Group>>(result);

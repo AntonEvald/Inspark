@@ -3,7 +3,7 @@ namespace Inspark.Services
 {
     public class ConfirmPasswordBehaviour : Behavior<Entry>
     {
-        private Entry thisEntry;
+        private Entry _thisEntry;
 
         static readonly BindablePropertyKey IsValidPropertyKey = BindableProperty.CreateReadOnly("IsValid", typeof(bool), typeof(ConfirmPasswordBehaviour), false);
         public static readonly BindableProperty IsValidProperty = IsValidPropertyKey.BindableProperty;
@@ -24,19 +24,19 @@ namespace Inspark.Services
 
         void baseValue_changed(object sender, TextChangedEventArgs e)
         {
-            IsValid = ((Entry)sender).Text.Equals(thisEntry.Text);
-            thisEntry.TextColor = IsValid ? Color.Green : Color.Red;
+            IsValid = ((Entry)sender).Text.Equals(_thisEntry.Text);
+            _thisEntry.TextColor = IsValid ? Color.Green : Color.Red;
         }
-
 
         public bool IsValid
         {
             get { return (bool)base.GetValue(IsValidProperty); }
             private set { base.SetValue(IsValidPropertyKey, value); }
         }
+
         protected override void OnAttachedTo(Entry bindable)
         {
-            thisEntry = bindable;
+            _thisEntry = bindable;
 
             if (CompareToEntry != null)
                 CompareToEntry.TextChanged += baseValue_changed;

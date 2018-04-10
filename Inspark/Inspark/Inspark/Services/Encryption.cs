@@ -6,7 +6,6 @@ namespace Inspark.Services
 {
     public class Encryption
     {
-
         public static string IV = "qo1lc3sjd8zpt9cx";
         public static string Key = "ow7dxys8g1for9tnc2ansdfgoletkfjv";
 

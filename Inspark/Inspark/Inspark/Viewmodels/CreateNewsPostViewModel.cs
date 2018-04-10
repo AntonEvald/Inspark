@@ -14,8 +14,7 @@ namespace Inspark.Viewmodels
 {
     public class CreateNewsPostViewModel : INotifyPropertyChanged
     {
-
-        private ApiServices api = new ApiServices();
+        private ApiServices _api = new ApiServices();
 
         private string _message;
 
@@ -46,64 +45,62 @@ namespace Inspark.Viewmodels
                 }
             }
         }
-        private byte[] postImage;
+        private byte[] _postImage;
 
         public byte[] PostImage
         {
-            get { return postImage; }
+            get { return _postImage; }
             set
             {
-                if (postImage != value)
+                if (_postImage != value)
                 {
-                    postImage = value;
+                    _postImage = value;
                     OnPropertyChanged("PostImage");
                 }
-
             }
         }
 
-
-        public string imagePath;
+        public string _imagePath;
 
         public string ImagePath
         {
-            get { return imagePath; }
+            get { return _imagePath; }
             set
             {
-                if (imagePath != value)
+                if (_imagePath != value)
                 {
-                    imagePath = value;
+                    _imagePath = value;
                     OnPropertyChanged("ImagePath");
                 }
             }
         }
 
-        private string postTitle;
+        private string _postTitle;
 
         public string PostTitle
         {
-            get { return postTitle; }
+            get { return _postTitle; }
             set
             {
-                if (postTitle != value)
+                if (_postTitle != value)
                 {
-                    postTitle = value;
+                    _postTitle = value;
                     OnPropertyChanged("PostTitle");
                 }
 
             }
         }
 
-        private string postText;
+        private string _postText;
 
         public string PostText
         {
-            get { return postText; }
+            get { return _postText; }
             set
             {
-                if (postText != value)
+                if (_postText != value)
                 {
-                    postText = value;
+                    _postText = value;
                     OnPropertyChanged("PostText");
                 }
 
@@ -112,22 +109,19 @@ namespace Inspark.Viewmodels
 
         public ICommand PostCommand => new Command(async () =>
         {
-            var user = await api.GetLoggedInUser();
-            var description = postText.Substring(0, 50);
-            if(postTitle != null && postTitle != "" && PostText != null && postText != "")
+            var user = await _api.GetLoggedInUser();
+            if(_postTitle != null && _postTitle != "" && PostText != null && _postText != "")
             {
                 var post = new NewsPost()
                 {
-                    Title = postTitle,
-                    Text = postText,
+                    Title = _postTitle,
+                    Text = _postText,
                     Picture = PostImage,
                     Author = user.FirstName + " " + user.LastName,
                     SenderId = user.Id,
                     Date = DateTime.Now,
-                    Description = description
                 };
-
-                if (await api.CreatePost(post))
+                if (await _api.CreatePost(post))
                 {
                     Message = "En post har skapats!";
                     var page = new MainPage(new HomePage());

@@ -8,10 +8,7 @@ namespace Inspark.Services
         protected override void OnAttachedTo(Entry bindable)
         {
             base.OnAttachedTo(bindable);
-
             bindable.TextChanged += BindableonTextChanged;
-
-
         }
 
         protected override void OnDetachingFrom(Entry bindable)

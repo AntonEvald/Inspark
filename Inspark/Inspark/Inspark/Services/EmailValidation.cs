@@ -5,15 +5,11 @@ namespace Inspark.Services
 {
     public class EmailBehaviors : Behavior<Entry>
     {
-
-
 		protected override void OnAttachedTo(Entry bindable)
 		{
             base.OnAttachedTo(bindable);
 
             bindable.TextChanged += BindableonTextChanged;
-
-           
 		}
 
 		protected override void OnDetachingFrom(Entry bindable)
@@ -25,7 +21,6 @@ namespace Inspark.Services
 
 		private void BindableonTextChanged(object sender, TextChangedEventArgs textChangedEventArgs)
         {
-
             var email = textChangedEventArgs.NewTextValue;
 
             var pattern = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";

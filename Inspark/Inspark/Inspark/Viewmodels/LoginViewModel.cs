@@ -17,76 +17,78 @@ namespace Inspark.Viewmodels
 {
     public class LoginViewModel : INotifyPropertyChanged
     {
-        private ApiServices apiServices = new ApiServices();
-        private string password = "";
+        private ApiServices _api = new ApiServices();
+
+        private string _password = "";
 
         public string Password
         {
-            get { return password; }
+            get { return _password; }
             set
             {
-                if(password != value)
+                if(_password != value)
                 {
-                    password = value;
+                    _password = value;
                     OnPropertyChanged("Password");
                 }
                 
             }
         }
 
+        private string _email = "";
 
-        private string email = "";
         public string Email
         {
-            get { return email; }
+            get { return _email; }
             set
             {
-                if (email != value)
+                if (_email != value)
                 {
-                    email = value;
+                    _email = value;
                     OnPropertyChanged("Email");
                 }
             }
         }
 
-        private bool keepLoggedIn;
+        private bool _keepLoggedIn;
+
         public bool KeepLoggedIn
         { 
             get 
             {
-                return keepLoggedIn;
+                return _keepLoggedIn;
             } set
             {
-                keepLoggedIn = value;
+                _keepLoggedIn = value;
                 OnPropertyChanged("KeepLoggedIn");
             } 
         }
 
-        private bool isLoading;
+        private bool _isLoading;
 
         public bool IsLoading
         {
-            get { return isLoading; }
+            get { return _isLoading; }
             set
             {
-                if (isLoading != value)
+                if (_isLoading != value)
                 {
-                    isLoading = value;
+                    _isLoading = value;
                     OnPropertyChanged("IsLoading");
                 }
             }
         }
 
-        private string alertMessage;
+        private string _alertMessage;
 
         public string AlertMessage
         {
-            get { return alertMessage; }
+            get { return _alertMessage; }
             set
             {
-                if(alertMessage != value)
+                if(_alertMessage != value)
                 {
-                    alertMessage = value;
+                    _alertMessage = value;
                     OnPropertyChanged("AlertMessage");
                 }
             }
@@ -99,12 +101,12 @@ namespace Inspark.Viewmodels
 
         public ICommand LoginClick => new Command(async () =>
         {
-            if (password != null)
+            if (_password != null)
             {
                 if (Email != null)
                 {
                     IsLoading = true;
-                    var response =  await apiServices.LoginAsync(Email, Password);
+                    var response =  await _api.LoginAsync(Email, Password);
                     if (response)
                     {
                         if (Settings.UserName != Email)
