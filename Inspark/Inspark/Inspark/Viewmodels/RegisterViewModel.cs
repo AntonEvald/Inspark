@@ -19,7 +19,7 @@ namespace Inspark.Viewmodels
     public class RegisterViewModel : INotifyPropertyChanged
     {
 
-        Services.ApiServices apiServices = new Services.ApiServices();
+        private ApiServices _api = new ApiServices();
 
         public string Email { get; set; }
 
@@ -37,30 +37,31 @@ namespace Inspark.Viewmodels
 
         public byte[] Pic { get; set; }
 
-        private string imagePath;
+        private string _imagePath;
+
         public string ImagePath
         {
-            get { return imagePath; }
+            get { return _imagePath; }
             set
             {
-                if (imagePath != value)
+                if (_imagePath != value)
                 {
-                    imagePath = value;
+                    _imagePath = value;
                     OnPropertyChanged("ImagePath");
                 }
             }
         }
 
-        private ObservableCollection<Section> sectionList;
+        private ObservableCollection<Section> _sectionList;
 
         public ObservableCollection<Section> SectionsList
         {
-            get { return sectionList; }
+            get { return _sectionList; }
             set
             {
-                if (sectionList != value)
+                if (_sectionList != value)
                 {
-                    sectionList = value;
+                    _sectionList = value;
                     OnPropertyChanged("SectionList");
                 }
             }
@@ -83,48 +84,48 @@ namespace Inspark.Viewmodels
 
         public bool IsLoggedIn { get; set; }
 
-        private Section section;
+        private Section _section;
 
         public Section Section
         {
-            get { return section; }
+            get { return _section; }
             set
             {
-                if(section != value)
+                if(_section != value)
                 {
-                    section = value;
+                    _section = value;
                     OnPropertyChanged("Section");
                 }
             }
                 
         }
 
-        private string message;
+        private string _message;
 
         public string Message
         {
-            get { return message; }
+            get { return _message; }
             set
             {
-                if(message != value)
+                if(_message != value)
                 {
-                    message = value;
+                    _message = value;
                     OnPropertyChanged("Message");
                 }
                 
             }
         }
 
-        private bool isLoading;
+        private bool _isLoading;
 
         public bool IsLoading
         {
-            get { return isLoading; }
+            get { return _isLoading; }
             set
             {
-                if(isLoading != value)
+                if(_isLoading != value)
                 {
-                    isLoading = value;
+                    _isLoading = value;
                     OnPropertyChanged("IsLoading");
                 }
             }
@@ -176,7 +177,7 @@ namespace Inspark.Viewmodels
                         PhoneNumber = PhoneNumber,
                         ProfilePicture = Pic,
                     };
-                    var isSuccess = await apiServices.RegisterAsync(user);
+                    var isSuccess = await _api.RegisterAsync(user);
 
                     if (isSuccess)
                     {

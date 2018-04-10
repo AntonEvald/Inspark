@@ -8,11 +8,12 @@ namespace Inspark.Viewmodels
 {
     class MainPageViewModel : INotifyPropertyChanged
     {
-        private ApiServices api = new ApiServices();
+        private ApiServices _api = new ApiServices();
         
         public event PropertyChangedEventHandler PropertyChanged;
 
         private string _user;
+
         public string User
         {
             get { return _user; }
@@ -26,10 +27,9 @@ namespace Inspark.Viewmodels
             }
         }
 
-
         public async void OnLoad()
         {
-            var user = await api.GetLoggedInUser();
+            var user = await _api.GetLoggedInUser();
             string userName = user.UserName;
             User = userName;
         }

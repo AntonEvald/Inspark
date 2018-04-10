@@ -13,16 +13,17 @@ namespace Inspark.Viewmodels
     class ProfilePictureViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private string imagePath;
+
+        private string _imagePath;
 
         public string ImagePath
         {
-            get { return imagePath; }
+            get { return _imagePath; }
             set
             {
-                if (imagePath != value)
+                if (_imagePath != value)
                 {
-                    imagePath = value;
+                    _imagePath = value;
                     OnPropertyChanged("Imagepath");
                 }
                 

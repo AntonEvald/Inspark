@@ -12,33 +12,33 @@ namespace Inspark.Viewmodels
 {
     class HomeViewModel : INotifyPropertyChanged
     {
-        private ApiServices api = new ApiServices();
+        private ApiServices _api = new ApiServices();
         
-        private ObservableCollection<GroupPost> groupPosts;
+        private ObservableCollection<GroupPost> _groupPosts;
 
         public ObservableCollection<GroupPost> GroupPosts
         {
-            get { return  groupPosts; }
+            get { return  _groupPosts; }
             set
             {
-                if(groupPosts != value)
+                if(_groupPosts != value)
                 {
-                    groupPosts = value;
+                    _groupPosts = value;
                     OnPropertyChanged("GroupPosts");
                 }
             }
         }
 
-        private ObservableCollection<NewsPost> newsPosts;
+        private ObservableCollection<NewsPost> _newsPosts;
 
         public ObservableCollection<NewsPost> NewsPosts
         {
-            get { return newsPosts; }
+            get { return _newsPosts; }
             set
             {
-                if(newsPosts != value)
+                if(_newsPosts != value)
                 {
-                    newsPosts = value;
+                    _newsPosts = value;
                     OnPropertyChanged("NewsPosts");
                 }
             }
@@ -84,7 +84,7 @@ namespace Inspark.Viewmodels
 
         private async void RefreshNewsListView()
         {
-            NewsPosts = await api.GetAllNewsPosts();
+            NewsPosts = await _api.GetAllNewsPosts();
             if (NewsPosts.Count < 2)
             {
                 var post = new NewsPost()

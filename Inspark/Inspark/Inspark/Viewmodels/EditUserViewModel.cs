@@ -14,7 +14,8 @@ namespace Inspark.Viewmodels
 {
     public class EditUserViewModel : INotifyPropertyChanged
     {
-        ApiServices api = new ApiServices();
+        private ApiServices _api = new ApiServices();
+
         private User _user;
 
         public User User
@@ -33,6 +34,7 @@ namespace Inspark.Viewmodels
         public string ImagePath { get; set; }
 
         private string _message;
+
         public string Message
         {
             get { return _message; }
@@ -49,6 +51,7 @@ namespace Inspark.Viewmodels
         public byte[] NewPic { get; set; }
 
         private string _newPhoneNumber;
+
         public string NewPhoneNumber
         {
             get { return _newPhoneNumber; }
@@ -64,6 +67,7 @@ namespace Inspark.Viewmodels
         }
 
         private string _newPassword;
+
         public string NewPassword
         {
             get { return _newPassword; }
@@ -79,6 +83,7 @@ namespace Inspark.Viewmodels
         }
 
         private string _confirmNewPassword;
+
         public string ConfirmNewPassword
         {
             get { return _confirmNewPassword; }
@@ -151,7 +156,7 @@ namespace Inspark.Viewmodels
         public ICommand ConfirmCommand => new Command(async() =>
         {
             IsLoading = true;
-            User = await api.GetLoggedInUser();
+            User = await _api.GetLoggedInUser();
             if(CurrentPassword == Settings.UserPassword)
             {
                 if(NewPassword != null && NewPassword != "")
@@ -192,7 +197,7 @@ namespace Inspark.Viewmodels
                     User.ProfilePicture = NewPic;
                 }
 
-                var isSuccess = await api.EditUser(User);
+                var isSuccess = await _api.EditUser(User);
                 if (isSuccess)
                 {
                     Message = "Ändringarna sparade!";

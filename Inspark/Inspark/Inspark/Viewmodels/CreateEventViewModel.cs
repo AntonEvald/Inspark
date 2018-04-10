@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inspark.Services;
+using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -6,7 +7,7 @@ namespace Inspark.Viewmodels
 {
     public class CreateEventViewModel
     {
-        Services.ApiServices apiServices = new Services.ApiServices();
+        private ApiServices _api = new ApiServices();
         
         public string Title { get; set; }
         public string Id { get; set; }
@@ -24,7 +25,7 @@ namespace Inspark.Viewmodels
 
         public ICommand CreateEventCommand => new Command(async () =>
         {
-            var isSuccess = await apiServices.CreateEvent(Title, Location, Date, Description);
+            var isSuccess = await _api.CreateEvent(Title, Location, Date, Description);
         });
     }
     

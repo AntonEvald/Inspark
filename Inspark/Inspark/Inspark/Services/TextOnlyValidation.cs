@@ -53,7 +53,6 @@ namespace Inspark.Services
                 }
             }
             return false;
-            
         }
     }
 }

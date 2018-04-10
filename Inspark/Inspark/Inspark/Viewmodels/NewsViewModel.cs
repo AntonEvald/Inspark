@@ -17,47 +17,47 @@ namespace Inspark.Viewmodels
 {
     public class NewsViewModel : INotifyPropertyChanged
     {
-        public ApiServices api = new ApiServices();
+        public ApiServices _api = new ApiServices();
 
-        private ObservableCollection<NewsPost> newsPosts;
+        private ObservableCollection<NewsPost> _newsPosts;
 
         public ObservableCollection<NewsPost> NewsPosts
         {
 
-            get { return newsPosts; }
+            get { return _newsPosts; }
             set
             {
-                if(newsPosts != value)
+                if(_newsPosts != value)
                 {
-                    newsPosts = value;
+                    _newsPosts = value;
                     OnPropertyChanged("NewsPosts");
                 }
 
             }
         }
 
-        private bool isRefreshing = false;
+        private bool _isRefreshing = false;
 
         public bool IsRefreshing
         {
-            get { return isRefreshing; }
+            get { return _isRefreshing; }
             set
             {
-                isRefreshing = value;
+                _isRefreshing = value;
                 OnPropertyChanged("IsRefreshing");
             }
         }
 
-        private NewsPost itemSelected;
+        private NewsPost _itemSelected;
 
         public NewsPost ItemSelected
         {
-            get { return itemSelected; }
+            get { return _itemSelected; }
             set
             {
-                if(itemSelected != value)
+                if(_itemSelected != value)
                 {
-                    itemSelected = value;
+                    _itemSelected = value;
                     OnPropertyChanged("ItemSelected");
                 }
             }
@@ -95,7 +95,7 @@ namespace Inspark.Viewmodels
 
         private async void RefreshListView()
         {
-            NewsPosts = await api.GetAllNewsPosts();
+            NewsPosts = await _api.GetAllNewsPosts();
             if(NewsPosts.Count < 2)
             {
                 var post = new NewsPost()
