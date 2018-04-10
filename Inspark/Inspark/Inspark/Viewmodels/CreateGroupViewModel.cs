@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Inspark.Annotations;
 using Inspark.Models;
 using Inspark.Services;
+using Inspark.Views;
 using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
@@ -68,25 +69,43 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private string message;
+
+        public string Message
+        {
+            get { return message; }
+            set
+            {
+                if (message != value)
+                {
+                    message = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public ICommand GroupCommand => new Command(async () =>
         {
             var group = new Group()
             {
-                Name = GroupName,
-                IsIntroGroup = IsIntroGroup,
-                Section = GroupSection
+                Name = groupName,
+                IsIntroGroup = isIntroGroup,
+                Section = groupSection
             };
-        });
+            if(await api.CreateGroup(group))
+            {
+                Message = "Gruppen har skapats!";
 
-        //public async void FillPickerWithSections()
-        //{
-        //    SectionsList = await api.GetAllSections();
-        //}
+                Application.Current.MainPage = new MainPage(new HomePage());
+            }
+            else
+            {
+                Message = "Något gick fel.";
+            }
+        });
 
         public CreateGroupViewModel()
         {
-            //FillPickerWithSections();
-
             SectionsList = new ObservableCollection<Section>()
             {
                 new Section() {Id = 1, Name = "Handelshögskolan"},
