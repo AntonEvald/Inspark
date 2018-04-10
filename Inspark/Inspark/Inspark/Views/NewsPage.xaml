@@ -28,8 +28,6 @@
                                     </StackLayout.Resources>
                                     <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
                                     <Label Text="{Binding Text}"  TextColor="DarkGray" FontSize="Small" />
-                                    <Label Text="{Binding Date}"/>
-                                    <Image Source="{Binding Picture, Converter={StaticResource bic}}" />
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

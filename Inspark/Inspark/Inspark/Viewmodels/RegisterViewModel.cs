@@ -19,7 +19,7 @@ namespace Inspark.Viewmodels
     public class RegisterViewModel : INotifyPropertyChanged
     {
 
-        private ApiServices _api = new ApiServices();
+        Services.ApiServices apiServices = new Services.ApiServices();
 
         public string Email { get; set; }
 
@@ -37,31 +37,30 @@ namespace Inspark.Viewmodels
 
         public byte[] Pic { get; set; }
 
-        private string _imagePath;
-
+        private string imagePath;
         public string ImagePath
         {
-            get { return _imagePath; }
+            get { return imagePath; }
             set
             {
-                if (_imagePath != value)
+                if (imagePath != value)
                 {
-                    _imagePath = value;
+                    imagePath = value;
                     OnPropertyChanged("ImagePath");
                 }
             }
         }
 
-        private ObservableCollection<Section> _sectionList;
+        private ObservableCollection<Section> sectionList;
 
         public ObservableCollection<Section> SectionsList
         {
-            get { return _sectionList; }
+            get { return sectionList; }
             set
             {
-                if (_sectionList != value)
+                if (sectionList != value)
                 {
-                    _sectionList = value;
+                    sectionList = value;
                     OnPropertyChanged("SectionList");
                 }
             }
@@ -80,52 +79,72 @@ namespace Inspark.Viewmodels
                 new Section() {Id = 7, Name = "Naturvetenskap och teknik"},
                 new Section() {Id = 8, Name = "Restaurang- och hotellhögskolan"}
             };
+
+            IsVisible = false;
+            ImagePath = "";
         }
 
         public bool IsLoggedIn { get; set; }
 
-        private Section _section;
+        private Section section;
 
         public Section Section
         {
-            get { return _section; }
+            get { return section; }
             set
             {
-                if(_section != value)
+                if(section != value)
                 {
-                    _section = value;
+                    section = value;
                     OnPropertyChanged("Section");
                 }
             }
                 
         }
 
-        private string _message;
+        private bool _isVisible;
+
+        public bool IsVisible
+        {
+            get { return _isVisible; }
+            set
+            {
+                if(_isVisible != value)
+                {
+                    _isVisible = value;
+                    OnPropertyChanged("IsVisible");
+                }
+                
+            }
+        }
+
+
+        private string message;
 
         public string Message
         {
-            get { return _message; }
+            get { return message; }
             set
             {
-                if(_message != value)
+                if(message != value)
                 {
-                    _message = value;
+                    message = value;
                     OnPropertyChanged("Message");
                 }
                 
             }
         }
 
-        private bool _isLoading;
+        private bool isLoading;
 
         public bool IsLoading
         {
-            get { return _isLoading; }
+            get { return isLoading; }
             set
             {
-                if(_isLoading != value)
+                if(isLoading != value)
                 {
-                    _isLoading = value;
+                    isLoading = value;
                     OnPropertyChanged("IsLoading");
                 }
             }
@@ -138,7 +157,7 @@ namespace Inspark.Viewmodels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
-        public ICommand PickPhotoCommand => new Command(async () =>
+        public ICommand AddPicCommand => new Command(async () =>
         {
             await CrossMedia.Current.Initialize();
 
@@ -151,11 +170,17 @@ namespace Inspark.Viewmodels
             {
                 return;
             }
-
             ImagePath = file.Path;
-            
-             
+            IsVisible = true;
         });
+
+        public ICommand RemovePicCommand => new Command(() =>
+        {
+            ImagePath = "";
+            Pic = null;
+            IsVisible = false;
+        });
+
         public ICommand RegisterCommand => new Command(async () =>
         {
             if(TextOnlyBehavior.IsTextOnly(FirstName) && TextOnlyBehavior.IsTextOnly(LastName) && EmailBehaviors.IsEmail(Email) && NumberBehavior.IsNumbers(PhoneNumber) && PasswordBehavior.IsValidPassword(Password) && PasswordBehavior.IsPasswordMatch(Password, ConfirmPassword))
@@ -177,7 +202,7 @@ namespace Inspark.Viewmodels
                         PhoneNumber = PhoneNumber,
                         ProfilePicture = Pic,
                     };
-                    var isSuccess = await _api.RegisterAsync(user);
+                    var isSuccess = await apiServices.RegisterAsync(user);
 
                     if (isSuccess)
                     {

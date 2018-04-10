@@ -17,47 +17,47 @@ namespace Inspark.Viewmodels
 {
     public class NewsViewModel : INotifyPropertyChanged
     {
-        public ApiServices _api = new ApiServices();
+        public ApiServices api = new ApiServices();
 
-        private ObservableCollection<NewsPost> _newsPosts;
+        private ObservableCollection<NewsPost> newsPosts;
 
         public ObservableCollection<NewsPost> NewsPosts
         {
 
-            get { return _newsPosts; }
+            get { return newsPosts; }
             set
             {
-                if(_newsPosts != value)
+                if(newsPosts != value)
                 {
-                    _newsPosts = value;
+                    newsPosts = value;
                     OnPropertyChanged("NewsPosts");
                 }
 
             }
         }
 
-        private bool _isRefreshing = false;
+        private bool isRefreshing = false;
 
         public bool IsRefreshing
         {
-            get { return _isRefreshing; }
+            get { return isRefreshing; }
             set
             {
-                _isRefreshing = value;
+                isRefreshing = value;
                 OnPropertyChanged("IsRefreshing");
             }
         }
 
-        private NewsPost _itemSelected;
+        private NewsPost itemSelected;
 
         public NewsPost ItemSelected
         {
-            get { return _itemSelected; }
+            get { return itemSelected; }
             set
             {
-                if(_itemSelected != value)
+                if(itemSelected != value)
                 {
-                    _itemSelected = value;
+                    itemSelected = value;
                     OnPropertyChanged("ItemSelected");
                 }
             }
@@ -95,8 +95,8 @@ namespace Inspark.Viewmodels
 
         private async void RefreshListView()
         {
-            NewsPosts = await _api.GetAllNewsPosts();
-            if(NewsPosts.Count < 2)
+            NewsPosts = await api.GetAllNewsPosts();
+            if(NewsPosts.Count < 1)
             {
                 var post = new NewsPost()
                 {

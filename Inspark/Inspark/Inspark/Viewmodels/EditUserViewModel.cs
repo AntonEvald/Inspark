@@ -201,6 +201,7 @@ namespace Inspark.Viewmodels
                 if (isSuccess)
                 {
                     Message = "Ändringarna sparade!";
+                    Settings.UserPassword = NewPassword;
                     IsLoading = false;
                 }
                 else

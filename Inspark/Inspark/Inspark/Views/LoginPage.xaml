@@ -29,11 +29,6 @@
                         IsPassword="True"
                         x:Name="Password"
                         Text="{Binding Password, Mode=TwoWay}"/>
-                    <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
-                        <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
-                            <Label Text="Håll mig inloggad:"/>
-                        </StackLayout>
-                    </StackLayout>
                     <Button
                         Text="Logga in"
                         Command="{Binding LoginClick}"/>

@@ -51,8 +51,11 @@
                         ItemDisplayBinding="{Binding Name}"
                         SelectedItem="{Binding Section}">
                 </Picker>
-                <Button Text="Välj bild" Command="{Binding PickPhotoCommand}"/>
-                <Image Source="{Binding ImagePath}"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Button Text="Lägg till bild" Command="{Binding AddPicCommand}"/>
+                    <Image Source="{Binding ImagePath}" HeightRequest="75" WidthRequest="75"/>
+                    <Button Text="Ta bort bild" Command="{Binding RemovePicCommand}" IsVisible="{Binding IsVisible}"/>
+                </StackLayout>
                 <Button x:Name="RegisterButton" Text="Registrera" Command="{Binding RegisterCommand}"/>
                 <ActivityIndicator Color="Blue" IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}"/>
                 <Label Text="{Binding Message}" TextColor="Red"/>
