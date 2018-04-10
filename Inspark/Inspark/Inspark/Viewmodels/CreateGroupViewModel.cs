@@ -68,14 +68,37 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private string message;
+
+        public string Message
+        {
+            get { return message; }
+            set
+            {
+                if (message != value)
+                {
+                    message = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public ICommand GroupCommand => new Command(async () =>
         {
             var group = new Group()
             {
-                Name = GroupName,
-                IsIntroGroup = IsIntroGroup,
-                Section = GroupSection
+                Name = groupName,
+                IsIntroGroup = isIntroGroup,
+                Section = groupSection
             };
+            if(await api.CreateGroup(group))
+            {
+                Message = "Gruppen har skapats!";
+            }
+            else
+            {
+                Message = "Något gick fel.";
+            }
         });
 
         //public async void FillPickerWithSections()
