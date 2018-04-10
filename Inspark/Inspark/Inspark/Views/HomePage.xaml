@@ -23,13 +23,13 @@
                                 </Label.GestureRecognizers>
                             </Label>
                         </StackLayout>
-                        <ListView x:Name="NewsList" ItemsSource="{Binding NewsPosts}" RowHeight="60" ItemTapped="NewsItemTapped" IsRefreshing="{Binding IsRefreshing}" RefreshCommand="{Binding RefreshCommand}">
+                        <ListView x:Name="NewsList" ItemsSource="{Binding NewsPosts}" RowHeight="60" ItemTapped="NewsItemTapped" IsRefreshing="{Binding IsRefreshing}" RefreshCommand="{Binding RefreshCommand}" IsPullToRefreshEnabled="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
                                         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                             <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
-                                            <Label Text="{Binding Text}"  TextColor="DarkGray" FontSize="Small" />
+                                            <Label Text="{Binding Description}"  TextColor="DarkGray" FontSize="Small" />
                                         </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
