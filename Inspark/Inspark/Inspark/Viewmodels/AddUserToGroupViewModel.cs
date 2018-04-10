@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
-    public class AddUserToGroupViewModel : INotifyPropertyChanged
+    public class AddUserToGroupViewModel : BaseViewModel
     {
         public ObservableCollection<User> UserList { get; set; }
         public ObservableCollection<Group> GroupList { get; set; }
@@ -20,15 +20,7 @@ namespace Inspark.Viewmodels
             LoadCommand.Execute(null);
             var b = GroupList;
             var a = GroupList;
-            
         }
-        
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-    
 
         public Command LoadCommand
         {

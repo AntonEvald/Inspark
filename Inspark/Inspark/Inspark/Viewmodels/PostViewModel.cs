@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Inspark.Viewmodels
 {
-    public class PostViewModel : INotifyPropertyChanged
+    public class PostViewModel : BaseViewModel
     {
         public PostViewModel(NewsPost post)
         {
@@ -28,9 +28,6 @@ namespace Inspark.Viewmodels
         public Byte[] Picture { get; set; }
         public string SenderId { get; set; }
         public string Author { get; set; }
-        
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private string _displayDate;
 
@@ -42,7 +39,7 @@ namespace Inspark.Viewmodels
                 if(_displayDate != value)
                 {
                     _displayDate = value;
-                    OnPropertyChanged("DisplayDate");
+                    OnPropertyChanged();
                 }           
             }
         }
@@ -82,10 +79,6 @@ namespace Inspark.Viewmodels
             {
                 DisplayDate = Date.ToString(culture.DateTimeFormat.LongDatePattern, culture);
             }
-        }
-        private void OnPropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
     }
 }

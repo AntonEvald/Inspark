@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
-    public class AdminViewModel : BaseViewModel , INotifyPropertyChanged
+    public class AdminViewModel : BaseViewModel
     {
         private ApiServices _api = new ApiServices();
 

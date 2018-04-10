@@ -14,7 +14,7 @@ using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
-    public class CreateGroupViewModel : BaseViewModel, INotifyPropertyChanged
+    public class CreateGroupViewModel : BaseViewModel
     {
         private ApiServices _api = new ApiServices();
 

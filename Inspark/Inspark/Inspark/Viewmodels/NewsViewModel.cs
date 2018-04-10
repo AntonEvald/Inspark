@@ -16,7 +16,7 @@ using System.Linq;
 
 namespace Inspark.Viewmodels
 {
-    public class NewsViewModel : INotifyPropertyChanged
+    public class NewsViewModel : BaseViewModel
     {
         public ApiServices api = new ApiServices();
 
@@ -31,7 +31,7 @@ namespace Inspark.Viewmodels
                 if(newsPosts != value)
                 {
                     newsPosts = value;
-                    OnPropertyChanged("NewsPosts");
+                    OnPropertyChanged();
                 }
 
             }
@@ -45,7 +45,7 @@ namespace Inspark.Viewmodels
             set
             {
                 isRefreshing = value;
-                OnPropertyChanged("IsRefreshing");
+                OnPropertyChanged();
             }
         }
 
@@ -59,7 +59,7 @@ namespace Inspark.Viewmodels
                 if(itemSelected != value)
                 {
                     itemSelected = value;
-                    OnPropertyChanged("ItemSelected");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -74,7 +74,7 @@ namespace Inspark.Viewmodels
                 if(_isVisible != value)
                 {
                     _isVisible = value;
-                    OnPropertyChanged("IsVisible");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -112,13 +112,6 @@ namespace Inspark.Viewmodels
             }
             NewsPosts = posts;
         }
-
-        private void OnPropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public NewsViewModel()
         {

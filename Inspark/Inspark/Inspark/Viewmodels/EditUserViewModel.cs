@@ -12,7 +12,7 @@ using Inspark.Helpers;
 
 namespace Inspark.Viewmodels
 {
-    public class EditUserViewModel : INotifyPropertyChanged
+    public class EditUserViewModel : BaseViewModel
     {
         private ApiServices _api = new ApiServices();
 
@@ -25,11 +25,10 @@ namespace Inspark.Viewmodels
                 if(_user != value)
                 {
                     _user = value;
-                    OnPropertyChanged("User");
+                    OnPropertyChanged();
                 }
             }
         }
-
 
         public string ImagePath { get; set; }
 
@@ -43,7 +42,7 @@ namespace Inspark.Viewmodels
                 if (_message != value)
                 {
                     _message = value;
-                    OnPropertyChanged("Message");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -60,9 +59,8 @@ namespace Inspark.Viewmodels
                 if (_newPhoneNumber != value)
                 {
                     _newPhoneNumber = value;
-                    OnPropertyChanged("NewPhoneNumber");
+                    OnPropertyChanged();
                 }
-
             }
         }
 
@@ -76,9 +74,8 @@ namespace Inspark.Viewmodels
                 if(_newPassword != value)
                 {
                     _newPassword = value;
-                    OnPropertyChanged("NewPassword");
+                    OnPropertyChanged();
                 }
-                
             }
         }
 
@@ -92,9 +89,8 @@ namespace Inspark.Viewmodels
                 if(_confirmNewPassword != value)
                 {
                     _confirmNewPassword = value;
-                    OnPropertyChanged("ConfirmNewPassword");
+                    OnPropertyChanged();
                 }
-                
             }
         }
 
@@ -108,9 +104,8 @@ namespace Inspark.Viewmodels
                 if(IsLoading != value)
                 {
                     _isLoading = value;
-                    OnPropertyChanged("IsLoading");
-                }
-                
+                    OnPropertyChanged();
+                } 
             }
         }
 
@@ -124,16 +119,9 @@ namespace Inspark.Viewmodels
                 if(_currentPassword != value)
                 {
                     _currentPassword = value;
-                    OnPropertyChanged("CurrentPassword");
+                    OnPropertyChanged();
                 }
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
         public ICommand PickPhotoCommand => new Command(async () =>

@@ -15,7 +15,7 @@ using Inspark.Helpers;
 
 namespace Inspark.Viewmodels
 {
-    public class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : BaseViewModel
     {
         private ApiServices _api = new ApiServices();
 
@@ -29,7 +29,7 @@ namespace Inspark.Viewmodels
                 if(_password != value)
                 {
                     _password = value;
-                    OnPropertyChanged("Password");
+                    OnPropertyChanged();
                 }
                 
             }
@@ -45,7 +45,7 @@ namespace Inspark.Viewmodels
                 if (_email != value)
                 {
                     _email = value;
-                    OnPropertyChanged("Email");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -60,7 +60,7 @@ namespace Inspark.Viewmodels
             } set
             {
                 _keepLoggedIn = value;
-                OnPropertyChanged("KeepLoggedIn");
+                OnPropertyChanged();
             } 
         }
 
@@ -74,7 +74,7 @@ namespace Inspark.Viewmodels
                 if (_isLoading != value)
                 {
                     _isLoading = value;
-                    OnPropertyChanged("IsLoading");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -89,14 +89,9 @@ namespace Inspark.Viewmodels
                 if(_alertMessage != value)
                 {
                     _alertMessage = value;
-                    OnPropertyChanged("AlertMessage");
+                    OnPropertyChanged();
                 }
             }
-        }
-
-        private void OnPropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
         public ICommand LoginClick => new Command(async () =>
@@ -131,7 +126,5 @@ namespace Inspark.Viewmodels
             Email = Settings.UserName;
             Password = Settings.UserPassword;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

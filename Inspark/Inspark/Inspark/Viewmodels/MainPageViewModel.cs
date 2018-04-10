@@ -6,11 +6,9 @@ using System.Text;
 
 namespace Inspark.Viewmodels
 {
-    class MainPageViewModel : INotifyPropertyChanged
+    class MainPageViewModel : BaseViewModel
     {
         private ApiServices _api = new ApiServices();
-        
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private string _user;
 
@@ -22,7 +20,7 @@ namespace Inspark.Viewmodels
                 if(_user != value)
                 {
                     _user = value;
-                    OnPropertyChanged("User");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -32,11 +30,6 @@ namespace Inspark.Viewmodels
             var user = await _api.GetLoggedInUser();
             string userName = user.UserName;
             User = userName;
-        }
-
-        private void OnPropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
         public MainPageViewModel()

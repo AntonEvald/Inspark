@@ -16,7 +16,7 @@ using System.Collections.ObjectModel;
 
 namespace Inspark.Viewmodels
 {
-    public class RegisterViewModel : INotifyPropertyChanged
+    public class RegisterViewModel : BaseViewModel
     {
 
         private ApiServices _api = new ApiServices();
@@ -47,7 +47,7 @@ namespace Inspark.Viewmodels
                 if (_imagePath != value)
                 {
                     _imagePath = value;
-                    OnPropertyChanged("ImagePath");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -62,7 +62,7 @@ namespace Inspark.Viewmodels
                 if (_sectionList != value)
                 {
                     _sectionList = value;
-                    OnPropertyChanged("SectionList");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -97,7 +97,7 @@ namespace Inspark.Viewmodels
                 if(_section != value)
                 {
                     _section = value;
-                    OnPropertyChanged("Section");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -112,7 +112,7 @@ namespace Inspark.Viewmodels
                 if(_isVisible != value)
                 {
                     _isVisible = value;
-                    OnPropertyChanged("IsVisible");
+                    OnPropertyChanged();
                 }
                 
             }
@@ -128,7 +128,7 @@ namespace Inspark.Viewmodels
                 if(_message != value)
                 {
                     _message = value;
-                    OnPropertyChanged("Message");
+                    OnPropertyChanged();
                 }
                 
             }
@@ -144,16 +144,9 @@ namespace Inspark.Viewmodels
                 if(_isLoading != value)
                 {
                     _isLoading = value;
-                    OnPropertyChanged("IsLoading");
+                    OnPropertyChanged();
                 }
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
         public ICommand AddPicCommand => new Command(async () =>

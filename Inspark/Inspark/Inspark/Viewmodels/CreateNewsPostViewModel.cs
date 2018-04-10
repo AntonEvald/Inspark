@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
-    public class CreateNewsPostViewModel : INotifyPropertyChanged
+    public class CreateNewsPostViewModel : BaseViewModel
     {
         private ApiServices _api = new ApiServices();
 
@@ -26,7 +26,7 @@ namespace Inspark.Viewmodels
                 if(_message != value)
                 {
                     _message = value;
-                    OnPropertyChanged("Message");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -41,7 +41,7 @@ namespace Inspark.Viewmodels
                 if (_isVisible != value)
                 {
                     _isVisible = value;
-                    OnPropertyChanged("IsVisible");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -55,7 +55,7 @@ namespace Inspark.Viewmodels
                 if (_postImage != value)
                 {
                     _postImage = value;
-                    OnPropertyChanged("PostImage");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -70,7 +70,7 @@ namespace Inspark.Viewmodels
                 if (_imagePath != value)
                 {
                     _imagePath = value;
-                    OnPropertyChanged("ImagePath");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -85,9 +85,8 @@ namespace Inspark.Viewmodels
                 if (_postTitle != value)
                 {
                     _postTitle = value;
-                    OnPropertyChanged("PostTitle");
+                    OnPropertyChanged();
                 }
-
             }
         }
 
@@ -101,9 +100,8 @@ namespace Inspark.Viewmodels
                 if (_postText != value)
                 {
                     _postText = value;
-                    OnPropertyChanged("PostText");
+                    OnPropertyChanged();
                 }
-
             }
         }
 
@@ -166,12 +164,5 @@ namespace Inspark.Viewmodels
             PostImage = null;
             IsVisible = false;
         });
-
-        private void OnPropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
