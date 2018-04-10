@@ -16,6 +16,7 @@ namespace Inspark.Viewmodels
 {
     public class CreateGroupViewModel : BaseViewModel
     {
+        // This class is used for the create a group function. 
         private ApiServices _api = new ApiServices();
 
         private ObservableCollection<Section> _sectionList;

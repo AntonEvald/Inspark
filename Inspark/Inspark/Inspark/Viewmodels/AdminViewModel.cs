@@ -14,6 +14,7 @@ namespace Inspark.Viewmodels
 {
     public class AdminViewModel : BaseViewModel
     {
+        // This class is used for the search function on the adminpage. 
         private ApiServices _api = new ApiServices();
 
         public async void OnLoad()
