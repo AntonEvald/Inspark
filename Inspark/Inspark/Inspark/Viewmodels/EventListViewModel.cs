@@ -6,7 +6,6 @@ namespace Inspark.Viewmodels
 {
     public class EventListViewModel
     {
-
         public ObservableCollection<Event> events = new ObservableCollection<Event>();
 
         public void PopulateList()
@@ -33,11 +32,8 @@ namespace Inspark.Viewmodels
                 Description = "HejHEj"
             };
 
-
             events.Add(e);
             events.Add(a);
-
-
         }
     }
 }
