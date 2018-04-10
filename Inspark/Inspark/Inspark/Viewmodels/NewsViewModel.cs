@@ -16,50 +16,50 @@ using System.Linq;
 
 namespace Inspark.Viewmodels
 {
-    public class NewsViewModel : INotifyPropertyChanged
+    public class NewsViewModel : BaseViewModel
     {
         public ApiServices api = new ApiServices();
 
-        private ObservableCollection<NewsPost> _newsPosts;
+        private ObservableCollection<NewsPost> newsPosts;
 
         public ObservableCollection<NewsPost> NewsPosts
         {
 
-            get { return _newsPosts; }
+            get { return newsPosts; }
             set
             {
-                if(_newsPosts != value)
+                if(newsPosts != value)
                 {
-                    _newsPosts = value;
-                    OnPropertyChanged("NewsPosts");
+                    newsPosts = value;
+                    OnPropertyChanged();
                 }
 
             }
         }
 
-        private bool _isRefreshing = false;
+        private bool isRefreshing = false;
 
         public bool IsRefreshing
         {
-            get { return _isRefreshing; }
+            get { return isRefreshing; }
             set
             {
-                _isRefreshing = value;
-                OnPropertyChanged("IsRefreshing");
+                isRefreshing = value;
+                OnPropertyChanged();
             }
         }
 
-        private NewsPost _itemSelected;
+        private NewsPost itemSelected;
 
         public NewsPost ItemSelected
         {
-            get { return _itemSelected; }
+            get { return itemSelected; }
             set
             {
-                if(_itemSelected != value)
+                if(itemSelected != value)
                 {
-                    _itemSelected = value;
-                    OnPropertyChanged("ItemSelected");
+                    itemSelected = value;
+                    OnPropertyChanged();
                 }
             }
         }
@@ -74,7 +74,7 @@ namespace Inspark.Viewmodels
                 if(_isVisible != value)
                 {
                     _isVisible = value;
-                    OnPropertyChanged("IsVisible");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -108,28 +108,10 @@ namespace Inspark.Viewmodels
                     Date = DateTime.Now,
                     Picture = null
                 };
-                var length = post.Text.Length;
-                string desc;
-                if (length < 50)
-                {
-                    desc = post.Text.Substring(0, length);
-                }
-                else
-                {
-                    desc = post.Text.Substring(0, 50);
-                }
-                post.Description = desc;
                 posts.Add(post);
             }
             NewsPosts = posts;
         }
-
-        private void OnPropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public NewsViewModel()
         {

@@ -10,10 +10,8 @@ using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
-    class ProfilePictureViewModel : INotifyPropertyChanged
+    class ProfilePictureViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private string _imagePath;
 
         public string ImagePath
@@ -24,15 +22,10 @@ namespace Inspark.Viewmodels
                 if (_imagePath != value)
                 {
                     _imagePath = value;
-                    OnPropertyChanged("Imagepath");
+                    OnPropertyChanged();
                 }
                 
             }
-        }
-
-        private void OnPropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
         public ICommand PickPhotoCommand => new Command(async () =>

@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
-    public class AdminViewModel : INotifyPropertyChanged
+    public class AdminViewModel : BaseViewModel
     {
         private ApiServices _api = new ApiServices();
 
@@ -93,13 +93,6 @@ namespace Inspark.Viewmodels
             {
                 IsVisible = false;
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public AdminViewModel()

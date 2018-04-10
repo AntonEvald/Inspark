@@ -14,7 +14,7 @@ using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
-    public class CreateGroupViewModel : INotifyPropertyChanged
+    public class CreateGroupViewModel : BaseViewModel
     {
         private ApiServices _api = new ApiServices();
 
@@ -117,13 +117,6 @@ namespace Inspark.Viewmodels
                 new Section() {Id = 7, Name = "Naturvetenskap och teknik"},
                 new Section() {Id = 8, Name = "Restaurang- och hotellhögskolan"}
             };
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

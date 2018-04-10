@@ -10,7 +10,7 @@ using XamForms.Controls;
 
 namespace Inspark.Viewmodels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class ScheduleViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -18,10 +18,7 @@ namespace Inspark.Viewmodels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-    }
 
-    public class ScheduleViewModel : BaseViewModel
-    {
         public ObservableCollection<Event> SpecificDates = new ObservableCollection<Event>();
 
         public List<Event> Events = new List<Event>();
