@@ -14,19 +14,6 @@ namespace Inspark.Viewmodels
 {
     public class AdminViewModel : INotifyPropertyChanged
     {
-        //private int count;
-        //private int height;
-
-        //public int Height
-        //{
-        //    get { return height; }
-        //    set
-        //    {
-        //        height = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
         ApiServices api = new ApiServices();
 
         public async void OnLoad()
@@ -42,18 +29,9 @@ namespace Inspark.Viewmodels
             set
             {
                 users = value;
-                //Height = (users.Count * 40) + (users.Count * 10);
                 OnPropertyChanged();
             }
         }
-
-        //public ICommand ChangeListViewSizeCommand { get; }
-
-        //void ChangeListViewSize()
-        //{
-        //    count = users.Count + 1;
-        //    Height = (users.Count * 40) + (users.Count * 10);
-        //}
 
         private string keyword;
 
@@ -127,7 +105,6 @@ namespace Inspark.Viewmodels
         public AdminViewModel()
         {
             OnLoad();
-            //ChangeListViewSizeCommand = new Command(ChangeListViewSize);
         }
     }
 }

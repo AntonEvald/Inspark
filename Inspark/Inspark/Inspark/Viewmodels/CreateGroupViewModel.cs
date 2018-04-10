@@ -104,15 +104,8 @@ namespace Inspark.Viewmodels
             }
         });
 
-        //public async void FillPickerWithSections()
-        //{
-        //    SectionsList = await api.GetAllSections();
-        //}
-
         public CreateGroupViewModel()
         {
-            //FillPickerWithSections();
-
             SectionsList = new ObservableCollection<Section>()
             {
                 new Section() {Id = 1, Name = "Handelshögskolan"},
