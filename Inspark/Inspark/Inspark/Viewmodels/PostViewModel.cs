@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Text;
 
 namespace Inspark.Viewmodels
@@ -11,7 +12,7 @@ namespace Inspark.Viewmodels
         public string Id { get; set; }
         public string Title { get; set; }
         public string Text { get; set; }
-        public DateTime DateTime { get; set; }
+        public DateTime Date { get; set; }
         public Byte[] Picture { get; set; }
         public string SenderId { get; set; }
         public User Sender { get; set; }
@@ -42,23 +43,32 @@ namespace Inspark.Viewmodels
 
         public void SetDisplayDate()
         {
+            CultureInfo culture = new CultureInfo("sv-SE");
             var today = DateTime.Now;
-            if((today.Date - DateTime.Date).TotalDays < 2)
+            if(today.Year == Date.Year)
             {
-                DisplayDate = "Igår";
-                if ((today.Date - DateTime.Date).TotalHours < 24)
+                if ((today.Date - Date.Date).TotalDays < 2)
                 {
-                    DisplayDate = (today.Hour - DateTime.Hour).ToString() + " timmar sedan";
-
-                    if((today.Date - DateTime.Date).TotalMinutes < 60)
+                    DisplayDate = "Igår " + Date.TimeOfDay;
+                    if ((today.Date - Date.Date).TotalHours < 24)
                     {
-                        DisplayDate = (today.Minute - DateTime.Minute).ToString() + " minuter sedan";
+                        DisplayDate = (today.Hour - Date.Hour).ToString() + " timmar sedan";
+
+                        if ((today.Date - Date.Date).TotalMinutes < 60)
+                        {
+                            DisplayDate = (today.Minute - Date.Minute).ToString() + " minuter sedan";
+                        }
                     }
                 }
+                else
+                {
+                    DisplayDate = Date.Month.ToString(culture) + " " + Date.Day.ToString(culture);
+                }
             }
+            
             else
             {
-                DisplayDate = DateTime.ToLongDateString();
+                DisplayDate = Date.ToString(culture.DateTimeFormat.LongDatePattern, culture);
             }
         }
 

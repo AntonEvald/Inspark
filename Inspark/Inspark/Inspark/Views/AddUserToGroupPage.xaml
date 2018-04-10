@@ -7,15 +7,10 @@
     <ContentPage.BindingContext>
         <viewmodels:AddUserToGroupViewModel/>
     </ContentPage.BindingContext>
-        <ContentPage.Resources>
-        <ResourceDictionary>
-            <services:BooleanNegationConverter x:Key="bnc"/>
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <StackLayout>
-                <Picker x:Name="test"/>
+                <Picker ItemsSource="{Binding GroupList, Mode= TwoWay}" ItemDisplayBinding="{Binding Name}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

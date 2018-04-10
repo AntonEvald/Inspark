@@ -12,11 +12,10 @@
                 </StackLayout.BindingContext>
                 <ListView x:Name="NewsList" 
                       ItemsSource="{Binding NewsPosts}" 
-                      RowHeight="60" 
+                      HasUnevenRows="True" 
                       IsPullToRefreshEnabled="True" 
                       IsRefreshing="{Binding IsRefreshing}" 
                       RefreshCommand="{Binding RefreshCommand}" 
-                      HasUnevenRows="True"
                       ItemTapped="PostTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -29,6 +28,7 @@
                                     </StackLayout.Resources>
                                     <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
                                     <Label Text="{Binding Text}"  TextColor="DarkGray" FontSize="Small" />
+                                    <Label Text="{Binding Date}"/>
                                     <Image Source="{Binding Picture, Converter={StaticResource bic}}" />
                                 </StackLayout>
                             </ViewCell>

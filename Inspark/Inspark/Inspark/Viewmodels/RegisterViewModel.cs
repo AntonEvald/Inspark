@@ -83,9 +83,9 @@ namespace Inspark.Viewmodels
 
         public bool IsLoggedIn { get; set; }
 
-        private string section;
+        private Section section;
 
-        public string Section
+        public Section Section
         {
             get { return section; }
             set
@@ -159,7 +159,7 @@ namespace Inspark.Viewmodels
         {
             if(TextOnlyBehavior.IsTextOnly(FirstName) && TextOnlyBehavior.IsTextOnly(LastName) && EmailBehaviors.IsEmail(Email) && NumberBehavior.IsNumbers(PhoneNumber) && PasswordBehavior.IsValidPassword(Password) && PasswordBehavior.IsPasswordMatch(Password, ConfirmPassword))
             {
-                if(Section != null && Section != "")
+                if(Section != null)
                 {
                     IsLoading = true;
                     Pic = File.ReadAllBytes(ImagePath);
@@ -168,7 +168,7 @@ namespace Inspark.Viewmodels
                         UserName = Email,
                         Password = Password,
                         Email = Email,
-                        Section = Section,
+                        Section = Section.Name,
                         FirstName = FirstName,
                         LastName = LastName,
                         Role = "Admin",

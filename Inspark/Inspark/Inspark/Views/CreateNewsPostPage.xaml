@@ -8,7 +8,7 @@
             <ScrollView>
                 <StackLayout Padding="20">
                     <StackLayout.BindingContext>
-                        <vm:NewsViewModel/>
+                        <vm:CreateNewsPostViewModel/>
                     </StackLayout.BindingContext>
                     <Label Text="Skriv ett inlägg:" FontSize="Large"/>
                     <Label Text="Titel:"/>
@@ -20,6 +20,7 @@
                         <Image Source="{Binding ImagePath}" HeightRequest="75" WidthRequest="75"/>
                         <Button Text="Ta bort bild" Command="{Binding RemovePicCommand}" IsVisible="{Binding IsVisible}"/>
                     </StackLayout>
+                    <Label Text="{Binding Message}" TextColor="Red"/>
                     <Button Text="Posta inlägg" Command="{Binding PostCommand}" BackgroundColor="LightGreen"/>
                     <Button Text="Avbryt" Clicked="Abort_Clicked" BackgroundColor="PaleVioletRed"/>
                 </StackLayout>

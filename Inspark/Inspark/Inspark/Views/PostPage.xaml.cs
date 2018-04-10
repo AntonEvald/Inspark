@@ -24,7 +24,8 @@ namespace Inspark.Views
                 Title = post.Title,
                 Text = post.Text,
                 Picture = post.Picture,
-                Author = post.Author
+                Author = post.Author,
+                Date = post.Date
             };
             Content.BindingContext = model;
 		}
