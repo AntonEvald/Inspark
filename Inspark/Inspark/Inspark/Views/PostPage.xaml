@@ -5,24 +5,28 @@
              xmlns:vm="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              xmlns:conv="clr-namespace:Inspark.Services;assembly=Inspark">
     <ContentPage.Content>
-        <StackLayout Padding="20">
-            <StackLayout.Resources>
-                <ResourceDictionary>
-                    <conv:ByteArrayToImageSourceConverter x:Key="bic"/>
-                </ResourceDictionary>
-            </StackLayout.Resources>
-            <Label Text="{Binding Title}"
+        <ScrollView>
+            <StackLayout Padding="20">
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <conv:ByteArrayToImageSourceConverter x:Key="bic"/>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <Label Text="{Binding Title}"
                    FontSize="Large"
-                    VerticalOptions="StartAndExpand" 
-                    HorizontalOptions="StartAndExpand"/>
-            <Label Text="{Binding Text}"
+                    VerticalOptions="Start" 
+                    HorizontalOptions="Start"/>
+                <Label Text="{Binding Text}"
                     VerticalOptions="StartAndExpand" 
                     HorizontalOptions="StartAndExpand" />
-            <Image Source="{Binding Picture, Converter={StaticResource bic}}"/>
-            <Label Text="{Binding Author}" 
+                <Image Source="{Binding Picture, Converter={StaticResource bic}}"/>
+                <Label Text="{Binding Author}"
+                    VerticalOptions="End"
                     HorizontalOptions="End" />
-            <Label Text="{Binding DisplayDate}" 
+                <Label Text="{Binding DisplayDate}"
+                    VerticalOptions="End"
                     HorizontalOptions="End" />
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

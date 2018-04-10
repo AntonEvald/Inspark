@@ -79,6 +79,9 @@ namespace Inspark.Viewmodels
                 new Section() {Id = 7, Name = "Naturvetenskap och teknik"},
                 new Section() {Id = 8, Name = "Restaurang- och hotellhögskolan"}
             };
+
+            IsVisible = false;
+            ImagePath = "";
         }
 
         public bool IsLoggedIn { get; set; }
@@ -98,6 +101,23 @@ namespace Inspark.Viewmodels
             }
                 
         }
+
+        private bool _isVisible;
+
+        public bool IsVisible
+        {
+            get { return _isVisible; }
+            set
+            {
+                if(_isVisible != value)
+                {
+                    _isVisible = value;
+                    OnPropertyChanged("IsVisible");
+                }
+                
+            }
+        }
+
 
         private string message;
 
@@ -137,7 +157,7 @@ namespace Inspark.Viewmodels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
-        public ICommand PickPhotoCommand => new Command(async () =>
+        public ICommand AddPicCommand => new Command(async () =>
         {
             await CrossMedia.Current.Initialize();
 
@@ -150,11 +170,17 @@ namespace Inspark.Viewmodels
             {
                 return;
             }
-
             ImagePath = file.Path;
-            
-             
+            IsVisible = true;
         });
+
+        public ICommand RemovePicCommand => new Command(() =>
+        {
+            ImagePath = "";
+            Pic = null;
+            IsVisible = false;
+        });
+
         public ICommand RegisterCommand => new Command(async () =>
         {
             if(TextOnlyBehavior.IsTextOnly(FirstName) && TextOnlyBehavior.IsTextOnly(LastName) && EmailBehaviors.IsEmail(Email) && NumberBehavior.IsNumbers(PhoneNumber) && PasswordBehavior.IsValidPassword(Password) && PasswordBehavior.IsPasswordMatch(Password, ConfirmPassword))
