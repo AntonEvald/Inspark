@@ -115,7 +115,7 @@ namespace Inspark.Viewmodels
                             Settings.UserPassword = Password;
                         }
                         IsLoading = false;
-                        Application.Current.MainPage = new MainPage();
+                        Application.Current.MainPage = new MainPage(new HomePage());
                     }
                     else
                     {

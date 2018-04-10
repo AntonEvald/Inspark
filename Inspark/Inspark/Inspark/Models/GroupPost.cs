@@ -13,7 +13,6 @@ namespace Inspark.Models
         public Byte[] Picture { get; set; }
         public string SenderId { get; set; }
         public string Author { get; set; }
-        public User Sender { get; set; }
         public string Description { get; set; }
     }
 }

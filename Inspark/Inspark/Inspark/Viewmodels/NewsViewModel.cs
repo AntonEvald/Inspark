@@ -20,45 +20,45 @@ namespace Inspark.Viewmodels
     {
         public ApiServices api = new ApiServices();
 
-        private ObservableCollection<NewsPost> newsPosts;
+        private ObservableCollection<NewsPost> _newsPosts;
 
         public ObservableCollection<NewsPost> NewsPosts
         {
 
-            get { return newsPosts; }
+            get { return _newsPosts; }
             set
             {
-                if(newsPosts != value)
+                if(_newsPosts != value)
                 {
-                    newsPosts = value;
+                    _newsPosts = value;
                     OnPropertyChanged("NewsPosts");
                 }
 
             }
         }
 
-        private bool isRefreshing = false;
+        private bool _isRefreshing = false;
 
         public bool IsRefreshing
         {
-            get { return isRefreshing; }
+            get { return _isRefreshing; }
             set
             {
-                isRefreshing = value;
+                _isRefreshing = value;
                 OnPropertyChanged("IsRefreshing");
             }
         }
 
-        private NewsPost itemSelected;
+        private NewsPost _itemSelected;
 
         public NewsPost ItemSelected
         {
-            get { return itemSelected; }
+            get { return _itemSelected; }
             set
             {
-                if(itemSelected != value)
+                if(_itemSelected != value)
                 {
-                    itemSelected = value;
+                    _itemSelected = value;
                     OnPropertyChanged("ItemSelected");
                 }
             }
@@ -108,6 +108,17 @@ namespace Inspark.Viewmodels
                     Date = DateTime.Now,
                     Picture = null
                 };
+                var length = post.Text.Length;
+                string desc;
+                if (length < 50)
+                {
+                    desc = post.Text.Substring(0, length);
+                }
+                else
+                {
+                    desc = post.Text.Substring(0, 50);
+                }
+                post.Description = desc;
                 posts.Add(post);
             }
             NewsPosts = posts;

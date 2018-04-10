@@ -95,6 +95,17 @@ namespace Inspark.Viewmodels
                     Date = DateTime.Now,
                     Picture = null
                 };
+                var length = post.Text.Length;
+                string desc;
+                if(length < 50)
+                {
+                    desc = post.Text.Substring(0, length);
+                }
+                else
+                {
+                    desc = post.Text.Substring(0, 50);
+                }
+                post.Description = desc;
                 NewsPosts.Add(post);
             }
         }
