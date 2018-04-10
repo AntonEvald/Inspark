@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
-    class HomeViewModel : INotifyPropertyChanged
+    class HomeViewModel : BaseViewModel, INotifyPropertyChanged
     {
         private ApiServices _api = new ApiServices();
         
@@ -24,7 +24,7 @@ namespace Inspark.Viewmodels
                 if(_groupPosts != value)
                 {
                     _groupPosts = value;
-                    OnPropertyChanged("GroupPosts");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -39,7 +39,7 @@ namespace Inspark.Viewmodels
                 if(_newsPosts != value)
                 {
                     _newsPosts = value;
-                    OnPropertyChanged("NewsPosts");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -54,18 +54,10 @@ namespace Inspark.Viewmodels
                 if(_isRefreshing != value)
                 {
                     _isRefreshing = value;
-                    OnPropertyChanged("IsRefreshing");
+                    OnPropertyChanged();
                 }
             }
         }
-
-
-        private void OnPropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand RefreshCommand
         {
