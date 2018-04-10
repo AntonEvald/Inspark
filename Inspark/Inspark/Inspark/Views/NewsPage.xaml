@@ -27,7 +27,7 @@
                                         </ResourceDictionary>
                                     </StackLayout.Resources>
                                     <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
-                                    <Label Text="{Binding Text}"  TextColor="DarkGray" FontSize="Small" />
+                                    <Label Text="{Binding Description}"  TextColor="DarkGray" FontSize="Small" />
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

@@ -113,6 +113,7 @@ namespace Inspark.Viewmodels
         public ICommand PostCommand => new Command(async () =>
         {
             var user = await api.GetLoggedInUser();
+            var description = postText.Substring(0, 50);
             if(postTitle != null && postTitle != "" && PostText != null && postText != "")
             {
                 var post = new NewsPost()
@@ -123,7 +124,9 @@ namespace Inspark.Viewmodels
                     Author = user.FirstName + " " + user.LastName,
                     SenderId = user.Id,
                     Date = DateTime.Now,
+                    Description = description
                 };
+
                 if (await api.CreatePost(post))
                 {
                     Message = "En post har skapats!";

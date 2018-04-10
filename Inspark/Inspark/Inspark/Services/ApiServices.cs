@@ -145,7 +145,7 @@ namespace Inspark.Services
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(post);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(ConnectionString+"api/newspost", content);
+            var response = await client.PostAsync(ConnectionString+"api/newspost/", content);
 
             return response.IsSuccessStatusCode;
         }

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Inspark.Services;
+using System.Linq;
 
 namespace Inspark.Viewmodels
 {
@@ -95,8 +96,9 @@ namespace Inspark.Viewmodels
 
         private async void RefreshListView()
         {
-            NewsPosts = await api.GetAllNewsPosts();
-            if(NewsPosts.Count < 1)
+            var posts = await api.GetAllNewsPosts();
+            posts = new ObservableCollection<NewsPost>(posts.OrderByDescending(i => i.Date));
+            if(posts.Count < 1)
             {
                 var post = new NewsPost()
                 {
@@ -106,8 +108,9 @@ namespace Inspark.Viewmodels
                     Date = DateTime.Now,
                     Picture = null
                 };
-                NewsPosts.Add(post);
+                posts.Add(post);
             }
+            NewsPosts = posts;
         }
 
         private void OnPropertyChanged(string property)
