@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Inspark.Models;
@@ -76,8 +77,9 @@ namespace Inspark.Viewmodels
 
         private async void RefreshNewsListView()
         {
-            NewsPosts = await _api.GetAllNewsPosts();
-            if (NewsPosts.Count < 1)
+            var posts = await _api.GetAllNewsPosts();
+            posts = new ObservableCollection<NewsPost>(posts.OrderByDescending(i => i.Date));
+            if (posts.Count < 1)
             {
                 var post = new NewsPost()
                 {
@@ -87,19 +89,9 @@ namespace Inspark.Viewmodels
                     Date = DateTime.Now,
                     Picture = null
                 };
-                var length = post.Text.Length;
-                string desc;
-                if(length < 50)
-                {
-                    desc = post.Text.Substring(0, length);
-                }
-                else
-                {
-                    desc = post.Text.Substring(0, 50);
-                }
-                post.Description = desc;
-                NewsPosts.Add(post);
+                posts.Add(post);
             }
+            NewsPosts = posts;
         }
 
         public HomeViewModel()
