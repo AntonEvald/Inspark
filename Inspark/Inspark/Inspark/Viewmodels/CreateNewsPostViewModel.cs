@@ -120,18 +120,8 @@ namespace Inspark.Viewmodels
                     SenderId = user.Id,
                     Date = DateTime.Now,
                 };
-                string text = post.Text;
-                string desc = text.Split('.', '\n').First();
-                var length = desc.Length;
-                if (length < 50)
-                {
-                    
-                    post.Description = desc.Substring(0, length);
-                }
-                else
-                {
-                    post.Description = desc.Substring(0, 50);
-                }
+                string desc = post.Text.Split('.', '\n').First();
+                post.Description = desc;
                 if (await _api.CreatePost(post))
                 {
                     Message = "En post har skapats!";

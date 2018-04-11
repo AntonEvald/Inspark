@@ -17,9 +17,11 @@
                     VerticalOptions="Start" 
                     HorizontalOptions="Start"/>
                 <Label Text="{Binding Text}"
-                    VerticalOptions="StartAndExpand" 
+                    VerticalOptions="Start" 
                     HorizontalOptions="StartAndExpand" />
-                <Image Source="{Binding Picture, Converter={StaticResource bic}}"/>
+                <Image Source="{Binding Picture, Converter={StaticResource bic}}"
+                    VerticalOptions="Start" 
+                    HorizontalOptions="Center"/>
                 <Label Text="{Binding Author}"
                     VerticalOptions="End"
                     HorizontalOptions="End" />
