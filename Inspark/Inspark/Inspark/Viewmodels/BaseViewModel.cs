@@ -8,6 +8,7 @@ namespace Inspark.Viewmodels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        // BaseViewModel, of which all other viewmodels will inherit from. This is to spare us the time to write the code more than once. 
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
