@@ -18,31 +18,31 @@ namespace Inspark.Services
 {
     public class ApiServices
     {
-        // våran connection string till web api
+        // Connection string for calls to our web api
         private string ConnectionString = "https://insparkwebapi.azurewebsites.net/";
 
 
         public async Task<ObservableCollection<GroupEvent>> GetAllGroupEvents()
         {
-            // declarerar en Http client som kan hämta en json string från databasen
+            // declare a new http client to use for calls to api
             var client = new HttpClient();
-            // hämtar datan från api.
+            // get data from api
             var response = await client.GetAsync(ConnectionString+"api/GroupEvent");
-            // kollar om api callet är OK eller ej.
+            // Checks status code that gets returned from api call
             response.EnsureSuccessStatusCode();
-            // läser Json till en string.
+            // reades the Json string
             var result = await response.Content.ReadAsStringAsync();
-            // converterar Json till ett observablecollection av objekt.
+            // Converts to an object from Json
             var list = JsonConvert.DeserializeObject<ObservableCollection<GroupEvent>>(result);
-            // returnerad listan av objekt.
+            // reurns list of objects
             return list;
 
         }
 
         public async Task<bool> LoginAsync(string userName, string password)
         {
-            /* Hämtar in username och password från Viewmodelen.
-             * Gör keyvaluepair.
+            /* gets username and password from viewmodel
+             *  an turns them into key value pairs
              */
             var keyValue = new List<KeyValuePair<string, string>>
             {
@@ -51,21 +51,21 @@ namespace Inspark.Services
                 new KeyValuePair<string, string>("grant_type", "password")
             };
 
-            // gör http request av keyvaluepair.
+            // creates a http requestmessage.
             var request = new HttpRequestMessage(HttpMethod.Post, ConnectionString+"token");
             request.Content = new FormUrlEncodedContent(keyValue);
             
             var client = new HttpClient();
-            // skickar in till api, väntar på respons.
+            // sends message to api and waits for return.
             var response = await client.SendAsync(request);
-            // läser in reponse
+            // reds return message.
             var jwt = await response.Content.ReadAsStringAsync();
-            // converterar till dynamisk objekt.
+            // converts to Json object.
             JObject jwtDynamic = JsonConvert.DeserializeObject<dynamic>(jwt);
-            // hämtar ut värden från objektet.
+            // gets specifik values from Json object.
             var accessToken = jwtDynamic.Value<string>("access_token");
             var accessTokenExpires = jwtDynamic.Value<DateTime>(".expires");
-            // sätter accesstoken i setting.cs
+            // sets properties in settings.cs with values.
             Settings.AccessTokenExpires = accessTokenExpires;
             Settings.AccessToken = accessToken;
             return response.IsSuccessStatusCode;
