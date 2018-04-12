@@ -13,6 +13,7 @@ namespace Inspark.Models
        // public IEnumerable<User> Invited { get; set; }
         //public IEnumerable<User> Attending { get; set; }
         public string Description { get; set; }
+        public string Text { get; set; }
 
     }
 

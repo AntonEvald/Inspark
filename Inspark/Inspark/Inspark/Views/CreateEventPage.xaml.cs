@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Inspark.Viewmodels;
 using Xamarin.Forms;
 
 namespace Inspark.Views
@@ -11,7 +11,5 @@ namespace Inspark.Views
         {
             InitializeComponent();
         }
-
-     
     }
 }

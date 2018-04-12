@@ -94,7 +94,7 @@
 
             <StackLayout VerticalOptions="Center" Spacing="0" Grid.Column="2">
                 <Image HeightRequest="30" Source="competition.png"/>
-                <Label Text="Tävling" FontSize="10"
+                <Label Text="Event" FontSize="10"
                        HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="CompetitionIcon_Tapped"/>

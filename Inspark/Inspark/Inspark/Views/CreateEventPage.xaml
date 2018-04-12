@@ -2,14 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
              x:Class="Inspark.Views.CreateEventPage">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="40">
                 <StackLayout.BindingContext>
                     <viewmodels:CreateEventViewModel/>
-                </StackLayout.BindingContext>>
-
+                </StackLayout.BindingContext>
                 <StackLayout>
                     <Entry Placeholder="Titel" Text="{Binding Title}"/>
                 </StackLayout>
@@ -23,7 +23,7 @@
                 </StackLayout>
 
                 <StackLayout>  
-                <DatePicker x:Name="StartDatePicker" Format="dd/MM/yyyy" Date="{Binding StartDate}" MinimumDate="{Binding StartDate}" />
+                <DatePicker Format="dd/MM/yyyy" Date="{Binding StartDate}" MinimumDate="{x:Static system:DateTime.Today}"/>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -34,11 +34,11 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Text="Start Time" Grid.Row="0" Grid.Column="0"/>
-                    <TimePicker x:Name="StartTime" Time="{Binding StartTime, StringFormat='{}{0:HH:mm}'}" Grid.Row="1" Grid.Column="0"/>
+                    <TimePicker Time="{Binding StartTime}"/>
                 </Grid>
-                    <Button Text="Skapa event" Command="{Binding CreateEventCommand}"></Button>
                 </StackLayout>
-
+                <Label Text="{Binding Message}"></Label>
+                <Button Text="Create Event" Command="{Binding CreateEventCommand}"></Button>
             </StackLayout>
         </ScrollView>   
     </ContentPage.Content>

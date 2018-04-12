@@ -23,7 +23,7 @@
                 <StackLayout Padding="10, 0, 10, 0" Orientation="Horizontal">
                     <Label Text="Datum:" 
                        FontSize="Medium"/>
-                    <Label Text="{Binding Date, StringFormat='{}{0:yyyy/MM/dd}'}" VerticalOptions="CenterAndExpand"/>
+                    <Label Text="{Binding Date, StringFormat='{}{0:yyyy/MM/dd}'}"   VerticalOptions="CenterAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Padding="10, 0, 10, 0" Orientation="Horizontal">

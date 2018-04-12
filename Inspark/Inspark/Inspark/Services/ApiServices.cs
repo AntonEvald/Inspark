@@ -137,7 +137,8 @@ namespace Inspark.Services
                 Title = tile,
                 Location = location,
                 TimeForEvent = date,
-                Description = desc
+                Description = desc,
+                Text = desc
             };
             var json = JsonConvert.SerializeObject(model);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -191,6 +192,16 @@ namespace Inspark.Services
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsStringAsync();
             var list = JsonConvert.DeserializeObject<ObservableCollection<Group>>(result);
+            return list;
+        }
+        
+        public async Task<ObservableCollection<Event>> GetAllEvents()
+        {
+            var client = new HttpClient();
+            var response = await client.GetAsync(ConnectionString+"api/Event");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<ObservableCollection<Event>>(result);
             return list;
         }
     }

@@ -13,8 +13,6 @@ namespace Inspark.Views
         public EventListPage()
         {
             InitializeComponent();
-            EventListViewModel.PopulateList();
-            EventList.ItemsSource = EventListViewModel.events;
         }
 
         void Handle_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
