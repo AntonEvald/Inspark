@@ -71,6 +71,11 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
+        public Task<bool> ChangePassword(string oldPassword, string newPassword, string confirmPassword, string token)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> RegisterAsync(User user)
         {
             var client = new HttpClient();
@@ -86,7 +91,7 @@ namespace Inspark.Services
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(user);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(ConnectionString+"api/User/" + user.Id.ToString() + "/", content);
+            var response = await client.PutAsync(ConnectionString+"api/User", content);
             return response.IsSuccessStatusCode;
         }
 
@@ -114,7 +119,6 @@ namespace Inspark.Services
         {
             var userName = Settings.UserName;
             var client = new HttpClient();
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Settings.AccessToken);
             var json = await client.GetStringAsync(ConnectionString+"api/user/getbyusername/" + userName + "/");
             var user = JsonConvert.DeserializeObject<User>(json);
             return user;

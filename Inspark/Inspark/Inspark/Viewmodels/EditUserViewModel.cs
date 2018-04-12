@@ -17,20 +17,6 @@ namespace Inspark.Viewmodels
         // This class is used for the edit user function. 
         private ApiServices _api = new ApiServices();
 
-        private User _user;
-
-        public User User
-        {
-            get { return _user; }
-            set {
-                if(_user != value)
-                {
-                    _user = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
         public string ImagePath { get; set; }
 
         private string _message;
@@ -60,36 +46,6 @@ namespace Inspark.Viewmodels
                 if (_newPhoneNumber != value)
                 {
                     _newPhoneNumber = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private string _newPassword;
-
-        public string NewPassword
-        {
-            get { return _newPassword; }
-            set
-            {
-                if(_newPassword != value)
-                {
-                    _newPassword = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private string _confirmNewPassword;
-
-        public string ConfirmNewPassword
-        {
-            get { return _confirmNewPassword; }
-            set
-            {
-                if(_confirmNewPassword != value)
-                {
-                    _confirmNewPassword = value;
                     OnPropertyChanged();
                 }
             }
@@ -145,36 +101,14 @@ namespace Inspark.Viewmodels
         public ICommand ConfirmCommand => new Command(async() =>
         {
             IsLoading = true;
-            User = await _api.GetLoggedInUser();
+            var user = await _api.GetLoggedInUser();
             if(CurrentPassword == Settings.UserPassword)
             {
-                if(NewPassword != null && NewPassword != "")
-                {
-                    if (PasswordBehavior.IsValidPassword(NewPassword))
-                    {
-                        if (NewPassword == ConfirmNewPassword)
-                        {
-                            User.ConfirmPassword = ConfirmNewPassword;
-                            User.Password = NewPassword;
-                        }
-                        else
-                        {
-                            Message = "Ditt nya lösenord och det bekräftade lösenordet stämmer inte överens";
-                            IsLoading = false;
-                        }
-                    }
-                    else
-                    {
-                        Message = "Ditt nya lösenord måste vara minst 6 tecken långt och innehålla minst en siffra, en versal och gemen.";
-                        IsLoading = false;
-                    }
-
-                }
                 if(NewPhoneNumber != null && NewPhoneNumber != "")
                 {
                     if (NumberBehavior.IsNumbers(NewPhoneNumber))
                     {
-                        User.PhoneNumber = NewPhoneNumber;
+                        user.PhoneNumber = NewPhoneNumber;
                     }
                     else
                     {
@@ -183,14 +117,13 @@ namespace Inspark.Viewmodels
                 }
                 if(NewPic != null)
                 {
-                    User.ProfilePicture = NewPic;
+                    user.ProfilePicture = NewPic;
                 }
 
-                var isSuccess = await _api.EditUser(User);
+                var isSuccess = await _api.EditUser(user);
                 if (isSuccess)
                 {
                     Message = "Ändringarna sparade!";
-                    Settings.UserPassword = NewPassword;
                     IsLoading = false;
                 }
                 else
