@@ -13,6 +13,7 @@ using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
 using System.Collections.ObjectModel;
  using System.Runtime.InteropServices.ComTypes;
+ using System.Security.Cryptography.X509Certificates;
 
 namespace Inspark.Services
 {
