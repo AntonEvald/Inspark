@@ -10,7 +10,7 @@ namespace Inspark.Viewmodels
 
         public void PopulateList()
         {
-            var e = new Event
+            var exampleEventOne = new Event
             {
                 Title = "EfterFest",
                 Id = "01",
@@ -21,7 +21,7 @@ namespace Inspark.Viewmodels
                 Description = "HejHEj"
             };
 
-            var a = new Event
+            var exampleEventTwo = new Event
             {
                 Title = "EfterFest2",
                 Id = "01",
@@ -32,8 +32,8 @@ namespace Inspark.Viewmodels
                 Description = "HejHEj"
             };
 
-            events.Add(e);
-            events.Add(a);
+            events.Add(exampleEventOne);
+            events.Add(exampleEventTwo);
         }
     }
 }
