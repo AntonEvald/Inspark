@@ -136,12 +136,12 @@ namespace Inspark.Services
             {
                 Title = tile,
                 Location = location,
-                Date = date,
+                TimeForEvent = date,
                 Description = desc
             };
             var json = JsonConvert.SerializeObject(model);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(ConnectionString+"api/user", content);
+            var response = await client.PostAsync(ConnectionString+"api/Event", content);
 
             return response.IsSuccessStatusCode;
         }

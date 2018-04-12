@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              x:Class="Inspark.Views.CreateEventPage">
-    <ContentPage.BindingContext>
-        <viewmodels:CreateEventViewModel/>
-    </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="40">
+                <StackLayout.BindingContext>
+                    <viewmodels:CreateEventViewModel/>
+                </StackLayout.BindingContext>>
 
                 <StackLayout>
                     <Entry Placeholder="Titel" Text="{Binding Title}"/>
@@ -23,7 +23,7 @@
                 </StackLayout>
 
                 <StackLayout>  
-                <DatePicker x:Name="StartDatePicker" Format="dd/MM/yyyy" Date="{Binding Item.StartDate}" MinimumDate="{Binding Item.StartDate}" />
+                <DatePicker x:Name="StartDatePicker" Format="dd/MM/yyyy" Date="{Binding StartDate}" MinimumDate="{Binding StartDate}" />
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -34,8 +34,9 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Text="Start Time" Grid.Row="0" Grid.Column="0"/>
-                    <TimePicker x:Name="StartTime" Time="{Binding Item.StartTime}" Grid.Row="1" Grid.Column="0"/>
+                    <TimePicker x:Name="StartTime" Time="{Binding StartTime, StringFormat='{}{0:HH:mm}'}" Grid.Row="1" Grid.Column="0"/>
                 </Grid>
+                    <Button Text="Skapa event" Command="{Binding CreateEventCommand}"></Button>
                 </StackLayout>
 
             </StackLayout>

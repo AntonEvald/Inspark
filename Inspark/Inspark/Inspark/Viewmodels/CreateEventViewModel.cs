@@ -17,14 +17,19 @@ namespace Inspark.Viewmodels
         //public IEnumerable<User> Attending { get; set; }
         public string Description { get; set; }
         
-        DateTime startDate = DateTime.Now;
         public DateTime StartDate { get; set; }
 
-        DateTime startTime = DateTime.Now;
         public DateTime StartTime { get; set; }
 
         public ICommand CreateEventCommand => new Command(async () =>
         {
+            Date.AddYears(StartDate.Year);
+            Date.AddMonths(StartDate.Month);
+            Date.AddDays(StartDate.Day);
+            Date.AddHours(StartTime.Hour);
+            Date.AddMinutes(StartTime.Minute);
+            var a = Date;
+            var b = Date;
             var isSuccess = await _api.CreateEvent(Title, Location, Date, Description);
         });
     }
