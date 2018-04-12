@@ -17,15 +17,20 @@
             <ContentView IsVisible="{Binding IsLoading, Converter={StaticResource bnc}}" x:Name="ChangeUserDetailsContent">
                 <ScrollView>
                     <StackLayout Padding="15">
+                        <StackLayout.Resources>
+                            <ResourceDictionary>
+                                <va:ByteArrayToImageSourceConverter x:Key="bic"/>
+                            </ResourceDictionary>
+                        </StackLayout.Resources>
                         <Label Text="Ange nytt telefonnummer:"/>
-                        <Entry Placeholder="Nytt telefonnummer" Text="{Binding NewPhoneNumber}" Keyboard="Numeric" x:Name="PhoneNumber">
-                            <Entry.Behaviors>
-                                <va:NumberBehavior x:Name="NumberValidator"/>
-                            </Entry.Behaviors>
-                        </Entry>
-                        <Button Text="Byt profilbild" Command="{Binding PickPhotoCommand}"/>
-                        <Label Text="Ange ditt nuvarande lösenord för att bekräfta dina ändringar:"/>
-                        <Entry Placeholder="Nuvarande lösenord" Text="{Binding CurrentPassword}" IsPassword="True"/>
+                        <Entry Text="{Binding PhoneNumber}" Keyboard="Numeric" x:Name="PhoneNumber"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Button Text="Byt bild" Command="{Binding PickPhotoCommand}"/>
+                            <Image Source="{Binding Pic, Converter={StaticResource bic}}" HeightRequest="75" WidthRequest="75"/>
+                            <Button Text="Ta bort bild" Command="{Binding RemovePicCommand}" IsVisible="{Binding IsVisible}"/>
+                        </StackLayout>
+                        <Label Text="Ange ditt lösenord för att bekräfta dina ändringar:"/>
+                        <Entry Placeholder="Lösenord" Text="{Binding CurrentPassword}" IsPassword="True"/>
                         <Label Text="{Binding Message}" TextColor="Red"/>
                         <Button Text="Bekräfta ändringar" Command="{Binding ConfirmCommand}" BackgroundColor="LightGreen" VerticalOptions="End"/>
                         <Button Text="Avbryt" Clicked="Abort_Clicked" BackgroundColor="PaleVioletRed" VerticalOptions="End"/>

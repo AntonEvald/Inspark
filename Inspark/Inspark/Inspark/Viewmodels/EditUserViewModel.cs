@@ -17,7 +17,36 @@ namespace Inspark.Viewmodels
         // This class is used for the edit user function. 
         private ApiServices _api = new ApiServices();
 
-        public string ImagePath { get; set; }
+        private string _imagePath;
+
+        public string ImagePath
+        {
+            get { return _imagePath; }
+            set
+            {
+                if(_imagePath != value)
+                {
+                    _imagePath = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private User _user;
+
+        public User User
+        {
+            get { return _user; }
+            set
+            {
+                if (_user != value)
+                {
+                    _user = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
 
         private string _message;
 
@@ -34,22 +63,52 @@ namespace Inspark.Viewmodels
             }
         }
 
-        public byte[] NewPic { get; set; }
 
-        private string _newPhoneNumber;
+        private byte[] _pic;
 
-        public string NewPhoneNumber
+        public byte[] Pic
         {
-            get { return _newPhoneNumber; }
+            get { return _pic; }
             set
             {
-                if (_newPhoneNumber != value)
+                if (_pic != value)
                 {
-                    _newPhoneNumber = value;
+                    _pic = value;
                     OnPropertyChanged();
                 }
             }
         }
+
+        private string _phoneNumber;
+
+        public string PhoneNumber
+        {
+            get { return _phoneNumber; }
+            set
+            {
+                if (_phoneNumber != value)
+                {
+                    _phoneNumber = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private bool _isVisible;
+
+        public bool IsVisible
+        {
+            get { return _isVisible; }
+            set
+            {
+                if(_isVisible != value)
+                {
+                    _isVisible = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
 
         private bool _isLoading;
 
@@ -95,32 +154,34 @@ namespace Inspark.Viewmodels
                 return;
             }
             ImagePath = file.Path;
-            NewPic = File.ReadAllBytes(ImagePath);
+            Pic = File.ReadAllBytes(ImagePath);
+        });
+
+        public ICommand RemovePicCommand => new Command(() =>
+        {
+            ImagePath = "";
+            Pic = null;
+            IsVisible = false;
         });
 
         public ICommand ConfirmCommand => new Command(async() =>
         {
             IsLoading = true;
-            var user = await _api.GetLoggedInUser();
             if(CurrentPassword == Settings.UserPassword)
             {
-                if(NewPhoneNumber != null && NewPhoneNumber != "")
+                if(PhoneNumber != null && PhoneNumber != "")
                 {
-                    if (NumberBehavior.IsNumbers(NewPhoneNumber))
+                    if (NumberBehavior.IsNumbers(PhoneNumber))
                     {
-                        user.PhoneNumber = NewPhoneNumber;
+                        User.PhoneNumber = PhoneNumber;
                     }
                     else
                     {
                         Message = "Ange ett telefonnummer med 10 siffror.";
                     }
                 }
-                if(NewPic != null)
-                {
-                    user.ProfilePicture = NewPic;
-                }
-
-                var isSuccess = await _api.EditUser(user);
+                User.ProfilePicture = Pic;
+                var isSuccess = await _api.EditUser(User);
                 if (isSuccess)
                 {
                     Message = "Ändringarna sparade!";
@@ -138,5 +199,24 @@ namespace Inspark.Viewmodels
                 IsLoading = false;
             }
         });
+
+        public async void OnLoad()
+        {
+            IsLoading = true;
+            User = await _api.GetLoggedInUser();
+            Pic = User.ProfilePicture;
+            PhoneNumber = User.PhoneNumber;
+            if(Pic != null)
+            {
+                IsVisible = true;
+            }
+            IsLoading = false;
+
+        }
+
+        public EditUserViewModel()
+        {
+            OnLoad();
+        }
     }
 }
