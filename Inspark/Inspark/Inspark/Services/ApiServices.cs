@@ -21,29 +21,9 @@ namespace Inspark.Services
         // Connection string for calls to our web api
         private string ConnectionString = "https://insparkwebapi.azurewebsites.net/";
 
-
-        public async Task<ObservableCollection<GroupEvent>> GetAllGroupEvents()
-        {
-            // declare a new http client to use for calls to api
-            var client = new HttpClient();
-            // get data from api
-            var response = await client.GetAsync(ConnectionString+"api/GroupEvent");
-            // Checks status code that gets returned from api call
-            response.EnsureSuccessStatusCode();
-            // reades the Json string
-            var result = await response.Content.ReadAsStringAsync();
-            // Converts to an object from Json
-            var list = JsonConvert.DeserializeObject<ObservableCollection<GroupEvent>>(result);
-            // reurns list of objects
-            return list;
-
-        }
-
         public async Task<bool> LoginAsync(string userName, string password)
         {
-            /* gets username and password from viewmodel
-             *  an turns them into key value pairs
-             */
+            /// Gets username and password from viewmodel and turns them into key value pairs.
             var keyValue = new List<KeyValuePair<string, string>>
             {
                 new KeyValuePair<string, string>("UserName", userName),
@@ -51,21 +31,27 @@ namespace Inspark.Services
                 new KeyValuePair<string, string>("grant_type", "password")
             };
 
-            // creates a http requestmessage.
+            // Creates a http requestmessage.
             var request = new HttpRequestMessage(HttpMethod.Post, ConnectionString+"token");
             request.Content = new FormUrlEncodedContent(keyValue);
-            
+
+            // Declare a new http client to use for calls to api
             var client = new HttpClient();
-            // sends message to api and waits for return.
+
+            // Sends message to api and waits for return.
             var response = await client.SendAsync(request);
-            // reds return message.
+
+            // Reads return message.
             var jwt = await response.Content.ReadAsStringAsync();
-            // converts to Json object.
+
+            // Converts to Json object.
             JObject jwtDynamic = JsonConvert.DeserializeObject<dynamic>(jwt);
-            // gets specifik values from Json object.
+
+            // Gets specifik values from Json object.
             var accessToken = jwtDynamic.Value<string>("access_token");
             var accessTokenExpires = jwtDynamic.Value<DateTime>(".expires");
-            // sets properties in settings.cs with values.
+
+            // Sets properties in settings.cs with values.
             Settings.AccessTokenExpires = accessTokenExpires;
             Settings.AccessToken = accessToken;
             return response.IsSuccessStatusCode;
@@ -90,26 +76,6 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<ObservableCollection<User>> GetAllUsers()
-        {
-           var client = new HttpClient();
-           var response = await client.GetAsync(ConnectionString+"api/user/");
-           response.EnsureSuccessStatusCode();
-           var result = await response.Content.ReadAsStringAsync();
-           var list = JsonConvert.DeserializeObject<ObservableCollection<User>>(result);
-           return list;
-        }
-
-        public async Task<ObservableCollection<Section>> GetAllSections()
-        {
-            var client = new HttpClient();
-            var response = await client.GetAsync(ConnectionString+"api/section/");
-            response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadAsStringAsync();
-            var list = JsonConvert.DeserializeObject<ObservableCollection<Section>>(result);
-            return list;
-        }
-
         public async Task<User> GetLoggedInUser()
         {
             var userName = Settings.UserName;
@@ -128,6 +94,8 @@ namespace Inspark.Services
             var user = JsonConvert.DeserializeObject<User>(json);
             return user;
         }
+
+        // CREATE *SOMETHING*
  
         public async Task<bool> CreateEvent(string tile, string location, DateTime date, string desc)
         {
@@ -142,7 +110,6 @@ namespace Inspark.Services
             var json = JsonConvert.SerializeObject(model);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await client.PostAsync(ConnectionString+"api/user", content);
-
             return response.IsSuccessStatusCode;
         }
 
@@ -152,7 +119,6 @@ namespace Inspark.Services
             var json = JsonConvert.SerializeObject(group);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await client.PostAsync(ConnectionString+"api/group", content);
-
             return response.IsSuccessStatusCode;
         }
 
@@ -162,9 +128,10 @@ namespace Inspark.Services
             var json = JsonConvert.SerializeObject(post);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await client.PostAsync(ConnectionString+"api/newspost", content);
-
             return response.IsSuccessStatusCode;
         }
+
+        // GET ALL *SOMETHING*
 
         public async Task<ObservableCollection<NewsPost>> GetAllNewsPosts()
         {
@@ -183,7 +150,17 @@ namespace Inspark.Services
                 return list;
             }
         }
-        
+
+        public async Task<ObservableCollection<GroupEvent>> GetAllGroupEvents()
+        {
+            var client = new HttpClient();
+            var response = await client.GetAsync(ConnectionString + "api/GroupEvent");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<ObservableCollection<GroupEvent>>(result);
+            return list;
+        }
+
         public async Task<ObservableCollection<Group>> GetAllGroups()
         {
             var client = new HttpClient();
@@ -191,6 +168,26 @@ namespace Inspark.Services
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsStringAsync();
             var list = JsonConvert.DeserializeObject<ObservableCollection<Group>>(result);
+            return list;
+        }
+
+        public async Task<ObservableCollection<Section>> GetAllSections()
+        {
+            var client = new HttpClient();
+            var response = await client.GetAsync(ConnectionString + "api/section/");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<ObservableCollection<Section>>(result);
+            return list;
+        }
+
+        public async Task<ObservableCollection<User>> GetAllUsers()
+        {
+            var client = new HttpClient();
+            var response = await client.GetAsync(ConnectionString + "api/user/");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<ObservableCollection<User>>(result);
             return list;
         }
     }
