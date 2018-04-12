@@ -5,7 +5,7 @@
              xmlns:vm="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              x:Class="Inspark.Views.MainPage">
     
-    <!-- Creating five rows for the whole page. -->
+    <!-- Creating a grid with five rows for the whole page. -->
     <Grid ColumnSpacing="0" RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="56"/>
@@ -27,7 +27,6 @@
 
             <!-- Specifies the value for each column in the first row. -->
             <StackLayout Grid.Column="0" VerticalOptions="Center" Spacing="0">
-                <Image HeightRequest="30" Source="hammenu.png"/>
             </StackLayout>
 
             <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
