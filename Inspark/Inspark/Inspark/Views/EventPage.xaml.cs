@@ -21,7 +21,7 @@ namespace Inspark.Views
                 Title = e.Title,
                 Id = e.Id,
                 Location = e.Location,
-                Date = e.Date,
+                Date = e.TimeForEvent,
                 Description = e.Description
             };
 
