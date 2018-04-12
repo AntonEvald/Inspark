@@ -15,10 +15,11 @@
                     <StackLayout>
                         <Button Text="Visa profilsidan" BackgroundColor="LightBlue" Clicked="ShowProfileButton_Clicked"/>
                         <Button Text="Ändra användaruppgifter" BackgroundColor="LightBlue" Clicked="ChangeUserDetailsButton_Clicked"/>
+                        <Button Text="Ändra lösenord" BackgroundColor="LightBlue" Clicked="ChangePassword_Clicked"/>
                     </StackLayout>
 
                     <StackLayout>
-                        <Button Text="Logga ut" BackgroundColor="LightCoral" Clicked="LogOut_Clicked" Command="{Binding LogOutCommand}"/>
+                        <Button Text="Logga ut" BackgroundColor="LightCoral" Clicked="LogOut_Clicked" Command="{Binding LogOutCommand}" VerticalOptions="End"/>
                     </StackLayout>
 
                 </StackLayout>

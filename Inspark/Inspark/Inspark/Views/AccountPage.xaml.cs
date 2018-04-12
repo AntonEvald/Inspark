@@ -29,7 +29,14 @@ namespace Inspark.Views
             InsparkAccount.Content = page.Content;
         }
 
-		private void LogOut_Clicked(object sender, EventArgs e)
+        private void ChangePassword_Clicked(object sender, EventArgs e)
+        {
+            var page = new ChangePasswordPage();
+            InsparkAccount.Content = page.Content;
+        }
+
+
+        private void LogOut_Clicked(object sender, EventArgs e)
 		{
 			Application.Current.MainPage = new NavigationPage(new FrontPage());
 		}

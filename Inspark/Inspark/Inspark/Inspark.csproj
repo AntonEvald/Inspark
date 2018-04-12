@@ -25,8 +25,8 @@
     <Compile Update="Views\ChangeGroupPage.xaml.cs">
       <DependentUpon>ChangeGroupPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\ChangeUserDetailsPage.xaml.cs">
-      <DependentUpon>ChangeUserDetailsPage.xaml</DependentUpon>
+    <Compile Update="Views\EditUserPage.xaml.cs">
+      <DependentUpon>EditUserPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\CreateGroupPage.xaml.cs">
       <DependentUpon>CreateGroupPage.xaml</DependentUpon>
@@ -61,6 +61,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ChangeGroupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ChangePasswordPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ChatPage.xaml">

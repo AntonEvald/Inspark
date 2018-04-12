@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Inspark.Views.ChangeUserDetailsPage"
+             xmlns:vm="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
+             xmlns:va="clr-namespace:Inspark.Services;assembly=Inspark">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <va:BooleanNegationConverter x:Key="bnc"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid.BindingContext>
+                <vm:EditUserViewModel/>
+            </Grid.BindingContext>
+            <ContentView IsVisible="{Binding IsLoading, Converter={StaticResource bnc}}" x:Name="ChangeUserDetailsContent">
+                <ScrollView>
+                    <StackLayout Padding="15">
+                        <Label Text="Ange nytt telefonnummer:"/>
+                        <Entry Placeholder="Nytt telefonnummer" Text="{Binding NewPhoneNumber}" Keyboard="Numeric" x:Name="PhoneNumber">
+                            <Entry.Behaviors>
+                                <va:NumberBehavior x:Name="NumberValidator"/>
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Button Text="Byt profilbild" Command="{Binding PickPhotoCommand}"/>
+                        <Label Text="Ange ditt nuvarande lösenord för att bekräfta dina ändringar:"/>
+                        <Entry Placeholder="Nuvarande lösenord" Text="{Binding CurrentPassword}" IsPassword="True"/>
+                        <Label Text="{Binding Message}" TextColor="Red"/>
+                        <Button Text="Bekräfta ändringar" Command="{Binding ConfirmCommand}" BackgroundColor="LightGreen" VerticalOptions="End"/>
+                        <Button Text="Avbryt" Clicked="Abort_Clicked" BackgroundColor="PaleVioletRed" VerticalOptions="End"/>
+                    </StackLayout>
+                </ScrollView>
+            </ContentView>
+            <ActivityIndicator IsVisible="{Binding IsLoading}" IsRunning="{Binding IsLoading}"
+            VerticalOptions="Center" HorizontalOptions="Center" Color="Blue" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
