@@ -8,6 +8,7 @@ namespace Inspark.Services
 {
     class TextOnlyBehavior : Behavior<Entry>
     {
+        // This class is used for text only validation. 
         protected override void OnAttachedTo(Entry bindable)
         {
             base.OnAttachedTo(bindable);

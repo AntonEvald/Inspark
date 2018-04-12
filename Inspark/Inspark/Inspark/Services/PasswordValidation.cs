@@ -5,6 +5,7 @@ namespace Inspark.Services
 {
     public class  PasswordBehavior : Behavior<Entry>
     {
+        // This class is used for password validation. 
         protected override void OnAttachedTo(Entry bindable)
         {
             base.OnAttachedTo(bindable);
