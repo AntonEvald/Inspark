@@ -24,7 +24,6 @@ namespace Inspark.Viewmodels
                     _imagePath = value;
                     OnPropertyChanged();
                 }
-                
             }
         }
 
@@ -41,10 +40,8 @@ namespace Inspark.Viewmodels
             {
                 return;
             }
-
             ImagePath = file.Path;
             var bild = File.ReadAllBytes(ImagePath);
-            //Sätt användarens bild till variabeln bild här när det finns en funktion för att hämta ut nuvarande användare.
         });
 
         public ICommand LogOutCommand
@@ -59,6 +56,5 @@ namespace Inspark.Viewmodels
                     });
             }
         }
-
     }
 }

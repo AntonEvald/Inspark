@@ -10,15 +10,8 @@ using XamForms.Controls;
 
 namespace Inspark.Viewmodels
 {
-    public class ScheduleViewModel : INotifyPropertyChanged
+    public class ScheduleViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void NotifyPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         public ObservableCollection<Event> SpecificDates = new ObservableCollection<Event>();
 
         public List<Event> Events = new List<Event>();
@@ -36,13 +29,13 @@ namespace Inspark.Viewmodels
             set
             {
                 _date = value;
-                NotifyPropertyChanged(nameof(Date));
+                OnPropertyChanged();
             }
         }
 
         public void TestList()
         {
-            var e = new Event
+            var exampleEventOne = new Event
             {
                 Title = "EfterFest",
                 Id = "01",
@@ -53,7 +46,7 @@ namespace Inspark.Viewmodels
                 Description = "HejHEj"
             };
 
-            var a = new Event
+            var exampleEventTwo = new Event
             {
                 Title = "EfterFest2",
                 Id = "01",
@@ -64,18 +57,20 @@ namespace Inspark.Viewmodels
                 Description = "HejHEj"
             };
 
-
-            Events.Add(e);
-            Events.Add(a);
-
+            Events.Add(exampleEventOne);
+            Events.Add(exampleEventTwo);
         }
 
-        private ObservableCollection<XamForms.Controls.SpecialDate> attendances;
+        private ObservableCollection<XamForms.Controls.SpecialDate> _attendances;
 
         public ObservableCollection<XamForms.Controls.SpecialDate> Attendances
         {
-            get { return attendances; }
-            set { attendances = value; NotifyPropertyChanged(nameof(Attendances)); }
+            get { return _attendances; }
+            set
+            {
+                _attendances = value;
+                OnPropertyChanged();
+            }
         }
 
         public ICommand DateChosen
