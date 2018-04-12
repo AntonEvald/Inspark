@@ -15,10 +15,5 @@ namespace Inspark.Viewmodels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        //private void OnPropertyChangedTwo(string property)
-        //{
-        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        //}
     }
 }

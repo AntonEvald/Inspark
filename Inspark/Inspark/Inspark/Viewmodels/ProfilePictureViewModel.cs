@@ -12,6 +12,7 @@ namespace Inspark.Viewmodels
 {
     class ProfilePictureViewModel : BaseViewModel
     {
+        // This class is used for the function of adding a profilepicture and the logout function. 
         private string _imagePath;
 
         public string ImagePath

@@ -15,6 +15,7 @@ namespace Inspark.Viewmodels
 {
     public class CreateNewsPostViewModel : BaseViewModel
     {
+        // This class is used for the create a newspost function. 
         private ApiServices _api = new ApiServices();
 
         private string _message;
