@@ -11,26 +11,7 @@ namespace Inspark.Viewmodels
 {
     public class AddUserToGroupViewModel : BaseViewModel
     {
-        public ObservableCollection<User> UserList { get; set; }
-        public ObservableCollection<Group> GroupList { get; set; }
-        private readonly ApiServices _api = new ApiServices();
-
-        public AddUserToGroupViewModel()
-        {
-            LoadCommand.Execute(null);
-            var b = GroupList;
-            var a = GroupList;
-        }
-
-        public Command LoadCommand
-        {
-            get
-            {
-                return new Command(async (obj) =>
-                {
-                    GroupList = await _api.GetAllGroups();
-                });
-            }
-        }
+       
+    
     }
 }

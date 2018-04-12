@@ -6,17 +6,17 @@
              xmlns:conv="clr-namespace:Inspark.Services;assembly=Inspark">
     <ContentPage.Content>
         <ContentView x:Name="News">
-            <StackLayout>
+            <StackLayout Padding="20">
                 <StackLayout.BindingContext>
                     <vm:NewsViewModel/>
                 </StackLayout.BindingContext>
                 <ListView x:Name="NewsList" 
-                      ItemsSource="{Binding NewsPosts}" 
-                      HasUnevenRows="True" 
-                      IsPullToRefreshEnabled="True" 
-                      IsRefreshing="{Binding IsRefreshing}" 
-                      RefreshCommand="{Binding RefreshCommand}" 
-                      ItemTapped="PostTapped">
+                        ItemsSource="{Binding NewsPosts}" 
+                        HasUnevenRows="True" 
+                        IsPullToRefreshEnabled="True" 
+                        IsRefreshing="{Binding IsRefreshing}" 
+                        RefreshCommand="{Binding RefreshCommand}" 
+                        ItemTapped="PostTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

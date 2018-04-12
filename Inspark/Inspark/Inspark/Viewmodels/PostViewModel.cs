@@ -50,24 +50,17 @@ namespace Inspark.Viewmodels
             var today = DateTime.Now;
             if (today.Year == Date.Year)
             {
-                DisplayDate = Date.Month.ToString(culture) + " " + Date.Day.ToString(culture);
+                DisplayDate = Date.Day.ToString() + " " + Date.ToString("MMMM", culture);
                 if (today.Month == Date.Month)
                 {
-                    if (today.Date.AddDays(-1) == Date.Date)
+                    DisplayDate = Date.Day.ToString() + " " + Date.ToString("MMMM", culture);
+                    if (today.Date.AddDays(-1).Day == Date.Day)
                     {
-                        DisplayDate = "Igår " + Date.Hour.ToString() + ":" + Date.Minute.ToString();
+                        DisplayDate = "Igår " + Date.ToString("HH:mm");
                     }
                     if (today.Day == Date.Day)
                     {
-                        DisplayDate = (today.Hour - Date.Hour).ToString() + " timmar sedan";
-                        if (today.Hour == Date.Hour)
-                        {
-                            DisplayDate = (today.Minute - Date.Minute).ToString() + " minuter sedan";
-                            if (today.Minute == Date.Minute)
-                            {
-                                DisplayDate = "Alldeles nyss";
-                            }
-                        }
+                        DisplayDate = "Idag " + Date.ToString("HH:mm");
                     }
                 }
                 else

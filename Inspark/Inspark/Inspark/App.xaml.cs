@@ -19,7 +19,14 @@ namespace Inspark
                 var vm = new LoginViewModel();
                 vm.LoginClick.Execute(null);
             }
-            MainPage = new NavigationPage(new FrontPage());
+            if(Settings.UserName != "" && Settings.UserPassword != "")
+            {
+                MainPage = new MainPage(new HomePage());
+            }
+            else
+            {
+                MainPage = new NavigationPage(new FrontPage());
+            }
 		}
 
 

@@ -14,11 +14,8 @@ namespace Inspark.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AddUserToGroupPage : ContentPage
 	{
-		private AddUserToGroupViewModel _add;
-		
 		public AddUserToGroupPage ()
 		{
-            BindingContext = _add = new AddUserToGroupViewModel();
 			InitializeComponent ();
 		}
 	}

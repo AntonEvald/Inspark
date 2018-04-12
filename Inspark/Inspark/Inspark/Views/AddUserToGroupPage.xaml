@@ -2,16 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
-             xmlns:services="clr-namespace:Inspark.Services;assembly=Inspark"
              x:Class="Inspark.Views.AddUserToGroupPage">
     <ContentPage.BindingContext>
         <viewmodels:AddUserToGroupViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
             <StackLayout>
-                <Picker ItemsSource="{Binding GroupList, Mode= TwoWay}" ItemDisplayBinding="{Binding Name}"/>
+            <ListView ItemsSource="{Binding Users}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding FirstName}"
+                                  Detail="{Binding LastName}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             </StackLayout>
-        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

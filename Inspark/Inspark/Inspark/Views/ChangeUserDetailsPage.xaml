@@ -15,31 +15,33 @@
                 <vm:EditUserViewModel/>
             </Grid.BindingContext>
             <ContentView IsVisible="{Binding IsLoading, Converter={StaticResource bnc}}" x:Name="ChangeUserDetailsContent">
-                <StackLayout>
-                    <Label Text="Byt lösenord:"/>
-                    <Entry x:Name="password" Placeholder="Nytt lösenord" IsPassword="true" Text="{Binding NewPassword}">
-                        <Entry.Behaviors>
-                            <va:PasswordBehavior x:Name="passwordValidator"/>
-                        </Entry.Behaviors>
-                    </Entry>
-                    <Entry x:Name="confirmPassword" Text="{Binding ConfirmNewPassword}" Placeholder="Bekräfta lösenord" IsPassword="true">
-                        <Entry.Behaviors>
-                            <va:ConfirmPasswordBehaviour x:Name="confirmPasswordBehavior" CompareToEntry="{Binding Source={x:Reference password}}" />
-                        </Entry.Behaviors>
-                    </Entry>
-                    <Label Text="Byt telefonnummer:"/>
-                    <Entry Placeholder="Nytt telefonnummer" Text="{Binding NewPhoneNumber}" Keyboard="Numeric" x:Name="PhoneNumber">
-                        <Entry.Behaviors>
-                            <va:NumberBehavior x:Name="NumberValidator"/>
-                        </Entry.Behaviors>
-                    </Entry>
-                    <Button Text="Byt profilbild" Command="{Binding PickPhotoCommand}"/>
-                    <Label Text="Ange ditt nuvarande lösenord för att bekräfta dina ändringar"/>
-                    <Entry Placeholder="Nuvarande lösenord" Text="{Binding CurrentPassword}" IsPassword="True"/>
-                    <Button Text="Bekräfta ändringar" Command="{Binding ConfirmCommand}"/>
-                    <Button Text="Avbryt" Clicked="Abort_Clicked"/>
-                    <Label Text="{Binding Message}" TextColor="Red"/>
-                </StackLayout>
+                <ScrollView>
+                    <StackLayout Padding="15">
+                        <Label Text="Byt lösenord:"/>
+                        <Entry x:Name="password" Placeholder="Nytt lösenord" IsPassword="true" Text="{Binding NewPassword}">
+                            <Entry.Behaviors>
+                                <va:PasswordBehavior x:Name="passwordValidator"/>
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Entry x:Name="confirmPassword" Text="{Binding ConfirmNewPassword}" Placeholder="Bekräfta lösenord" IsPassword="true">
+                            <Entry.Behaviors>
+                                <va:ConfirmPasswordBehaviour x:Name="confirmPasswordBehavior" CompareToEntry="{Binding Source={x:Reference password}}" />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label Text="Byt telefonnummer:"/>
+                        <Entry Placeholder="Nytt telefonnummer" Text="{Binding NewPhoneNumber}" Keyboard="Numeric" x:Name="PhoneNumber">
+                            <Entry.Behaviors>
+                                <va:NumberBehavior x:Name="NumberValidator"/>
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Button Text="Byt profilbild" Command="{Binding PickPhotoCommand}"/>
+                        <Label Text="Ange ditt nuvarande lösenord för att bekräfta dina ändringar"/>
+                        <Entry Placeholder="Nuvarande lösenord" Text="{Binding CurrentPassword}" IsPassword="True"/>
+                        <Label Text="{Binding Message}" TextColor="Red"/>
+                        <Button Text="Bekräfta ändringar" Command="{Binding ConfirmCommand}"/>
+                        <Button Text="Avbryt" Clicked="Abort_Clicked"/>
+                    </StackLayout>
+                </ScrollView>
             </ContentView>
             <ActivityIndicator IsVisible="{Binding IsLoading}" IsRunning="{Binding IsLoading}"
             VerticalOptions="Center" HorizontalOptions="Center" Color="Blue" />
