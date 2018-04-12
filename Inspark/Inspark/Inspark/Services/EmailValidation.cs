@@ -5,6 +5,7 @@ namespace Inspark.Services
 {
     public class EmailBehaviors : Behavior<Entry>
     {
+        // This class is used for email validation. 
 		protected override void OnAttachedTo(Entry bindable)
 		{
             base.OnAttachedTo(bindable);

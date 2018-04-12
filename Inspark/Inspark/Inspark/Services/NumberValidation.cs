@@ -8,6 +8,7 @@ namespace Inspark.Services
 {
     class NumberBehavior : Behavior<Entry>
     {
+        // This class is used for number validation. 
         protected override void OnAttachedTo(Entry bindable)
         {
             base.OnAttachedTo(bindable);

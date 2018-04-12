@@ -1,39 +1,39 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Inspark.Models;
+using Inspark.Services;
 
 namespace Inspark.Viewmodels
 {
-    public class EventListViewModel
+    public class EventListViewModel : BaseViewModel
     {
-        public ObservableCollection<Event> events = new ObservableCollection<Event>();
+        ApiServices _api = new ApiServices();
+        
+        private ObservableCollection<Event> _events;
 
-        public void PopulateList()
+        public ObservableCollection<Event> Events
         {
-            var exampleEventOne = new Event
+            get { return _events; }
+            set
             {
-                Title = "EfterFest",
-                Id = "01",
-                Location = "Landsvägsgatan",
-                TimeForEvent = new DateTime(2018, 03, 30, 16, 45, 0),
-                //IEnumerable<User> Invited 
-                //IEnumerable<User> Attending 
-                Description = "HejHEj"
-            };
+                if(_events != value)
+                {
+                    _events = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
-            var exampleEventTwo = new Event
-            {
-                Title = "EfterFest2",
-                Id = "01",
-                Location = "Landsvägsgatan",
-                TimeForEvent = new DateTime(2018, 03, 28, 16, 45, 0),
-                //IEnumerable<User> Invited 
-                //IEnumerable<User> Attending 
-                Description = "HejHEj"
-            };
+        public async void PopulateList()
+        {
+            var events = await _api.GetAllEvents();
+            events = new ObservableCollection<Event>(events);
+            Events = events;
+        }
 
-            events.Add(exampleEventOne);
-            events.Add(exampleEventTwo);
+        public EventListViewModel()
+        {
+            PopulateList();
         }
     }
 }
