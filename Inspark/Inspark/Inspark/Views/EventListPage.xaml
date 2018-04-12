@@ -16,7 +16,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                       <TextCell Text="{Binding Title}"
-                                Detail="{Binding Date, StringFormat='{}{0:HH:mm}'}"
+                                Detail="{Binding TimeForEvent, StringFormat='{}{0:yyyy/MM/dd : HH:mm}'}"
                                 />
                     </DataTemplate>
                 </ListView.ItemTemplate>
