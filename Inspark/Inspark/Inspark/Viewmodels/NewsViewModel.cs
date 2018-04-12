@@ -18,47 +18,46 @@ namespace Inspark.Viewmodels
 {
     public class NewsViewModel : BaseViewModel
     {
-        public ApiServices api = new ApiServices();
+        private ApiServices _api = new ApiServices();
 
-        private ObservableCollection<NewsPost> newsPosts;
+        private ObservableCollection<NewsPost> _newsPosts;
 
         public ObservableCollection<NewsPost> NewsPosts
         {
 
-            get { return newsPosts; }
+            get { return _newsPosts; }
             set
             {
-                if(newsPosts != value)
+                if(_newsPosts != value)
                 {
-                    newsPosts = value;
+                    _newsPosts = value;
                     OnPropertyChanged();
                 }
-
             }
         }
 
-        private bool isRefreshing = false;
+        private bool _isRefreshing = false;
 
         public bool IsRefreshing
         {
-            get { return isRefreshing; }
+            get { return _isRefreshing; }
             set
             {
-                isRefreshing = value;
+                _isRefreshing = value;
                 OnPropertyChanged();
             }
         }
 
-        private NewsPost itemSelected;
+        private NewsPost _itemSelected;
 
         public NewsPost ItemSelected
         {
-            get { return itemSelected; }
+            get { return _itemSelected; }
             set
             {
-                if(itemSelected != value)
+                if(_itemSelected != value)
                 {
-                    itemSelected = value;
+                    _itemSelected = value;
                     OnPropertyChanged();
                 }
             }
@@ -96,7 +95,7 @@ namespace Inspark.Viewmodels
 
         private async void RefreshListView()
         {
-            var posts = await api.GetAllNewsPosts();
+            var posts = await _api.GetAllNewsPosts();
             posts = new ObservableCollection<NewsPost>(posts.OrderByDescending(i => i.Date));
             if(posts.Count < 1)
             {
