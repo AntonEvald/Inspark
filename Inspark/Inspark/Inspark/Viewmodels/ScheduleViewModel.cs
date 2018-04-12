@@ -12,6 +12,7 @@ namespace Inspark.Viewmodels
 {
     public class ScheduleViewModel : BaseViewModel
     {
+        // This class is used for the schedule function.
         public ObservableCollection<Event> SpecificDates = new ObservableCollection<Event>();
 
         public List<Event> Events = new List<Event>();
