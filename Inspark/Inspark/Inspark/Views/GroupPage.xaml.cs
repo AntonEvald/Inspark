@@ -15,6 +15,32 @@ namespace Inspark.Views
 		public GroupPage ()
 		{
 			InitializeComponent ();
+            GroupView.Content = new GroupPostsPage().Content;
 		}
-	}
+
+        public void Members_Tapped(object sender, EventArgs e)
+        {
+
+        }
+
+        public void Events_Tapped(object sender, EventArgs e)
+        {
+
+        }
+
+        public void Fadder_Tapped(object sender, EventArgs e)
+        {
+
+        }
+
+        public void Messages_Tapped(object sender, EventArgs e)
+        {
+
+        }
+
+        public void Home_Tapped(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

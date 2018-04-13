@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Inspark.Views.GroupPostsPage"
+             xmlns:vm="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
+             xmlns:conv="clr-namespace:Inspark.Services;assembly=Inspark">
+    <ContentView.BindingContext>
+        <vm:GroupPostsViewModel/>
+    </ContentView.BindingContext>
+  <ContentView.Content>
+      <StackLayout Padding="15">
+            <StackLayout.BindingContext>
+                <vm:GroupPostsViewModel/>
+            </StackLayout.BindingContext>
+            <Label Text="Gruppinlägg" FontSize="Large"/>
+            <ListView x:Name="GroupPostsList" 
+                        ItemsSource="{Binding GroupPosts}" 
+                        HasUnevenRows="True" 
+                        IsPullToRefreshEnabled="True" 
+                        IsRefreshing="{Binding IsRefreshing}" 
+                        RefreshCommand="{Binding RefreshCommand}" 
+                        ItemTapped="PostTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <StackLayout.Resources>
+                                    <ResourceDictionary>
+                                        <conv:ByteArrayToImageSourceConverter x:Key="bic"/>
+                                    </ResourceDictionary>
+                                </StackLayout.Resources>
+                                <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
+                                <Label Text="{Binding Text}"  TextColor="DarkGray" FontSize="Small" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+      </StackLayout>
+  </ContentView.Content>
+</ContentView>

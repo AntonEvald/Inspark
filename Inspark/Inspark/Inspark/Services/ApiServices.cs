@@ -40,6 +40,24 @@ namespace Inspark.Services
 
         }
 
+        public async Task<ObservableCollection<GroupPost>> GetAllGroupPosts()
+        {
+            var client = new HttpClient();
+            var response = await client.GetAsync(ConnectionString + "api/grouppost");
+            var success = response.IsSuccessStatusCode;
+            if (success)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                var list = JsonConvert.DeserializeObject<ObservableCollection<GroupPost>>(result);
+                return list;
+            }
+            else
+            {
+                var list = new ObservableCollection<GroupPost>();
+                return list;
+            }
+        }
+
         public async Task<bool> LoginAsync(string userName, string password)
         {
             /* gets username and password from viewmodel
