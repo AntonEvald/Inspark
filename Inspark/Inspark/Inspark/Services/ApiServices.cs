@@ -90,6 +90,16 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<bool> CreateGroupPost(GroupPost post)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(post);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/GroupPost", content);
+
+            return response.IsSuccessStatusCode;
+        }
+
         public Task<bool> ChangePassword(string oldPassword, string newPassword, string confirmPassword, string token)
         {
             throw new NotImplementedException();
@@ -180,7 +190,7 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> CreatePost(NewsPost post)
+        public async Task<bool> CreateNewsPost(NewsPost post)
         {
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(post);

@@ -30,7 +30,7 @@ namespace Inspark.Views
 
         public void Fadder_Tapped(object sender, EventArgs e)
         {
-
+            GroupView.Content = new FadderPage().Content;
         }
 
         public void Messages_Tapped(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace Inspark.Views
 
         public void Home_Tapped(object sender, EventArgs e)
         {
-
+            GroupView.Content = new GroupPostsPage().Content;
         }
     }
 }

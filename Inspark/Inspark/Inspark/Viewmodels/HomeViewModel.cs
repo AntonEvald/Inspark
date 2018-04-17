@@ -45,22 +45,37 @@ namespace Inspark.Viewmodels
             }
         }
 
-        private bool _isRefreshing;
+        private bool _newsIsRefreshing;
 
-        public bool IsRefreshing
+        public bool NewsIsRefreshing
         {
-            get { return _isRefreshing; }
+            get { return _newsIsRefreshing; }
             set
             {
-                if(_isRefreshing != value)
+                if(_newsIsRefreshing != value)
                 {
-                    _isRefreshing = value;
+                    _newsIsRefreshing = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        public ICommand RefreshCommand
+        private bool _groupIsRefreshing;
+
+        public bool GroupIsRefreshing
+        {
+            get { return _groupIsRefreshing; }
+            set
+            {
+                if (_groupIsRefreshing != value)
+                {
+                    _groupIsRefreshing = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public ICommand RefreshNewsCommand
         {
             get
             {
@@ -71,9 +86,20 @@ namespace Inspark.Viewmodels
             }
         }
 
+        public ICommand RefershGroupCommand
+        {
+            get
+            {
+                return new Command(() =>
+                {
+                    RefreshGroupListView();
+                });
+            }
+        }
+
         private async void RefreshNewsListView()
         {
-            IsRefreshing = true;
+            NewsIsRefreshing = true;
             var posts = await _api.GetAllNewsPosts();
             posts = new ObservableCollection<NewsPost>(posts.OrderByDescending(i => i.Date));
             if (posts.Count < 1)
@@ -89,12 +115,12 @@ namespace Inspark.Viewmodels
                 posts.Add(post);
             }
             NewsPosts = posts;
-            IsRefreshing = false;
+            NewsIsRefreshing = false;
         }
 
         private async void RefreshGroupListView()
         {
-            IsRefreshing = true;
+            GroupIsRefreshing = true;
             var posts = await _api.GetAllGroupPosts();
             posts = new ObservableCollection<GroupPost>(posts.OrderByDescending(i => i.Date));
             if (posts.Count < 1)
@@ -110,7 +136,7 @@ namespace Inspark.Viewmodels
                 posts.Add(post);
             }
             GroupPosts = posts;
-            IsRefreshing = false;
+            GroupIsRefreshing = false;
         }
 
         public HomeViewModel()

@@ -27,8 +27,8 @@
                                   ItemsSource="{Binding NewsPosts}" 
                                   RowHeight="60" 
                                   ItemTapped="NewsItemTapped" 
-                                  IsRefreshing="{Binding IsRefreshing}" 
-                                  RefreshCommand="{Binding RefreshCommand}" 
+                                  IsRefreshing="{Binding NewsIsRefreshing}" 
+                                  RefreshCommand="{Binding RefreshNewsCommand}" 
                                   IsPullToRefreshEnabled="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -55,8 +55,8 @@
                                   ItemsSource="{Binding GroupPosts}" 
                                   RowHeight="60"
                                   ItemTapped="GroupItemTapped" 
-                                  IsRefreshing="{Binding IsRefreshing}" 
-                                  RefreshCommand="{Binding RefreshCommand}" 
+                                  IsRefreshing="{Binding GroupIsRefreshing}" 
+                                  RefreshCommand="{Binding RefreshGroupCommand}" 
                                   IsPullToRefreshEnabled="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>

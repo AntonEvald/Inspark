@@ -4,7 +4,6 @@ using Inspark.Views;
 using Plugin.Media;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,9 +12,8 @@ using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
-    public class CreateNewsPostViewModel : BaseViewModel
+    class CreateGroupPostViewModel : BaseViewModel
     {
-        // This class is used for the create a newspost function. 
         private ApiServices _api = new ApiServices();
 
         private string _message;
@@ -25,7 +23,7 @@ namespace Inspark.Viewmodels
             get { return _message; }
             set
             {
-                if(_message != value)
+                if (_message != value)
                 {
                     _message = value;
                     OnPropertyChanged();
@@ -110,9 +108,9 @@ namespace Inspark.Viewmodels
         public ICommand PostCommand => new Command(async () =>
         {
             var user = await _api.GetLoggedInUser();
-            if(_postTitle != null && _postTitle != "" && PostText != null && _postText != "")
+            if (_postTitle != null && _postTitle != "" && PostText != null && _postText != "")
             {
-                var post = new NewsPost()
+                var post = new GroupPost()
                 {
                     Title = _postTitle,
                     Text = _postText,
@@ -123,10 +121,10 @@ namespace Inspark.Viewmodels
                 };
                 string desc = post.Text.Split('.', '\n').First();
                 post.Description = desc;
-                if (await _api.CreateNewsPost(post))
+                if (await _api.CreateGroupPost(post))
                 {
                     Message = "En post har skapats!";
-                    Application.Current.MainPage = new MainPage(new HomePage());
+                    Application.Current.MainPage = new MainPage(new GroupPage());
                 }
                 else
                 {
@@ -166,5 +164,6 @@ namespace Inspark.Viewmodels
             PostImage = null;
             IsVisible = false;
         });
+    
     }
 }
