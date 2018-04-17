@@ -26,6 +26,13 @@ namespace Inspark.Views
             HomePageContent.Content = page.Content;
         }
 
+        public void GroupItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            GroupPost selected = e.Item as GroupPost;
+            var page = new PostPage(selected);
+            HomePageContent.Content = page.Content;
+        }
+
         public void ViewAllNewsTapped(object sender, EventArgs e)
         {
             var page = new NewsPage();

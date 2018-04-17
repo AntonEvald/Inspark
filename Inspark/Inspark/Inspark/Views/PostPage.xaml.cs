@@ -22,5 +22,12 @@ namespace Inspark.Views
             model = new PostViewModel(post);
             Content.BindingContext = model;
 		}
+
+        public PostPage(GroupPost post)
+        {
+            InitializeComponent();
+            model = new PostViewModel(post);
+            Content.BindingContext = model;
+        }
 	}
 }

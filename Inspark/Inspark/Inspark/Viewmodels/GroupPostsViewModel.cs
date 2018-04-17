@@ -80,17 +80,14 @@ namespace Inspark.Viewmodels
             {
                 return new Command(() =>
                 {
-                    IsRefreshing = true;
-
                     RefreshListView();
-
-                    IsRefreshing = false;
                 });
             }
         }
 
         private async void RefreshListView()
         {
+            IsRefreshing = true;
             var posts = await _api.GetAllGroupPosts();
             posts = new ObservableCollection<GroupPost>(posts.OrderByDescending(i => i.Date));
             if (posts.Count < 1)
@@ -109,13 +106,12 @@ namespace Inspark.Viewmodels
                 posts.Add(post);
             }
             GroupPosts = posts;
+            IsRefreshing = false;
         }
 
         public GroupPostsViewModel()
         {
-            IsRefreshing = true;
             RefreshListView();
-            IsRefreshing = false;
         }
 
     }

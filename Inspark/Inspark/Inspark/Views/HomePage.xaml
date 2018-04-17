@@ -23,12 +23,13 @@
                                 </Label.GestureRecognizers>
                             </Label>
                         </StackLayout>
-                        <ListView x:Name="NewsList" ItemsSource="{Binding NewsPosts}" 
-                                  RowHeight="60" ItemTapped="NewsItemTapped" 
+                        <ListView x:Name="NewsList" 
+                                  ItemsSource="{Binding NewsPosts}" 
+                                  RowHeight="60" 
+                                  ItemTapped="NewsItemTapped" 
                                   IsRefreshing="{Binding IsRefreshing}" 
                                   RefreshCommand="{Binding RefreshCommand}" 
-                                  IsPullToRefreshEnabled="True"
-                                  HasUnevenRows="True">
+                                  IsPullToRefreshEnabled="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -50,7 +51,13 @@
                                 </Label.GestureRecognizers>
                             </Label>
                         </StackLayout>
-                        <ListView x:Name="GroupList" ItemsSource="{Binding GroupPosts}" RowHeight="60">
+                        <ListView x:Name="GroupList" 
+                                  ItemsSource="{Binding GroupPosts}" 
+                                  RowHeight="60"
+                                  ItemTapped="GroupItemTapped" 
+                                  IsRefreshing="{Binding IsRefreshing}" 
+                                  RefreshCommand="{Binding RefreshCommand}" 
+                                  IsPullToRefreshEnabled="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>

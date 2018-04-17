@@ -34,6 +34,9 @@
     <Compile Update="Views\DeleteUserFromGroupPage.xaml.cs">
       <DependentUpon>DeleteUserFromGroupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\NewsPostsPage.xaml.cs">
+      <DependentUpon>NewsPostsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\RegisterConfirmEmailPage.xaml.cs">
       <DependentUpon>RegisterConfirmEmailPage.xaml</DependentUpon>
     </Compile>
@@ -102,7 +105,7 @@
     <EmbeddedResource Update="Views\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\NewsPage.xaml">
+    <EmbeddedResource Update="Views\NewsPostsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PostPage.xaml">

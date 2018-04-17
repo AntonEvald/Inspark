@@ -8,7 +8,7 @@
         <ContentView x:Name="News">
             <StackLayout Padding="20">
                 <StackLayout.BindingContext>
-                    <vm:NewsViewModel/>
+                    <vm:NewsPostsViewModel/>
                 </StackLayout.BindingContext>
                 <ListView x:Name="NewsList" 
                         ItemsSource="{Binding NewsPosts}" 

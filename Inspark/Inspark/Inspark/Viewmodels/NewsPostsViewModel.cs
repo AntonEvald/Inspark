@@ -16,7 +16,7 @@ using System.Linq;
 
 namespace Inspark.Viewmodels
 {
-    public class NewsViewModel : BaseViewModel
+    public class NewsPostsViewModel : BaseViewModel
     {
         private ApiServices _api = new ApiServices();
 
@@ -84,17 +84,14 @@ namespace Inspark.Viewmodels
             {
                 return new Command(() =>
                 {
-                    IsRefreshing = true;
-
                     RefreshListView();
-
-                    IsRefreshing = false;
                 });
             }
         }
 
         private async void RefreshListView()
         {
+            IsRefreshing = true;
             var posts = await _api.GetAllNewsPosts();
             posts = new ObservableCollection<NewsPost>(posts.OrderByDescending(i => i.Date));
             if(posts.Count < 1)
@@ -110,13 +107,12 @@ namespace Inspark.Viewmodels
                 posts.Add(post);
             }
             NewsPosts = posts;
+            IsRefreshing = false;
         }
 
-        public NewsViewModel()
+        public NewsPostsViewModel()
         {
-            IsRefreshing = true;
             RefreshListView();
-            IsRefreshing = false;
         }
     }
 }

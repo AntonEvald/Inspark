@@ -66,17 +66,14 @@ namespace Inspark.Viewmodels
             {
                 return new Command(() =>
                 {
-                    IsRefreshing = true;
-
                     RefreshNewsListView();
-
-                    IsRefreshing = false;
                 });
             }
         }
 
         private async void RefreshNewsListView()
         {
+            IsRefreshing = true;
             var posts = await _api.GetAllNewsPosts();
             posts = new ObservableCollection<NewsPost>(posts.OrderByDescending(i => i.Date));
             if (posts.Count < 1)
@@ -92,21 +89,34 @@ namespace Inspark.Viewmodels
                 posts.Add(post);
             }
             NewsPosts = posts;
+            IsRefreshing = false;
+        }
+
+        private async void RefreshGroupListView()
+        {
+            IsRefreshing = true;
+            var posts = await _api.GetAllGroupPosts();
+            posts = new ObservableCollection<GroupPost>(posts.OrderByDescending(i => i.Date));
+            if (posts.Count < 1)
+            {
+                var post = new GroupPost()
+                {
+                    Author = "Admin",
+                    Text = "Det finns inga poster ännu.",
+                    Title = "Det finns inga poster ännu.",
+                    Date = DateTime.Now,
+                    Picture = null
+                };
+                posts.Add(post);
+            }
+            GroupPosts = posts;
+            IsRefreshing = false;
         }
 
         public HomeViewModel()
         {
             RefreshNewsListView();
-
-            GroupPosts = new ObservableCollection<GroupPost>()
-            {
-                new GroupPost() { Id = 1, Description = "Info", Text = "Ja", Title = "Titel" },
-                new GroupPost() { Id = 2, Description = "Info", Text = "Ja", Title = "Titel" },
-                new GroupPost() { Id = 3, Description = "Info", Text = "Ja", Title = "Titel" },
-                new GroupPost() { Id = 4, Description = "Info", Text = "Ja", Title = "Titel" },
-                new GroupPost() { Id = 5, Description = "Info", Text = "Ja", Title = "Titel" },
-                new GroupPost() { Id = 6, Description = "Info", Text = "Ja", Title = "Titel" }
-            };
+            RefreshGroupListView();
         }
     }
 }
