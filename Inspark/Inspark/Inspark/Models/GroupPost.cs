@@ -14,5 +14,6 @@ namespace Inspark.Models
         public string SenderId { get; set; }
         public string Author { get; set; }
         public string Description { get; set; }
+        public int GroupId { get; set; }
     }
 }
