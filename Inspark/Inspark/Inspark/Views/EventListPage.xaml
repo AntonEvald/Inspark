@@ -6,12 +6,16 @@
     <ContentView x:Name="InsparkEventList">
     <ContentPage.Content>
 
-        <ScrollView>
+ 
             <StackLayout>
                 <StackLayout.BindingContext>
                     <viewmodels:EventListViewModel/>
                 </StackLayout.BindingContext>
-                <Button Text="Skapa Event" Clicked="CreateEvent_OnClicked"/>
+                    <StackLayout>
+                        <Button Text="Skapa Event" Clicked="CreateEvent_OnClicked"/>
+                    </StackLayout>
+                       <ScrollView>
+                    <StackLayout>
         <ListView ItemTapped="Handle_ItemTapped" ItemsSource="{Binding Events}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -21,8 +25,10 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+                        </StackLayout>
+                            </ScrollView>
             </StackLayout>
-        </ScrollView>
+
     </ContentPage.Content>
         </ContentView>
 </ContentPage>

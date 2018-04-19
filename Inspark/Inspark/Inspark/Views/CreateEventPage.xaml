@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              xmlns:system="clr-namespace:System;assembly=netstandard"
+             xmlns:validation="clr-namespace:Inspark.Services;assembly=Inspark"
              x:Class="Inspark.Views.CreateEventPage">
     <ContentPage.Content>
         <ScrollView>
@@ -11,15 +12,27 @@
                     <viewmodels:CreateEventViewModel/>
                 </StackLayout.BindingContext>
                 <StackLayout>
-                    <Entry Placeholder="Titel" Text="{Binding Title}"/>
+                    <Entry Placeholder="Titel" Text="{Binding Title}">
+                    <Entry.Behaviors>
+                        <validation:EmptyFieldValidation/>
+                    </Entry.Behaviors>
+                    </Entry>
                 </StackLayout>
 
                 <StackLayout>
-                    <Entry Placeholder="Adress" Text="{Binding Location}"/>
+                    <Entry Placeholder="Adress" Text="{Binding Location}">
+                                            <Entry.Behaviors>
+                        <validation:EmptyFieldValidation/>
+                    </Entry.Behaviors>
+                    </Entry>
                 </StackLayout>
 
                 <StackLayout>
-                    <Entry Placeholder="Beskrivning" Text="{Binding Description}"/>
+                    <Entry Placeholder="Beskrivning" Text="{Binding Description}">
+                                            <Entry.Behaviors>
+                        <validation:EmptyFieldValidation/>
+                    </Entry.Behaviors>
+                    </Entry>
                 </StackLayout>
 
                 <StackLayout>  
@@ -38,7 +51,7 @@
                 </Grid>
                 </StackLayout>
                 <Label Text="{Binding Message}"></Label>
-                <Button Text="Create Event" Command="{Binding CreateEventCommand}"></Button>
+                <Button Text="Create Event" IsEnabled="{Binding IsButtonEnabled}" Command="{Binding CreateEventCommand}"></Button>
             </StackLayout>
         </ScrollView>   
     </ContentPage.Content>
