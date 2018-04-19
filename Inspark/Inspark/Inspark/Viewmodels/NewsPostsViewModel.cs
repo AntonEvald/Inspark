@@ -93,7 +93,6 @@ namespace Inspark.Viewmodels
         {
             IsRefreshing = true;
             var posts = await _api.GetAllNewsPosts();
-            posts = new ObservableCollection<NewsPost>(posts.OrderByDescending(i => i.Date));
             if(posts.Count < 1)
             {
                 var post = new NewsPost()
@@ -102,10 +101,12 @@ namespace Inspark.Viewmodels
                     Text = "Det finns inga poster ännu.",
                     Title = "Det finns inga poster ännu.",
                     Date = DateTime.Now,
-                    Picture = null
+                    Picture = null,
+                    Pinned = true
                 };
                 posts.Add(post);
             }
+            posts = new ObservableCollection<NewsPost>(posts.OrderByDescending(i => i.Date).OrderByDescending(i => i.Pinned));
             NewsPosts = posts;
             IsRefreshing = false;
         }

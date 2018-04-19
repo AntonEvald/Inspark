@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using ImageCircle.Forms.Plugin.iOS;
 using Foundation;
 using UIKit;
 
@@ -24,6 +24,7 @@ namespace Inspark.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             XamForms.Controls.iOS.Calendar.Init();
+            ImageCircleRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

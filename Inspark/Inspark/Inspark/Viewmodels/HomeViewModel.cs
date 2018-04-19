@@ -75,6 +75,7 @@ namespace Inspark.Viewmodels
             }
         }
 
+
         public ICommand RefreshNewsCommand
         {
             get
@@ -101,8 +102,8 @@ namespace Inspark.Viewmodels
         {
             NewsIsRefreshing = true;
             var posts = await _api.GetAllNewsPosts();
-            posts = new ObservableCollection<NewsPost>(posts.OrderByDescending(i => i.Date));
-            if (posts.Count < 1)
+            var user = await _api.GetLoggedInUser();
+            if (posts.Count < 100)
             {
                 var post = new NewsPost()
                 {
@@ -110,10 +111,12 @@ namespace Inspark.Viewmodels
                     Text = "Det finns inga poster ännu.",
                     Title = "Det finns inga poster ännu.",
                     Date = DateTime.Now,
-                    Picture = null
+                    Picture = null,
+                    SenderPic = user.ProfilePicture
                 };
                 posts.Add(post);
             }
+            posts = new ObservableCollection<NewsPost>(posts.OrderByDescending(i => i.Date).OrderByDescending(i => i.Pinned));
             NewsPosts = posts;
             NewsIsRefreshing = false;
         }

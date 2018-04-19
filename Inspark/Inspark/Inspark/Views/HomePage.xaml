@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Inspark.Views.HomePage"
-             xmlns:Viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark">
+             xmlns:Viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
+             xmlns:conv="clr-namespace:Inspark.Services;assembly=Inspark"
+             xmlns:ci="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions">
     <Grid RowSpacing="25">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -25,17 +27,42 @@
                         </StackLayout>
                         <ListView x:Name="NewsList" 
                                   ItemsSource="{Binding NewsPosts}" 
-                                  RowHeight="60" 
                                   ItemTapped="NewsItemTapped" 
                                   IsRefreshing="{Binding NewsIsRefreshing}" 
                                   RefreshCommand="{Binding RefreshNewsCommand}" 
-                                  IsPullToRefreshEnabled="True">
+                                  IsPullToRefreshEnabled="True"
+                                  SeparatorVisibility="Default"
+                                  SeparatorColor="Green"
+                                  HasUnevenRows="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                            <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
-                                            <Label Text="{Binding Description}"  TextColor="DarkGray" FontSize="Small" />
+                                        <StackLayout Padding="0,0,0,10">
+                                            <Grid RowSpacing="0" Padding="0" Margin="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="70"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="60"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <StackLayout Grid.Column="1" Grid.Row="1">
+                                                    <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
+                                                    <Label Text="{Binding Description}"  TextColor="DarkGray" FontSize="Small" />
+                                                </StackLayout>
+                                                <StackLayout Grid.Column="0" Grid.Row="1">
+                                                    <StackLayout.Resources>
+                                                        <ResourceDictionary>
+                                                            <conv:ByteArrayToImageSourceConverter x:Key="bic"/>
+                                                        </ResourceDictionary>
+                                                    </StackLayout.Resources>
+                                                    <ci:CircleImage Source="{Binding SenderPic, Converter={StaticResource bic}}"/>
+                                                    <Label Text="{Binding Author}" FontSize="Micro"/>
+                                                </StackLayout>
+                                            </Grid>
                                         </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
@@ -61,10 +88,22 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                            <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
-                                            <Label Text="{Binding Text}"  TextColor="DarkGray" FontSize="Small" />
-                                        </StackLayout>
+                                        <Grid RowSpacing="0" Padding="-3" Margin="0, 5, 0, 5">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="80"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1" Grid.Column="1">
+                                                <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
+                                                <Label Text="{Binding Text}"  TextColor="DarkGray" FontSize="Small" />
+                                            </StackLayout>
+                                        </Grid>
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

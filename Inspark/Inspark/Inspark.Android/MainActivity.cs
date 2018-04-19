@@ -10,6 +10,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Android.Content;
 using Plugin.Media;
+using ImageCircle.Forms.Plugin.Droid;
 
 namespace Inspark.Droid
 {
@@ -27,6 +28,7 @@ namespace Inspark.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             XamForms.Controls.Droid.Calendar.Init();
+            ImageCircleRenderer.Init();
             LoadApplication(new App());
         }
 

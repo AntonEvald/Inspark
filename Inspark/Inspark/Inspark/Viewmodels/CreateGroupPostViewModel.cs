@@ -118,7 +118,7 @@ namespace Inspark.Viewmodels
                     Author = user.FirstName + " " + user.LastName,
                     SenderId = user.Id,
                     Date = DateTime.Now,
-                    GroupId = 1
+                    GroupId = 0
                 };
                 string desc = post.Text.Split('.', '\n').First();
                 post.Description = desc;

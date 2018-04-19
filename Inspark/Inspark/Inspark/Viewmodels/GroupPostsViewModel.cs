@@ -44,9 +44,9 @@ namespace Inspark.Viewmodels
             }
         }
 
-        private NewsPost _itemSelected;
+        private GroupPost _itemSelected;
 
-        public NewsPost ItemSelected
+        public GroupPost ItemSelected
         {
             get { return _itemSelected; }
             set
@@ -101,8 +101,6 @@ namespace Inspark.Viewmodels
                     Date = DateTime.Now,
                     Picture = null
                 };
-                posts.Add(post);
-                posts.Add(post);
                 posts.Add(post);
             }
             GroupPosts = posts;

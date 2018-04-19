@@ -107,6 +107,19 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private bool _isPinned;
+
+        public bool IsPinned
+        {
+            get { return _isPinned; }
+            set
+            {
+                _isPinned = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public ICommand PostCommand => new Command(async () =>
         {
             var user = await _api.GetLoggedInUser();
@@ -120,6 +133,7 @@ namespace Inspark.Viewmodels
                     Author = user.FirstName + " " + user.LastName,
                     SenderId = user.Id,
                     Date = DateTime.Now,
+                    Pinned = IsPinned
                 };
                 string desc = post.Text.Split('.', '\n').First();
                 post.Description = desc;

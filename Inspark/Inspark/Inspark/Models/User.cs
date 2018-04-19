@@ -17,6 +17,6 @@ namespace Inspark.Models
         public string PhoneNumber { get; set; }
         public string Role { get; set; }
         public string Section { get; set; }
-        public Group Group { get; set; }
+        //public virtual Group Group { get; set; }
     }
 }
