@@ -41,7 +41,18 @@ namespace Inspark.Viewmodels
                 _message = value;             
                 OnPropertyChanged();            
             }                                   
-        }                                       
+        }    
+
+        private bool _IsButtonEnabled { get; set; }
+        public bool IsButtonEnabled
+        {
+            get { return _IsButtonEnabled; }
+            set
+            {
+                _IsButtonEnabled = value;
+                OnPropertyChanged();
+            }
+        }
 
         
         private DateTime _startDate;
@@ -64,7 +75,7 @@ namespace Inspark.Viewmodels
 
             if (isSuccess)
             {
-                Application.Current.MainPage = new EventListPage();
+                Application.Current.MainPage = new MainPage(new EventListPage());
             }
             else
             {
