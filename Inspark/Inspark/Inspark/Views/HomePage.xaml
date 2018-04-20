@@ -5,7 +5,7 @@
              xmlns:Viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              xmlns:conv="clr-namespace:Inspark.Services;assembly=Inspark"
              xmlns:ci="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions">
-    <Grid RowSpacing="25">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>

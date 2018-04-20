@@ -100,7 +100,7 @@ namespace Inspark.Viewmodels
                     Title = "Det finns inga poster ännu.",
                     Description = "Det finns inga poster ännu",
                     Date = DateTime.Now,
-                    SenderPic = user.ProfilePicture,
+                    Pinned = true,
                     Picture = null
                 };
                 posts.Add(post);

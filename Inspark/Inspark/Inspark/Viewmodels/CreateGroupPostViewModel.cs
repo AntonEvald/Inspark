@@ -105,6 +105,19 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private bool _isPinned;
+
+        public bool IsPinned
+        {
+            get { return _isPinned; }
+            set
+            {
+                _isPinned = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public ICommand PostCommand => new Command(async () =>
         {
             var user = await _api.GetLoggedInUser();
@@ -117,6 +130,7 @@ namespace Inspark.Viewmodels
                     Picture = PostImage,
                     Author = user.FirstName + " " + user.LastName,
                     SenderId = user.Id,
+                    Pinned = IsPinned,
                     Date = DateTime.Now,
                     GroupId = 0
                 };
