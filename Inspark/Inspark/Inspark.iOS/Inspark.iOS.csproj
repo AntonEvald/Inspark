@@ -168,4 +168,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\search.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pin.png" />
+  </ItemGroup>
 </Project>

@@ -25,16 +25,22 @@
                 <Image Source="{Binding Picture, Converter={StaticResource bic}}"
                     VerticalOptions="Start" 
                     HorizontalOptions="Center"/>
-                <ci:CircleImage Source="{Binding SenderPic, Converter={StaticResource bic}}" 
+                <StackLayout HorizontalOptions="End" VerticalOptions="End">
+                    <ci:CircleImage Source="{Binding SenderPic, Converter={StaticResource bic}}" 
                                 Aspect="AspectFill"
-                                HorizontalOptions="End"
-                                VerticalOptions="End"/>
-                <Label Text="{Binding Author}"
-                    VerticalOptions="End"
-                    HorizontalOptions="End" />
-                <Label Text="{Binding DisplayDate}"
-                    VerticalOptions="End"
-                    HorizontalOptions="End" />
+                                BorderColor="White"
+                                BorderThickness="3"
+                                HeightRequest="60"
+                                WidthRequest="60"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"/>
+                    <Label Text="{Binding Author}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center" />
+                    <Label Text="{Binding DisplayDate}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center" />
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

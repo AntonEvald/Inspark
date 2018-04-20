@@ -37,31 +37,33 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <StackLayout Padding="0,0,0,10">
+                                        <StackLayout Padding="0,0,0,1">
                                             <Grid RowSpacing="0" Padding="0" Margin="0">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="5"/>
-                                                    <RowDefinition Height="70"/>
+                                                    <RowDefinition Height="*"/>
                                                     <RowDefinition Height="5"/>
                                                 </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="60"/>
                                                     <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="10"/>
                                                 </Grid.ColumnDefinitions>
 
                                                 <StackLayout Grid.Column="1" Grid.Row="1">
                                                     <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
                                                     <Label Text="{Binding Description}"  TextColor="DarkGray" FontSize="Small" />
                                                 </StackLayout>
-                                                <StackLayout Grid.Column="0" Grid.Row="1">
+                                                <StackLayout Grid.Column="0" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center">
                                                     <StackLayout.Resources>
                                                         <ResourceDictionary>
                                                             <conv:ByteArrayToImageSourceConverter x:Key="bic"/>
                                                         </ResourceDictionary>
                                                     </StackLayout.Resources>
-                                                    <ci:CircleImage Source="{Binding SenderPic, Converter={StaticResource bic}}"/>
+                                                    <ci:CircleImage BorderColor="White" BorderThickness="3" Source="{Binding SenderPic, Converter={StaticResource bic}}"/>
                                                     <Label Text="{Binding Author}" FontSize="Micro" HorizontalOptions="Center"/>
                                                 </StackLayout>
+                                                <Image Source="pin.png" HeightRequest="10" WidthRequest="10" IsVisible="{Binding Pinned}" Grid.Column="2" Grid.Row="1"/>
                                             </Grid>
                                         </StackLayout>
                                     </ViewCell>
@@ -88,22 +90,35 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Grid RowSpacing="0" Padding="-3" Margin="0, 5, 0, 5">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="*"/>
-                                                <RowDefinition Height="80"/>
-                                                <RowDefinition Height="*"/>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1" Grid.Column="1">
-                                                <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
-                                                <Label Text="{Binding Text}"  TextColor="DarkGray" FontSize="Small" />
-                                            </StackLayout>
-                                        </Grid>
+                                        <StackLayout Padding="0,0,0,1">
+                                            <Grid RowSpacing="0" Padding="0" Margin="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="5"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="5"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="60"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="10"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <StackLayout Grid.Column="1" Grid.Row="1">
+                                                    <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
+                                                    <Label Text="{Binding Description}"  TextColor="DarkGray" FontSize="Small" />
+                                                </StackLayout>
+                                                <StackLayout Grid.Column="0" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center">
+                                                    <StackLayout.Resources>
+                                                        <ResourceDictionary>
+                                                            <conv:ByteArrayToImageSourceConverter x:Key="bic"/>
+                                                        </ResourceDictionary>
+                                                    </StackLayout.Resources>
+                                                    <ci:CircleImage BorderColor="White" BorderThickness="3" Source="{Binding SenderPic, Converter={StaticResource bic}}"/>
+                                                    <Label Text="{Binding Author}" FontSize="Micro" HorizontalOptions="Center"/>
+                                                </StackLayout>
+                                                <Image Source="pin.png" HeightRequest="10" WidthRequest="10" IsVisible="{Binding Pinned}" Grid.Column="2" Grid.Row="1"/>
+                                            </Grid>
+                                        </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

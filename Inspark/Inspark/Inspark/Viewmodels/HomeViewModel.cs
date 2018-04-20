@@ -102,8 +102,7 @@ namespace Inspark.Viewmodels
         {
             NewsIsRefreshing = true;
             var posts = await _api.GetAllNewsPosts();
-            //var user = await _api.GetLoggedInUser();
-            if (posts.Count < 100)
+            if (posts.Count < 1)
             {
                 var post = new NewsPost()
                 {
@@ -112,7 +111,6 @@ namespace Inspark.Viewmodels
                     Title = "Det finns inga poster ännu.",
                     Date = DateTime.Now,
                     Picture = null,
-                    //SenderPic = user.ProfilePicture
                 };
                 posts.Add(post);
             }
