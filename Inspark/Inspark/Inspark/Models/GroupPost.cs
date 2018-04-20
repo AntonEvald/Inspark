@@ -15,5 +15,7 @@ namespace Inspark.Models
         public string Author { get; set; }
         public string Description { get; set; }
         public int GroupId { get; set; }
+        public byte[] SenderPic { get; set; }
+        public bool Pinned { get; set; }
     }
 }

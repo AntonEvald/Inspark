@@ -90,8 +90,9 @@ namespace Inspark.Viewmodels
             IsRefreshing = true;
             var posts = await _api.GetAllGroupPosts();
             posts = new ObservableCollection<GroupPost>(posts.OrderByDescending(i => i.Date));
-            if (posts.Count < 1)
+            if (posts.Count < 100)
             {
+                var user = await _api.GetLoggedInUser();
                 var post = new GroupPost()
                 {
                     Author = "Admin",
@@ -99,6 +100,7 @@ namespace Inspark.Viewmodels
                     Title = "Det finns inga poster ännu.",
                     Description = "Det finns inga poster ännu",
                     Date = DateTime.Now,
+                    SenderPic = user.ProfilePicture,
                     Picture = null
                 };
                 posts.Add(post);

@@ -18,6 +18,7 @@ namespace Inspark.Viewmodels
             Picture = post.Picture;
             SenderId = post.SenderId;
             Author = post.Author;
+            SenderPic = post.SenderPic;
             SetDisplayDate();
         }
 
@@ -30,6 +31,7 @@ namespace Inspark.Viewmodels
             Picture = post.Picture;
             SenderId = post.SenderId;
             Author = post.Author;
+            SenderPic = post.SenderPic;
             SetDisplayDate();
         }
 
@@ -37,9 +39,10 @@ namespace Inspark.Viewmodels
         public string Title { get; set; }
         public string Text { get; set; }
         public DateTime Date { get; set; }
-        public Byte[] Picture { get; set; }
+        public byte[] Picture { get; set; }
         public string SenderId { get; set; }
         public string Author { get; set; }
+        public byte[] SenderPic { get; set; }
 
         private string _displayDate;
 

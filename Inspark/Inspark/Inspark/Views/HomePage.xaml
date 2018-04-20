@@ -32,7 +32,7 @@
                                   RefreshCommand="{Binding RefreshNewsCommand}" 
                                   IsPullToRefreshEnabled="True"
                                   SeparatorVisibility="Default"
-                                  SeparatorColor="Green"
+                                  SeparatorColor="Blue"
                                   HasUnevenRows="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -40,9 +40,9 @@
                                         <StackLayout Padding="0,0,0,10">
                                             <Grid RowSpacing="0" Padding="0" Margin="0">
                                                 <Grid.RowDefinitions>
-                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="5"/>
                                                     <RowDefinition Height="70"/>
-                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="5"/>
                                                 </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="60"/>
@@ -60,7 +60,7 @@
                                                         </ResourceDictionary>
                                                     </StackLayout.Resources>
                                                     <ci:CircleImage Source="{Binding SenderPic, Converter={StaticResource bic}}"/>
-                                                    <Label Text="{Binding Author}" FontSize="Micro"/>
+                                                    <Label Text="{Binding Author}" FontSize="Micro" HorizontalOptions="Center"/>
                                                 </StackLayout>
                                             </Grid>
                                         </StackLayout>
