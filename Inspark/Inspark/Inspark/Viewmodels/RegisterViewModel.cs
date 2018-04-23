@@ -182,7 +182,6 @@ namespace Inspark.Viewmodels
                     IsLoading = true;
                     Pic = File.ReadAllBytes(ImagePath);
                     ImageSource source = ImageSource.FromFile("profile.png");
-                    Pic = 
                     var user = new User
                     {
                         UserName = Email,
