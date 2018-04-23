@@ -100,9 +100,17 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
-        public Task<bool> ChangePassword(string oldPassword, string newPassword, string confirmPassword, string token)
+        public async Task<bool> ChangePassword(ChangePasswordModel model)
         {
-            throw new NotImplementedException();
+            var client = new HttpClient();
+            var token = Settings.AccessToken;
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var json = JsonConvert.SerializeObject(model);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var response = await client.PostAsync(ConnectionString + "api/Account/ChangePassword", content);
+
+            return response.IsSuccessStatusCode;
         }
 
         public async Task<bool> RegisterAsync(User user)

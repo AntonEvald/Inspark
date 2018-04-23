@@ -11,7 +11,7 @@ namespace Inspark.Models
         public string Text { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
-        public Byte[] Picture { get; set; }
+        public byte[] Picture { get; set; }
         public string SenderId { get; set; }
         public string Author { get; set; }
         public bool Pinned { get; set; }

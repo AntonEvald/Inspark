@@ -30,8 +30,8 @@ namespace Inspark.Viewmodels
             Date = post.Date;
             Picture = post.Picture;
             SenderId = post.SenderId;
-            Author = post.Author;
             SenderPic = post.SenderPic;
+            Author = post.Author;
             SetDisplayDate();
         }
 
@@ -43,6 +43,7 @@ namespace Inspark.Viewmodels
         public string SenderId { get; set; }
         public string Author { get; set; }
         public byte[] SenderPic { get; set; }
+        public User Sender { get; set; }
 
         private string _displayDate;
 

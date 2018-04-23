@@ -1,4 +1,5 @@
 ﻿using Inspark.Helpers;
+using Inspark.Models;
 using Inspark.Services;
 using System;
 using System.Collections.Generic;
@@ -72,21 +73,6 @@ namespace Inspark.Viewmodels
             }
         }
 
-        private string _oldPassword;
-
-        public string OldPassword
-        {
-            get { return _oldPassword; }
-            set
-            {
-                if(_oldPassword != value)
-                {
-                    _oldPassword = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
         private string _currentPassword;
 
         public string CurrentPassword
@@ -111,15 +97,34 @@ namespace Inspark.Viewmodels
                 {
                     if(PasswordBehavior.IsPasswordMatch(NewPassword, ConfirmNewPassword))
                     {
-                        if(await _api.ChangePassword(NewPassword, OldPassword, ConfirmNewPassword, Settings.AccessToken))
+                        if(PasswordBehavior.IsPasswordMatch(CurrentPassword, Settings.UserPassword))
                         {
-                            Message = "";
-                            IsLoading = false;
+                            var user = await _api.GetLoggedInUser();
+                            var model = new ChangePasswordModel()
+                            {
+                                NewPassword = NewPassword,
+                                OldPassword = CurrentPassword,
+                                ConfirmPassword = ConfirmNewPassword,
+                                Id = user.Id
+                            };
+                            if (await _api.ChangePassword(model))
+                            {
+                                Settings.UserPassword = NewPassword;
+                                Message = "Lösenord bytt!";
+                                IsLoading = false;
+                            }
+                            else
+                            {
+                                Message = "RIP :(";
+                                IsLoading = false;
+                            }
                         }
                         else
                         {
-                            Message = "Inte implementerat än";
+                            Message = "Fel lösenord.";
+                            IsLoading = false;
                         }
+                        
                     }
                     else
                     {

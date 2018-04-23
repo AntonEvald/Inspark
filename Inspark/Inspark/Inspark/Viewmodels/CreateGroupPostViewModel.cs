@@ -130,9 +130,10 @@ namespace Inspark.Viewmodels
                     Picture = PostImage,
                     Author = user.FirstName + " " + user.LastName,
                     SenderId = user.Id,
+                    SenderPic = user.ProfilePicture,
                     Pinned = IsPinned,
                     Date = DateTime.Now,
-                    GroupId = 0
+                    GroupId = 1
                 };
                 string desc = post.Text.Split('.', '\n').First();
                 post.Description = desc;
