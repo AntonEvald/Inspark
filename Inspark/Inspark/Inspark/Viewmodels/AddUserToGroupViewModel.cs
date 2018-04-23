@@ -76,7 +76,23 @@ namespace Inspark.Viewmodels
             }
         }
 
-        public async void populateList()
+        private string _message;
+
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                if (_message != value)
+                {
+                    _message = value;
+                    OnPropertyChanged();
+                }
+
+            }
+        }
+
+        public async void PopulateLists()
         {
             var users = await _api.GetAllUsers();
             users = new ObservableCollection<User>(users);
@@ -88,14 +104,22 @@ namespace Inspark.Viewmodels
 
         public AddUserToGroupViewModel()
         {
-            populateList();
+            PopulateLists();
         }
 
-        public ICommand AddUserToGroup => new Command( () =>
+        public ICommand AddUserToGroup => new Command(async () =>
         {
-            var a = SelectedUser;
-            var b = SelectedUser;
-
+            var userId = SelectedUser.Id;
+            var gruppId = SelectedGroup.Id;
+            var isSuccess = await _api.AddUserToGroup(gruppId, userId);
+            if (isSuccess)
+            {
+                Message = "Användaren har lagts till";
+            }
+            else
+            {
+                Message = "Något Gick Fel";
+            }
         });
     
     }

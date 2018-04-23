@@ -16,6 +16,7 @@ namespace Inspark.Views
 	{
 		public AddUserToGroupPage ()
 		{
+            AddUserToGroupViewModel add = new AddUserToGroupViewModel();
 			InitializeComponent ();
 		}
 	}
