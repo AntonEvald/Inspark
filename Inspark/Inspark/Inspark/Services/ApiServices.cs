@@ -90,6 +90,13 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<bool> AddUserToGroup(int groupId, string userId)
+        {
+            var client = new HttpClient();
+            var response = await client.PostAsync(ConnectionString + "api/group/AddUserToGroup/"+groupId+"/"+userId+"/", null);
+            return response.IsSuccessStatusCode;
+        }
+
         public async Task<bool> CreateGroupPost(GroupPost post)
         {
             var client = new HttpClient();

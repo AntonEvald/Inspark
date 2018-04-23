@@ -9,10 +9,11 @@
                     <viewmodels:AddUserToGroupViewModel/>
                 </StackLayout.BindingContext>
                 <StackLayout>
-                    <Picker ItemsSource="{Binding Groups}" SelectedItem="{Binding SelectedGroup}" ItemDisplayBinding="{Binding Name}"></Picker>
+                <Label Margin="10,5,0,0" Text="Välj vilken grupp"/>
+                    <Picker Margin="5" ItemsSource="{Binding Groups}" SelectedItem="{Binding SelectedGroup}" ItemDisplayBinding="{Binding Name}"></Picker>
                 </StackLayout>
                 <StackLayout>
-                <ScrollView>
+                <Label Margin="10,0,0,0" Text="Välj vilken användare"/>
             <ListView ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -21,10 +22,10 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-                    </ScrollView>
                 </StackLayout>
-            <StackLayout>
-                <Button Text="Lägg till person" Command="{Binding AddUserToGroup}"/>
+                <StackLayout>
+                <Label Text="{Binding Message}"/>
+                <Button Text="Lägg till användare" Command="{Binding AddUserToGroup}"/>
             </StackLayout>
             </StackLayout>
     </ContentPage.Content>
