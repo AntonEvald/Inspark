@@ -1,12 +1,38 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:iOSSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
+             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              x:Class="Inspark.Views.ChangeGroupPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Ändra introduktionsgrupp!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                            <StackLayout.BindingContext>
+                    <viewmodels:ChangeGroupViewModel/>
+                </StackLayout.BindingContext>
+            <StackLayout>
+                      <Label Margin="10,20,0,10" Text="Välj vilken grupp"/>
+                <Picker Margin="10,0,0,10" ItemsSource="{Binding Groups}" SelectedItem="{Binding SelectedGroup, Mode=TwoWay}" ItemDisplayBinding="{Binding Name}" iOSSpecific:Picker.UpdateMode="WhenFinished">
+                        <Picker.Behaviors>
+          <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+              <behaviors:InvokeCommandAction Command="{Binding SelectedProviderChanged}" />
+          </behaviors:EventHandlerBehavior>
+    </Picker.Behaviors>
+                </Picker>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Name:" Margin="10,5,5,10" />
+                <Entry Text="{Binding Name}" Margin="10,5,5,10"/>
+                <Label Text="är gruppen introgrupp" Margin="10,5,5,10"/>
+                                <Switch x:Name="IsIntroGroup"
+                                IsToggled="{Binding IsIntroGroup}"/>
+            </StackLayout>
+            <StackLayout>
+                <Picker Margin="10,0,0,10" ItemsSource="{Binding SectionsList}" SelectedItem="{Binding SelectedSectionList, Mode=TwoWay}" ItemDisplayBinding="{Binding Name}"/>
+            </StackLayout>
+            <StackLayout>
+                <Button Text="Spara Ändringar" Command="{Binding ChangeGroup}"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
