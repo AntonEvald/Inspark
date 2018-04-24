@@ -9,6 +9,9 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Inspark.Services;
 using Inspark.Helpers;
+using System.Reflection;
+using System.Threading.Tasks;
+using Inspark.Views;
 
 namespace Inspark.Viewmodels
 {
@@ -192,44 +195,77 @@ namespace Inspark.Viewmodels
             IsVisible = false;
         });
 
-        public ICommand ConfirmCommand => new Command(async() =>
+        private async Task<bool> EditUser()
         {
-            IsLoading = true;
-            var model = new EditUserModel();
-            model.Id = User.Id;
-            if(CurrentPassword == Settings.UserPassword)
+            var model = new EditUserModel
             {
-                if(PhoneNumber != null && PhoneNumber != "")
+                Id = User.Id
+            };
+            if (CurrentPassword != Settings.UserPassword)
+            {
+                Message = "Fel lösenord.";
+                return false;
+            }
+            if(PhoneNumber == "")
+            {
+                model.PhoneNumber = PhoneNumber;
+            }
+            else
+            {
+                if (NumberBehavior.IsNumbers(PhoneNumber))
                 {
-                    if (NumberBehavior.IsNumbers(PhoneNumber))
-                    {
-                        model.PhoneNumber = PhoneNumber;
-                    }
-                    else
-                    {
-                        Message = "Ange ett telefonnummer med 10 siffror.";
-                    }
-                }
-                model.ProfilePicture = Pic;
-                model.FirstName = User.FirstName;
-                model.LastName = User.LastName;
-                var isSuccess = await _api.EditUser(model);
-                if (isSuccess)
-                {
-                    Message = "Ändringarna sparade!";
-                    IsLoading = false;
+                    model.PhoneNumber = PhoneNumber;
                 }
                 else
                 {
-                    Message = "Något gick fel :(";
-                    IsLoading = false;
+                    Message = "Ange ett telefonnummer med 10 siffror";
+                    return false;
+                }
+            }
+            if(FirstName != "" && LastName != "")
+            {
+                if(TextOnlyBehavior.IsTextOnly(FirstName) && TextOnlyBehavior.IsTextOnly(LastName))
+                {
+                    model.FirstName = FirstName;
+                    model.LastName = LastName;
+                }
+                else
+                {
+                    Message = "Förnamn och efternamn får inte innehålla siffror eller otillåtna tecken.";
+                    return false;
                 }
             }
             else
             {
-                Message = "Fel lösenord!";
-                IsLoading = false;
+                Message = "Förnamn och efternamn får inte lämnas blanka.";
+                return false;
             }
+            if(Pic == null)
+            {
+                var assembly = Assembly.GetExecutingAssembly();
+                model.ProfilePicture = EmbeddedResourceToByteArray.GetEmbeddedResourceBytes(assembly, "profile.png");
+            }
+            else
+            {
+                model.ProfilePicture = Pic;
+            }
+
+            var success = await _api.EditUser(model);
+            return success;
+        }
+
+        public ICommand ConfirmCommand => new Command(async() =>
+        {
+            IsLoading = true;
+            if(await EditUser())
+            {
+                Message = "Ändringarna sparade";
+                Application.Current.MainPage = new MainPage(new AccountPage());
+            } else
+            {
+                Message = "Något gick fel :(";
+            }
+            IsLoading = false;
         });
 
         public async void OnLoad()
@@ -238,6 +274,8 @@ namespace Inspark.Viewmodels
             User = await _api.GetLoggedInUser();
             Pic = User.ProfilePicture;
             PhoneNumber = User.PhoneNumber;
+            FirstName = User.FirstName;
+            LastName = User.LastName;
             if(Pic != null)
             {
                 IsVisible = true;

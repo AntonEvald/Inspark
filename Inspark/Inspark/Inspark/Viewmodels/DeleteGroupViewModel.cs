@@ -71,8 +71,6 @@ namespace Inspark.Viewmodels
             PopulateLists();
         }
 
-<<<<<<< Updated upstream
-=======
         public ICommand DeleteGroup => new Command(async () =>
         {
             var groupId = SelectedGroup.Id;
@@ -86,7 +84,5 @@ namespace Inspark.Viewmodels
                 Application.Current.MainPage = new MainPage(new AdminPage());
             }
         });
-
->>>>>>> Stashed changes
     }
 }
