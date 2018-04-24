@@ -60,8 +60,8 @@
                                                             <conv:ByteArrayToImageSourceConverter x:Key="bic"/>
                                                         </ResourceDictionary>
                                                     </StackLayout.Resources>
-                                                    <ci:CircleImage BorderColor="White" BorderThickness="3" Source="{Binding SenderPic, Converter={StaticResource bic}}" Aspect="AspectFill"/>
-                                                    <Label Text="{Binding User.FirstName}" FontSize="Micro" HorizontalOptions="Center"/>
+                                                    <ci:CircleImage BorderColor="White" BorderThickness="2" Source="{Binding SenderPic, Converter={StaticResource bic}}" Aspect="AspectFill" HeightRequest="35" WidthRequest="35"/>
+                                                    <Label Text="{Binding Author}" FontSize="Micro" HorizontalOptions="Center"/>
                                                 </StackLayout>
                                                 <Image Source="pin.png" HeightRequest="10" WidthRequest="10" IsVisible="{Binding Pinned}" Grid.Column="2" Grid.Row="1"/>
                                             </Grid>
@@ -113,7 +113,7 @@
                                                             <conv:ByteArrayToImageSourceConverter x:Key="bic"/>
                                                         </ResourceDictionary>
                                                     </StackLayout.Resources>
-                                                    <ci:CircleImage BorderColor="White" BorderThickness="3" Source="{Binding SenderPic, Converter={StaticResource bic}}"/>
+                                                    <ci:CircleImage BorderColor="White" BorderThickness="2" HeightRequest="35" WidthRequest="35" Aspect="AspectFill" Source="{Binding SenderPic, Converter={StaticResource bic}}"/>
                                                     <Label Text="{Binding Author}" FontSize="Micro" HorizontalOptions="Center"/>
                                                 </StackLayout>
                                                 <Image Source="pin.png" HeightRequest="10" WidthRequest="10" IsVisible="{Binding Pinned}" Grid.Column="2" Grid.Row="1"/>
