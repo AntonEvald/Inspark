@@ -13,6 +13,7 @@ using System.IO;
 using Inspark.Helpers;
 using Inspark.Models;
 using System.Collections.ObjectModel;
+using System.Reflection;
 
 namespace Inspark.Viewmodels
 {
@@ -180,8 +181,17 @@ namespace Inspark.Viewmodels
                 if(Section != null)
                 {
                     IsLoading = true;
-                    Pic = File.ReadAllBytes(ImagePath);
-                    ImageSource source = ImageSource.FromFile("profile.png");
+                    if(ImagePath == "")
+                    {
+                        var assembly = Assembly.GetExecutingAssembly();
+                        var pic = EmbeddedResourceToByteArray.GetEmbeddedResourceBytes(assembly, "profile.png");
+                        Pic = pic;
+                    }
+                    else
+                    {
+                        Pic = File.ReadAllBytes(ImagePath);
+                    }
+
                     var user = new User
                     {
                         UserName = Email,

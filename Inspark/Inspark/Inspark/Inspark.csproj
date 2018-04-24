@@ -52,6 +52,12 @@
     <EmbeddedResource Remove="Views\EventListView.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Images\profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\profile.png" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Update="Views\AccountPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
