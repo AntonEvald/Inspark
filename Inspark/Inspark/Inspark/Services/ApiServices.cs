@@ -97,6 +97,22 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<bool> DeleteGroup(int groupId)
+        {
+            var client = new HttpClient();
+            var response = await client.DeleteAsync(ConnectionString + "api/group/" + groupId + "/");
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> ChangeGroup(Group group, int groupId)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(group);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/group/" + groupId + "/", content);
+            return response.IsSuccessStatusCode;
+        }
+
         public async Task<bool> CreateGroupPost(GroupPost post)
         {
             var client = new HttpClient();

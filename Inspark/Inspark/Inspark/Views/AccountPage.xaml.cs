@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Inspark.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -38,6 +38,10 @@ namespace Inspark.Views
 
         private void LogOut_Clicked(object sender, EventArgs e)
 		{
+            Settings.UserPassword = "";
+            Settings.UserName = "";
+            Settings.AccessToken = "";
+            Settings.AccessToken = "";
 			Application.Current.MainPage = new NavigationPage(new FrontPage());
 		}
 	}
