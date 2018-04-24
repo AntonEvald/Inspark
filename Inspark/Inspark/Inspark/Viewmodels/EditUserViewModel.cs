@@ -94,6 +94,34 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private string _lastName;
+
+        public string LastName
+        {
+            get { return _lastName; }
+            set
+            {
+                _lastName = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private string _firstName;
+
+        public string FirstName
+        {
+            get { return _firstName; }
+            set
+            {
+                if (_firstName != value)
+                {
+                    _firstName = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private bool _isVisible;
 
         public bool IsVisible
@@ -167,21 +195,25 @@ namespace Inspark.Viewmodels
         public ICommand ConfirmCommand => new Command(async() =>
         {
             IsLoading = true;
+            var model = new EditUserModel();
+            model.Id = User.Id;
             if(CurrentPassword == Settings.UserPassword)
             {
                 if(PhoneNumber != null && PhoneNumber != "")
                 {
                     if (NumberBehavior.IsNumbers(PhoneNumber))
                     {
-                        User.PhoneNumber = PhoneNumber;
+                        model.PhoneNumber = PhoneNumber;
                     }
                     else
                     {
                         Message = "Ange ett telefonnummer med 10 siffror.";
                     }
                 }
-                User.ProfilePicture = Pic;
-                var isSuccess = await _api.EditUser(User);
+                model.ProfilePicture = Pic;
+                model.FirstName = User.FirstName;
+                model.LastName = User.LastName;
+                var isSuccess = await _api.EditUser(model);
                 if (isSuccess)
                 {
                     Message = "Ändringarna sparade!";

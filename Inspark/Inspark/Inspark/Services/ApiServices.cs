@@ -102,7 +102,7 @@ namespace Inspark.Services
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(post);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(ConnectionString + "api/GroupPost", content);
+            var response = await client.PostAsync(ConnectionString + "api/GroupPost/AddGroupPost", content);
 
             return response.IsSuccessStatusCode;
         }
@@ -130,12 +130,12 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> EditUser(User user)
+        public async Task<bool> EditUser(EditUserModel model)
         {
             var client = new HttpClient();
-            var json = JsonConvert.SerializeObject(user);
+            var json = JsonConvert.SerializeObject(model);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PutAsync(ConnectionString+"api/User", content);
+            var response = await client.PostAsync(ConnectionString+"api/User/EditUser", content);
             return response.IsSuccessStatusCode;
         }
 

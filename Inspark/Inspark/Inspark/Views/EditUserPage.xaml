@@ -24,6 +24,8 @@
                         </StackLayout.Resources>
                         <Label Text="Ange nytt telefonnummer:"/>
                         <Entry Text="{Binding PhoneNumber}" Keyboard="Numeric" x:Name="PhoneNumber"/>
+                        <Entry Text="{Binding FirstName}" Keyboard="Text" x:Name="FirstName"/>
+                        <Entry Text="{Binding LastName}" Keyboard="Text" x:Name="LastName"/>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                             <Button Text="Byt bild" Command="{Binding PickPhotoCommand}"/>
                             <Image Source="{Binding Pic, Converter={StaticResource bic}}" HeightRequest="75" WidthRequest="75"/>
