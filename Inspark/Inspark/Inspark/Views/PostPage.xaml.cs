@@ -29,5 +29,11 @@ namespace Inspark.Views
             model = new PostViewModel(post);
             Content.BindingContext = model;
         }
-	}
+
+        public void EditPost_Clicked(object sender, EventArgs e)
+        {
+            PostView.Content = new EditPostPage().Content;
+        }
+
+    }
 }

@@ -1,9 +1,12 @@
 ﻿using Inspark.Models;
+using Inspark.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
@@ -20,6 +23,7 @@ namespace Inspark.Viewmodels
             Author = post.Author;
             SenderPic = post.SenderPic;
             SetDisplayDate();
+            CheckUser(post);
         }
 
         public PostViewModel(GroupPost post)
@@ -33,7 +37,9 @@ namespace Inspark.Viewmodels
             SenderPic = post.SenderPic;
             Author = post.Author;
             SetDisplayDate();
+            CheckUser(post);
         }
+        private ApiServices _api = new ApiServices();
 
         public int Id { get; set; }
         public string Title { get; set; }
@@ -57,6 +63,45 @@ namespace Inspark.Viewmodels
                     _displayDate = value;
                     OnPropertyChanged();
                 }           
+            }
+        }
+
+        private bool _isUserPost;
+
+        public bool IsUserPost
+        {
+            get { return _isUserPost; }
+            set
+            {
+                _isUserPost = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+            public async void CheckUser(NewsPost post)
+        {
+            var user = await _api.GetLoggedInUser();
+            if(user.Id == post.SenderId)
+            {
+                IsUserPost = true;
+            }
+            else
+            {
+                IsUserPost = false;
+            }
+        }
+
+        public async void CheckUser(GroupPost post)
+        {
+            var user = await _api.GetLoggedInUser();
+            if (user.Id == post.SenderId)
+            {
+                IsUserPost = true;
+            }
+            else
+            {
+                IsUserPost = false;
             }
         }
 

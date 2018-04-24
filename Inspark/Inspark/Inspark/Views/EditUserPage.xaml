@@ -23,15 +23,15 @@
                                 <va:ByteArrayToImageSourceConverter x:Key="bic"/>
                             </ResourceDictionary>
                         </StackLayout.Resources>
-                        <Label Text="Ändra telefonnummer:"/>
-                        <Entry Text="{Binding PhoneNumber}" Keyboard="Numeric" x:Name="PhoneNumber"/>
                         <Label Text="Ändra förnamn:"/>
                         <Entry Text="{Binding FirstName}" Keyboard="Text" x:Name="FirstName"/>
                         <Label Text="Ändra efternamn:"/>
                         <Entry Text="{Binding LastName}" Keyboard="Text" x:Name="LastName"/>
+                        <Label Text="Ändra telefonnummer:"/>
+                        <Entry Text="{Binding PhoneNumber}" Keyboard="Numeric" x:Name="PhoneNumber"/>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                             <Button Text="Byt profilbild:" Command="{Binding PickPhotoCommand}"/>
-                            <ci:CircleImage Source="{Binding Pic, Converter={StaticResource bic}}" HeightRequest="75" WidthRequest="75" Aspect="AspectFill"/>
+                            <ci:CircleImage Source="{Binding Pic, Converter={StaticResource bic}}" BorderThickness="2" BorderColor="Black" HeightRequest="70" WidthRequest="70" Aspect="AspectFill"/>
                             <Button Text="Ta bort bild" Command="{Binding RemovePicCommand}" IsVisible="{Binding IsVisible}"/>
                         </StackLayout>
                         <Label Text="Ange ditt lösenord för att bekräfta dina ändringar:"/>

@@ -54,13 +54,13 @@
                                                     <Label Text="{Binding Title}" TextColor= "DarkGray" FontSize="Large"/>
                                                     <Label Text="{Binding Description}"  TextColor="DarkGray" FontSize="Small" />
                                                 </StackLayout>
-                                                <StackLayout Grid.Column="0" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Red">
+                                                <StackLayout Grid.Column="0" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center">
                                                     <StackLayout.Resources>
                                                         <ResourceDictionary>
                                                             <conv:ByteArrayToImageSourceConverter x:Key="bic"/>
                                                         </ResourceDictionary>
                                                     </StackLayout.Resources>
-                                                    <ci:CircleImage HorizontalOptions="Center" BorderColor="White" BorderThickness="2" Source="{Binding SenderPic, Converter={StaticResource bic}}" Aspect="AspectFill" HeightRequest="50" WidthRequest="50"/>
+                                                    <ci:CircleImage HorizontalOptions="Center" BorderColor="Gray" BorderThickness="2" Source="{Binding SenderPic, Converter={StaticResource bic}}" Aspect="AspectFill" HeightRequest="50" WidthRequest="50"/>
                                                     <Label Text="{Binding Author}" FontSize="Micro" HorizontalOptions="Center"/>
                                                 </StackLayout>
                                                 <Image Source="pin.png" HeightRequest="10" WidthRequest="10" IsVisible="{Binding Pinned}" Grid.Column="2" Grid.Row="1"/>
