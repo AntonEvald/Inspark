@@ -3,6 +3,7 @@ using System;
 using System.Windows.Input;
 using Inspark.Views;
 using Xamarin.Forms;
+using Inspark.Helpers;
 
 namespace Inspark.Viewmodels
 {
@@ -67,11 +68,24 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private string _senderId;
+
+        public string SenderId
+        {
+            get { return _senderId; }
+            set
+            {
+                _senderId = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand CreateEventCommand => new Command(async () =>
         {
+            
             DateTime newDateTime = StartDate.Date.Add(StartTime.TimeOfDay);
             Date = newDateTime;
-            var isSuccess = await _api.CreateEvent(Title, Location, Date, Description);
+            var isSuccess = await _api.CreateEvent(Title, Location, Date, Description, SenderId);
 
             if (isSuccess)
             {
@@ -82,6 +96,17 @@ namespace Inspark.Viewmodels
                 Message = "Något gick fel";
             }    
         });
+
+        public async void GetLoggedinUser()
+        {
+            var user = await _api.GetLoggedInUser();
+            SenderId = user.Id;
+        }
+
+        public CreateEventViewModel()
+        {
+            GetLoggedinUser();
+        }
     }
     
 }
