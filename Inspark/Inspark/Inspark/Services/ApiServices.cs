@@ -104,12 +104,12 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> ChangeGroup(Group group, int groupId)
+        public async Task<bool> ChangeGroup(Group group)
         {
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(group);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(ConnectionString + "api/group/" + groupId + "/", content);
+            var response = await client.PostAsync(ConnectionString + "api/Group/EditGroup/", content);
             return response.IsSuccessStatusCode;
         }
 
@@ -216,7 +216,7 @@ namespace Inspark.Services
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(group);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(ConnectionString+"api/group", content);
+            var response = await client.PostAsync(ConnectionString+"api/Group/AddGroup", content);
 
             return response.IsSuccessStatusCode;
         }

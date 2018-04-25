@@ -22,15 +22,16 @@
             </StackLayout>
             <StackLayout>
                 <Label Text="Name:" Margin="10,5,5,10" />
-                <Entry Text="{Binding Name}" Margin="10,5,5,10"/>
+                <Entry Text="{Binding Name ,Mode=TwoWay}" Margin="10,5,5,10"/>
                 <Label Text="är gruppen introgrupp" Margin="10,5,5,10"/>
                                 <Switch x:Name="IsIntroGroup"
-                                IsToggled="{Binding IsIntroGroup}"/>
+                                IsToggled="{Binding IsIntroGroup , Mode=TwoWay}"/>
             </StackLayout>
             <StackLayout>
-                <Picker Margin="10,0,0,10" ItemsSource="{Binding SectionsList}" SelectedItem="{Binding SelectedSectionList, Mode=TwoWay}" ItemDisplayBinding="{Binding Name}"/>
+                <Picker Margin="10,0,0,10" ItemsSource="{Binding SectionsList}" SelectedIndex="{Binding SelectedIndex}" ItemDisplayBinding="{Binding Name}"/>
             </StackLayout>
             <StackLayout>
+                <Label Text="{Binding Message}"/>
                 <Button Text="Spara Ändringar" Command="{Binding ChangeGroup}"/>
             </StackLayout>
         </StackLayout>

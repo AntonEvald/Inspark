@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Inspark.Models;
 using Inspark.Services;
+using Inspark.Views;
 using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
@@ -119,19 +121,58 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private int _selectedIndex;
+
+        public int SelectedIndex
+        {
+            get { return _selectedIndex; }
+            set
+            {
+                if (_selectedIndex != value)
+                {
+                    _selectedIndex = value;
+                    OnPropertyChanged();
+                }
+
+            }
+        }
+
         public ICommand SelectedProviderChanged => new Command(() =>
         {
             Name = SelectedGroup.Name;
             IsIntroGroup = SelectedGroup.IsIntroGroup;
-            SelectedSections = SelectedGroup.Section;
+       
+            var q = SectionsList.IndexOf(SectionsList.Where(X => X.Id == SelectedGroup.SectionId).FirstOrDefault());
+            if (q > -1)
+            {
+                SelectedIndex = q;
+            }
+            else
+            {
+                
+            }
         });
 
-        //public ICommand ChangeGroup => new Command(async () =>
-        //{
+        public ICommand ChangeGroup => new Command(async () =>
+        {
 
-        //    var isSuccess = await _api.ChangeGroup();
-
-        //});
+            var group = new Group
+            {
+                Id = SelectedGroup.Id,
+                Name = Name,
+                IsIntroGroup = IsIntroGroup,
+                SectionId = SectionsList[SelectedIndex].Id
+            };
+            var isSuccess = await _api.ChangeGroup(group);
+            if (isSuccess)
+            {
+                Application.Current.MainPage = new MainPage(new AdminPage());
+            }
+            else
+            {
+                Message = "Något Gick Fel";
+            }
+        });
 
         public async void PopulateLists()
         {
@@ -139,22 +180,14 @@ namespace Inspark.Viewmodels
             var groups = await _api.GetAllGroups();
             groups = new ObservableCollection<Group>(groups);
             Groups = groups;
+            var sections = await _api.GetAllSections();
+            sections = new ObservableCollection<Section>(sections);
+            SectionsList = sections;
         }
 
         public ChangeGroupViewModel()
         {
             PopulateLists();
-            SectionsList = new ObservableCollection<Section>()
-            {
-                new Section() {Id = 1, Name = "Handelshögskolan"},
-                new Section() {Id = 2, Name = "Humaniora, utbildnings- och samhällsvetenskap"},
-                new Section() {Id = 3, Name = "Hälsovetenskaper"},
-                new Section() {Id = 4, Name = "Juridik, psykologi och socialt arbete"},
-                new Section() {Id = 5, Name = "Medicinska vetenskaper"},
-                new Section() {Id = 6, Name = "Musikhögskolan"},
-                new Section() {Id = 7, Name = "Naturvetenskap och teknik"},
-                new Section() {Id = 8, Name = "Restaurang- och hotellhögskolan"}
-            };
         }
     }
 }
