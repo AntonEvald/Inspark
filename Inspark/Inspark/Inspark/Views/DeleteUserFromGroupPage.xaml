@@ -1,12 +1,40 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
+             xmlns:iOSSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              x:Class="Inspark.Views.DeleteUserFromGroupPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Ta bort användare från introduktionsgrupp!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+ <StackLayout>
+                <StackLayout.BindingContext>
+                    <viewmodels:DeleteUserFromGroup/>
+                </StackLayout.BindingContext>
+                <StackLayout>
+                <Label Margin="10,5,0,0" Text="Välj vilken grupp"/>
+                <Picker Margin="10,0,0,10" ItemsSource="{Binding Groups}" SelectedIndex="{Binding SelectedIndex}" ItemDisplayBinding="{Binding Name}" iOSSpecific:Picker.UpdateMode="WhenFinished">
+                        <Picker.Behaviors>
+          <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+              <behaviors:InvokeCommandAction Command="{Binding SelectedProviderChanged}" />
+          </behaviors:EventHandlerBehavior>
+    </Picker.Behaviors>
+                </Picker>
+                </StackLayout>
+                <StackLayout>
+                <Label Margin="10,0,0,0" Text="Välj vilken användare"/>
+            <ListView ItemsSource="{Binding Users, Mode=TwoWay}" SelectedItem="{Binding SelectedUser}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding FirstName}"
+                                  Detail="{Binding LastName}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+                </StackLayout>
+                <StackLayout>
+                <Label Text="{Binding Message}"/>
+                <Button Text="Ta bort användare" Command="{Binding DeleteUser}"/>
+            </StackLayout>
+            </StackLayout>
     </ContentPage.Content>
 </ContentPage>
