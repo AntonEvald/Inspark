@@ -216,6 +216,34 @@ namespace Inspark.Viewmodels
             }
         });
 
+        public ICommand DeleteCommand => new Command(async () =>
+        {
+            if (IsGroupPost)
+            {
+                var success = await _api.DeleteGroupPost(Id);
+                if (success)
+                {
+                    Application.Current.MainPage = new MainPage(new GroupPage());
+                }
+                else
+                {
+                    Message = "Något gick fel :(";
+                }
+            }
+            else
+            {
+                var success = await _api.DeleteNewsPost(Id);
+                if (success)
+                {
+                    Application.Current.MainPage = new MainPage(new HomePage());
+                }
+                else
+                {
+                    Message = "Något gick fel :(";
+                }
+            }
+        });
+
         public ICommand AddPicCommand => new Command(async () =>
         {
             await CrossMedia.Current.Initialize();

@@ -140,6 +140,20 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<bool> DeleteNewsPost(int id)
+        {
+            var client = new HttpClient();
+            var response = await client.DeleteAsync(ConnectionString + "api/NewsPost/" + id.ToString());
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> DeleteGroupPost(int id)
+        {
+            var client = new HttpClient();
+            var response = await client.DeleteAsync(ConnectionString + "api/GroupPost/" + id.ToString());
+            return response.IsSuccessStatusCode;
+        }
+
         public async Task<bool> CreateGroupPost(GroupPost post)
         {
             var client = new HttpClient();
