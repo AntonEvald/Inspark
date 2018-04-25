@@ -21,7 +21,7 @@ namespace Inspark.Views
         public void PostTapped(object sender, ItemTappedEventArgs e)
         {
             GroupPost selected = e.Item as GroupPost;
-            var page = new PostPage(selected);
+            var page = new GroupPostPage(selected);
             GroupPostsView.Content = page.Content;
         }
     }

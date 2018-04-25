@@ -22,7 +22,7 @@ namespace Inspark.Views
         public void PostTapped(object sender, ItemTappedEventArgs e)
         {
             NewsPost selected = e.Item as NewsPost;
-            var page = new PostPage(selected);
+            var page = new NewsPostPage(selected);
             News.Content = page.Content;
         }
 

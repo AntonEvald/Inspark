@@ -12,26 +12,22 @@ using Xamarin.Forms.Xaml;
 namespace Inspark.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class EditPostPage : ContentPage
+	public partial class NewsPostPage : ContentPage
 	{
-        EditPostViewModel model;
-		public EditPostPage (NewsPost post)
-		{
-			InitializeComponent ();
-            model = new EditPostViewModel(post);
-            Content.BindingContext = model;
-		}
+        PostViewModel model;
+        NewsPost thepost;
 
-        public EditPostPage(GroupPost post)
+        public NewsPostPage(NewsPost post)
         {
             InitializeComponent();
-            model = new EditPostViewModel(post);
+            thepost = post;
+            model = new PostViewModel(post);
             Content.BindingContext = model;
         }
 
-        private void Abort_Clicked(object sender, EventArgs e)
+        private void EditPost_Clicked(object sender, EventArgs e)
         {
-
+            NewsPostView.Content = new EditPostPage(thepost).Content;
         }
     }
 }

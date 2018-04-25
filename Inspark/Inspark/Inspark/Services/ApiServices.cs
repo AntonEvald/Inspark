@@ -90,10 +90,30 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<bool> EditGroupPost(EditPostModel post)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(post);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/GroupPost/EditGroupPost", content);
+
+            return response.IsSuccessStatusCode;
+        }
+
         public async Task<bool> AddUserToGroup(int groupId, string userId)
         {
             var client = new HttpClient();
             var response = await client.PostAsync(ConnectionString + "api/group/AddUserToGroup/"+groupId+"/"+userId+"/", null);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> EditNewsPost(EditPostModel post)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(post);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/NewsPost/EditNewsPost", content);
+
             return response.IsSuccessStatusCode;
         }
 

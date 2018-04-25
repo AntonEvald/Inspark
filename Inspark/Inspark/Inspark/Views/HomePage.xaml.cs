@@ -22,14 +22,14 @@ namespace Inspark.Views
         public void NewsItemTapped(object sender, ItemTappedEventArgs e)
         {
             NewsPost selected = e.Item as NewsPost;
-            var page = new PostPage(selected);
+            var page = new NewsPostPage(selected);
             HomePageContent.Content = page.Content;
         }
 
         public void GroupItemTapped(object sender, ItemTappedEventArgs e)
         {
             GroupPost selected = e.Item as GroupPost;
-            var page = new PostPage(selected);
+            var page = new GroupPostPage(selected);
             HomePageContent.Content = page.Content;
         }
 
