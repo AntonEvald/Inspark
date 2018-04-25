@@ -220,7 +220,7 @@ namespace Inspark.Services
             return user;
         }
  
-        public async Task<bool> CreateEvent(string tile, string location, DateTime date, string desc)
+        public async Task<bool> CreateEvent(string tile, string location, DateTime date, string desc, string senderId)
         {
             var client = new HttpClient();
              var model = new Event()
@@ -229,7 +229,8 @@ namespace Inspark.Services
                 Location = location,
                 TimeForEvent = date,
                 Description = desc,
-                Text = desc
+                Text = desc,
+                SenderId = senderId
             };
             var json = JsonConvert.SerializeObject(model);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
