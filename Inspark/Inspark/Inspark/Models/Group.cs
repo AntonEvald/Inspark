@@ -12,7 +12,7 @@ namespace Inspark.Models
         public bool IsIntroGroup { get; set; }
         public Section Section { get; set; }
         public int SectionId { get; set; }
-        //public ICollection<User> Users { get; set; }
+        public ICollection<User> Users { get; set; }
 
     }
 }

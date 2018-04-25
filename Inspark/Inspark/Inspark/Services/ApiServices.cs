@@ -104,6 +104,13 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<bool> DeleteUserFromGroup(int groupId, string userId)
+        {
+            var client = new HttpClient();
+            var response = await client.PostAsync(ConnectionString + "api/Group/RemoveUserFromGroup/" + groupId + "/" + userId + "/",null);
+            return response.IsSuccessStatusCode;
+        }
+
         public async Task<bool> ChangeGroup(Group group)
         {
             var client = new HttpClient();
