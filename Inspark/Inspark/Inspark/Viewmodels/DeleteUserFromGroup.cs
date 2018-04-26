@@ -131,6 +131,7 @@ namespace Inspark.Viewmodels
             {
                 Message = "Användaren har Tagits bort";
                 Users.Remove(SelectedUser);
+                Groups[SelectedIndex].Users.Remove(SelectedUser);
             }
             else
             {

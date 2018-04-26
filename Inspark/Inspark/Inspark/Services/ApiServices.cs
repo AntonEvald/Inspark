@@ -256,7 +256,7 @@ namespace Inspark.Services
             };
             var json = JsonConvert.SerializeObject(model);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(ConnectionString+"api/Event", content);
+            var response = await client.PostAsync(ConnectionString+"api/Event/AddEvent/", content);
 
             return response.IsSuccessStatusCode;
         }
