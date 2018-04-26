@@ -70,19 +70,14 @@ namespace Inspark.Viewmodels
 
         public RegisterViewModel()
         {
-            SectionsList = new ObservableCollection<Section>()
-            {
-                new Section() {Id = 1, Name = "Handelshögskolan"},
-                new Section() {Id = 2, Name = "Humaniora, utbildnings- och samhällsvetenskap"},
-                new Section() {Id = 3, Name = "Hälsovetenskaper"},
-                new Section() {Id = 4, Name = "Juridik, psykologi och socialt arbete"},
-                new Section() {Id = 5, Name = "Medicinska vetenskaper"},
-                new Section() {Id = 6, Name = "Musikhögskolan"},
-                new Section() {Id = 7, Name = "Naturvetenskap och teknik"},
-                new Section() {Id = 8, Name = "Restaurang- och hotellhögskolan"}
-            };
+            OnLoad();
+        }
 
-            IsVisible = false;
+        public async void OnLoad()
+        {
+            SectionsList = await _api.GetAllSections();
+            IsRemovePicVisible = false;
+            IsAddPicVisible = true;
             ImagePath = "";
         }
 
@@ -103,21 +98,34 @@ namespace Inspark.Viewmodels
             }
         }
 
-        private bool _isVisible;
+        private bool _isRemovePicVisible;
 
-        public bool IsVisible
+        public bool IsRemovePicVisible
         {
-            get { return _isVisible; }
+            get { return _isRemovePicVisible; }
             set
             {
-                if(_isVisible != value)
+                if(_isRemovePicVisible != value)
                 {
-                    _isVisible = value;
+                    _isRemovePicVisible = value;
                     OnPropertyChanged();
                 }
                 
             }
         }
+
+        private bool _isAddPicVisible;
+
+        public bool IsAddPicVisible
+        {
+            get { return _isAddPicVisible; }
+            set
+            {
+                _isAddPicVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         private string _message;
 
@@ -164,14 +172,16 @@ namespace Inspark.Viewmodels
                 return;
             }
             ImagePath = file.Path;
-            IsVisible = true;
+            IsRemovePicVisible = true;
+            IsAddPicVisible = false;
         });
 
         public ICommand RemovePicCommand => new Command(() =>
         {
             ImagePath = "";
             Pic = null;
-            IsVisible = false;
+            IsRemovePicVisible = false;
+            IsAddPicVisible = true;
         });
 
         public ICommand RegisterCommand => new Command(async () =>

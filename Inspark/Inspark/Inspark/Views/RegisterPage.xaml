@@ -53,9 +53,9 @@
                         SelectedItem="{Binding Section}">
                 </Picker>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                    <Button Text="Lägg till bild" Command="{Binding AddPicCommand}"/>
+                    <Button Text="Lägg till bild" Command="{Binding AddPicCommand}" IsVisible="{Binding IsAddPicVisible}"/>
                     <ci:CircleImage Source="{Binding ImagePath}" Aspect="AspectFill" HeightRequest="60" WidthRequest="60"/>
-                    <Button Text="Ta bort bild" Command="{Binding RemovePicCommand}" IsVisible="{Binding IsVisible}"/>
+                    <Button Text="Ta bort bild" Command="{Binding RemovePicCommand}" IsVisible="{Binding IsRemovePicVisible}"/>
                 </StackLayout>
                 <Button x:Name="RegisterButton" Text="Registrera" Command="{Binding RegisterCommand}"/>
                 <ActivityIndicator Color="Blue" IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}"/>
