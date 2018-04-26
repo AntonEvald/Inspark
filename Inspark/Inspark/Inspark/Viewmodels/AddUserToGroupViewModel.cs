@@ -36,7 +36,7 @@ namespace Inspark.Viewmodels
             get { return _groups; }
             set
             {
-                if(_groups != value)
+                if (_groups != value)
                 {
                     _groups = value;
                     OnPropertyChanged();
@@ -59,7 +59,7 @@ namespace Inspark.Viewmodels
 
             }
         }
-        
+
         private ObservableCollection<User> _users;
 
         public ObservableCollection<User> Users
@@ -67,7 +67,7 @@ namespace Inspark.Viewmodels
             get { return _users; }
             set
             {
-                if(_users != value)
+                if (_users != value)
                 {
                     _users = value;
                     OnPropertyChanged();
@@ -149,7 +149,7 @@ namespace Inspark.Viewmodels
             {
                 if (User.Any(p => p.UserName == item.UserName))
                 {
-                    
+
                 }
                 else
                 {
@@ -166,13 +166,15 @@ namespace Inspark.Viewmodels
             if (isSuccess)
             {
                 Message = "Användaren har lagts till";
-                UsersNotInGroup.Remove(SelectedUser);
+                UsersNotInGroup.Remove(UsersNotInGroup.Single(i => i.Id == SelectedUser.Id));
+                Groups[SelectedIndex].Users.Add(SelectedUser);
+
             }
             else
             {
                 Message = "Något Gick Fel";
             }
         });
-    
+
     }
 }
