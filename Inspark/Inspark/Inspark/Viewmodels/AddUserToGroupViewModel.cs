@@ -92,6 +92,38 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private ObservableCollection<User> _usersNotInGroup;
+
+        public ObservableCollection<User> UsersNotInGroup
+        {
+            get { return _usersNotInGroup; }
+            set
+            {
+                if (_usersNotInGroup != value)
+                {
+                    _usersNotInGroup = value;
+                    OnPropertyChanged();
+                }
+
+            }
+        }
+
+        private int _selectedIndex;
+
+        public int SelectedIndex
+        {
+            get { return _selectedIndex; }
+            set
+            {
+                if (_selectedIndex != value)
+                {
+                    _selectedIndex = value;
+                    OnPropertyChanged();
+                }
+
+            }
+        }
+
         public async void PopulateLists()
         {
             var users = await _api.GetAllUsers();
@@ -105,16 +137,36 @@ namespace Inspark.Viewmodels
         public AddUserToGroupViewModel()
         {
             PopulateLists();
+            UsersNotInGroup = new ObservableCollection<User>();
         }
+
+        public ICommand SelectedProviderChanged => new Command(() =>
+        {
+            UsersNotInGroup.Clear();
+            var User = Groups[SelectedIndex].Users;
+
+            foreach (var item in Users)
+            {
+                if (User.Any(p => p.UserName == item.UserName))
+                {
+                    
+                }
+                else
+                {
+                    UsersNotInGroup.Add(item);
+                }
+            }
+        });
 
         public ICommand AddUserToGroup => new Command(async () =>
         {
             var userId = SelectedUser.Id;
-            var gruppId = SelectedGroup.Id;
+            var gruppId = Groups[SelectedIndex].Id;
             var isSuccess = await _api.AddUserToGroup(gruppId, userId);
             if (isSuccess)
             {
                 Message = "Användaren har lagts till";
+                UsersNotInGroup.Remove(SelectedUser);
             }
             else
             {
