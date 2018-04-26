@@ -1,4 +1,5 @@
-﻿using Inspark.Models;
+﻿using Inspark.Helpers;
+using Inspark.Models;
 using Inspark.Services;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,8 @@ using System.Globalization;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace Inspark.Viewmodels
 {
@@ -24,6 +27,7 @@ namespace Inspark.Viewmodels
             SenderPic = post.SenderPic;
             SetDisplayDate();
             CheckUser(post);
+            ViewsOnPost(post);
         }
 
         public PostViewModel(GroupPost post)
@@ -36,9 +40,12 @@ namespace Inspark.Viewmodels
             SenderId = post.SenderId;
             SenderPic = post.SenderPic;
             Author = post.Author;
+            ViewsOnPost(post);
+            GroupId = post.GroupId;
             SetDisplayDate();
             CheckUser(post);
         }
+
         private ApiServices _api = new ApiServices();
 
         public int Id { get; set; }
@@ -49,7 +56,7 @@ namespace Inspark.Viewmodels
         public string SenderId { get; set; }
         public string Author { get; set; }
         public byte[] SenderPic { get; set; }
-        public User Sender { get; set; }
+        public int GroupId { get; set; }
 
         private string _displayDate;
 
@@ -65,6 +72,59 @@ namespace Inspark.Viewmodels
                 }           
             }
         }
+
+        private string _views;
+
+        public string Views
+        {
+            get { return _views; }
+            set
+            {
+                _views = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public async void ViewsOnPost(GroupPost post)
+        {
+            var username = Settings.UserName;
+            var users = post.Views;
+            var containsuser = users.Where(x => x.UserName == username);
+            int views;
+            if (containsuser == null)
+            {
+                await _api.AddUserToGroupPostViews(post.Id, username);
+                views = users.Count + 1;
+            }
+            else
+            {
+                views = users.Count;
+            }
+            var group = await _api.GetGroup(post.GroupId);
+            int members = group.Users.Count;
+            Views = "Visat av " + views.ToString() + " utav " + members.ToString();
+        }
+
+        public async void ViewsOnPost(NewsPost post)
+        {
+            var username = Settings.UserName;
+            var views = post.Views;
+            var containsuser = views.Where(x => x.UserName == username);
+            int viewsCount;
+            if(containsuser.Count() == 0)
+            {
+                await _api.AddUserToNewsPostViews(post.Id, username);
+                viewsCount = views.Count + 1;
+            }
+            else
+            {
+                viewsCount = views.Count;
+            }
+            var users = await _api.GetAllUsers();
+            int members = users.Count;
+            Views = "Visat av " + viewsCount.ToString() + " utav " + members.ToString();
+        }
+
 
         private bool _isUserPost;
 

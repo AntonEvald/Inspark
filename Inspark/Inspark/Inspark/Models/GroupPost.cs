@@ -17,5 +17,6 @@ namespace Inspark.Models
         public string Description { get; set; }
         public int GroupId { get; set; }
         public bool Pinned { get; set; }
+        public ICollection<User> Views { get; set; }
     }
 }

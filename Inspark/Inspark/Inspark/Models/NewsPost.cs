@@ -16,5 +16,6 @@ namespace Inspark.Models
         public string Author { get; set; }
         public bool Pinned { get; set; }
         public byte[] SenderPic { get; set; }
+        public ICollection<User> Views { get; set; }
     }
 }

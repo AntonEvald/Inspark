@@ -224,6 +224,14 @@ namespace Inspark.Services
             var user = JsonConvert.DeserializeObject<User>(json);
             return user;
         }
+
+        public async Task<Group> GetGroup(int id)
+        {
+            var client = new HttpClient();
+            var json = await client.GetStringAsync(ConnectionString + "api/Group/" + id.ToString() + "/");
+            var group = JsonConvert.DeserializeObject<Group>(json);
+            return group;
+        }
         
         public async Task<User> GetSingelUser(string id)
         { 
@@ -263,12 +271,26 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<bool> AddUserToNewsPostViews(int postId, string userName)
+        {
+            var client = new HttpClient();
+            var response = await client.PostAsync(ConnectionString + "api/NewsPost/AddUserToNewsPostViewed/" + postId.ToString() + "/" + userName + "/", null);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> AddUserToGroupPostViews(int postId, string userName)
+        {
+            var client = new HttpClient();
+            var response = await client.PostAsync(ConnectionString + "api/GroupPost/AddUserToGroupPostViewed/" + postId.ToString() + "/" + userName + "/", null);
+            return response.IsSuccessStatusCode;
+        }
+
         public async Task<bool> CreateNewsPost(NewsPost post)
         {
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(post);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(ConnectionString+"api/newspost", content);
+            var response = await client.PostAsync(ConnectionString+ "api/NewsPost/AddNewsPost/", content);
 
             return response.IsSuccessStatusCode;
         }

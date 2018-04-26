@@ -1,4 +1,5 @@
-﻿using Inspark.Models;
+﻿using Inspark.Helpers;
+using Inspark.Models;
 using Inspark.Services;
 using Inspark.Views;
 using Plugin.Media;
@@ -137,6 +138,9 @@ namespace Inspark.Viewmodels
                 };
                 string desc = post.Text.Split('.', '\n').First();
                 post.Description = desc;
+                var list = new List<User>();
+                list.Add(user);
+                post.Views = list;
                 if (await _api.CreateGroupPost(post))
                 {
                     Message = "En post har skapats!";

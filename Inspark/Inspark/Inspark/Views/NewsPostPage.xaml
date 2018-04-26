@@ -41,6 +41,7 @@
                         <Label Text="{Binding DisplayDate}"
                     VerticalOptions="Center"
                     HorizontalOptions="Center" />
+                        <Label Text="{Binding Views}" />
                     </StackLayout>
                     <Button Text="Ändra inlägg" IsVisible="{Binding IsUserPost}" Clicked="EditPost_Clicked"/>
                 </StackLayout>

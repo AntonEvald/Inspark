@@ -1,9 +1,11 @@
-﻿using Inspark.Models;
+﻿using Inspark.Helpers;
+using Inspark.Models;
 using Inspark.Services;
 using Inspark.Views;
 using Plugin.Media;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -123,7 +125,7 @@ namespace Inspark.Viewmodels
         public ICommand PostCommand => new Command(async () =>
         {
             var user = await _api.GetLoggedInUser();
-            if(_postTitle != null && _postTitle != "" && PostText != null && _postText != "")
+            if(_postTitle != null && _postTitle != "" && _postText != null && _postText != "")
             {
                 var post = new NewsPost()
                 {
@@ -134,14 +136,16 @@ namespace Inspark.Viewmodels
                     SenderId = user.Id,
                     Date = DateTime.Now,
                     Pinned = IsPinned,
-                    SenderPic = user.ProfilePicture
+                    SenderPic = user.ProfilePicture,
                 };
+
                 string desc = post.Text.Split('.', '\n').First();
                 post.Description = desc;
-                if (await _api.CreateNewsPost(post))
+                if(await _api.CreateNewsPost(post))
                 {
                     Message = "En post har skapats!";
                     Application.Current.MainPage = new MainPage(new HomePage());
+                    await _api.AddUserToNewsPostViews(post.Id, user.UserName);
                 }
                 else
                 {
@@ -152,8 +156,6 @@ namespace Inspark.Viewmodels
             {
                 Message = "Ange en titel och en text för din post!";
             }
-
-
         });
 
         public ICommand AddPicCommand => new Command(async () =>
