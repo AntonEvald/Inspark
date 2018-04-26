@@ -5,8 +5,6 @@
              x:Class="Inspark.Views.EventListPage">
     <ContentView x:Name="InsparkEventList">
     <ContentPage.Content>
-
- 
             <StackLayout>
                 <StackLayout.BindingContext>
                     <viewmodels:EventListViewModel/>
@@ -14,9 +12,17 @@
                     <StackLayout>
                         <Button Text="Skapa Event" Clicked="CreateEvent_OnClicked"/>
                     </StackLayout>
+                <StackLayout>
+                 <SearchBar x:Name="UserSearchBar"
+                                   Text="{Binding Keyword}"
+                                   SearchCommand="{Binding SearchCommand}"
+                                   Placeholder="Bokstav + enter för att söka"
+                                   HeightRequest="40"
+                            />
+                </StackLayout>
                        <ScrollView>
                     <StackLayout>
-        <ListView ItemTapped="Handle_ItemTapped" ItemsSource="{Binding Events}">
+        <ListView ItemTapped="Handle_ItemTapped" ItemsSource="{Binding Suggestions, Mode=TwoWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                       <TextCell Text="{Binding Title}"
