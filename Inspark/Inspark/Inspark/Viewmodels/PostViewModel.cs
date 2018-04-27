@@ -88,21 +88,21 @@ namespace Inspark.Viewmodels
         public async void ViewsOnPost(GroupPost post)
         {
             var username = Settings.UserName;
-            var users = post.Views;
-            var containsuser = users.Where(x => x.UserName == username);
-            int views;
-            if (containsuser == null)
+            var views = post.Views;
+            var containsuser = views.Where(x => x.UserName == username);
+            int viewsCount;
+            if (containsuser.Count() == 0)
             {
                 await _api.AddUserToGroupPostViews(post.Id, username);
-                views = users.Count + 1;
+                viewsCount = views.Count + 1;
             }
             else
             {
-                views = users.Count;
+                viewsCount = views.Count;
             }
             var group = await _api.GetGroup(post.GroupId);
             int members = group.Users.Count;
-            Views = "Visat av " + views.ToString() + " utav " + members.ToString();
+            Views = "Visat av " + viewsCount.ToString() + " utav " + members.ToString();
         }
 
         public async void ViewsOnPost(NewsPost post)

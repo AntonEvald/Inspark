@@ -24,6 +24,7 @@ namespace Inspark.Viewmodels
             EditTitle = post.Title;
             IsPinned = post.Pinned;
             Id = post.Id;
+            Views = post.Views;
 
             if(EditPic != null)
             {
@@ -45,6 +46,7 @@ namespace Inspark.Viewmodels
             EditTitle = post.Title;
             IsPinned = post.Pinned;
             Id = post.Id;
+            Views = post.Views;
 
             if (EditPic != null)
             {
@@ -161,6 +163,8 @@ namespace Inspark.Viewmodels
             }
         }
 
+        public  ICollection<User> Views { get; set; }
+
         public ICommand PostCommand => new Command(async () =>
         {
             if(EditTitle != "" && EditText != "")
@@ -173,7 +177,8 @@ namespace Inspark.Viewmodels
                         Text = EditText,
                         Title = EditTitle,
                         Pinned = IsPinned,
-                        Id = Id
+                        Id = Id,
+                        Views = Views
                     };
                     post.Description = post.Text.Split('.', '\n').First();
 
@@ -195,7 +200,8 @@ namespace Inspark.Viewmodels
                         Text = EditText,
                         Title = EditTitle,
                         Pinned = IsPinned,
-                        Id = Id
+                        Id = Id,
+                        Views = Views
                     };
                     post.Description = post.Text.Split('.', '\n').First();
 

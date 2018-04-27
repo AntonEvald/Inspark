@@ -28,12 +28,12 @@
                                     <StackLayout Padding="0,0,0,10">
                                         <Grid RowSpacing="0" Padding="0" Margin="0">
                                             <Grid.RowDefinitions>
+                                                <RowDefinition Height="5"/>
                                                 <RowDefinition Height="*"/>
-                                                <RowDefinition Height="70"/>
-                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="5"/>
                                             </Grid.RowDefinitions>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="60"/>
+                                                <ColumnDefinition Width="75"/>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="10"/>
                                             </Grid.ColumnDefinitions>
@@ -48,7 +48,7 @@
                                                         <conv:ByteArrayToImageSourceConverter x:Key="bic"/>
                                                     </ResourceDictionary>
                                                 </StackLayout.Resources>
-                                                <ci:CircleImage BorderColor="White" HeightRequest="35" WidthRequest="35" BorderThickness="2" Source="{Binding SenderPic, Converter={StaticResource bic}}"/>
+                                                <ci:CircleImage HorizontalOptions="Center" BorderColor="Gray" BorderThickness="2" Source="{Binding SenderPic, Converter={StaticResource bic}}" Aspect="AspectFill" HeightRequest="50" WidthRequest="50"/>
                                                 <Label Text="{Binding Author}" FontSize="Micro" HorizontalOptions="Center"/>
                                             </StackLayout>
                                             <Image Source="pin.png" HeightRequest="10" WidthRequest="10" IsVisible="{Binding Pinned}" Grid.Column="2" Grid.Row="1"/>

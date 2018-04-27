@@ -274,14 +274,14 @@ namespace Inspark.Services
         public async Task<bool> AddUserToNewsPostViews(int postId, string userName)
         {
             var client = new HttpClient();
-            var response = await client.PostAsync(ConnectionString + "api/NewsPost/AddUserToNewsPostViewed/" + postId.ToString() + "/" + userName + "/", null);
+            var response = await client.PostAsync(ConnectionString + "api/NewsPost/AddUserToNewsPostViewed/" + postId + "/" + userName + "/", null);
             return response.IsSuccessStatusCode;
         }
 
         public async Task<bool> AddUserToGroupPostViews(int postId, string userName)
         {
             var client = new HttpClient();
-            var response = await client.PostAsync(ConnectionString + "api/GroupPost/AddUserToGroupPostViewed/" + postId.ToString() + "/" + userName + "/", null);
+            var response = await client.PostAsync(ConnectionString + "api/GroupPost/AddUserToGroupPostViewed/" + postId + "/" + userName + "/", null);
             return response.IsSuccessStatusCode;
         }
 
