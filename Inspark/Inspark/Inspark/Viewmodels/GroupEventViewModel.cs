@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Input;
 using Inspark.Helpers;
 using Inspark.Models;
@@ -8,8 +7,12 @@ using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
-    public class EventViewModel : BaseViewModel
+    public class GroupEventViewModel : BaseViewModel
     {
+        public GroupEventViewModel()
+        {
+        }
+
         private ApiServices _api = new ApiServices();
 
         public string Title { get; set; }
@@ -44,4 +47,6 @@ namespace Inspark.Viewmodels
             var IsSuccess = await _api.AttendingEvent(model);
         });
     }
-}
+
+    }
+

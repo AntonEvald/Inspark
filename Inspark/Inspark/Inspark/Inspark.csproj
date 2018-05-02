@@ -16,6 +16,7 @@
   <ItemGroup>
     <Compile Remove="Services\CalendarBehavior.cs" />
     <Compile Remove="Views\EventListView.xaml.cs" />
+    <Compile Remove="Models\Attending.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
@@ -47,6 +48,15 @@
     </Compile>
     <Compile Update="Views\EventListPage.xaml.cs">
       <DependentUpon>EventListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CreateGroupEvents.xaml.cs">
+      <DependentUpon>CreateGroupEvents.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\GroupEventList.xaml.cs">
+      <DependentUpon>GroupEventList.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\GroupEventPage.xaml.cs">
+      <DependentUpon>GroupEventPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -93,9 +103,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CreateNewsPostPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\DeleteEventPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\DeleteGroupPage.xaml">
