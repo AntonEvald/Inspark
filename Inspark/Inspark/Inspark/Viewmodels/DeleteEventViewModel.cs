@@ -13,6 +13,7 @@ namespace Inspark.Viewmodels
     public class DeleteEventViewModel : BaseViewModel
     {
         ApiServices _api = new ApiServices();
+        private ObservableCollection<Event> _eventList;
 
         private ObservableCollection<Event> _events;
 
@@ -61,13 +62,13 @@ namespace Inspark.Viewmodels
 
         public async void PopulateList()
         {
-            var events = await _api.GetAllEvents();
-            events = new ObservableCollection<Event>(events);
-            Events = events;
+            _eventList = await _api.GetAllEvents();
+            Events = _eventList;
         }
 
         public DeleteEventViewModel()
         {
+            _eventList = new ObservableCollection<Event>();
             PopulateList();
         }
 
