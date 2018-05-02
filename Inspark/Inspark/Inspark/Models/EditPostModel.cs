@@ -12,6 +12,5 @@ namespace Inspark.Models
         public string Description { get; set; }
         public byte[] Picture { get; set; }
         public bool Pinned { get; set; }
-        public ICollection<User> Views { get; set; }
     }
 }
