@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Inspark.Views"
              xmlns:vm="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
-             x:Class="Inspark.Views.MainPage">
+             x:Class="Inspark.Views.MainPage"
+             xmlns:conv="clr-namespace:Inspark.Services;assembly=Inspark"
+             xmlns:ci="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions">
     
     <!-- Creating a grid with five rows for the whole page. -->
     <Grid ColumnSpacing="0" RowSpacing="0">
@@ -30,15 +32,15 @@
             </StackLayout>
 
             <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
-                <StackLayout.BindingContext>
-                    <vm:MainPageViewModel/>
-                </StackLayout.BindingContext>
             </StackLayout>
 
             <StackLayout Grid.Column="2" VerticalOptions="Center" Spacing="0">
             </StackLayout>
 
-            <StackLayout Grid.Column="3" VerticalOptions="Center" Spacing="0">
+            <StackLayout Grid.Column="3" VerticalOptions="Center" Spacing="0" IsVisible="{Binding IsAdmin}">
+                <StackLayout.BindingContext>
+                    <vm:MainPageViewModel/>
+                </StackLayout.BindingContext>
                 <Image HeightRequest="30" Source="admin.png"/>
                 <Label Text="Admin" FontSize="10"
                        HorizontalOptions="Center"/>
@@ -48,8 +50,21 @@
             </StackLayout>
 
             <StackLayout Grid.Column="4" VerticalOptions="Center" Spacing="0">
-                <Image HeightRequest="30" Source="profile.png"/>
-                <Label Text="Profil" FontSize="10"
+                <StackLayout.BindingContext>
+                    <vm:MainPageViewModel/>
+                </StackLayout.BindingContext>
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <conv:ByteArrayToImageSourceConverter x:Key="bic"/>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <ci:CircleImage Source="{Binding ProfilePicture, Converter={StaticResource bic}}"
+                                Aspect="AspectFill"
+                                WidthRequest="30"
+                                HeightRequest="30"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"/>
+                <Label Text="{Binding FirstName}" FontSize="10"
                        HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ProfileIcon_Tapped"/>
@@ -83,7 +98,10 @@
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
-            <StackLayout VerticalOptions="Center" Spacing="0" Grid.Column="1">
+            <StackLayout VerticalOptions="Center" Spacing="0" Grid.Column="1" IsVisible="{Binding IsIntro}">
+                <StackLayout.BindingContext>
+                    <vm:MainPageViewModel/>
+                </StackLayout.BindingContext>
                 <Image HeightRequest="30" Source="group.png"/>
                 <Label Text="Grupp" FontSize="10"
                        HorizontalOptions="Center"/>
@@ -101,7 +119,10 @@
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
-            <StackLayout VerticalOptions="Center" Spacing="0" Grid.Column="3">
+            <StackLayout VerticalOptions="Center" Spacing="0" Grid.Column="3" IsVisible="{Binding IsIntro}">
+                <StackLayout.BindingContext>
+                    <vm:MainPageViewModel/>
+                </StackLayout.BindingContext>
                 <Image HeightRequest="30" Source="chat.png"/>
                 <Label Text="Chatt" FontSize="10"
                        HorizontalOptions="Center"/>

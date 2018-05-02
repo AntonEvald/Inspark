@@ -29,7 +29,7 @@
                     <StackLayout HorizontalOptions="End" VerticalOptions="End">
                         <ci:CircleImage Source="{Binding SenderPic, Converter={StaticResource bic}}" 
                                 Aspect="AspectFill"
-                                BorderColor="White"
+                                BorderColor="Gray"
                                 BorderThickness="3"
                                 HeightRequest="60"
                                 WidthRequest="60"

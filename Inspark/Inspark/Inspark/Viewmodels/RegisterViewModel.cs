@@ -210,7 +210,7 @@ namespace Inspark.Viewmodels
                         Section = Section.Name,
                         FirstName = FirstName,
                         LastName = LastName,
-                        Role = "Admin",
+                        Role = "Pleb",
                         ConfirmPassword = Password,
                         PhoneNumber = PhoneNumber,
                         ProfilePicture = Pic,
