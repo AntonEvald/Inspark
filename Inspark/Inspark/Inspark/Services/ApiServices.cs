@@ -344,7 +344,16 @@ namespace Inspark.Services
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(model);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(ConnectionString + "api/Attending/", content);
+            var response = await client.PostAsync(ConnectionString + "api/AttendingEvent/", content);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> AttendingGroupEvent(AttendingModel model)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(model);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/AttendingGroupEvent/", content);
             return response.IsSuccessStatusCode;
         }
 

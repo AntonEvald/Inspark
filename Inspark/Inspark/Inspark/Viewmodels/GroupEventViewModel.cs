@@ -32,7 +32,7 @@ namespace Inspark.Viewmodels
                 GroupEventId = Id
             };
 
-            var IsSuccess = await _api.AttendingEvent(model);
+            var IsSuccess = await _api.AttendingGroupEvent(model);
         });
 
         public ICommand IsNotAttending => new Command(async () =>
@@ -44,7 +44,7 @@ namespace Inspark.Viewmodels
                 GroupEventId = Id
             };
 
-            var IsSuccess = await _api.AttendingEvent(model);
+            var IsSuccess = await _api.AttendingGroupEvent(model);
         });
     }
 
