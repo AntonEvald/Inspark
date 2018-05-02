@@ -70,43 +70,43 @@ namespace Inspark.Viewmodels
         public async void OnLoad()
         {
             User = await _api.GetLoggedInUser();
-            if(User.ProfilePicture != null)
-            {
-                ProfilePicture = User.ProfilePicture;
-            }
-            else
+            if(User == null)
             {
                 var assembly = Assembly.GetExecutingAssembly();
                 var pic = EmbeddedResourceToByteArray.GetEmbeddedResourceBytes(assembly, "profile.png");
                 ProfilePicture = pic;
-            }
-            FirstName = User.FirstName;
-            if(User.Role == "Admin")
-            {
-                IsAdmin = true;
-                IsIntro = true;
+                FirstName = "No user";
             }
             else
             {
-                IsAdmin = false;
-                if(User.Role == "Fadder" || User.Role == "Intro")
+                if (User.ProfilePicture != null)
                 {
+                    ProfilePicture = User.ProfilePicture;
+                }
+                FirstName = User.FirstName;
+                if (User.Role == "Admin")
+                {
+                    IsAdmin = true;
                     IsIntro = true;
                 }
                 else
                 {
-                    IsIntro = false;
+                    IsAdmin = false;
+                    if (User.Role == "Fadder" || User.Role == "Intro")
+                    {
+                        IsIntro = true;
+                    }
+                    else
+                    {
+                        IsIntro = false;
+                    }
                 }
             }
         }
 
         public MainPageViewModel()
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            var pic = EmbeddedResourceToByteArray.GetEmbeddedResourceBytes(assembly, "profile.png");
-            ProfilePicture = pic;
-            FirstName = "No user";
-            //OnLoad();
+            OnLoad();
         }
 
     }
