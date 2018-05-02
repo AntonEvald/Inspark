@@ -39,7 +39,7 @@ namespace Inspark.Viewmodels
             var exampleEventOne = new Event
             {
                 Title = "EfterFest",
-                Id = "01",
+                Id = 01,
                 Location = "Landsvägsgatan",
                 TimeForEvent = new DateTime(2018, 04, 30, 16, 45, 0),
                 //IEnumerable<User> Invited 
@@ -50,7 +50,7 @@ namespace Inspark.Viewmodels
             var exampleEventTwo = new Event
             {
                 Title = "EfterFest2",
-                Id = "01",
+                Id = 02,
                 Location = "Landsvägsgatan",
                 TimeForEvent = new DateTime(2018, 04, 28, 16, 45, 0),
                 //IEnumerable<User> Invited 
