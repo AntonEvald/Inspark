@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using Inspark.Helpers;
 using Inspark.Models;
+using Inspark.Services;
 using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
-    public class EventViewModel
+    public class EventViewModel : BaseViewModel
     {
-        
+        private ApiServices _api = new ApiServices();
+
         public string Title { get; set; }
         public int Id { get; set; }
         public string Location { get; set; }
@@ -18,7 +20,7 @@ namespace Inspark.Viewmodels
         //public IEnumerable<User> Attending { get; set; }
         public string Description { get; set; }
 
-        public ICommand IsAttending => new Command(() =>
+        public ICommand IsAttending => new Command(async () =>
         {
             AttendingModel model = new AttendingModel
             {
@@ -26,9 +28,11 @@ namespace Inspark.Viewmodels
                 UserId = Settings.UserId,
                 GroupEventId = Id
             };
+
+            var IsSuccess = await _api.Attending(model);
         });
 
-        public ICommand IsNotAttending => new Command(() =>
+        public ICommand IsNotAttending => new Command(async () =>
         {
             AttendingModel model = new AttendingModel
             {
@@ -36,6 +40,8 @@ namespace Inspark.Viewmodels
                 UserId = Settings.UserId,
                 GroupEventId = Id
             };
+
+            var IsSuccess = await _api.Attending(model);
         });
     }
 }
