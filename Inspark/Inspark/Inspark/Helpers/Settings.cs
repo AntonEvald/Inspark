@@ -11,6 +11,23 @@ namespace Inspark.Helpers
             get{return CrossSettings.Current;}
         }
 
+        private const string UserIdKey = "userid_key";
+        private static readonly string UserIdDefault = string.Empty;
+        public static string UserId
+        {
+            get { return AppSettings.GetValueOrDefault(UserIdKey, UserIdDefault); }
+            set { AppSettings.AddOrUpdateValue(UserIdKey, value); }
+        }
+
+        private const string UserRoleKey = "userRole_key";
+        private static readonly string UserRoleDefault = string.Empty;
+        public static string UserRole
+        {
+            get { return AppSettings.GetValueOrDefault(UserRoleKey, UserRoleDefault); }
+            set { AppSettings.AddOrUpdateValue(UserRoleKey, value); }
+        }
+
+
         private const string UserNameKey = "username_key";
         private static readonly string UserNameDefault = string.Empty;
         public static string UserName

@@ -24,7 +24,6 @@ namespace Inspark.Viewmodels
             EditTitle = post.Title;
             IsPinned = post.Pinned;
             Id = post.Id;
-            Views = post.Views;
 
             if(EditPic != null)
             {
@@ -46,7 +45,6 @@ namespace Inspark.Viewmodels
             EditTitle = post.Title;
             IsPinned = post.Pinned;
             Id = post.Id;
-            Views = post.Views;
 
             if (EditPic != null)
             {
@@ -177,8 +175,7 @@ namespace Inspark.Viewmodels
                         Text = EditText,
                         Title = EditTitle,
                         Pinned = IsPinned,
-                        Id = Id,
-                        Views = Views
+                        Id = Id
                     };
                     post.Description = post.Text.Split('.', '\n').First();
 
@@ -200,8 +197,7 @@ namespace Inspark.Viewmodels
                         Text = EditText,
                         Title = EditTitle,
                         Pinned = IsPinned,
-                        Id = Id,
-                        Views = Views
+                        Id = Id
                     };
                     post.Description = post.Text.Split('.', '\n').First();
 

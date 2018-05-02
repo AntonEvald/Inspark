@@ -111,6 +111,10 @@ namespace Inspark.Viewmodels
                             Settings.UserPassword = Password;
                         }
                         IsLoading = false;
+                        var user = await _api.GetLoggedInUser();
+                        var userId = user.Id;
+                        Settings.UserId = userId;
+                        Settings.UserRole = user.Role;
                         Application.Current.MainPage = new MainPage(new HomePage());
                     }
                     else

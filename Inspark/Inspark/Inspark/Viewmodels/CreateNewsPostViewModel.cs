@@ -145,7 +145,9 @@ namespace Inspark.Viewmodels
                 {
                     Message = "En post har skapats!";
                     Application.Current.MainPage = new MainPage(new HomePage());
-                    await _api.AddUserToNewsPostViews(post.Id, user.UserName);
+                    var posts = await _api.GetAllNewsPosts();
+                    var latestPost = posts.Where(x => x.SenderId == post.SenderId && x.Text == post.Text && x.Title == post.Title && x.Date.ToLongDateString() == post.Date.ToLongDateString()).First();
+                    await _api.AddUserToNewsPostViews(latestPost.Id, user.UserName);
                 }
                 else
                 {

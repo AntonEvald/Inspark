@@ -142,7 +142,9 @@ namespace Inspark.Viewmodels
                 {
                     Message = "En post har skapats!";
                     Application.Current.MainPage = new MainPage(new GroupPage());
-                    await _api.AddUserToGroupPostViews(post.Id, user.UserName);
+                    var posts = await _api.GetAllGroupPosts();
+                    var latestPost = posts.Where(x => x.SenderId == post.SenderId && x.Text == post.Text && x.Title == post.Title && x.Date.ToLongDateString() == post.Date.ToLongDateString()).First();
+                    await _api.AddUserToGroupPostViews(latestPost.Id, user.UserName);
                 }
                 else
                 {
