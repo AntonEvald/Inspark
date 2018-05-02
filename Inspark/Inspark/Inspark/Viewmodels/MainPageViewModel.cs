@@ -51,6 +51,8 @@ namespace Inspark.Viewmodels
             }
         }
 
+        public string Role { get; set; }
+
         private bool _isIntro;
 
         public bool IsIntro
@@ -100,7 +102,11 @@ namespace Inspark.Viewmodels
 
         public MainPageViewModel()
         {
-            OnLoad();
+            var assembly = Assembly.GetExecutingAssembly();
+            var pic = EmbeddedResourceToByteArray.GetEmbeddedResourceBytes(assembly, "profile.png");
+            ProfilePicture = pic;
+            FirstName = "No user";
+            //OnLoad();
         }
 
     }
