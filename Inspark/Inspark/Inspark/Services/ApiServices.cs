@@ -124,6 +124,13 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<bool> DeleteEvent(int eventId)
+        {
+            var client = new HttpClient();
+            var response = await client.DeleteAsync(ConnectionString + "api/event/" + eventId + "/");
+            return response.IsSuccessStatusCode;
+        }
+
         public async Task<bool> DeleteUserFromGroup(int groupId, string userId)
         {
             var client = new HttpClient();

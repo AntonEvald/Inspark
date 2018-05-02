@@ -27,5 +27,11 @@ namespace Inspark.Views
             var page = new CreateEventPage();
             InsparkEventList.Content = page.Content;
         }
+
+        public void DeleteEvent_OnClicked(object sender, EventArgs e)
+        {
+            var page = new DeleteEventPage();
+            InsparkEventList.Content = page.Content;
+        }
     }
 }
