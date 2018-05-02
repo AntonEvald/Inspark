@@ -339,5 +339,15 @@ namespace Inspark.Services
             var list = JsonConvert.DeserializeObject<ObservableCollection<Event>>(result);
             return list;
         }
+
+        public async Task<bool> Attending(AttendingModel model)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(model);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/Attending/", content);
+            return response.IsSuccessStatusCode;
+        }
+
     }
 }
