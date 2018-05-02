@@ -144,7 +144,7 @@ namespace Inspark.Viewmodels
 
             if (isSuccess)
             {
-                Application.Current.MainPage = new MainPage(new EventListPage());
+                Application.Current.MainPage = new MainPage(new GroupPage());
             }
             else
             {

@@ -258,7 +258,6 @@ namespace Inspark.Services
                 Location = location,
                 TimeForEvent = date,
                 Description = desc,
-                Text = desc,
                 SenderId = senderId
             };
             var json = JsonConvert.SerializeObject(model);
