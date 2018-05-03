@@ -163,6 +163,15 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<bool> ChangeGroupEvent(GroupEvent groupEvents)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(groupEvents);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/GroupEvent/EditGroupEvent/", content);
+            return response.IsSuccessStatusCode;
+        }
+
         public async Task<bool> DeleteNewsPost(int id)
         {
             var client = new HttpClient();
