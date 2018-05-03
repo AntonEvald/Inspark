@@ -11,6 +11,7 @@
                 </StackLayout.BindingContext>
                     <StackLayout>
                     <Button Text="Skapa event" Clicked="Handle_Clicked"/>
+                    <Button Text=" Ta bort event" Clicked="DeleteGroupEvent_Clicked"/>
                 </StackLayout>
                 <StackLayout>
                  <SearchBar x:Name="UserSearchBar"

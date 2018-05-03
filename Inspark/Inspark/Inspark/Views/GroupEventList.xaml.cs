@@ -24,5 +24,11 @@ namespace Inspark.Views
             var page = new GroupEventPage(selected);
             GroupEvent.Content = page.Content;
         }
+
+        public void DeleteGroupEvent_Clicked(object sender, EventArgs e)
+        {
+            var page = new DeleteGroupEventPage();
+            GroupEvent.Content = page.Content;
+        }
     }
 }
