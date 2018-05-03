@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Input;
 using Inspark.Helpers;
 using Inspark.Models;
@@ -8,8 +7,9 @@ using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
-    public class EventViewModel : BaseViewModel
+    public class GroupEventViewModel : BaseViewModel
     {
+
         private ApiServices _api = new ApiServices();
 
         public string Title { get; set; }
@@ -34,7 +34,7 @@ namespace Inspark.Viewmodels
 
         public async void OnLoad()
         {
-            var result = await _api.AttendingsEvent(Id);
+            var result = await _api.AttendingsGroupEvent(Id);
             var attending = result.Count;
             if (attending < 1)
             {
@@ -46,33 +46,38 @@ namespace Inspark.Viewmodels
             }
         }
 
-        public EventViewModel()
+        public GroupEventViewModel()
         {
             OnLoad();
         }
 
+
+
         public ICommand IsAttending => new Command(async () =>
         {
-            AttendingEventModel model = new AttendingEventModel
+            AttendingGroupEventModel model = new AttendingGroupEventModel
             {
                 IsComing = true,
                 UserId = Settings.UserId,
-                EventId = Id
+                GroupEventId = Id
             };
 
-            var IsSuccess = await _api.AttendingEvent(model);
+            var IsSuccess = await _api.AttendingGroupEvent(model);
+
         });
 
         public ICommand IsNotAttending => new Command(async () =>
         {
-            AttendingEventModel model = new AttendingEventModel
+            AttendingGroupEventModel model = new AttendingGroupEventModel
             {
                 IsComing = false,
                 UserId = Settings.UserId,
-                EventId = Id
+                GroupEventId = Id
             };
 
-            var IsSuccess = await _api.AttendingEvent(model);
+            var IsSuccess = await _api.AttendingGroupEvent(model);
         });
     }
-}
+
+    }
+

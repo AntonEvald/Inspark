@@ -3,13 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              xmlns:system="clr-namespace:System;assembly=netstandard"
+             xmlns:iOSSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              xmlns:validation="clr-namespace:Inspark.Services;assembly=Inspark"
-             x:Class="Inspark.Views.CreateEventPage">
+             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
+             x:Class="Inspark.Views.CreateGroupEvents">
     <ContentPage.Content>
-        <ScrollView>
+    </ContentPage.Content>
+
+            <ScrollView>
             <StackLayout Padding="40">
                 <StackLayout.BindingContext>
-                    <viewmodels:CreateEventViewModel/>
+                    <viewmodels:CreateGroupEventViewModel/>
                 </StackLayout.BindingContext>
                 <StackLayout>
                     <Entry Placeholder="Titel" Text="{Binding Title}">
@@ -26,9 +30,6 @@
                     </Entry.Behaviors>
                     </Entry>
                 </StackLayout>
-                <StackLayout>
-                    <Label Text="{Binding Attending}"/>
-                </StackLayout>
 
                 <StackLayout>
                     <Entry Placeholder="Beskrivning" Text="{Binding Description}">
@@ -37,6 +38,15 @@
                     </Entry.Behaviors>
                     </Entry>
                 </StackLayout>
+            <StackLayout>
+                                 <Picker Margin="10,0,0,10" ItemsSource="{Binding Groups}" SelectedIndex="{Binding SelectedIndex}" ItemDisplayBinding="{Binding Name}" iOSSpecific:Picker.UpdateMode="WhenFinished">
+                        <Picker.Behaviors>
+          <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+              <behaviors:InvokeCommandAction Command="{Binding SelectedProviderChanged}" />
+          </behaviors:EventHandlerBehavior>
+    </Picker.Behaviors>
+                </Picker>
+            </StackLayout>
 
                 <StackLayout>  
                 <DatePicker Format="dd/MM/yyyy" Date="{Binding StartDate}" MinimumDate="{x:Static system:DateTime.Today}"/>
@@ -54,8 +64,7 @@
                 </Grid>
                 </StackLayout>
                 <Label Text="{Binding Message}"></Label>
-                <Button Text="Create Event" IsEnabled="{Binding IsButtonEnabled}" Command="{Binding CreateEventCommand}"></Button>
+                <Button Text="Create GroupEvent" IsEnabled="{Binding IsButtonEnabled}" Command="{Binding CreateEventCommand}"></Button>
             </StackLayout>
-        </ScrollView>   
-    </ContentPage.Content>
+        </ScrollView> 
 </ContentPage>

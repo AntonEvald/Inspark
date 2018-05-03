@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Inspark.Models
@@ -17,6 +18,5 @@ namespace Inspark.Models
         public string PhoneNumber { get; set; }
         public string Role { get; set; }
         public string Section { get; set; }
-        //public virtual Group Group { get; set; }
     }
 }

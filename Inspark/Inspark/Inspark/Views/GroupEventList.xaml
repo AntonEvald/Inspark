@@ -2,17 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
-             x:Class="Inspark.Views.EventListPage">
-    <ContentView x:Name="InsparkEventList">
+             x:Class="Inspark.Views.GroupEventList">
     <ContentPage.Content>
-            <StackLayout>
+   <ContentView x:Name="GroupEvent">
+                <StackLayout>
                 <StackLayout.BindingContext>
-                    <viewmodels:EventListViewModel/>
+                    <viewmodels:GroupEventListViewModel/>
                 </StackLayout.BindingContext>
                     <StackLayout>
-                    <Button Text="Skapa event" Clicked="CreateEvent_Clicked"/>
-                    <Button Text="Ta bort event" Clicked="DeleteEvent_Clicked"/>
-                    <Button Text="Ändra event" Clicked="ChangeEvent_Clicked"/>
+                    <Button Text="Skapa grupp event" Clicked="CreateGroupEvent_Clicked"/>
+                    <Button Text="Ta bort grupp event" Clicked="DeleteGroupEvent_Clicked"/>
+                    <Button Text="Ändra grupp event" Clicked="ChangeGroupEvent_Clicked"/>
                 </StackLayout>
                 <StackLayout>
                  <SearchBar x:Name="UserSearchBar"
@@ -36,7 +36,7 @@
                         </StackLayout>
                             </ScrollView>
             </StackLayout>
-
+                    </ContentView>
     </ContentPage.Content>
-        </ContentView>
+
 </ContentPage>

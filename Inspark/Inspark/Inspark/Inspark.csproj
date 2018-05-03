@@ -20,6 +20,7 @@
   <ItemGroup>
     <Compile Remove="Services\CalendarBehavior.cs" />
     <Compile Remove="Views\EventListView.xaml.cs" />
+    <Compile Remove="Models\Attending.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
@@ -52,6 +53,15 @@
     <Compile Update="Views\EventListPage.xaml.cs">
       <DependentUpon>EventListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\CreateGroupEvents.xaml.cs">
+      <DependentUpon>CreateGroupEvents.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\GroupEventList.xaml.cs">
+      <DependentUpon>GroupEventList.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\GroupEventPage.xaml.cs">
+      <DependentUpon>GroupEventPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\EventListView.xaml" />
@@ -81,6 +91,12 @@
     <EmbeddedResource Update="Views\AddUserToGroupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\ChangeEventPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ChangeGroupEventPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\ChangeGroupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -102,7 +118,7 @@
     <EmbeddedResource Update="Views\CreateNewsPostPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\DeleteEventPage.xaml">
+    <EmbeddedResource Update="Views\DeleteGroupEventPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\DeleteGroupPage.xaml">

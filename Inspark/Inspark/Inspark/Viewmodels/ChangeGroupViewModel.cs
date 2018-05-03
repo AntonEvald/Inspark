@@ -11,9 +11,7 @@ namespace Inspark.Viewmodels
 {
     public class ChangeGroupViewModel : BaseViewModel
     {
-
         ApiServices _api = new ApiServices();
-
 
         private string _name;
 
@@ -30,7 +28,6 @@ namespace Inspark.Viewmodels
             }
         }
 
-
         private bool _isIntroGroup;
 
         public bool IsIntroGroup
@@ -42,8 +39,6 @@ namespace Inspark.Viewmodels
                 OnPropertyChanged();
             }
         }
-
-
 
         private ObservableCollection<Group> _groups;
 
@@ -117,7 +112,6 @@ namespace Inspark.Viewmodels
                     _message = value;
                     OnPropertyChanged();
                 }
-
             }
         }
 
@@ -133,7 +127,6 @@ namespace Inspark.Viewmodels
                     _selectedIndex = value;
                     OnPropertyChanged();
                 }
-
             }
         }
 
@@ -176,7 +169,6 @@ namespace Inspark.Viewmodels
 
         public async void PopulateLists()
         {
-
             var groups = await _api.GetAllGroups();
             groups = new ObservableCollection<Group>(groups);
             Groups = groups;

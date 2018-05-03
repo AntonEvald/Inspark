@@ -131,6 +131,13 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<bool> DeleteGroupEvent(int eventId)
+        {
+            var client = new HttpClient();
+            var response = await client.DeleteAsync(ConnectionString + "api/groupevent/" + eventId + "/");
+            return response.IsSuccessStatusCode;
+        }
+
         public async Task<bool> DeleteUserFromGroup(int groupId, string userId)
         {
             var client = new HttpClient();
@@ -144,6 +151,24 @@ namespace Inspark.Services
             var json = JsonConvert.SerializeObject(group);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await client.PostAsync(ConnectionString + "api/Group/EditGroup/", content);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> ChangeEvent(Event events)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(events);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/Event/EditEvent/", content);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> ChangeGroupEvent(GroupEvent groupEvents)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(groupEvents);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/GroupEvent/EditGroupEvent/", content);
             return response.IsSuccessStatusCode;
         }
 
@@ -258,7 +283,6 @@ namespace Inspark.Services
                 Location = location,
                 TimeForEvent = date,
                 Description = desc,
-                Text = desc,
                 SenderId = senderId
             };
             var json = JsonConvert.SerializeObject(model);
@@ -339,5 +363,65 @@ namespace Inspark.Services
             var list = JsonConvert.DeserializeObject<ObservableCollection<Event>>(result);
             return list;
         }
+
+        public async Task<bool> AttendingEvent(AttendingEventModel model)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(model);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/AttendingEvent/", content);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> AttendingGroupEvent(AttendingGroupEventModel model)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(model);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/AttendingGroupEvent/", content);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> CreateGroupEvent(GroupEvent groupEvent)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(groupEvent);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/GroupEvent/AddGroupEvent/", content);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<ObservableCollection<Group>> GetAllGroupsByUserId()
+        {
+            var userId = Settings.UserId;
+            var client = new HttpClient();
+            var response = await client.GetAsync(ConnectionString + "api/Group/GetGroupsFromUser/"+userId+"/");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<ObservableCollection<Group>>(result);
+            return list;
+            
+        }
+
+        public async Task<ObservableCollection<User>> AttendingsGroupEvent(int eventId)
+        {
+            var client = new HttpClient();
+            var response = await client.GetAsync(ConnectionString + "api/AttendingGroupEvent/GetAttendingUsers/"+eventId+"/");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<ObservableCollection<User>>(result);
+            return list;
+        }
+
+        public async Task<ObservableCollection<User>> AttendingsEvent(int eventId)
+        {
+            var client = new HttpClient();
+            var response = await client.GetAsync(ConnectionString + "api/AttendingEvent/GetAttendingUsers/"+eventId+"/");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<ObservableCollection<User>>(result);
+            return list;
+        }
+
     }
 }

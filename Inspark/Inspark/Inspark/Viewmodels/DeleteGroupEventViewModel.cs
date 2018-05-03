@@ -10,22 +10,22 @@ using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
-    public class DeleteEventViewModel : BaseViewModel
+    public class DeleteGroupEventViewModel : BaseViewModel
     {
         ApiServices _api = new ApiServices();
 
-        private ObservableCollection<Event> _eventList;
+        private ObservableCollection<GroupEvent> _groupEventList;
 
-        private ObservableCollection<Event> _events;
+        private ObservableCollection<GroupEvent> _groupEvents;
 
-        public ObservableCollection<Event> Events
+        public ObservableCollection<GroupEvent> GroupEvents
         {
-            get { return _events; }
+            get { return _groupEvents; }
             set
             {
-                if (_events != value)
+                if (_groupEvents != value)
                 {
-                    _events = value;
+                    _groupEvents = value;
                     OnPropertyChanged();
                 }
             }
@@ -41,21 +41,6 @@ namespace Inspark.Viewmodels
                 if (_selectedIndex != value)
                 {
                     _selectedIndex = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private Group _selectedEvent;
-
-        public Group SelectedEvent
-        {
-            get { return _selectedEvent; }
-            set
-            {
-                if (_selectedEvent != value)
-                {
-                    _selectedEvent = value;
                     OnPropertyChanged();
                 }
             }
@@ -78,20 +63,20 @@ namespace Inspark.Viewmodels
 
         public async void PopulateList()
         {
-            _eventList = await _api.GetAllEvents();
-            Events = _eventList;
+            _groupEventList = await _api.GetAllGroupEvents();
+            GroupEvents = _groupEventList;
         }
 
-        public DeleteEventViewModel()
+        public DeleteGroupEventViewModel()
         {
-            _eventList = new ObservableCollection<Event>();
+            _groupEventList = new ObservableCollection<GroupEvent>();
             PopulateList();
         }
 
-        public ICommand DeleteEvent => new Command(async () =>
+        public ICommand DeleteGroupEvent => new Command(async () =>
         {
-            var eventId = _eventList[SelectedIndex].Id;
-            var isSuccess = await _api.DeleteEvent(eventId);
+            var eventId = _groupEventList[SelectedIndex].Id;
+            var isSuccess = await _api.DeleteGroupEvent(eventId);
             if (!isSuccess)
             {
                 Message = "Något Gick fel";
@@ -101,8 +86,5 @@ namespace Inspark.Viewmodels
                 Application.Current.MainPage = new MainPage(new HomePage());
             }
         });
-
-
-
     }
 }
