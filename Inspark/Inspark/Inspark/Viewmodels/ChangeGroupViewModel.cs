@@ -112,7 +112,6 @@ namespace Inspark.Viewmodels
                     _message = value;
                     OnPropertyChanged();
                 }
-
             }
         }
 
@@ -128,7 +127,6 @@ namespace Inspark.Viewmodels
                     _selectedIndex = value;
                     OnPropertyChanged();
                 }
-
             }
         }
 
@@ -171,7 +169,6 @@ namespace Inspark.Viewmodels
 
         public async void PopulateLists()
         {
-
             var groups = await _api.GetAllGroups();
             groups = new ObservableCollection<Group>(groups);
             Groups = groups;
