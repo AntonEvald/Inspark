@@ -10,7 +10,7 @@
             </StackLayout.BindingContext>
             <StackLayout>
                 <Label Text="Välj vilket event"/>
-                <Picker ItemsSource="{Binding Events}" SelectedItem="{Binding SelectedEvent}" ItemDisplayBinding="{Binding Name}"/>
+                <Picker ItemsSource="{Binding Events}" SelectedIndex="{Binding SelectedIndex}" ItemDisplayBinding="{Binding Title}"/>
             </StackLayout>
             <StackLayout>
                 <Label Text="{Binding Message}"/>

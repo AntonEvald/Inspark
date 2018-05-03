@@ -13,6 +13,7 @@ namespace Inspark.Viewmodels
     public class DeleteEventViewModel : BaseViewModel
     {
         ApiServices _api = new ApiServices();
+
         private ObservableCollection<Event> _eventList;
 
         private ObservableCollection<Event> _events;
@@ -25,6 +26,21 @@ namespace Inspark.Viewmodels
                 if (_events != value)
                 {
                     _events = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private int _selectedIndex;
+
+        public int SelectedIndex
+        {
+            get { return _selectedIndex; }
+            set
+            {
+                if (_selectedIndex != value)
+                {
+                    _selectedIndex = value;
                     OnPropertyChanged();
                 }
             }
@@ -74,7 +90,7 @@ namespace Inspark.Viewmodels
 
         public ICommand DeleteEvent => new Command(async () =>
         {
-            var eventId = SelectedEvent.Id;
+            var eventId = _eventList[SelectedIndex].Id;
             var isSuccess = await _api.DeleteEvent(eventId);
             if (!isSuccess)
             {
@@ -82,7 +98,7 @@ namespace Inspark.Viewmodels
             }
             else
             {
-                Application.Current.MainPage = new MainPage(new AdminPage());
+                Application.Current.MainPage = new MainPage(new HomePage());
             }
         });
 
