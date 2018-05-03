@@ -7,25 +7,24 @@
              x:Class="Inspark.Views.ChangeGroupPage">
     <ContentPage.Content>
         <StackLayout>
-                            <StackLayout.BindingContext>
+                <StackLayout.BindingContext>
                     <viewmodels:ChangeGroupViewModel/>
                 </StackLayout.BindingContext>
             <StackLayout>
                       <Label Margin="10,20,0,10" Text="Välj vilken grupp"/>
                 <Picker Margin="10,0,0,10" ItemsSource="{Binding Groups}" SelectedItem="{Binding SelectedGroup, Mode=TwoWay}" ItemDisplayBinding="{Binding Name}" iOSSpecific:Picker.UpdateMode="WhenFinished">
-                        <Picker.Behaviors>
-          <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
-              <behaviors:InvokeCommandAction Command="{Binding SelectedProviderChanged}" />
-          </behaviors:EventHandlerBehavior>
-    </Picker.Behaviors>
+                    <Picker.Behaviors>
+                        <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+                        <behaviors:InvokeCommandAction Command="{Binding SelectedProviderChanged}" />
+                        </behaviors:EventHandlerBehavior>
+                    </Picker.Behaviors>
                 </Picker>
             </StackLayout>
             <StackLayout>
                 <Label Text="Name:" Margin="10,5,5,10" />
                 <Entry Text="{Binding Name ,Mode=TwoWay}" Margin="10,5,5,10"/>
                 <Label Text="är gruppen introgrupp" Margin="10,5,5,10"/>
-                                <Switch x:Name="IsIntroGroup"
-                                IsToggled="{Binding IsIntroGroup , Mode=TwoWay}"/>
+                <Switch x:Name="IsIntroGroup" IsToggled="{Binding IsIntroGroup , Mode=TwoWay}"/>
             </StackLayout>
             <StackLayout>
                 <Picker Margin="10,0,0,10" ItemsSource="{Binding SectionsList}" SelectedIndex="{Binding SelectedIndex}" ItemDisplayBinding="{Binding Name}"/>
