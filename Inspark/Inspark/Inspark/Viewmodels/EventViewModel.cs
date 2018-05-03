@@ -20,13 +20,44 @@ namespace Inspark.Viewmodels
         //public IEnumerable<User> Attending { get; set; }
         public string Description { get; set; }
 
+        private string _attending;
+
+        public string Attending
+        {
+            get { return _attending; }
+            set
+            {
+                _attending = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public async void OnLoad()
+        {
+            var result = await _api.AttendingsEvent(Id);
+            var attending = result.Count;
+            if (attending < 1)
+            {
+                Attending = "Inga Personer har tackat jag till eventet";
+            }
+            else
+            {
+                Attending = Attending + "har tackat jag till eventet";
+            }
+        }
+
+        public EventViewModel()
+        {
+            OnLoad();
+        }
+
         public ICommand IsAttending => new Command(async () =>
         {
-            AttendingModel model = new AttendingModel
+            AttendingEventModel model = new AttendingEventModel
             {
                 IsComing = true,
                 UserId = Settings.UserId,
-                GroupEventId = Id
+                EventId = Id
             };
 
             var IsSuccess = await _api.AttendingEvent(model);
@@ -34,11 +65,11 @@ namespace Inspark.Viewmodels
 
         public ICommand IsNotAttending => new Command(async () =>
         {
-            AttendingModel model = new AttendingModel
+            AttendingEventModel model = new AttendingEventModel
             {
                 IsComing = false,
                 UserId = Settings.UserId,
-                GroupEventId = Id
+                EventId = Id
             };
 
             var IsSuccess = await _api.AttendingEvent(model);

@@ -26,6 +26,9 @@
                     </Entry.Behaviors>
                     </Entry>
                 </StackLayout>
+                <StackLayout>
+                    <Label Text="{Binding Attending}"/>
+                </StackLayout>
 
                 <StackLayout>
                     <Entry Placeholder="Beskrivning" Text="{Binding Description}">

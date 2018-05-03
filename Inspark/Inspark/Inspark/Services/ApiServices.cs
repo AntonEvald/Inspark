@@ -364,7 +364,7 @@ namespace Inspark.Services
             return list;
         }
 
-        public async Task<bool> AttendingEvent(AttendingModel model)
+        public async Task<bool> AttendingEvent(AttendingEventModel model)
         {
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(model);
@@ -373,7 +373,7 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> AttendingGroupEvent(AttendingModel model)
+        public async Task<bool> AttendingGroupEvent(AttendingGroupEventModel model)
         {
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(model);
@@ -389,6 +389,38 @@ namespace Inspark.Services
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await client.PostAsync(ConnectionString + "api/GroupEvent/AddGroupEvent/", content);
             return response.IsSuccessStatusCode;
+        }
+
+        public async Task<ObservableCollection<Group>> GetAllGroupsByUserId()
+        {
+            var userId = Settings.UserId;
+            var client = new HttpClient();
+            var response = await client.GetAsync(ConnectionString + "api/Group/GetGroupsFromUser/"+userId+"/");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<ObservableCollection<Group>>(result);
+            return list;
+            
+        }
+
+        public async Task<ObservableCollection<User>> AttendingsGroupEvent(int eventId)
+        {
+            var client = new HttpClient();
+            var response = await client.GetAsync(ConnectionString + "api/AttendingGroupEvent/GetAttendingUsers/"+eventId+"/");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<ObservableCollection<User>>(result);
+            return list;
+        }
+
+        public async Task<ObservableCollection<User>> AttendingsEvent(int eventId)
+        {
+            var client = new HttpClient();
+            var response = await client.GetAsync(ConnectionString + "api/AttendingEvent/GetAttendingUsers/"+eventId+"/");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<ObservableCollection<User>>(result);
+            return list;
         }
 
     }

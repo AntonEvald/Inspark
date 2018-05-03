@@ -9,9 +9,6 @@ namespace Inspark.Viewmodels
 {
     public class GroupEventViewModel : BaseViewModel
     {
-        public GroupEventViewModel()
-        {
-        }
 
         private ApiServices _api = new ApiServices();
 
@@ -23,9 +20,42 @@ namespace Inspark.Viewmodels
         //public IEnumerable<User> Attending { get; set; }
         public string Description { get; set; }
 
+        private string _attending;
+
+        public string Attending
+        {
+            get { return _attending; }
+            set
+            {
+                _attending = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public async void OnLoad()
+        {
+            var result = await _api.AttendingsGroupEvent(Id);
+            var attending = result.Count;
+            if (attending < 1)
+            {
+                Attending = "Inga Personer har tackat jag till eventet";
+            }
+            else
+            {
+                Attending = Attending + "har tackat jag till eventet";
+            }
+        }
+
+        public GroupEventViewModel()
+        {
+            OnLoad();
+        }
+
+
+
         public ICommand IsAttending => new Command(async () =>
         {
-            AttendingModel model = new AttendingModel
+            AttendingGroupEventModel model = new AttendingGroupEventModel
             {
                 IsComing = true,
                 UserId = Settings.UserId,
@@ -33,11 +63,12 @@ namespace Inspark.Viewmodels
             };
 
             var IsSuccess = await _api.AttendingGroupEvent(model);
+
         });
 
         public ICommand IsNotAttending => new Command(async () =>
         {
-            AttendingModel model = new AttendingModel
+            AttendingGroupEventModel model = new AttendingGroupEventModel
             {
                 IsComing = false,
                 UserId = Settings.UserId,

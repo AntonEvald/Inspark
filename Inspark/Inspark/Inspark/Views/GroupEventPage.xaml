@@ -38,6 +38,9 @@
                    VerticalOptions="CenterAndExpand"/>
                     <Label Text="{Binding Description}"/>
                 </StackLayout>
+                                <StackLayout>
+                    <Label Text="{Binding Attending}"/>
+                </StackLayout>
 
                 <StackLayout Padding="20" Orientation="Horizontal">
                     <Button Text="Jag kommer!" BackgroundColor="LightGreen" Command="{Binding IsAttending}"/>
