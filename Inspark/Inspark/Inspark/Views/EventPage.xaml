@@ -17,7 +17,7 @@
                 <StackLayout Padding="10, 0, 10, 0" Orientation="Horizontal">
                     <Label Text="Titel:"
                     FontSize="Medium"/>
-                    <Label Text="{Binding Title}" VerticalOptions="CenterAndExpand"/>
+                    <Label Text="{Binding Title, Mode=TwoWay}" VerticalOptions="CenterAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Padding="10, 0, 10, 0" Orientation="Horizontal">

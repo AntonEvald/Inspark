@@ -34,20 +34,26 @@ namespace Inspark.Viewmodels
 
         public async void OnLoad()
         {
+            var a = Id;
             var result = await _api.AttendingsEvent(Id);
             var attending = result.Count;
             if (attending < 1)
             {
-                Attending = "Inga Personer har tackat jag till eventet";
+                Attending = "Inga Personer har tackat ja till eventet";
             }
             else
             {
-                Attending = Attending + "har tackat jag till eventet";
+                Attending = attending + " personer har tackat ja till eventet";
             }
         }
 
-        public EventViewModel()
+        public EventViewModel(Event e)
         {
+            this.Id = e.Id;
+            this.Title = e.Title;
+            this.Date = e.TimeForEvent;
+            this.Location = e.Location;
+            this.Description = e.Description;
             OnLoad();
         }
 
