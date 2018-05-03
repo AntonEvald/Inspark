@@ -10,8 +10,9 @@
                     <viewmodels:EventListViewModel/>
                 </StackLayout.BindingContext>
                     <StackLayout>
-                    <Button Text="Skapa event" Clicked="CreateEvent_OnClicked"/>
-                    <Button Text="Ta bort event" Clicked="DeleteEvent_OnClicked"/>
+                    <Button Text="Skapa event" Clicked="CreateEvent_Clicked"/>
+                    <Button Text="Ta bort event" Clicked="DeleteEvent_Clicked"/>
+                    <Button Text="Ändra event" Clicked="ChangeEvent_Clicked"/>
                 </StackLayout>
                 <StackLayout>
                  <SearchBar x:Name="UserSearchBar"

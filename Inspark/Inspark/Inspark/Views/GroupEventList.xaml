@@ -10,8 +10,9 @@
                     <viewmodels:GroupEventListViewModel/>
                 </StackLayout.BindingContext>
                     <StackLayout>
-                    <Button Text="Skapa event" Clicked="Handle_Clicked"/>
-                    <Button Text=" Ta bort event" Clicked="DeleteGroupEvent_Clicked"/>
+                    <Button Text="Skapa grupp event" Clicked="CreateGroupEvent_Clicked"/>
+                    <Button Text="Ta bort grupp event" Clicked="DeleteGroupEvent_Clicked"/>
+                    <Button Text="Ändra grupp event" Clicked="ChangeGroupEvent_Clicked"/>
                 </StackLayout>
                 <StackLayout>
                  <SearchBar x:Name="UserSearchBar"

@@ -9,25 +9,30 @@ namespace Inspark.Views
     {
         public GroupEventList()
         {
-            
             InitializeComponent();
         }
 
-        void Handle_Clicked(object sender, System.EventArgs e)
-        {
-            GroupEvent.Content = new CreateGroupEvents().Content;
-        }
-
-        void Handle_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
+        void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             GroupEvent selected = e.Item as GroupEvent;
             var page = new GroupEventPage(selected);
             GroupEvent.Content = page.Content;
         }
 
+        void CreateGroupEvent_Clicked(object sender, EventArgs e)
+        {
+            GroupEvent.Content = new CreateGroupEvents().Content;
+        }
+
         public void DeleteGroupEvent_Clicked(object sender, EventArgs e)
         {
             var page = new DeleteGroupEventPage();
+            GroupEvent.Content = page.Content;
+        }
+
+        public void ChangeGroupEvent_Clicked(object sender, EventArgs e)
+        {
+            var page = new ChangeGroupEventPage();
             GroupEvent.Content = page.Content;
         }
     }
