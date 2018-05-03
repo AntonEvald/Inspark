@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Inspark.Viewmodels
 {
-    public class ChangeEventViewModel : BaseViewModel
+    public class ChangeGroupEventViewModel : BaseViewModel
     {
         ApiServices _api = new ApiServices();
     }

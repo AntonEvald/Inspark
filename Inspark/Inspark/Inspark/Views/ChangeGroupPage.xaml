@@ -11,7 +11,7 @@
                     <viewmodels:ChangeGroupViewModel/>
                 </StackLayout.BindingContext>
             <StackLayout>
-                      <Label Margin="10,20,0,10" Text="Välj vilken grupp"/>
+                <Label Margin="10,20,0,10" Text="Välj vilken grupp"/>
                 <Picker Margin="10,0,0,10" ItemsSource="{Binding Groups}" SelectedItem="{Binding SelectedGroup, Mode=TwoWay}" ItemDisplayBinding="{Binding Name}" iOSSpecific:Picker.UpdateMode="WhenFinished">
                     <Picker.Behaviors>
                         <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">

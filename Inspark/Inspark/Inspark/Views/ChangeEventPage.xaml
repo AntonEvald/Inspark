@@ -1,12 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              x:Class="Inspark.Views.ChangeEventPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Ändra event"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout.BindingContext>
+                <viewmodels:ChangeEventViewModel/>
+            </StackLayout.BindingContext>
+            <StackLayout>
+                <Label Text="Välj vilket event"/>
+                <Picker/>
+            </StackLayout>
+            <StackLayout>
+                <Button Text="Ändra event"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
