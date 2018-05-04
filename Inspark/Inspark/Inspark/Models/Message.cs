@@ -45,5 +45,21 @@ namespace Inspark.Models
             set { SetProperty(ref attachementUrl, value); }
         }
 
+        byte[] senderPic;
+
+        public byte[] SenderPic
+        {
+            get { return senderPic; }
+            set { SetProperty(ref senderPic, value); }
+        }
+
+        string senderId;
+
+        public string SenderId
+        {
+            get { return senderId; }
+            set { SetProperty(ref senderId, value); }
+        }
+
     }
 }

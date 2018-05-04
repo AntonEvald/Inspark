@@ -4,9 +4,6 @@
              x:Class="Inspark.Views.ChatPage"
              xmlns:vm="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              xmlns:template="clr-namespace:Inspark.CustomCells;assembly=Inspark">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Location" Command="{Binding LocationCommand}"/>
-    </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <ResourceDictionary>
             <template:MyDataTemplateSelector x:Key="MessageTemplateSelector"/>
@@ -26,7 +23,9 @@
             <ListView 
 			x:Name="MessagesListView" 
 			ItemTemplate="{StaticResource MessageTemplateSelector}" 
-			ItemsSource="{Binding Messages}" 
+			ItemsSource="{Binding Messages}"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsRefreshing}"
 			HasUnevenRows="True" 
 			ItemSelected="MyListView_OnItemSelected" 
 			ItemTapped="MyListView_OnItemTapped" 
@@ -40,10 +39,10 @@
                 <Entry 
 			    HorizontalOptions="FillAndExpand" 
 				HeightRequest="25" 
-				Placeholder="Message" 
+				Placeholder="Meddelande" 
 				Text="{Binding OutGoingText}"/>
                 <Button 
-				Text="Send" 
+				Text="Skicka" 
 				Command="{Binding SendCommand}"/>
             </StackLayout>
         </Grid>

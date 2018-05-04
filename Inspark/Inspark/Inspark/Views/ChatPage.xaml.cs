@@ -16,7 +16,6 @@ namespace Inspark.Views
 		public ChatPage ()
 		{
 			InitializeComponent ();
-            Title = "Genereal";
             BindingContext = vm = new ChatViewModel();
 
             vm.Messages.CollectionChanged += (sender, e) =>
