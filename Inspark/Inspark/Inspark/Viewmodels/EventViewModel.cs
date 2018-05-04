@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using Inspark.Helpers;
 using Inspark.Models;
@@ -32,18 +33,50 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private int _attendingCount;
+
+        public int AttendingCount
+        {
+            get { return _attendingCount; }
+            set
+            {
+                _attendingCount = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isVisible;
+
+        public bool IsVisible
+        {
+            get { return _isVisible; }
+            set
+            {
+                _isVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
         public async void OnLoad()
         {
-            var a = Id;
             var result = await _api.AttendingsEvent(Id);
-            var attending = result.Count;
-            if (attending < 1)
+            var userExists = result.FirstOrDefault(i => i.Id == Settings.UserId);
+            if (userExists == null)
+            {
+                IsVisible = true;
+            }
+            else
+            {
+                IsVisible = false;
+            }
+            AttendingCount = result.Count;
+            if (AttendingCount < 1)
             {
                 Attending = "Inga Personer har tackat ja till eventet";
             }
             else
             {
-                Attending = attending + " personer har tackat ja till eventet";
+                Attending = AttendingCount + " personer har tackat ja till eventet";
             }
         }
 
@@ -67,6 +100,12 @@ namespace Inspark.Viewmodels
             };
 
             var IsSuccess = await _api.AttendingEvent(model);
+            if (IsSuccess)
+            {
+                IsVisible = false;
+                AttendingCount = AttendingCount + 1;
+                Attending = AttendingCount + " personer har tackat ja till eventet";
+            }
         });
 
         public ICommand IsNotAttending => new Command(async () =>
