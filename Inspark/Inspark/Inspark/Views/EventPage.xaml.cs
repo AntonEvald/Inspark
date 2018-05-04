@@ -17,15 +17,10 @@ namespace Inspark.Views
 
         public EventPage (Event e)
 		{
-            model = new EventViewModel{
-                Title = e.Title,
-                Id = e.Id,
-                Location = e.Location,
-                Date = e.TimeForEvent,
-                Description = e.Description
-            };
 
-			InitializeComponent ();
+            InitializeComponent();
+
+            model = new EventViewModel(e);
 
             Content.BindingContext = model;
 		}

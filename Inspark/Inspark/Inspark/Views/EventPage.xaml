@@ -17,7 +17,7 @@
                 <StackLayout Padding="10, 0, 10, 0" Orientation="Horizontal">
                     <Label Text="Titel:"
                     FontSize="Medium"/>
-                    <Label Text="{Binding Title}" VerticalOptions="CenterAndExpand"/>
+                    <Label Text="{Binding Title, Mode=TwoWay}" VerticalOptions="CenterAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Padding="10, 0, 10, 0" Orientation="Horizontal">
@@ -43,8 +43,8 @@
                 </StackLayout>
 
                 <StackLayout Padding="20" Orientation="Horizontal">
-                    <Button Text="Jag kommer!" BackgroundColor="LightGreen" Command="{Binding IsAttending}"/>
-                    <Button Text="Jag kommer INTE!" BackgroundColor="LightCoral" Command="{Binding IsNotAttending}"/>
+                    <Button Text="Jag kommer!" BackgroundColor="LightGreen" Command="{Binding IsAttending}" IsVisible="{Binding IsVisible}"/>
+                   <Button Text="Jag kommer INTE!" BackgroundColor="LightCoral" Command="{Binding IsNotAttending}" IsVisible="{Binding IsVisible}"/>
                 </StackLayout>
 
             </StackLayout>

@@ -43,8 +43,8 @@
                 </StackLayout>
 
                 <StackLayout Padding="20" Orientation="Horizontal">
-                    <Button Text="Jag kommer!" BackgroundColor="LightGreen" Command="{Binding IsAttending}"/>
-                    <Button Text="Jag kommer INTE!" BackgroundColor="LightCoral" Command="{Binding IsNotAttending}"/>
+                    <Button Text="Jag kommer!" BackgroundColor="LightGreen" Command="{Binding IsAttending}" IsVisible="{Binding IsVisible}"/>
+                    <Button Text="Jag kommer INTE!" BackgroundColor="LightCoral" Command="{Binding IsNotAttending}" IsVisible="{Binding IsVisible}"/>
                 </StackLayout>
 
             </StackLayout>

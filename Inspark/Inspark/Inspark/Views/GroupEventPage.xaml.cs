@@ -13,17 +13,8 @@ namespace Inspark.Views
 
         public GroupEventPage(GroupEvent e)
         {
-
-            model = new GroupEventViewModel
-            {
-                Title = e.Title,
-                Id = e.Id,
-                Location = e.Location,
-                Date = e.TimeForEvent,
-                Description = e.Description
-            };
-
             InitializeComponent();
+            model = new GroupEventViewModel(e);
             Content.BindingContext = model;
         }
     }

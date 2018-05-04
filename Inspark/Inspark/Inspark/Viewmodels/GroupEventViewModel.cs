@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Input;
 using Inspark.Helpers;
 using Inspark.Models;
@@ -32,22 +33,60 @@ namespace Inspark.Viewmodels
             }
         }
 
-        public async void OnLoad()
+        private int _attendingCount;
+
+        public int AttendingCount
         {
-            var result = await _api.AttendingsGroupEvent(Id);
-            var attending = result.Count;
-            if (attending < 1)
+            get { return _attendingCount; }
+            set
             {
-                Attending = "Inga Personer har tackat jag till eventet";
-            }
-            else
-            {
-                Attending = Attending + "har tackat jag till eventet";
+                _attendingCount = value;
+                OnPropertyChanged();
             }
         }
 
-        public GroupEventViewModel()
+        private bool _isVisible;
+
+        public bool IsVisible
         {
+            get { return _isVisible; }
+            set
+            {
+                _isVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public async void OnLoad()
+        {
+            var result = await _api.AttendingsGroupEvent(Id);
+            var userExists = result.FirstOrDefault(i => i.Id == Settings.UserId);
+            if (userExists == null)
+            {
+                IsVisible = true;
+            }
+            else
+            {
+                IsVisible = false;
+            }
+            AttendingCount = result.Count;
+            if (AttendingCount < 1)
+            {
+                Attending = "Inga Personer har tackat ja till eventet";
+            }
+            else
+            {
+                Attending = AttendingCount + " personer har tackat ja till eventet";
+            }
+        }
+
+        public GroupEventViewModel(GroupEvent e)
+        {
+            this.Id = e.Id;
+            this.Title = e.Title;
+            this.Date = e.TimeForEvent;
+            this.Location = e.Location;
+            this.Description = e.Description;
             OnLoad();
         }
 
@@ -63,7 +102,12 @@ namespace Inspark.Viewmodels
             };
 
             var IsSuccess = await _api.AttendingGroupEvent(model);
-
+            if (IsSuccess)
+            {
+                IsVisible = false;
+                AttendingCount = AttendingCount + 1;
+                Attending = AttendingCount + " personer har tackat ja till eventet";
+            }
         });
 
         public ICommand IsNotAttending => new Command(async () =>
