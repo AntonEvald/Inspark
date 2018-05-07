@@ -8,9 +8,9 @@ using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
-    public class DeleteUserFromGroup : BaseViewModel
+    public class DeleteUserFromGroupViewModel : BaseViewModel
     {
-        public DeleteUserFromGroup()
+        public DeleteUserFromGroupViewModel()
         {
             PopulateLists();
         }

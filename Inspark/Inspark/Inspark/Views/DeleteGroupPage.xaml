@@ -4,7 +4,7 @@
              xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              x:Class="Inspark.Views.DeleteGroupPage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="40">
             <StackLayout.BindingContext>
                 <viewmodels:DeleteGroupViewModel/>
             </StackLayout.BindingContext>

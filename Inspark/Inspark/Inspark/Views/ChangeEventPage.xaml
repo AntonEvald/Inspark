@@ -3,36 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              xmlns:iOSSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              x:Class="Inspark.Views.ChangeEventPage">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout.BindingContext>
-                <viewmodels:ChangeEventViewModel/>
-            </StackLayout.BindingContext>
-            <StackLayout>
-                <Label Text="Välj vilket event"/>
-                <Picker ItemsSource="{Binding Events}" SelectedItem="{Binding SelectedEvent, Mode=TwoWay}" ItemDisplayBinding="{Binding Title}" iOSSpecific:Picker.UpdateMode="WhenFinished">
-                    <Picker.Behaviors>
-                        <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
-                            <behaviors:InvokeCommandAction Command="{Binding SelectedProviderChanged}" />
-                        </behaviors:EventHandlerBehavior>
-                    </Picker.Behaviors>
-                </Picker>
+        <ScrollView>
+            <StackLayout Padding="40">
+                <StackLayout.BindingContext>
+                    <viewmodels:ChangeEventViewModel/>
+                </StackLayout.BindingContext>
+                <StackLayout>
+                    <Label Text="Välj vilket event"/>
+                    <Picker ItemsSource="{Binding Events}" SelectedItem="{Binding SelectedEvent, Mode=TwoWay}" ItemDisplayBinding="{Binding Title}" iOSSpecific:Picker.UpdateMode="WhenFinished">
+                        <Picker.Behaviors>
+                            <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+                                <behaviors:InvokeCommandAction Command="{Binding SelectedProviderChanged}" />
+                            </behaviors:EventHandlerBehavior>
+                        </Picker.Behaviors>
+                    </Picker>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Titel:"/>
+                    <Entry Text="{Binding Title, Mode=TwoWay}"/>
+                    <Label Text="Plats:"/>
+                    <Entry Text="{Binding Location, Mode=TwoWay}"/>
+                    <Label Text="Datum:"/>
+                    <DatePicker Format="dd/MM/yyyy" Date="{Binding StartDate}" MinimumDate="{x:Static system:DateTime.Today}"/>
+                    <Label Text="Tid:"/>
+                    <TimePicker Time="{Binding StartTime , StringFormat='HH:mm'}" Format="HH:mm"/>
+                    <Label Text="Beskrivning:"/>
+                    <Entry Text="{Binding Description, Mode=TwoWay}"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="{Binding Message}"/>
+                    <Button Text="Ändra event" Command="{Binding ChangeEvent}"/>
+                </StackLayout>
             </StackLayout>
-            <StackLayout>
-                <Label Text="Title:"/>
-                <Entry Text="{Binding Title, Mode=TwoWay}"/>
-                <Label Text="Location:"/>
-                <Entry Text="{Binding Location, Mode=TwoWay}"/>
-                <Label Text="Time:"/>
-                <Label Text="Description:"/>
-                <Entry Text="{Binding Description, Mode=TwoWay}"/>
-            </StackLayout>
-            <StackLayout>
-                <Label Text="{Binding Message}"/>
-                <Button Text="Ändra event" Command="{Binding ChangeEvent}"/>
-            </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

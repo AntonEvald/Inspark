@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace Inspark.Views
 {
-    public partial class CreateGroupEvents : ContentPage
+    public partial class CreateGroupEventPage : ContentPage
     {
-        public CreateGroupEvents()
+        public CreateGroupEventPage()
         {
             InitializeComponent();
         }

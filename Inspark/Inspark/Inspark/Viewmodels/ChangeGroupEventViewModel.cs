@@ -59,6 +59,30 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private DateTime _startDate;
+
+        public DateTime StartDate
+        {
+            get { return _startDate; }
+            set
+            {
+                _startDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateTime _startTime;
+
+        public DateTime StartTime
+        {
+            get { return _startTime; }
+            set
+            {
+                _startTime = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ObservableCollection<GroupEvent> _groupEvents;
 
         public ObservableCollection<GroupEvent> GroupEvents
@@ -109,6 +133,7 @@ namespace Inspark.Viewmodels
             Title = SelectedGroupEvent.Title;
             Location = SelectedGroupEvent.Location;
             Description = SelectedGroupEvent.Description;
+            StartDate = SelectedGroupEvent.TimeForEvent.Date;
         });
 
         public async void PopulateList()
@@ -125,14 +150,15 @@ namespace Inspark.Viewmodels
 
         public ICommand ChangeGroupEvent => new Command(async () =>
         {
+            DateTime newDateTime = StartDate.Date.Add(StartTime.TimeOfDay);
 
             var groupEvents = new GroupEvent
             {
                 Id = SelectedGroupEvent.Id,
                 Title = Title,
                 Location = Location,
-                Description = Description,
-                TimeForEvent = SelectedGroupEvent.TimeForEvent
+                TimeForEvent = newDateTime,
+                Description = Description
 
             };
             var isSuccess = await _api.ChangeGroupEvent(groupEvents);
