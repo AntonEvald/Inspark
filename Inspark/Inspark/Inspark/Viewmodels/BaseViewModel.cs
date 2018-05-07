@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inspark.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -8,8 +9,10 @@ namespace Inspark.Viewmodels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        // BaseViewModel, of which all other viewmodels will inherit from. This is to spare us the time to write the code more than once. 
+        // BaseViewModel, of which all other viewmodels will inherit from.
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public ApiServices _api = new ApiServices();
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

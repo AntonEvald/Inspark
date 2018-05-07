@@ -4,13 +4,13 @@
              x:Class="Inspark.Views.ChatPage"
              xmlns:vm="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              xmlns:template="clr-namespace:Inspark.CustomCells;assembly=Inspark">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <template:MyDataTemplateSelector x:Key="MessageTemplateSelector"/>
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <template:MyDataTemplateSelector x:Key="MessageTemplateSelector"/>
+                </ResourceDictionary>
+            </Grid.Resources>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
@@ -24,8 +24,10 @@
 			x:Name="MessagesListView" 
 			ItemTemplate="{StaticResource MessageTemplateSelector}" 
 			ItemsSource="{Binding Messages}"
-                IsPullToRefreshEnabled="True"
-                IsRefreshing="{Binding IsRefreshing}"
+            Grid.Row="0"
+            IsPullToRefreshEnabled="True"
+            RefreshCommand="{Binding RefreshCommand}"
+            IsRefreshing="{Binding IsLoading}"
 			HasUnevenRows="True" 
 			ItemSelected="MyListView_OnItemSelected" 
 			ItemTapped="MyListView_OnItemTapped" 
@@ -40,7 +42,7 @@
 			    HorizontalOptions="FillAndExpand" 
 				HeightRequest="25" 
 				Placeholder="Meddelande" 
-				Text="{Binding OutGoingText}"/>
+				Text="{Binding OutgoingText}"/>
                 <Button 
 				Text="Skicka" 
 				Command="{Binding SendCommand}"/>

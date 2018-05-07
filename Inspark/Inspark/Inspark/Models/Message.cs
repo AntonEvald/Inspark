@@ -61,5 +61,12 @@ namespace Inspark.Models
             set { SetProperty(ref senderId, value); }
         }
 
+        string reciverId;
+
+        public string ReciverId
+        {
+            get { return reciverId; }
+            set { SetProperty(ref reciverId, value); }
+        }
     }
 }

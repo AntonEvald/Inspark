@@ -13,8 +13,6 @@ namespace Inspark.Viewmodels
 {
     class HomeViewModel : BaseViewModel
     {
-        private ApiServices _api = new ApiServices();
-        
         private ObservableCollection<GroupPost> _groupPosts;
 
         public ObservableCollection<GroupPost> GroupPosts
