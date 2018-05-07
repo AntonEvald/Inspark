@@ -5,7 +5,7 @@
              x:Class="Inspark.Views.EventListPage">
     <ContentView x:Name="InsparkEventList">
     <ContentPage.Content>
-            <StackLayout>
+            <StackLayout Padding="20">
                 <StackLayout.BindingContext>
                     <viewmodels:EventListViewModel/>
                 </StackLayout.BindingContext>

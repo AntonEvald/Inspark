@@ -6,7 +6,7 @@
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              x:Class="Inspark.Views.ChangeGroupPage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="40">
                 <StackLayout.BindingContext>
                     <viewmodels:ChangeGroupViewModel/>
                 </StackLayout.BindingContext>

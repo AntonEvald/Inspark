@@ -25,7 +25,7 @@ namespace Inspark.Views
 
         public void Events_Tapped(object sender, EventArgs e)
         {
-            GroupView.Content = new GroupEventList().Content;
+            GroupView.Content = new GroupEventListPage().Content;
         }
 
         public void Fadder_Tapped(object sender, EventArgs e)

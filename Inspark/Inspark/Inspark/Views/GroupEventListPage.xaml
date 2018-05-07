@@ -2,10 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
-             x:Class="Inspark.Views.GroupEventList">
+             x:Class="Inspark.Views.GroupEventListPage">
     <ContentPage.Content>
    <ContentView x:Name="GroupEvent">
-                <StackLayout>
+                <StackLayout Padding="20">
                 <StackLayout.BindingContext>
                     <viewmodels:GroupEventListViewModel/>
                 </StackLayout.BindingContext>

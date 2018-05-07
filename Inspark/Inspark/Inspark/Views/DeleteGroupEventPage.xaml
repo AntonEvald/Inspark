@@ -4,7 +4,7 @@
              xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              x:Class="Inspark.Views.DeleteGroupEventPage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="40">
             <StackLayout.BindingContext>
                 <viewmodels:DeleteGroupEventViewModel/>
             </StackLayout.BindingContext>

@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace Inspark.Views
 {
-    public partial class GroupEventList : ContentPage
+    public partial class GroupEventListPage : ContentPage
     {
-        public GroupEventList()
+        public GroupEventListPage()
         {
             InitializeComponent();
         }
@@ -21,7 +21,7 @@ namespace Inspark.Views
 
         void CreateGroupEvent_Clicked(object sender, EventArgs e)
         {
-            GroupEvent.Content = new CreateGroupEvents().Content;
+            GroupEvent.Content = new CreateGroupEventPage().Content;
         }
 
         public void DeleteGroupEvent_Clicked(object sender, EventArgs e)

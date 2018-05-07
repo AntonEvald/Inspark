@@ -53,11 +53,11 @@
     <Compile Update="Views\EventListPage.xaml.cs">
       <DependentUpon>EventListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\CreateGroupEvents.xaml.cs">
-      <DependentUpon>CreateGroupEvents.xaml</DependentUpon>
+    <Compile Update="Views\CreateGroupEventPage.xaml.cs">
+      <DependentUpon>CreateGroupEventPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\GroupEventList.xaml.cs">
-      <DependentUpon>GroupEventList.xaml</DependentUpon>
+    <Compile Update="Views\GroupEventListPage.xaml.cs">
+      <DependentUpon>GroupEventListPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\GroupEventPage.xaml.cs">
       <DependentUpon>GroupEventPage.xaml</DependentUpon>

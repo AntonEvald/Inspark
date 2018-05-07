@@ -8,7 +8,7 @@
              x:Class="Inspark.Views.ChangeEventPage">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
+            <StackLayout Padding="40">
                 <StackLayout.BindingContext>
                     <viewmodels:ChangeEventViewModel/>
                 </StackLayout.BindingContext>
