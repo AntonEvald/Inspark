@@ -44,6 +44,30 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private DateTime _startDate;
+
+        public DateTime StartDate
+        {
+            get { return _startDate; }
+            set
+            {
+                _startDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateTime _startTime;
+
+        public DateTime StartTime
+        {
+            get { return _startTime; }
+            set
+            {
+                _startTime = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _description;
 
         public string Description
@@ -109,6 +133,7 @@ namespace Inspark.Viewmodels
             Title = SelectedEvent.Title;
             Location = SelectedEvent.Location;
             Description = SelectedEvent.Description;
+            StartDate = SelectedEvent.TimeForEvent.Date;
         });
 
         public async void PopulateList()
@@ -125,14 +150,15 @@ namespace Inspark.Viewmodels
 
         public ICommand ChangeEvent => new Command(async () =>
         {
+            DateTime newDateTime = StartDate.Date.Add(StartTime.TimeOfDay);
 
             var events = new Event
             {
                 Id = SelectedEvent.Id,
                 Title = Title,
                 Location = Location,
-                Description = Description,
-                TimeForEvent = SelectedEvent.TimeForEvent
+                TimeForEvent = newDateTime,
+                Description = Description
                 
             };
             var isSuccess = await _api.ChangeEvent(events);
