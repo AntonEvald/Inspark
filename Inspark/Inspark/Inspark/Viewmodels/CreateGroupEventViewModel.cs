@@ -25,9 +25,9 @@ namespace Inspark.Viewmodels
         public string Description { get; set; }
 
 
-        private DateTime _startTime;
+        private TimeSpan _startTime;
 
-        public DateTime StartTime
+        public TimeSpan StartTime
         {
             get { return _startTime; }
             set
@@ -126,8 +126,9 @@ namespace Inspark.Viewmodels
 
         public ICommand CreateEventCommand => new Command(async () =>
         {
-            var a = StartTime;
-            DateTime newDateTime = new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, StartTime.Hour, StartTime.Minute, StartTime.Second);
+            DateTime newDateTime = StartDate.Date.Add(StartTime);
+            var a = newDateTime;
+            var b = newDateTime;
             Date = newDateTime;
             GroupEvent groupEvent = new GroupEvent
             {
