@@ -1,9 +1,11 @@
-﻿using Inspark.Models;
+﻿using Inspark.Helpers;
+using Inspark.Models;
 using Inspark.Services;
 using Inspark.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -12,7 +14,6 @@ namespace Inspark.Viewmodels
 {
     public class ChangeGroupEventViewModel : BaseViewModel
     {
-        ApiServices _api = new ApiServices();
 
         private string _title;
 
@@ -139,7 +140,8 @@ namespace Inspark.Viewmodels
         public async void PopulateList()
         {
             var events = await _api.GetAllGroupEvents();
-            events = new ObservableCollection<GroupEvent>(events);
+            var events2 = events.Where(x => x.senderId == Settings.UserId);
+            events = new ObservableCollection<GroupEvent>(events2);
             GroupEvents = events;
         }
 

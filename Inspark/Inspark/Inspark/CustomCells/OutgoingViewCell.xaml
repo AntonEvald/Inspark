@@ -36,14 +36,14 @@
                     <OnPlatform x:TypeArguments="x:Boolean" iOS="false" Android="true"/>
                 </Frame.HasShadow>
                 <Frame.BackgroundColor>
-                    <OnPlatform x:TypeArguments="Color" iOS="#F5F5F5" Android="White"/>
+                    <OnPlatform x:TypeArguments="Color" iOS="#00aad1" Android="#00aad1"/>
                 </Frame.BackgroundColor>
                 <StackLayout>
                     <Image IsVisible="{Binding HasAttachement}" WidthRequest="175" HeightRequest="175" Source="{Binding AttachementUrl}" />
-                    <Label TextColor="Black"  Text="{Binding Text}" />
+                    <Label TextColor="White"  Text="{Binding Text}" />
                 </StackLayout>
             </Frame>
-            <Label Grid.Row="1" FontSize="Micro" Grid.Column="1" HorizontalTextAlignment="End"  Text="{Binding MessageDateTime, StringFormat='{0:MM/dd/yyyy hh:mm tt}'}" TextColor="Gray"></Label>
+            <Label Grid.Row="1" FontSize="Micro" Grid.Column="1" HorizontalTextAlignment="End"  Text="{Binding MessageDateTime, StringFormat='{0:yyyy-MM-dd HH:mm }'}" TextColor="Gray"></Label>
 
         </Grid>
     </ViewCell.View>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Inspark.Helpers;
 using Inspark.Models;
 using Inspark.Services;
 using Xamarin.Forms;
@@ -13,8 +14,6 @@ namespace Inspark.Viewmodels
         {
             PopulateList();
         }
-
-        ApiServices _api = new ApiServices();
 
         private ObservableCollection<GroupEvent> _events;
 
@@ -31,8 +30,27 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private ObservableCollection<Group> _groups;
+
+        public ObservableCollection<Group> Groups
+        {
+            get { return _groups; }
+            set
+            {
+                if (_groups != value)
+                {
+                    _groups = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
         public async void PopulateList()
         {
+            var groups = await _api.GetAllGroupsByUserId();
+            groups = new ObservableCollection<Group>(groups);
+            Groups = groups;
             var events = await _api.GetAllGroupEvents();
             if (events.Count < 1)
             {
@@ -42,9 +60,19 @@ namespace Inspark.Viewmodels
                 };
                 events.Add(e);
             }
-            events = new ObservableCollection<GroupEvent>(events);
-            Events = events;
-            Suggestions = events;
+            var events2 = new ObservableCollection<GroupEvent>();
+            foreach (var item in events)
+            {
+                foreach (var i in Groups)
+                {
+                    if (item.GroupId == i.Id)
+                    {
+                        events2.Add(item);
+                    }
+                }
+            }
+            Events = new ObservableCollection<GroupEvent>(events2.OrderByDescending(i => i.TimeForEvent));
+            Suggestions = events2;
         }
 
         public Command EmptyCommand

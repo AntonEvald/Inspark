@@ -18,13 +18,18 @@ namespace Inspark.Views
 			InitializeComponent ();
             BindingContext = vm = new ChatViewModel();
 
+            MessagesListView.ItemsSource = vm.Messages;
+
             vm.Messages.CollectionChanged += (sender, e) =>
             {
                 var target = vm.Messages[vm.Messages.Count - 1];
                 MessagesListView.ScrollTo(target, ScrollToPosition.End, true);
+                MessagesListView.ItemsSource = null;
+                MessagesListView.ItemsSource = vm.Messages;
             };
         }
 
+        
         
 
         void MyListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)

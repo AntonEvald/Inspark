@@ -31,17 +31,17 @@
                 Aspect="AspectFill"
                 HorizontalOptions="Center"
                 VerticalOptions="Center" Source="{Binding SenderPic, Converter={StaticResource bic}}"/>
-            <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="#03A9F4">
+            <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="LightGray">
                 <Frame.HasShadow>
                     <OnPlatform x:TypeArguments="x:Boolean" iOS="false" Android="true"/>
                 </Frame.HasShadow>
                 <StackLayout>
                     <Image IsVisible="{Binding HasAttachement}" HeightRequest="175" WidthRequest="175" Source="{Binding AttachementUrl}" />
-                    <Label TextColor="White" Text="{Binding Text}" />
+                    <Label TextColor="Black" Text="{Binding Text}" />
                 </StackLayout>
             </Frame>
 
-            <Label FontSize="Micro" Grid.Row="1" Grid.Column="1" Text="{Binding MessageDateTime, StringFormat='{0:MM/dd/yyyy hh:mm tt}'}" TextColor="Gray"></Label>
+            <Label FontSize="Micro" Grid.Row="1" Grid.Column="1" Text="{Binding MessageDateTime, StringFormat='{0:yyyy-MM-dd HH:mm }'}" TextColor="Gray"></Label>
         </Grid>
     </ViewCell.View>
 </ViewCell>

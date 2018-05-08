@@ -5,6 +5,7 @@
              xmlns:system="clr-namespace:System;assembly=netstandard"
              xmlns:iOSSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              xmlns:validation="clr-namespace:Inspark.Services;assembly=Inspark"
+             xmlns:custom="clr-namespace:Inspark.CustomControls;assembly=Inspark" 
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              x:Class="Inspark.Views.CreateGroupEventPage">
     <ContentPage.Content>
@@ -59,7 +60,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Text="Start Time" Grid.Row="0" Grid.Column="0"/>
-                    <TimePicker Time="{Binding StartTime , StringFormat='HH:mm'}" Format="HH:mm"/>
+                    <custom:CustomTimePicker24H Time="{Binding StartTime}" Format="HH:mm"/>
                 </Grid>
                 </StackLayout>
                 <Label Text="{Binding Message}"></Label>
