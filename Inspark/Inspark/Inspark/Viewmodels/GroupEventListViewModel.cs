@@ -10,9 +10,20 @@ namespace Inspark.Viewmodels
 {
     public class GroupEventListViewModel : BaseViewModel
     {
-        public GroupEventListViewModel()
+
+
+        public User User { get; set; }
+
+        private bool _isAdmin;
+
+        public bool IsAdmin
         {
-            PopulateList();
+            get { return _isAdmin; }
+            set
+            {
+                _isAdmin = value;
+                OnPropertyChanged();
+            }
         }
 
         private ObservableCollection<GroupEvent> _events;
@@ -136,6 +147,26 @@ namespace Inspark.Viewmodels
             {
 
             }
+        }
+
+        public async void OnLoad()
+        {
+            User = await _api.GetLoggedInUser();
+
+            if (User.Role == "Admin")
+            {
+                IsAdmin = true;
+            }
+            else
+            {
+                IsAdmin = false;
+            }
+        }
+
+        public GroupEventListViewModel()
+        {
+            PopulateList();
+            OnLoad();
         }
     }
 }
