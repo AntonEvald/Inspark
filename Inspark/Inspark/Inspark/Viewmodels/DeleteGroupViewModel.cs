@@ -10,8 +10,6 @@ namespace Inspark.Viewmodels
 {
     public class DeleteGroupViewModel : BaseViewModel
     {
-        ApiServices _api = new ApiServices();
-
         private ObservableCollection<Group> _groups;
 
         public ObservableCollection<Group> Groups

@@ -11,9 +11,6 @@ namespace Inspark.Viewmodels
 {
     public class AddUserToGroupViewModel : BaseViewModel
     {
-        ApiServices _api = new ApiServices();
-
-
         private Group _selectedGroup;
 
         public Group SelectedGroup

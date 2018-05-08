@@ -17,9 +17,6 @@ namespace Inspark.Viewmodels
 {
     public class LoginViewModel : BaseViewModel
     {
-        // This class is used for the login function. 
-        private ApiServices _api = new ApiServices();
-
         private string _password = "";
 
         public string Password

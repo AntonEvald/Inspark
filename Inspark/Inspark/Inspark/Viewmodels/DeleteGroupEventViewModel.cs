@@ -14,7 +14,6 @@ namespace Inspark.Viewmodels
 {
     public class DeleteGroupEventViewModel : BaseViewModel
     {
-
         private ObservableCollection<GroupEvent> _groupEventList;
 
         private ObservableCollection<GroupEvent> _groupEvents;

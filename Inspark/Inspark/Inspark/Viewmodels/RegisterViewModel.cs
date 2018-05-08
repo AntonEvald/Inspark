@@ -19,9 +19,6 @@ namespace Inspark.Viewmodels
 {
     public class RegisterViewModel : BaseViewModel
     {
-        // This class is used for the register user function. 
-        private ApiServices _api = new ApiServices();
-
         public string Email { get; set; }
 
         public string Password { get; set; }

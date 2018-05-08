@@ -14,8 +14,6 @@ namespace Inspark.Viewmodels
 {
     public class EditPostViewModel : BaseViewModel
     {
-        ApiServices _api = new ApiServices();
-
         public EditPostViewModel(NewsPost post)
         {
             IsGroupPost = false;

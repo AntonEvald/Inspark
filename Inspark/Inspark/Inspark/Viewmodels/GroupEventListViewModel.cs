@@ -10,8 +10,6 @@ namespace Inspark.Viewmodels
 {
     public class GroupEventListViewModel : BaseViewModel
     {
-
-
         public User User { get; set; }
 
         private bool _isAdmin;

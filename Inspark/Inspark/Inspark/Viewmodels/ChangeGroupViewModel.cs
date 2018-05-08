@@ -11,8 +11,6 @@ namespace Inspark.Viewmodels
 {
     public class ChangeGroupViewModel : BaseViewModel
     {
-        ApiServices _api = new ApiServices();
-
         private string _name;
 
         public string Name

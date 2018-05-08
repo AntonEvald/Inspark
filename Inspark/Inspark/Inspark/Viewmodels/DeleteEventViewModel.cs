@@ -14,7 +14,6 @@ namespace Inspark.Viewmodels
 {
     public class DeleteEventViewModel : BaseViewModel
     {
-
         private ObservableCollection<Event> _eventList;
 
         private ObservableCollection<Event> _events;

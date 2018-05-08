@@ -10,8 +10,6 @@ namespace Inspark.Viewmodels
 {
     class MainPageViewModel : BaseViewModel
     {
-        private ApiServices _api = new ApiServices();
-
         public User User { get; set; }
 
         private byte[] _profilePicture;
