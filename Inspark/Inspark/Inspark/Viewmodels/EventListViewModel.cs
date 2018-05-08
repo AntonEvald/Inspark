@@ -9,8 +9,20 @@ namespace Inspark.Viewmodels
 {
     public class EventListViewModel : BaseViewModel
     {
-        ApiServices _api = new ApiServices();
-        
+        public User User { get; set; }
+
+        private bool _isAdmin;
+
+        public bool IsAdmin
+        {
+            get { return _isAdmin; }
+            set
+            {
+                _isAdmin = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ObservableCollection<Event> _events;
 
         public ObservableCollection<Event> Events
@@ -105,10 +117,25 @@ namespace Inspark.Viewmodels
             }
         }
 
+        public async void OnLoad()
+        {
+            User = await _api.GetLoggedInUser();
+
+            if(User.Role == "Admin")
+            {
+                IsAdmin = true;
+            }
+            else
+            {
+                IsAdmin = false;
+            }
+        }
+
 
         public EventListViewModel()
         {
             PopulateList();
+            OnLoad();
         }
     }
 }

@@ -9,11 +9,11 @@
                 <StackLayout.BindingContext>
                     <viewmodels:GroupEventListViewModel/>
                 </StackLayout.BindingContext>
-                    <StackLayout>
-                    <Button Text="Skapa grupp event" Clicked="CreateGroupEvent_Clicked"/>
-                    <Button Text="Ta bort grupp event" Clicked="DeleteGroupEvent_Clicked"/>
-                    <Button Text="Ändra grupp event" Clicked="ChangeGroupEvent_Clicked"/>
-                </StackLayout>
+                    <StackLayout IsVisible="{Binding IsAdmin}">
+                        <Button Text="Skapa grupp event" Clicked="CreateGroupEvent_Clicked"/>
+                        <Button Text="Ta bort grupp event" Clicked="DeleteGroupEvent_Clicked"/>
+                        <Button Text="Ändra grupp event" Clicked="ChangeGroupEvent_Clicked"/>
+                    </StackLayout>
                 <StackLayout>
                  <SearchBar x:Name="UserSearchBar"
                                    Text="{Binding Keyword}"

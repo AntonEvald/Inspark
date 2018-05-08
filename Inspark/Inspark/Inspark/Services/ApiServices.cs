@@ -20,7 +20,7 @@ namespace Inspark.Services
     public class ApiServices
     {
         // Connection string for calls to our web api
-        private string ConnectionString = "https://insparkwebapi.azurewebsites.net/";
+        private string ConnectionString = "http://oruinsparkwebapi.azurewebsites.net/";
 
         // All API calls for Events.
         // All API calls for Events.
