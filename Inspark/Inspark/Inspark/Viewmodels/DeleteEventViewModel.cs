@@ -1,9 +1,11 @@
-﻿using Inspark.Models;
+﻿using Inspark.Helpers;
+using Inspark.Models;
 using Inspark.Services;
 using Inspark.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -12,7 +14,6 @@ namespace Inspark.Viewmodels
 {
     public class DeleteEventViewModel : BaseViewModel
     {
-        ApiServices _api = new ApiServices();
 
         private ObservableCollection<Event> _eventList;
 
@@ -79,7 +80,8 @@ namespace Inspark.Viewmodels
         public async void PopulateList()
         {
             _eventList = await _api.GetAllEvents();
-            Events = _eventList;
+            var events = _eventList.Where(x => x.SenderId == Settings.UserId);
+            Events = new ObservableCollection<Event>(events);
         }
 
         public DeleteEventViewModel()
@@ -90,7 +92,7 @@ namespace Inspark.Viewmodels
 
         public ICommand DeleteEvent => new Command(async () =>
         {
-            var eventId = _eventList[SelectedIndex].Id;
+            var eventId = Events[SelectedIndex].Id;
             var isSuccess = await _api.DeleteEvent(eventId);
             if (!isSuccess)
             {

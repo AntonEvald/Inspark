@@ -64,5 +64,11 @@ namespace Inspark.Views
             var page = new AdminPage();
             Inspark.Content = page.Content;
         }
+
+        public void InfoIcon_Tapped(object sender, EventArgs e)
+        {
+            var page = new InfoPage();
+            Inspark.Content = page.Content;
+        }
     }
 }

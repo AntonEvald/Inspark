@@ -6,7 +6,6 @@
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              x:Class="Inspark.Views.DeleteUserFromGroupPage">
     <ContentPage.Content>
-        <ScrollView>
             <StackLayout Padding="40">
                 <StackLayout.BindingContext>
                     <viewmodels:DeleteUserFromGroupViewModel/>
@@ -37,6 +36,5 @@
                     <Button Text="Ta bort användare" Command="{Binding DeleteUser}"/>
                 </StackLayout>
             </StackLayout>
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
