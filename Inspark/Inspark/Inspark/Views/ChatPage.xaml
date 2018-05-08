@@ -5,7 +5,7 @@
              xmlns:vm="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              xmlns:template="clr-namespace:Inspark.CustomCells;assembly=Inspark">
     <ContentPage.Content>
-        <Grid RowSpacing="0" ColumnSpacing="0">
+        <Grid RowSpacing="0" ColumnSpacing="0" x:Name="MessageArea">
             <Grid.Resources>
                 <ResourceDictionary>
                     <template:MyDataTemplateSelector x:Key="MessageTemplateSelector"/>
@@ -15,9 +15,6 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Grid.BindingContext>
-                <vm:ChatViewModel/>
-            </Grid.BindingContext>
 
             <!--Messages in Row 0 -->
             <ListView 
@@ -34,10 +31,7 @@
 			SeparatorVisibility="None" />
 
             <!-- Entry and Send button in Row 1 -->
-            <StackLayout Orientation="Horizontal" Grid.Row="1" Padding="10" BackgroundColor="#EFEFEF">
-                <StackLayout.BindingContext>
-                    <vm:ChatViewModel/>
-                </StackLayout.BindingContext>
+            <StackLayout Orientation="Horizontal" Grid.Row="1" Padding="10" BackgroundColor="#EFEFEF" x:Name="TextArea">
                 <Entry 
 			    HorizontalOptions="FillAndExpand" 
 				HeightRequest="25" 
