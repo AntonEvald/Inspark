@@ -59,7 +59,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Text="Start Time" Grid.Row="0" Grid.Column="0"/>
-                    <TimePicker Time="{Binding StartTime , StringFormat='HH:mm'}" Format="HH:mm"/>
+                    <TimePicker Time="{Binding StartTime}" Format="HH:mm"/>
                 </Grid>
                 </StackLayout>
                 <Label Text="{Binding Message}"></Label>

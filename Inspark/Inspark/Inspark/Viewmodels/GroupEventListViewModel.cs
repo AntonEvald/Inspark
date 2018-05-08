@@ -15,8 +15,6 @@ namespace Inspark.Viewmodels
             PopulateList();
         }
 
-        ApiServices _api = new ApiServices();
-
         private ObservableCollection<GroupEvent> _events;
 
         public ObservableCollection<GroupEvent> Events
@@ -73,7 +71,7 @@ namespace Inspark.Viewmodels
                     }
                 }
             }
-            Events = events2;
+            Events = new ObservableCollection<GroupEvent>(events2.OrderByDescending(i => i.TimeForEvent));
             Suggestions = events2;
         }
 

@@ -16,8 +16,6 @@ namespace Inspark.Viewmodels
             PopulateLists();
         }
 
-        private ApiServices _api = new ApiServices();
-
         public string Title { get; set; }
         public string Id { get; set; }
         public string Location { get; set; }
@@ -121,15 +119,15 @@ namespace Inspark.Viewmodels
         public async void PopulateLists()
         {
 
-            var groups = await _api.GetAllGroups();
+            var groups = await _api.GetAllGroupsByUserId();
             groups = new ObservableCollection<Group>(groups);
             Groups = groups;
         }
 
         public ICommand CreateEventCommand => new Command(async () =>
         {
-
-            DateTime newDateTime = StartDate.Date.Add(StartTime.TimeOfDay);
+            var a = StartTime;
+            DateTime newDateTime = new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, StartTime.Hour, StartTime.Minute, StartTime.Second);
             Date = newDateTime;
             GroupEvent groupEvent = new GroupEvent
             {

@@ -1,9 +1,11 @@
-﻿using Inspark.Models;
+﻿using Inspark.Helpers;
+using Inspark.Models;
 using Inspark.Services;
 using Inspark.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -12,7 +14,6 @@ namespace Inspark.Viewmodels
 {
     public class DeleteGroupEventViewModel : BaseViewModel
     {
-        ApiServices _api = new ApiServices();
 
         private ObservableCollection<GroupEvent> _groupEventList;
 
@@ -63,8 +64,10 @@ namespace Inspark.Viewmodels
 
         public async void PopulateList()
         {
+            
             _groupEventList = await _api.GetAllGroupEvents();
-            GroupEvents = _groupEventList;
+            var events = _groupEventList.Where(x => x.senderId == Settings.UserId);
+            GroupEvents = new ObservableCollection<GroupEvent>(events);
         }
 
         public DeleteGroupEventViewModel()
@@ -75,7 +78,7 @@ namespace Inspark.Viewmodels
 
         public ICommand DeleteGroupEvent => new Command(async () =>
         {
-            var eventId = _groupEventList[SelectedIndex].Id;
+            var eventId = GroupEvents[SelectedIndex].Id;
             var isSuccess = await _api.DeleteGroupEvent(eventId);
             if (!isSuccess)
             {
