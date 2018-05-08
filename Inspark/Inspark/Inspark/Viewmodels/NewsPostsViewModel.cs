@@ -18,8 +18,6 @@ namespace Inspark.Viewmodels
 {
     public class NewsPostsViewModel : BaseViewModel
     {
-        private ApiServices _api = new ApiServices();
-
         private ObservableCollection<NewsPost> _newsPosts;
 
         public ObservableCollection<NewsPost> NewsPosts

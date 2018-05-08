@@ -12,8 +12,6 @@ namespace Inspark.Viewmodels
 {
     class GroupViewModel : BaseViewModel
     {
-        private ApiServices _api = new ApiServices();
-
         private Group _group;
 
         public Group Group

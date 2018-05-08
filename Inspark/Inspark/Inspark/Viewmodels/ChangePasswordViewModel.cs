@@ -11,8 +11,6 @@ namespace Inspark.Viewmodels
 {
     class ChangePasswordViewModel : BaseViewModel
     {
-        private ApiServices _api = new ApiServices();
-
         private string _message;
 
         public string Message

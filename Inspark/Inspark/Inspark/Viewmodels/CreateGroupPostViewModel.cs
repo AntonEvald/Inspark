@@ -15,8 +15,6 @@ namespace Inspark.Viewmodels
 {
     class CreateGroupPostViewModel : BaseViewModel
     {
-        private ApiServices _api = new ApiServices();
-
         private string _message;
 
         public string Message

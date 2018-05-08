@@ -14,7 +14,6 @@ namespace Inspark.Viewmodels
 {
     public class ChangeGroupEventViewModel : BaseViewModel
     {
-
         private string _title;
 
         public string Title

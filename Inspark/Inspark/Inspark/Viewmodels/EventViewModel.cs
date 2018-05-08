@@ -11,8 +11,6 @@ namespace Inspark.Viewmodels
 {
     public class EventViewModel : BaseViewModel
     {
-        private ApiServices _api = new ApiServices();
-
         public string Title { get; set; }
         public int Id { get; set; }
         public string Location { get; set; }

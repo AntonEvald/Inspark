@@ -15,9 +15,6 @@ namespace Inspark.Viewmodels
             PopulateLists();
         }
 
-        ApiServices _api = new ApiServices();
-
-
         private ObservableCollection<Group> _groups;
 
         public ObservableCollection<Group> Groups

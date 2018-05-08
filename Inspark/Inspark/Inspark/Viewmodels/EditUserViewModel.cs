@@ -17,9 +17,6 @@ namespace Inspark.Viewmodels
 {
     public class EditUserViewModel : BaseViewModel
     {
-        // This class is used for the edit user function. 
-        private ApiServices _api = new ApiServices();
-
         private string _imagePath;
 
         public string ImagePath
