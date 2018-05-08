@@ -43,7 +43,7 @@ namespace Inspark.Views
 
         public void ChatIcon_Tapped(object sender, EventArgs e)
         {
-            var page = new ChatPage();
+            var page = new AllChatsPage();
             Inspark.Content = page.Content;
         }
 

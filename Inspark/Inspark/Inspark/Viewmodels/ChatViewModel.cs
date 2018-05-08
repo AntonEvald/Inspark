@@ -49,8 +49,6 @@ namespace Inspark.Viewmodels
 
         public User User { get; set; }
 
-        public User OtherDude { get; set; }
-
         public ICommand SendCommand => new Command(() =>
         {
             var message = new Message
@@ -60,7 +58,6 @@ namespace Inspark.Viewmodels
                 MessageDateTime = DateTime.Now,
                 SenderPic = User.ProfilePicture,
                 SenderId = User.Id,
-                ReciverId = OtherDude.Id
             };
             _messages.Add(message);
             OutgoingText = string.Empty;
@@ -74,7 +71,6 @@ namespace Inspark.Viewmodels
         async void OnLoad()
         {
             User = await _api.GetLoggedInUser();
-            OtherDude = User;
             InitializeMock();
         }
 
