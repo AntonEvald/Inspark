@@ -16,5 +16,11 @@ namespace Inspark.Views
 		{
 			InitializeComponent ();
 		}
-	}
+
+        void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+
+        }
+
+    }
 }

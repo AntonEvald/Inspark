@@ -20,8 +20,6 @@ namespace Inspark.Views
             Content.BindingContext = vm;
             MessageArea.BindingContext = vm;
             TextArea.BindingContext = vm;
-            
-
 
             vm.Messages.CollectionChanged += (sender, e) =>
             {
