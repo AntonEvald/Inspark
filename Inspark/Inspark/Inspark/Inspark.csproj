@@ -170,4 +170,7 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CustomControls\" />
+  </ItemGroup>
 </Project>
