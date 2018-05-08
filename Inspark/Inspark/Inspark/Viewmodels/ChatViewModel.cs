@@ -21,13 +21,9 @@ namespace Inspark.Viewmodels
 
         public ObservableRangeCollection<Message> Messages
         {
-            get { return _messages; } 
-            set
-            {
-                _messages = value;
-                OnPropertyChanged();
-            }
-        } 
+            get { return _messages; }
+        }
+
 
 
         private string _outgoingText = string.Empty;
@@ -55,7 +51,20 @@ namespace Inspark.Viewmodels
 
         public User OtherDude { get; set; }
 
-        public ICommand SendCommand { get; set; }
+        public ICommand SendCommand => new Command(() =>
+        {
+            var message = new Message
+            {
+                Text = OutgoingText,
+                IsIncoming = false,
+                MessageDateTime = DateTime.Now,
+                SenderPic = User.ProfilePicture,
+                SenderId = User.Id,
+                ReciverId = OtherDude.Id
+            };
+            _messages.Add(message);
+            OutgoingText = string.Empty;
+        });
 
         public ICommand RefreshCommand => new Command(() =>
         {
@@ -65,48 +74,18 @@ namespace Inspark.Viewmodels
         void RefreshMessages()
         {
             IsLoading = true;
-
+            var messages = new ObservableRangeCollection<Message>();
+            foreach(var message in Messages)
+            {
+                messages.Add(message);
+            }
+            _messages.ReplaceRange(messages);
             IsLoading = false;
         }
 
         public ChatViewModel()
         {
             OnLoad();
-            SendCommand = new Command(() =>
-            {
-                var message = new Message
-                {
-                    Text = OutgoingText,
-                    IsIncoming = false,
-                    MessageDateTime = DateTime.Now,
-                    SenderPic = User.ProfilePicture,
-                    SenderId = User.Id,
-                    ReciverId = OtherDude.Id
-                };
-                Messages.Add(message);
-                OutgoingText = string.Empty;
-            });
-            
-        }
-
-        public ChatViewModel(User user, User reciver)
-        {
-            SendCommand = new Command(() =>
-            {
-                var message = new Message
-                {
-                    Text = OutgoingText,
-                    IsIncoming = false,
-                    MessageDateTime = DateTime.Now,
-                    SenderPic = User.ProfilePicture,
-                    SenderId = User.Id,
-                    ReciverId = OtherDude.Id
-                };
-                Messages.Add(message);
-                OutgoingText = string.Empty;
-            });
-            User = user;
-            OtherDude = reciver;
         }
 
         async void OnLoad()
@@ -119,25 +98,17 @@ namespace Inspark.Viewmodels
 
         public void InitializeMock()
         {
-            Messages.ReplaceRange(new List<Message>
+            _messages.ReplaceRange(new ObservableRangeCollection<Message>
             {
                     new Message { Text = "Yo my dude! \uD83D\uDE0A", IsIncoming = true, MessageDateTime = DateTime.Now.AddMinutes(-25), SenderPic = User.ProfilePicture },
                     new Message { Text = "Hi Baboon, How are you? \uD83D\uDE0A", IsIncoming = false, MessageDateTime = DateTime.Now.AddMinutes(-24), SenderPic = User.ProfilePicture },
                     new Message { Text = "Who the fuck u callin a baboon mate??? \uD83D\uDE01", IsIncoming = true, MessageDateTime = DateTime.Now.AddMinutes(-23), SenderPic = User.ProfilePicture },
                     new Message { Text = "Ya fuckin babbon ass lookin fucker, shut the fuck up!", IsIncoming = false, MessageDateTime = DateTime.Now.AddMinutes(-23), SenderPic = User.ProfilePicture },
                     new Message { Text = "You better watch ur mouth befor i fuck it my dude \uD83D\uDE0E", IsIncoming = true, MessageDateTime = DateTime.Now.AddMinutes(-23), SenderPic = User.ProfilePicture },
-                    new Message { Text = "\uD83D\uDE48 \uD83D\uDE49 \uD83D\uDE49", IsIncoming = false, MessageDateTime = DateTime.Now.AddMinutes(-23), SenderPic = User.ProfilePicture },
-
+                    new Message { Text = "\uD83D\uDE48 \uD83D\uDE49 \uD83D\uDE49", IsIncoming = false, MessageDateTime = DateTime.Now.AddMinutes(-23), SenderPic = User.ProfilePicture }
             });
 
-            Messages.Add(new Message
-            {
-                Text = "Hej",
-                IsIncoming = false,
-                MessageDateTime = DateTime.Now,
-                SenderId = User.Id,
-                SenderPic = User.ProfilePicture
-            });
+           _messages.Add(new Message { Text = "Hej!", IsIncoming = false, MessageDateTime= DateTime.Now, SenderPic = User.ProfilePicture });
         }
     }
 }

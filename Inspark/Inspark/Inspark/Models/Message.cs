@@ -25,8 +25,6 @@ namespace Inspark.Models
             set { SetProperty(ref messageDateTime, value); }
         }
 
-        public string MessageTimeDisplay => MessageDateTime.Humanize();
-
         bool isIncoming;
 
         public bool IsIncoming
