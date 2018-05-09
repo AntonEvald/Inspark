@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -24,8 +25,6 @@ namespace Inspark.Viewmodels
             get { return _messages; }
         }
 
-
-
         private string _outgoingText = string.Empty;
 
         public string OutgoingText
@@ -37,6 +36,15 @@ namespace Inspark.Viewmodels
                 OnPropertyChanged();
             }
         }
+
+        private string _chatName;
+
+        public string ChatName
+        {
+            get { return _chatName; }
+            set { _chatName = value; OnPropertyChanged(); }
+        }
+
 
         private bool _isLoading;
 
@@ -63,21 +71,17 @@ namespace Inspark.Viewmodels
             OutgoingText = string.Empty;
         });
 
-        public ChatViewModel()
+        public ChatViewModel(Chat chat)
         {
-            OnLoad();
+            OnLoad(chat);
         }
 
-        async void OnLoad()
+        void OnLoad(Chat chat)
         {
-            User = await _api.GetLoggedInUser();
-            InitializeMock();
-        }
-
-
-        public void InitializeMock()
-        {
-           _messages.Add(new Message { Text = "Hej!", IsIncoming = false, MessageDateTime= DateTime.Now, SenderPic = User.ProfilePicture });
+            User = chat.Users.Where(x => x.Id == Settings.UserId).First();
+            Messages.ReplaceRange(chat.Messages);
+            var otherUser = chat.Users.Where(x => x.Id != User.Id).First();
+            ChatName = otherUser.FirstName + " " + otherUser.LastName;
         }
     }
 }

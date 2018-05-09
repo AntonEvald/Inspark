@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Inspark.Models;
+using Inspark.Viewmodels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,14 +14,27 @@ namespace Inspark.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AllChatsPage : ContentPage
 	{
+        AllChatsViewModel vm;
 		public AllChatsPage ()
 		{
 			InitializeComponent ();
+            vm = new AllChatsViewModel();
+            Content.BindingContext = vm;
+            ChatListArea.BindingContext = vm;
+            SearchArea.BindingContext = vm;
+
 		}
 
-        void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        void User_ItemTapped(object sender, ItemTappedEventArgs e)
         {
+            User selected = e.Item as User;
+            vm.CreateChat(selected);
+        }
 
+        void Chat_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            Chat selected = e.Item as Chat;
+            vm.OpenChat(selected);
         }
 
     }

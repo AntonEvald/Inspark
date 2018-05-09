@@ -6,37 +6,70 @@
              xmlns:vm="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              xmlns:conv="clr-namespace:Inspark.Services;assembly=Inspark">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" 
-                                 Spacing="0" 
-                                 Margin="10, 20, 10, 0">
-            <StackLayout.BindingContext>
-                <vm:AllChatsViewModel/>
-            </StackLayout.BindingContext>
-            <StackLayout.Resources>
-                <ResourceDictionary>
-                    <conv:ByteArrayToImageSourceConverter x:Key="bic"/>
-                </ResourceDictionary>
-            </StackLayout.Resources>
-            <SearchBar x:Name="UserSearchBar"
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Orientation="Vertical" 
+                         Spacing="0" 
+                         Margin="10, 20, 10, 0" 
+                         Grid.Row="0"
+                         x:Name="SearchArea">
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <conv:ByteArrayToImageSourceConverter x:Key="bic"/>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+
+                <SearchBar x:Name="UserSearchBar"
                                    Text="{Binding Keyword}"
                                    SearchCommand="{Binding SearchCommand}"
                                    Placeholder="Bokstav + enter för att söka"
                                    HeightRequest="40"/>
-            <ListView x:Name="SuggestionsListView" 
+                <ListView x:Name="UserListView" 
                                   ItemsSource="{Binding Suggestions}" 
-                                  IsVisible="{Binding IsVisible}"
-                                  ItemTapped="Handle_ItemTapped">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding ChatName}"/>
-                                <ci:CircleImage Source="{Binding ChatPic, Converter={StaticResource bic}}"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+                                  IsVisible="{Binding IsSearchListVisible}"
+                                  ItemTapped="User_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Label Text="{Binding FirstName}"/>
+                                    <Label Text="{Binding LastName}"/>
+                                    <ci:CircleImage Source="{Binding ProfilePicture, Converter={StaticResource bic}}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            
+            <StackLayout Grid.Row="1" x:Name="ChatListArea">
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <conv:ByteArrayToImageSourceConverter x:Key="bic"/>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <ListView x:Name="ChatListView" 
+                                  ItemsSource="{Binding Chats}"
+                                  ItemTapped="Chat_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Label Text="{Binding }"/>
+                                    <ci:CircleImage Source="{Binding ChatPic, Converter={StaticResource bic}}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

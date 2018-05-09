@@ -1,10 +1,12 @@
-﻿using Inspark.Models;
+﻿using Inspark.Helpers;
+using Inspark.Models;
 using Inspark.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 using System.Text;
+using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
 {
@@ -74,6 +76,12 @@ namespace Inspark.Viewmodels
                 var pic = EmbeddedResourceToByteArray.GetEmbeddedResourceBytes(assembly, "profile.png");
                 ProfilePicture = pic;
                 FirstName = "No user";
+                Settings.AccessToken = "";
+                Settings.UserId = "";
+                Settings.UserName = "";
+                Settings.UserPassword = "";
+                Settings.UserRole = "";
+                Application.Current.MainPage = new FrontPage();
             }
             else
             {

@@ -12,22 +12,26 @@
                 </ResourceDictionary>
             </Grid.Resources>
             <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+            
+            <!--Chat name in Row 0 -->
+            <Label Text="{Binding ChatName}"/>
 
-            <!--Messages in Row 0 -->
+            <!--Messages in Row 1 -->
             <ListView 
 			x:Name="MessagesListView" 
 			ItemTemplate="{StaticResource MessageTemplateSelector}" 
 			ItemsSource="{Binding Messages}"
-            Grid.Row="0"
+            Grid.Row="1"
 			HasUnevenRows="True" 
 			ItemSelected="MyListView_OnItemSelected" 
 			ItemTapped="MyListView_OnItemTapped" 
 			SeparatorVisibility="None" />
 
-            <!-- Entry and Send button in Row 1 -->
+            <!-- Entry and Send button in Row 2 -->
             <StackLayout Orientation="Horizontal" Grid.Row="1" Padding="10" BackgroundColor="#EFEFEF" x:Name="TextArea">
                 <Entry 
 			    HorizontalOptions="FillAndExpand" 

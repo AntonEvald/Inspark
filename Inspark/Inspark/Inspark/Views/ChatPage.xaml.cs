@@ -1,4 +1,5 @@
-﻿using Inspark.Viewmodels;
+﻿using Inspark.Models;
+using Inspark.Viewmodels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,10 @@ namespace Inspark.Views
 	{
         ChatViewModel vm;
 
-		public ChatPage ()
+		public ChatPage (Chat chat)
 		{
             InitializeComponent();
-            vm = new ChatViewModel();
+            vm = new ChatViewModel(chat);
             Content.BindingContext = vm;
             MessageArea.BindingContext = vm;
             TextArea.BindingContext = vm;
