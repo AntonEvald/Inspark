@@ -22,7 +22,6 @@ namespace Inspark.Views
             Content.BindingContext = vm;
             ChatListArea.BindingContext = vm;
             SearchArea.BindingContext = vm;
-
 		}
 
         void User_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -33,7 +32,7 @@ namespace Inspark.Views
 
         void Chat_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            Chat selected = e.Item as Chat;
+            ChatDisplayModel selected = e.Item as ChatDisplayModel;
             vm.OpenChat(selected);
         }
 

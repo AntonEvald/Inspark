@@ -63,6 +63,15 @@ namespace Inspark.Viewmodels
             set { _chats = value; OnPropertyChanged(); }
         }
 
+        private ObservableRangeCollection<ChatDisplayModel> _chatDisplayModels;
+
+        public ObservableRangeCollection<ChatDisplayModel> ChatDisplayModels
+        {
+            get { return _chatDisplayModels; }
+            set { _chatDisplayModels = value; OnPropertyChanged(); }
+        }
+
+
         public User User { get; set; }
 
         public ICommand SearchCommand
@@ -93,17 +102,21 @@ namespace Inspark.Viewmodels
             OnLoad();
         }
 
+        public void OpenChat(ChatDisplayModel cdm)
+        {
+            var chat = Chats.Where(x => x.Id == cdm.Id).First();
+            if (Chats.Contains(chat))
+            {
+                Application.Current.MainPage = new MainPage(new ChatPage(chat));
+            }
+        }
+
         public void OpenChat(Chat chat)
         {
             if (Chats.Contains(chat))
             {
                 Application.Current.MainPage = new MainPage(new ChatPage(chat));
             }
-            else
-            {
-                //Nothing
-            }
-            
         }
 
         public void CreateChat(User reciver)
@@ -132,20 +145,58 @@ namespace Inspark.Viewmodels
 
         async void OnLoad()
         {
+            ChatDisplayModels = new ObservableRangeCollection<ChatDisplayModel>();
             User = await _api.GetLoggedInUser();
             AllUsers = await _api.GetAllUsers();
             var users = new List<User>
             {
                 User, AllUsers.FirstOrDefault()
             };
+            var message = new Message
+            {
+                SenderId = User.Id,
+                SenderPic = User.ProfilePicture,
+                AttachementUrl = null,
+                IsIncoming = false,
+                MessageDateTime = DateTime.Now.AddMinutes(-1),
+                Text = "Hej hej din idiot"
+            };
+            var message2 = new Message
+            {
+                SenderId = User.Id,
+                SenderPic = User.ProfilePicture,
+                AttachementUrl = null,
+                IsIncoming = false,
+                MessageDateTime = DateTime.Now,
+                Text = "Hej hej din idiot!!"
+            };
+            var messages = new List<Message>
+            {
+                message, message2
+            };
+
             var chat = new Chat
             {
                 Id = 0,
-                Messages = null,
+                Messages = messages,
                 Users = users
             };
+            
             Chats.Add(chat);
             //Chats = await _api.GetAllChatsFromUser(User.Id);
+
+            foreach(var c in Chats)
+            {
+                var otherUser = c.Users.Where(x => x.Id != User.Id).First();
+                var chatView = new ChatDisplayModel
+                {
+                    Id = c.Id,
+                    DisplayName = otherUser.FirstName + " " + otherUser.LastName,
+                    ChatPic = User.ProfilePicture,
+                    LatestMessage = c.Messages.Last().Text,
+                };
+                ChatDisplayModels.Add(chatView);
+            }
         }
 
     }

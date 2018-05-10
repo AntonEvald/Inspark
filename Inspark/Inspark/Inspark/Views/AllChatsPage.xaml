@@ -11,7 +11,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -56,14 +56,32 @@
                     </ResourceDictionary>
                 </StackLayout.Resources>
                 <ListView x:Name="ChatListView" 
-                                  ItemsSource="{Binding Chats}"
-                                  ItemTapped="Chat_ItemTapped">
+                          ItemsSource="{Binding ChatDisplayModels}"
+                          ItemTapped="Chat_ItemTapped"
+                          HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout>
-                                    <Label Text="{Binding }"/>
-                                    <ci:CircleImage Source="{Binding ChatPic, Converter={StaticResource bic}}"/>
+                                <StackLayout Padding="0">
+                                    <Grid RowSpacing="0" Padding="0" Margin="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="5"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="5"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="75"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="10"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Grid.Row="1" Grid.Column="1" Padding="2">
+                                            <Label Text="{Binding DisplayName}"/>
+                                            <Label Text="{Binding LatestMessage}" Grid.Column="1" Grid.Row="1"/>
+                                        </StackLayout>
+                                        
+                                        <ci:CircleImage Source="{Binding ChatPic, Converter={StaticResource bic}}" BorderColor="Red" BorderThickness="2" Grid.Row="1"  Grid.Column="0"/>
+                                        
+                                    </Grid>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

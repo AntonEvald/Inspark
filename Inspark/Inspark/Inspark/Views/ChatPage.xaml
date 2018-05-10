@@ -18,7 +18,7 @@
             </Grid.RowDefinitions>
             
             <!--Chat name in Row 0 -->
-            <Label Text="{Binding ChatName}"/>
+            <Label Text="{Binding ChatName}" HorizontalOptions="Center" Grid.Row="0"/>
 
             <!--Messages in Row 1 -->
             <ListView 
@@ -32,7 +32,7 @@
 			SeparatorVisibility="None" />
 
             <!-- Entry and Send button in Row 2 -->
-            <StackLayout Orientation="Horizontal" Grid.Row="1" Padding="10" BackgroundColor="#EFEFEF" x:Name="TextArea">
+            <StackLayout Orientation="Horizontal" Grid.Row="2" Padding="10" BackgroundColor="#EFEFEF" x:Name="TextArea">
                 <Entry 
 			    HorizontalOptions="FillAndExpand" 
 				HeightRequest="25" 
