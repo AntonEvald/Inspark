@@ -16,9 +16,20 @@
                         <Button Text="Ta bort resultat" Clicked="DeleteScore_Clicked"/>
                     </StackLayout>
                     <StackLayout>
-                        <Label Text="Välkommen till tävlingssidan!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                        <Label Text="Tävlingar ska in här..."/>
+                        <ListView>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout>
+                                            <Grid>
+                                                
+                                            </Grid>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
