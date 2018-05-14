@@ -31,7 +31,6 @@
                     </StackLayout>
                     <StackLayout>
                         <Button Text="Skapa ett inlägg" BackgroundColor="LightBlue" Clicked="CreateNewsPostButton_Clicked"/>
-                        <Button Text="Lägg in resultat från tävling" BackgroundColor="LightBlue" Clicked="AddScoreFromEventButton_Clicked"/>
                         <Button Text="Skapa introduktionsgrupp" BackgroundColor="LightBlue" Clicked="CreateGroupButton_Clicked"/>
                         <Button Text="Ändra introduktionsgrupp" BackgroundColor="LightBlue" Clicked="ChangeGroupButton_Clicked"/>
                         <Button Text="Ta bort introduktionsgrupp" BackgroundColor="LightCoral" Clicked="DeleteGroupButton_Clicked"/>

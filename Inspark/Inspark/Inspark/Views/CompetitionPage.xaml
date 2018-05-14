@@ -1,14 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
              x:Class="Inspark.Views.CompetitionPage">
-    <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <Label Text="Välkommen till tävlingssidan!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            </StackLayout>
-        </ScrollView>
-    </ContentPage.Content>
+    <ContentView x:Name="InsparkCompetition">
+        <ContentPage.Content>
+            <ScrollView>
+                <StackLayout Padding="20">
+                    <StackLayout.BindingContext>
+                        <viewmodels:CompetitionViewModel/>
+                    </StackLayout.BindingContext>
+                    <StackLayout IsVisible="{Binding IsAdmin}">
+                        <Button Text="Lägg in resultat" Clicked="AddScore_Clicked"/>
+                        <Button Text="Ändra resultat" Clicked="ChangeScore_Clicked"/>
+                        <Button Text="Ta bort resultat" Clicked="DeleteScore_Clicked"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Tävlingar ska in här..."/>
+                        <ListView>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout>
+                                            <Grid>
+                                                
+                                            </Grid>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentView>
 </ContentPage>

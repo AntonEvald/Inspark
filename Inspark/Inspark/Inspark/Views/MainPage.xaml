@@ -38,6 +38,12 @@
             </StackLayout>
 
             <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
+                <Image HeightRequest="30" Source="competition.png"/>
+                <Label Text="Info" FontSize="10"
+                       HorizontalOptions="Center"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CompetitionIcon_Tapped"/>
+                </StackLayout.GestureRecognizers>
             </StackLayout>
 
             <StackLayout Grid.Column="2" VerticalOptions="Center" Spacing="0">
@@ -117,11 +123,11 @@
             </StackLayout>
 
             <StackLayout VerticalOptions="Center" Spacing="0" Grid.Column="2">
-                <Image HeightRequest="30" Source="competition.png"/>
+                <Image HeightRequest="30" Source="event.png"/>
                 <Label Text="Event" FontSize="10"
                        HorizontalOptions="Center"/>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="CompetitionIcon_Tapped"/>
+                    <TapGestureRecognizer Tapped="EventIcon_Tapped"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 

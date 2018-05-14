@@ -35,7 +35,7 @@ namespace Inspark.Views
             Inspark.Content = page.Content;
         }
 
-        public void CompetitionIcon_Tapped(object sender, EventArgs e)
+        public void EventIcon_Tapped(object sender, EventArgs e)
         {
             var page = new EventListPage();
             Inspark.Content = page.Content;
@@ -68,6 +68,12 @@ namespace Inspark.Views
         public void InfoIcon_Tapped(object sender, EventArgs e)
         {
             var page = new InfoPage();
+            Inspark.Content = page.Content;
+        }
+
+        public void CompetitionIcon_Tapped(object sender, EventArgs e)
+        {
+            var page = new CompetitionPage();
             Inspark.Content = page.Content;
         }
     }
