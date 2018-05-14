@@ -50,26 +50,17 @@ namespace Inspark.Views
 	        InsparkAdmin.Content = page.Content;
 	    }
 
-	    public void AddScoreFromEventButton_Clicked(object sender, EventArgs e)
-	    {
-            var page = new AddScoreFromEventPage();
-	        InsparkAdmin.Content = page.Content;
-	    }
-
 	    public void CreateNewsPostButton_Clicked(object sender, EventArgs e)
 	    {
             var page = new CreateNewsPostPage();
 	        InsparkAdmin.Content = page.Content;
 	    }
 
-        // Displays a ProfilePage of the user that is tapped on from the ListView. 
         public void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             User selected = e.Item as User;
             var page = new ProfilePage(selected);
             InsparkAdmin.Content = page.Content;
         }
-
-
 	}
 }

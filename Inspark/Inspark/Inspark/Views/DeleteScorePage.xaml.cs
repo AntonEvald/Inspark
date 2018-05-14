@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Inspark.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AddScoreFromEventPage : ContentPage
+	public partial class DeleteScorePage : ContentPage
 	{
-		public AddScoreFromEventPage ()
+		public DeleteScorePage ()
 		{
 			InitializeComponent ();
 		}
