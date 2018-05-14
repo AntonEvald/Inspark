@@ -9,6 +9,8 @@ namespace Inspark.Models
 {
     public class Message : ObservableObject
     {
+        public int MessageID { get; set; }
+
         string text;
 
         public string Text
@@ -31,16 +33,6 @@ namespace Inspark.Models
         {
             get { return isIncoming; }
             set { SetProperty(ref isIncoming, value); }
-        }
-
-        public bool HasAttachement => !string.IsNullOrEmpty(attachementUrl);
-
-        string attachementUrl;
-
-        public string AttachementUrl
-        {
-            get { return attachementUrl; }
-            set { SetProperty(ref attachementUrl, value); }
         }
 
         byte[] senderPic;
