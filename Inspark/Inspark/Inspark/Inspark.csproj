@@ -29,9 +29,6 @@
     <Compile Update="Views\AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\AddScorePage.xaml.cs">
-      <DependentUpon>AddScorePage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\ChangeGroupPage.xaml.cs">
       <DependentUpon>ChangeGroupPage.xaml</DependentUpon>
     </Compile>
@@ -88,9 +85,6 @@
     <EmbeddedResource Update="Views\AddCodePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\AddScorePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\AddUserToGroupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -128,9 +122,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\DeleteGroupPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\DeleteScorePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\DeleteUserFromGroupPage.xaml">

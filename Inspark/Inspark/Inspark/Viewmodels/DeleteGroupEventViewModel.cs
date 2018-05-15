@@ -65,8 +65,15 @@ namespace Inspark.Viewmodels
         {
             
             _groupEventList = await _api.GetAllGroupEvents();
-            var events = _groupEventList.Where(x => x.senderId == Settings.UserId);
-            GroupEvents = new ObservableCollection<GroupEvent>(events);
+			if (_groupEvents.Count() < 1)
+			{
+
+			}
+			else{
+				var events = _groupEventList.Where(x => x.senderId == Settings.UserId);
+                GroupEvents = new ObservableCollection<GroupEvent>(events);
+			}
+
         }
 
         public DeleteGroupEventViewModel()

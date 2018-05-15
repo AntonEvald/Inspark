@@ -71,9 +71,9 @@ namespace Inspark.Viewmodels
             }
         }
 
-        private DateTime _startTime;
+        private TimeSpan _startTime;
 
-        public DateTime StartTime
+        public TimeSpan StartTime
         {
             get { return _startTime; }
             set
@@ -134,14 +134,19 @@ namespace Inspark.Viewmodels
             Location = SelectedGroupEvent.Location;
             Description = SelectedGroupEvent.Description;
             StartDate = SelectedGroupEvent.TimeForEvent.Date;
+            StartTime = SelectedGroupEvent.TimeForEvent.TimeOfDay;
         });
 
         public async void PopulateList()
         {
-            var events = await _api.GetAllGroupEvents();
-            var events2 = events.Where(x => x.senderId == Settings.UserId);
-            events = new ObservableCollection<GroupEvent>(events2);
-            GroupEvents = events;
+			var events = await _api.GetAllGroupEvents();
+			if (events.Count() > 0)
+			{
+				var events2 = events.Where(x => x.senderId == Settings.UserId);
+                events = new ObservableCollection<GroupEvent>(events2);
+                GroupEvents = events;
+			}
+
         }
 
         public ChangeGroupEventViewModel()
@@ -151,7 +156,7 @@ namespace Inspark.Viewmodels
 
         public ICommand ChangeGroupEvent => new Command(async () =>
         {
-            DateTime newDateTime = StartDate.Date.Add(StartTime.TimeOfDay);
+            DateTime newDateTime = StartDate.Date.Add(StartTime);
 
             var groupEvents = new GroupEvent
             {
