@@ -87,6 +87,10 @@ namespace Inspark.Viewmodels
                  (_keyword.ToLower()) || c.LastName.ToLower().Contains(_keyword.ToLower()));
 
                 var suggestionListCollection = new ObservableRangeCollection<User>(suggestionsList);
+                if (suggestionListCollection.Where(x => x.Id == User.Id).Count() != 0)
+                {
+                    suggestionListCollection.Remove(suggestionListCollection.Where(x => x.Id == User.Id).First());
+                }
                 Suggestions = suggestionListCollection;
 
                 IsSearchListVisible = true;
@@ -130,13 +134,15 @@ namespace Inspark.Viewmodels
             };
             if (Chats.Where(x => x.Users == chat.Users).Count() != 0)
             {
-                OpenChat(chat);
+                OpenChat(Chats.Where(x => x.Users == chat.Users).First());
             }
             else
             {
-                Chats.Add(chat);
-                OpenChat(chat);
-                await _api.CreateChat(chat);
+                if(await _api.CreatePrivateChat(new Chat { Users = new ObservableCollection<User>(), Messages = new ObservableCollection<Message>() }, User.Id, reciver.Id))
+                {
+                    OnLoad();
+                    OpenChat(User.Chats.Where(x => x.Users == chat.Users).First());
+                }
             }
         }
 

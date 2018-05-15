@@ -39,7 +39,6 @@
                     <OnPlatform x:TypeArguments="Color" iOS="#00aad1" Android="#00aad1"/>
                 </Frame.BackgroundColor>
                 <StackLayout>
-                    <Image IsVisible="{Binding HasAttachement}" WidthRequest="175" HeightRequest="175" Source="{Binding AttachementUrl}" />
                     <Label TextColor="White"  Text="{Binding Text}" />
                 </StackLayout>
             </Frame>
