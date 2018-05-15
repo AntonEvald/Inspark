@@ -56,9 +56,9 @@ namespace Inspark.Viewmodels
             }
         }
 
-        private DateTime _startTime;
+        private TimeSpan _startTime;
 
-        public DateTime StartTime
+        public TimeSpan StartTime
         {
             get { return _startTime; }
             set
@@ -134,6 +134,7 @@ namespace Inspark.Viewmodels
             Location = SelectedEvent.Location;
             Description = SelectedEvent.Description;
             StartDate = SelectedEvent.TimeForEvent.Date;
+            StartTime = SelectedEvent.TimeForEvent.TimeOfDay;
         });
 
         public async void PopulateList()
@@ -151,7 +152,7 @@ namespace Inspark.Viewmodels
 
         public ICommand ChangeEvent => new Command(async () =>
         {
-            DateTime newDateTime = StartDate.Date.Add(StartTime.TimeOfDay);
+            DateTime newDateTime = StartDate.Date.Add(StartTime);
 
             var events = new Event
             {

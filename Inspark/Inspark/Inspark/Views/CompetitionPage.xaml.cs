@@ -23,12 +23,6 @@ namespace Inspark.Views
             InsparkCompetition.Content = page.Content;
         }
 
-        public void ChangeScore_Clicked(object sender, EventArgs e)
-        {
-            var page = new ChangeScorePage();
-            InsparkCompetition.Content = page.Content;
-        }
-
         public void DeleteScore_Clicked(object sender, EventArgs e)
         {
             var page = new DeleteScorePage();

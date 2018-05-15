@@ -103,6 +103,17 @@ namespace Inspark.Services
             return list;
         }
 
+        public async Task<ObservableCollection<Event>> GetAllEventsAttending()
+        {
+            var userid = Settings.UserId;
+            var client = new HttpClient();
+            var response = await client.GetAsync(ConnectionString + "api/AttendingEvent/GetAttendingEventsOfUser/"+userid +"/");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<ObservableCollection<Event>>(result);
+            return list;
+        }
+
 
 
 
@@ -173,7 +184,40 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<ObservableCollection<GroupEvent>> GetAllGroupEventsAttending()
+        {
+            var userId = Settings.UserId;
+            var client = new HttpClient();
+            var response = await client.GetAsync(ConnectionString + "api/AttendingGroupEvent/GetAttendingGroupEventsOfUser/"+ userId +"/");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<ObservableCollection<GroupEvent>>(result);
+            return list;
+        }
 
+
+        // ALL API calls for Score
+        // ALL API calls for Score
+        // ALL API calls for Score
+
+        public async Task<ObservableCollection<Score>> GetAllScore()
+        {
+            var client = new HttpClient();
+            var response = await client.GetAsync(ConnectionString + "api/result");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<ObservableCollection<Score>>(result);
+            return list;
+        }
+
+        public async Task<bool> ChangeScore(Score score)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(score);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/result/editresult/", content);
+            return response.IsSuccessStatusCode;
+        }
 
 
 

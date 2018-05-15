@@ -9,62 +9,62 @@
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              x:Class="Inspark.Views.CreateGroupEventPage">
     <ContentPage.Content>
-        <ScrollView>
+    </ContentPage.Content>
+    <ScrollView>
             <StackLayout Padding="40">
                 <StackLayout.BindingContext>
                     <viewmodels:CreateGroupEventViewModel/>
                 </StackLayout.BindingContext>
                 <StackLayout>
                     <Entry Placeholder="Titel" Text="{Binding Title}">
-                        <Entry.Behaviors>
-                            <validation:EmptyFieldValidation/>
-                        </Entry.Behaviors>
+                    <Entry.Behaviors>
+                        <validation:EmptyFieldValidation/>
+                    </Entry.Behaviors>
                     </Entry>
                 </StackLayout>
 
                 <StackLayout>
                     <Entry Placeholder="Adress" Text="{Binding Location}">
-                        <Entry.Behaviors>
-                            <validation:EmptyFieldValidation/>
-                        </Entry.Behaviors>
+                                            <Entry.Behaviors>
+                        <validation:EmptyFieldValidation/>
+                    </Entry.Behaviors>
                     </Entry>
                 </StackLayout>
 
                 <StackLayout>
                     <Entry Placeholder="Beskrivning" Text="{Binding Description}">
-                        <Entry.Behaviors>
-                            <validation:EmptyFieldValidation/>
-                        </Entry.Behaviors>
+                                            <Entry.Behaviors>
+                        <validation:EmptyFieldValidation/>
+                    </Entry.Behaviors>
                     </Entry>
                 </StackLayout>
-                <StackLayout>
-                    <Picker Margin="10,0,0,10" ItemsSource="{Binding Groups}" SelectedIndex="{Binding SelectedIndex}" ItemDisplayBinding="{Binding Name}" iOSSpecific:Picker.UpdateMode="WhenFinished">
+            <StackLayout>
+                                 <Picker Margin="10,0,0,10" ItemsSource="{Binding Groups}" SelectedIndex="{Binding SelectedIndex}" ItemDisplayBinding="{Binding Name}" iOSSpecific:Picker.UpdateMode="WhenFinished">
                         <Picker.Behaviors>
-                            <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
-                                <behaviors:InvokeCommandAction Command="{Binding SelectedProviderChanged}"/>
-                            </behaviors:EventHandlerBehavior>
-                        </Picker.Behaviors>
-                    </Picker>
-                </StackLayout>
+          <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+              <behaviors:InvokeCommandAction Command="{Binding SelectedProviderChanged}"/>
+          </behaviors:EventHandlerBehavior>
+    </Picker.Behaviors>
+                </Picker>
+            </StackLayout>
 
-                <StackLayout>
-                    <DatePicker Format="dd/MM/yyyy" Date="{Binding StartDate}" MinimumDate="{x:Static system:DateTime.Today}"/>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                <StackLayout>  
+                <DatePicker Format="dd/MM/yyyy" Date="{Binding StartDate}" MinimumDate="{x:Static system:DateTime.Today}"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                        <Label Text="Start Time" Grid.Row="0" Grid.Column="0"/>
-                        <custom:CustomTimePicker24H Time="{Binding StartTime}" Format="HH:mm"/>
-                    </Grid>
+                    <Label Text="Start Time" Grid.Row="0" Grid.Column="0"/>
+                    <custom:CustomTimePicker24H Time="{Binding StartTime}" Format="HH:mm"/>
+                </Grid>
                 </StackLayout>
                 <Label Text="{Binding Message}"></Label>
                 <Button Text="Create GroupEvent" IsEnabled="{Binding IsButtonEnabled}" Command="{Binding CreateEventCommand}"></Button>
             </StackLayout>
-        </ScrollView>
-    </ContentPage.Content>
+        </ScrollView> 
 </ContentPage>
