@@ -21,6 +21,7 @@
             </StackLayout>
             <StackLayout>
                 <Button Text="Ta bort resultat" Command="{Binding RemoveScore}"/>
+                <Label Text="{Binding Message}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

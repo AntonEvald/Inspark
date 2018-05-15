@@ -93,6 +93,7 @@ namespace Inspark.Viewmodels
 
             var model = new Score
             {
+                Id = newscore.Id,
                 TotalPoints = result,
                 GroupID = SelectedGroup.Id
             };

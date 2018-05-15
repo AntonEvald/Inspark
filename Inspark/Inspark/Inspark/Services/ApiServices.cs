@@ -215,7 +215,7 @@ namespace Inspark.Services
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(score);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(ConnectionString + "api/result/editscore/", content);
+            var response = await client.PostAsync(ConnectionString + "api/result/editresult/", content);
             return response.IsSuccessStatusCode;
         }
 
