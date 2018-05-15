@@ -11,9 +11,8 @@
                         <viewmodels:CompetitionViewModel/>
                     </StackLayout.BindingContext>
                     <StackLayout IsVisible="{Binding IsAdmin}">
-                        <Button Text="Lägg in resultat" Clicked="AddScore_Clicked"/>
-                        <Button Text="Ändra resultat" Clicked="ChangeScore_Clicked"/>
-                        <Button Text="Ta bort resultat" Clicked="DeleteScore_Clicked"/>
+                        <Button Text="Lägg in resultat till grupp" Clicked="AddScore_Clicked"/>
+                        <Button Text="Ta bort resultat från grupp" Clicked="DeleteScore_Clicked"/>
                     </StackLayout>
                     <StackLayout>
                         <ListView>

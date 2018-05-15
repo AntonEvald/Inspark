@@ -178,6 +178,23 @@ namespace Inspark.Services
 
 
 
+        // ALL API calls for Score
+        // ALL API calls for Score
+        // ALL API calls for Score
+
+        public async Task<ObservableCollection<Score>> GetAllScore()
+        {
+            var client = new HttpClient();
+            var response = await client.GetAsync(ConnectionString + "api/result");
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<ObservableCollection<Score>>(result);
+            return list;
+        }
+
+
+
+
         // All API calls for Groups.
         // All API calls for Groups.
         // All API calls for Groups.

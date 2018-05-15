@@ -2,15 +2,26 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
+             xmlns:iOSSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             xmlns:custom="clr-namespace:Inspark.CustomControls;assembly=Inspark"
              x:Class="Inspark.Views.AddScorePage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="20">
             <StackLayout.BindingContext>
                 <viewmodels:AddScoreViewModel/>
             </StackLayout.BindingContext>
-            <Label Text="Lägg in resultat"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout>
+                <Label Text="Välj vilken grupp:"/>
+                <Picker ItemsSource="{Binding Groups}" SelectedItem="{Binding SelectedGroup}" ItemDisplayBinding="{Binding Name}"/>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Lägg in följande resultat:"/>
+                <Entry Text="{Binding Score}"/>
+            </StackLayout>
+            <StackLayout>
+                <Button Text="Lägg in resultat" Command="{Binding AddScore}"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
