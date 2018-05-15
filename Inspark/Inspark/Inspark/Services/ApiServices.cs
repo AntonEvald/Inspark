@@ -14,6 +14,7 @@ using System.Net.Http.Headers;
 using System.Collections.ObjectModel;
  using System.Runtime.InteropServices.ComTypes;
  using System.Security.Cryptography.X509Certificates;
+using MvvmHelpers;
 
 namespace Inspark.Services
 {
@@ -21,6 +22,39 @@ namespace Inspark.Services
     {
         // Connection string for calls to our web api
         private string ConnectionString = "http://oruinsparkwebapi.azurewebsites.net/";
+
+        //All API calls for chat and messanges
+        //All API calls for chat and messanges
+        //All API calls for chat and messanges
+
+        public async Task<bool> CreateChat(Chat chat)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(chat);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/Chat/", content);
+            return response.IsSuccessStatusCode;
+        }
+
+        //public async Task<ObservableRangeCollection<Chat>> GetAllChatsByUser(User user)
+        //{
+        //    var client = new HttpClient();
+        //    var json = JsonConvert.SerializeObject(user);
+        //    HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+        //    var response = await client.GetAsync(ConnectionString + "api/Chat/GetChatsByUser/", content);
+            
+        //    response.EnsureSuccessStatusCode();
+        //    var result = await response.Content.ReadAsStringAsync();
+        //    var list = JsonConvert.DeserializeObject<ObservableRangeCollection<Chat>>(result);
+        //    if(list == null)
+        //    {
+        //        return new ObservableRangeCollection<Chat>();
+        //    }
+        //    else
+        //    {
+        //        return list;
+        //    }
+        //}
 
         // All API calls for Events.
         // All API calls for Events.

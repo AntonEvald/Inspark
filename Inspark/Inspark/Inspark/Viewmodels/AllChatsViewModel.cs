@@ -55,7 +55,7 @@ namespace Inspark.Viewmodels
         }
 
 
-        private ObservableRangeCollection<Chat> _chats = new ObservableRangeCollection<Chat>();
+        private ObservableRangeCollection<Chat> _chats;
 
         public ObservableRangeCollection<Chat> Chats
         {
@@ -113,13 +113,10 @@ namespace Inspark.Viewmodels
 
         public void OpenChat(Chat chat)
         {
-            if (Chats.Contains(chat))
-            {
-                Application.Current.MainPage = new MainPage(new ChatPage(chat));
-            }
+            Application.Current.MainPage = new MainPage(new ChatPage(chat));
         }
 
-        public void CreateChat(User reciver)
+        public async void CreateChat(User reciver)
         {
             var users = new List<User>
             {
@@ -128,10 +125,10 @@ namespace Inspark.Viewmodels
             };
             var chat = new Chat
             {
-                Messages = null,
+                Messages = new ObservableCollection<Message>(),
                 Users = users,
             };
-            if (Chats.Contains(chat))
+            if (Chats.Where(x => x.Users == chat.Users).Count() != 0)
             {
                 OpenChat(chat);
             }
@@ -139,51 +136,17 @@ namespace Inspark.Viewmodels
             {
                 Chats.Add(chat);
                 OpenChat(chat);
-                //_api.CreatePrivateChat()
+                await _api.CreateChat(chat);
             }
         }
 
         async void OnLoad()
         {
             ChatDisplayModels = new ObservableRangeCollection<ChatDisplayModel>();
+            Chats = new ObservableRangeCollection<Chat>();
             User = await _api.GetLoggedInUser();
             AllUsers = await _api.GetAllUsers();
-            var users = new List<User>
-            {
-                User, AllUsers.FirstOrDefault()
-            };
-            var message = new Message
-            {
-                SenderId = User.Id,
-                SenderPic = User.ProfilePicture,
-                AttachementUrl = null,
-                IsIncoming = false,
-                MessageDateTime = DateTime.Now.AddMinutes(-1),
-                Text = "Hej hej din idiot"
-            };
-            var message2 = new Message
-            {
-                SenderId = User.Id,
-                SenderPic = User.ProfilePicture,
-                AttachementUrl = null,
-                IsIncoming = false,
-                MessageDateTime = DateTime.Now,
-                Text = "Hej hej din idiot!!"
-            };
-            var messages = new List<Message>
-            {
-                message, message2
-            };
-
-            var chat = new Chat
-            {
-                Id = 0,
-                Messages = messages,
-                Users = users
-            };
-            
-            Chats.Add(chat);
-            //Chats = await _api.GetAllChatsFromUser(User.Id);
+            Chats.AddRange(User.Chats);
 
             foreach(var c in Chats)
             {
@@ -194,10 +157,11 @@ namespace Inspark.Viewmodels
                     DisplayName = otherUser.FirstName + " " + otherUser.LastName,
                     ChatPic = User.ProfilePicture,
                     LatestMessage = c.Messages.Last().Text,
+                    LatestMessageDate = c.Messages.Last().MessageDateTime
                 };
                 ChatDisplayModels.Add(chatView);
             }
+            ChatDisplayModels.OrderByDescending(x => x.LatestMessageDate);
         }
-
     }
 }
