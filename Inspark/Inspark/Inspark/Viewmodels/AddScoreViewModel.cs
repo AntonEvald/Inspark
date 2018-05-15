@@ -1,5 +1,6 @@
 ﻿using Inspark.Helpers;
 using Inspark.Models;
+using Inspark.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -57,6 +58,21 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private string _message;
+
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                if (_message != value)
+                {
+                    _message = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public async void PopulateList()
         {
             var groups = await _api.GetAllGroups();
@@ -80,6 +96,16 @@ namespace Inspark.Viewmodels
                 TotalPoints = result,
                 GroupID = SelectedGroup.Id
             };
+
+            var isSuccess = await _api.ChangeScore(model);
+            if (isSuccess)
+            {
+                Application.Current.MainPage = new MainPage(new AdminPage());
+            }
+            else
+            {
+                Message = "Något Gick Fel";
+            }
         });
     }
 }

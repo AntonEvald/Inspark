@@ -21,6 +21,7 @@
             </StackLayout>
             <StackLayout>
                 <Button Text="Lägg in resultat" Command="{Binding AddScore}"/>
+                <Label Text="{Binding Message}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
