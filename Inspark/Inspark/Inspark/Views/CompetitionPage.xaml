@@ -5,49 +5,28 @@
              x:Class="Inspark.Views.CompetitionPage">
     <ContentView x:Name="InsparkCompetition">
         <ContentPage.Content>
-            <ScrollView>
-                <StackLayout Padding="20">
-                    <StackLayout.BindingContext>
-                        <viewmodels:CompetitionViewModel/>
-                    </StackLayout.BindingContext>
-                    <StackLayout IsVisible="{Binding IsAdmin}">
-                        <Button Text="Lägg in resultat till grupp" Clicked="AddScore_Clicked"/>
-                        <Button Text="Ta bort resultat från grupp" Clicked="DeleteScore_Clicked"/>
-                    </StackLayout>
-                    <StackLayout>
-                        <ListView>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <StackLayout>
-                                            <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="5"/>
-                                                    <RowDefinition Height="5"/>
-                                                    <RowDefinition Height="5"/>
-                                                    <RowDefinition Height="5"/>
-                                                    <RowDefinition Height="5"/>
-                                                    <RowDefinition Height="5"/>
-                                                    <RowDefinition Height="5"/>
-                                                    <RowDefinition Height="5"/>
-                                                    <RowDefinition Height="5"/>
-                                                    <RowDefinition Height="5"/>
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="10"/>
-                                                    <ColumnDefinition Width="80"/>
-                                                    <ColumnDefinition Width="10"/>
-                                                </Grid.ColumnDefinitions>
-                                                
-                                            </Grid>
-                                        </StackLayout>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackLayout>
+            <StackLayout Padding="20">
+                <StackLayout.BindingContext>
+                    <viewmodels:CompetitionViewModel/>
+                </StackLayout.BindingContext>
+                <StackLayout IsVisible="{Binding IsAdmin}">
+                    <Button Text="Lägg in resultat till grupp" Clicked="AddScore_Clicked"/>
+                    <Button Text="Ta bort resultat från grupp" Clicked="DeleteScore_Clicked"/>
                 </StackLayout>
-            </ScrollView>
+                <StackLayout>
+                    <ListView ItemsSource="{Binding Score}" BackgroundColor="LightYellow">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout>
+                                        <Label Text="{Binding TotalPoints}"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </StackLayout>
         </ContentPage.Content>
     </ContentView>
 </ContentPage>
