@@ -15,8 +15,11 @@
                  <Picker Margin="10,0,0,10" ItemsSource="{Binding Groups}" SelectedIndex="{Binding SelectedIndex}" ItemDisplayBinding="{Binding Name}" iOSSpecific:Picker.UpdateMode="WhenFinished">
                         <Picker.Behaviors>
           <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+                            <behaviors:ActionCollection>
               <behaviors:InvokeCommandAction Command="{Binding SelectedProviderChanged}" />
+                                </behaviors:ActionCollection>
           </behaviors:EventHandlerBehavior>
+                        
     </Picker.Behaviors>
                 </Picker>
                 </StackLayout>

@@ -25,30 +25,31 @@
 
                 <StackLayout>
                     <Entry Placeholder="Adress" Text="{Binding Location}">
-                                            <Entry.Behaviors>
-                        <validation:EmptyFieldValidation/>
-                    </Entry.Behaviors>
+                        <Entry.Behaviors>
+                            <validation:EmptyFieldValidation/>
+                        </Entry.Behaviors>
                     </Entry>
                 </StackLayout>
 
                 <StackLayout>
                     <Entry Placeholder="Beskrivning" Text="{Binding Description}">
-                                            <Entry.Behaviors>
-                        <validation:EmptyFieldValidation/>
-                    </Entry.Behaviors>
+                        <Entry.Behaviors>
+                            <validation:EmptyFieldValidation/>
+                        </Entry.Behaviors>
                     </Entry>
                 </StackLayout>
             <StackLayout>
-                                 <Picker Margin="10,0,0,10" ItemsSource="{Binding Groups}" SelectedIndex="{Binding SelectedIndex}" ItemDisplayBinding="{Binding Name}" iOSSpecific:Picker.UpdateMode="WhenFinished">
-                        <Picker.Behaviors>
-          <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
-              <behaviors:InvokeCommandAction Command="{Binding SelectedProviderChanged}"/>
-          </behaviors:EventHandlerBehavior>
-    </Picker.Behaviors>
+                <Picker Margin="10,0,0,10" ItemsSource="{Binding Groups}" SelectedIndex="{Binding SelectedIndex}" ItemDisplayBinding="{Binding Name}" iOSSpecific:Picker.UpdateMode="WhenFinished">
+                    <Picker.Behaviors>
+                        <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+                            <behaviors:ActionCollection>
+                                <behaviors:InvokeCommandAction Command="{Binding SelectedProviderChanged}"/>
+                            </behaviors:ActionCollection>
+                        </behaviors:EventHandlerBehavior>
+                    </Picker.Behaviors>
                 </Picker>
             </StackLayout>
-
-                <StackLayout>  
+            <StackLayout>  
                 <DatePicker Format="dd/MM/yyyy" Date="{Binding StartDate}" MinimumDate="{x:Static system:DateTime.Today}"/>
                 <Grid>
                     <Grid.RowDefinitions>

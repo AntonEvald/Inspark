@@ -1,6 +1,7 @@
 ﻿using Inspark.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Inspark.Viewmodels
@@ -21,6 +22,21 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private ObservableCollection<Score> _score;
+
+        public ObservableCollection<Score> Score
+        {
+            get { return _score; }
+            set
+            {
+                if (_score != value)
+                {
+                    _score = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public async void OnLoad()
         {
             User = await _api.GetLoggedInUser();
@@ -35,9 +51,28 @@ namespace Inspark.Viewmodels
             }
         }
 
+        public async void LoadResult()
+        {
+            var score = await _api.GetAllScore();
+            if (score.Count < 1)
+            {
+                var example = new Score
+                {
+                    Id = 1,
+                    TotalPoints = 100,
+                    GroupID = 2
+                };
+                score.Add(example);
+            }
+
+            score = new ObservableCollection<Score>(score);
+            Score = score;
+        }
+
         public CompetitionViewModel()
         {
             OnLoad();
+            LoadResult();
         }
     }
 }
