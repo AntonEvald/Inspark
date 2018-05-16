@@ -18,7 +18,9 @@
                     <Picker ItemsSource="{Binding GroupEvents}" SelectedItem="{Binding SelectedGroupEvent, Mode=TwoWay}" ItemDisplayBinding="{Binding Title}" iOSSpecific:Picker.UpdateMode="WhenFinished">
                         <Picker.Behaviors>
                             <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+                                <behaviors:ActionCollection>
                                 <behaviors:InvokeCommandAction Command="{Binding SelectedProviderChanged}" />
+                                    </behaviors:ActionCollection>
                             </behaviors:EventHandlerBehavior>
                         </Picker.Behaviors>
                     </Picker>
