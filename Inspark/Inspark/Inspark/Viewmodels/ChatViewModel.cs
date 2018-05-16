@@ -76,12 +76,15 @@ namespace Inspark.Viewmodels
             OnLoad(chat);
         }
 
-        void OnLoad(Chat chat)
+        async void OnLoad(Chat chat)
         {
-            User = chat.Users.Where(x => x.Id == Settings.UserId).First();
-            Messages.ReplaceRange(chat.Messages);
+            User = await _api.GetLoggedInUser();
             var otherUser = chat.Users.Where(x => x.Id != User.Id).First();
             ChatName = otherUser.FirstName + " " + otherUser.LastName;
+            if(chat.Messages.Count != 0)
+            {
+                Messages.AddRange(chat.Messages);
+            }
         }
     }
 }

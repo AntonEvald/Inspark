@@ -27,12 +27,10 @@ namespace Inspark.Services
         //All API calls for chat and messanges
         //All API calls for chat and messanges
 
-        public async Task<bool> CreatePrivateChat(Chat chat, string UserId_1, string UserId_2)
+        public async Task<bool> CreatePrivateChat(string UserId_1, string UserId_2)
         {
             var client = new HttpClient();
-            var json = JsonConvert.SerializeObject(chat);
-            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(ConnectionString + "api/Chat/CreateChat/" + UserId_1 + "/" + UserId_2 + "/", content);
+            var response = await client.PostAsync(ConnectionString + "api/Chat/CreateChat/" + UserId_1 + "/" + UserId_2 + "/", null);
             return response.IsSuccessStatusCode;
         }
 

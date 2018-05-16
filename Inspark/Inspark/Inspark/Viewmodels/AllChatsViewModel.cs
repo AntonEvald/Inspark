@@ -134,14 +134,14 @@ namespace Inspark.Viewmodels
             };
             if (Chats.Where(x => x.Users == chat.Users).Count() != 0)
             {
-                OpenChat(Chats.Where(x => x.Users == chat.Users).First());
+                //OpenChat());
             }
             else
             {
-                if(await _api.CreatePrivateChat(new Chat { Users = new ObservableCollection<User>(), Messages = new ObservableCollection<Message>() }, User.Id, reciver.Id))
+                if(await _api.CreatePrivateChat(User.Id, reciver.Id))
                 {
                     OnLoad();
-                    OpenChat(User.Chats.Where(x => x.Users == chat.Users).First());
+                    OpenChat(Chats.Where(x => x.Users == chat.Users).First());
                 }
             }
         }
@@ -152,22 +152,35 @@ namespace Inspark.Viewmodels
             Chats = new ObservableRangeCollection<Chat>();
             User = await _api.GetLoggedInUser();
             AllUsers = await _api.GetAllUsers();
-            Chats.AddRange(User.Chats);
-
-            foreach(var c in Chats)
+            if(User.Chats.Count != 0)
             {
-                var otherUser = c.Users.Where(x => x.Id != User.Id).First();
-                var chatView = new ChatDisplayModel
-                {
-                    Id = c.Id,
-                    DisplayName = otherUser.FirstName + " " + otherUser.LastName,
-                    ChatPic = User.ProfilePicture,
-                    LatestMessage = c.Messages.Last().Text,
-                    LatestMessageDate = c.Messages.Last().MessageDateTime
-                };
-                ChatDisplayModels.Add(chatView);
+                Chats.AddRange(User.Chats);
             }
-            ChatDisplayModels.OrderByDescending(x => x.LatestMessageDate);
+            if(Chats.Count != 0)
+            {
+                foreach (var c in Chats)
+                {
+                    var otherUser = c.Users.Where(x => x.Id != User.Id).First();
+                    var chatView = new ChatDisplayModel
+                    {
+                        Id = c.Id,
+                        DisplayName = otherUser.FirstName + " " + otherUser.LastName,
+                        ChatPic = User.ProfilePicture,
+                    };
+                        
+                    if (c.Messages.Count == 0)
+                    {
+                        chatView.LatestMessage = "Inga meddelanden skickade";
+                    }
+                    else
+                    {
+                        chatView.LatestMessage = c.Messages.Last().Text;
+                        chatView.LatestMessageDate = c.Messages.Last().MessageDateTime;
+                    }
+                    ChatDisplayModels.Add(chatView);
+                }
+                ChatDisplayModels.OrderByDescending(x => x.LatestMessageDate);
+            }
         }
     }
 }
