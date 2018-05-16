@@ -81,7 +81,7 @@ namespace Inspark.Viewmodels
                 Settings.UserName = "";
                 Settings.UserPassword = "";
                 Settings.UserRole = "";
-                Application.Current.MainPage = new FrontPage();
+                Application.Current.MainPage = new NavigationPage(new FrontPage());
             }
             else
             {
