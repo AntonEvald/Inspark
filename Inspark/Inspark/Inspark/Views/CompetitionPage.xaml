@@ -14,13 +14,11 @@
                     <Button Text="Ta bort resultat från grupp" Clicked="DeleteScore_Clicked"/>
                 </StackLayout>
                 <StackLayout>
-                    <ListView ItemsSource="{Binding Score}" BackgroundColor="LightYellow">
+                    <ListView ItemsSource="{Binding Score}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <StackLayout>
-                                        <Label Text="{Binding TotalPoints}"/>
-                                    </StackLayout>
+                                    <Label Text="{Binding TotalPoints}"/>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>

@@ -19,8 +19,8 @@
                         <Picker.Behaviors>
                             <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
                                 <behaviors:ActionCollection>
-                                <behaviors:InvokeCommandAction Command="{Binding SelectedProviderChanged}" />
-                                    </behaviors:ActionCollection>
+                                    <behaviors:InvokeCommandAction Command="{Binding SelectedProviderChanged}" />
+                                </behaviors:ActionCollection>
                             </behaviors:EventHandlerBehavior>
                         </Picker.Behaviors>
                     </Picker>

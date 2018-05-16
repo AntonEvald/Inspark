@@ -14,17 +14,17 @@
                 </StackLayout.BindingContext>
                 <StackLayout>
                     <Entry Placeholder="Titel" Text="{Binding Title}">
-                    <Entry.Behaviors>
-                        <validation:EmptyFieldValidation/>
-                    </Entry.Behaviors>
+                        <Entry.Behaviors>
+                            <validation:EmptyFieldValidation/>
+                        </Entry.Behaviors>
                     </Entry>
                 </StackLayout>
 
                 <StackLayout>
                     <Entry Placeholder="Adress" Text="{Binding Location}">
-                                            <Entry.Behaviors>
-                        <validation:EmptyFieldValidation/>
-                    </Entry.Behaviors>
+                        <Entry.Behaviors>
+                            <validation:EmptyFieldValidation/>
+                        </Entry.Behaviors>
                     </Entry>
                 </StackLayout>
                 <StackLayout>
