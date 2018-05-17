@@ -16,7 +16,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            
+
             <!--Chat name in Row 0 -->
             <Label Text="{Binding ChatName}" HorizontalOptions="Center" Grid.Row="0"/>
 

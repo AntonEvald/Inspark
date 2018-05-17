@@ -6,7 +6,7 @@
              x:Class="Inspark.Views.MainPage"
              xmlns:conv="clr-namespace:Inspark.Services;assembly=Inspark"
              xmlns:ci="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions">
-    
+
     <!-- Creating a grid with five rows for the whole page. -->
     <Grid ColumnSpacing="0" RowSpacing="0">
         <Grid.RowDefinitions>
@@ -83,7 +83,7 @@
                 </StackLayout.GestureRecognizers>
             </StackLayout>
         </Grid>
-        
+
         <!-- Specifies what the other rows will do/contain. Row 1 and 3 is both a "border row". 
         Row 2 is a ContentView where all the content from any view will be put for display. -->
         <BoxView Grid.Row="1" BackgroundColor="LightGray"/>

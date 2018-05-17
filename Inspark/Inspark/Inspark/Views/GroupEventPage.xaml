@@ -38,7 +38,7 @@
                    VerticalOptions="CenterAndExpand"/>
                     <Label Text="{Binding Description}"/>
                 </StackLayout>
-                                <StackLayout>
+                <StackLayout>
                     <Label Text="{Binding Attending}"/>
                 </StackLayout>
 

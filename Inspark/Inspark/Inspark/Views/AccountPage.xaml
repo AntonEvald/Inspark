@@ -4,8 +4,8 @@
              x:Class="Inspark.Views.AccountPage"
              xmlns:viewModels="clr-namespace:Inspark.Viewmodels;assembly=Inspark">
     <ContentPage.BindingContext>
-            <viewModels:ProfilePictureViewModel/>
-        </ContentPage.BindingContext>
+        <viewModels:ProfilePictureViewModel/>
+    </ContentPage.BindingContext>
     <ContentView x:Name="InsparkAccount">
         <ContentPage.Content>
             <ScrollView>

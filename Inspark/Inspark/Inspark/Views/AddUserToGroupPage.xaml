@@ -7,37 +7,37 @@
              x:Class="Inspark.Views.AddUserToGroupPage">
     <ContentPage.Content>
         <StackLayout Padding="40">
-                <StackLayout.BindingContext>
-                    <viewmodels:AddUserToGroupViewModel/>
-                </StackLayout.BindingContext>
-                <StackLayout>
+            <StackLayout.BindingContext>
+                <viewmodels:AddUserToGroupViewModel/>
+            </StackLayout.BindingContext>
+            <StackLayout>
                 <Label Margin="10,5,0,0" Text="Välj vilken grupp"/>
-                 <Picker Margin="10,0,0,10" ItemsSource="{Binding Groups}" SelectedIndex="{Binding SelectedIndex}" ItemDisplayBinding="{Binding Name}" iOSSpecific:Picker.UpdateMode="WhenFinished">
-                        <Picker.Behaviors>
-          <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+                <Picker Margin="10,0,0,10" ItemsSource="{Binding Groups}" SelectedIndex="{Binding SelectedIndex}" ItemDisplayBinding="{Binding Name}" iOSSpecific:Picker.UpdateMode="WhenFinished">
+                    <Picker.Behaviors>
+                        <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
                             <behaviors:ActionCollection>
-              <behaviors:InvokeCommandAction Command="{Binding SelectedProviderChanged}" />
-                                </behaviors:ActionCollection>
-          </behaviors:EventHandlerBehavior>
-                        
-    </Picker.Behaviors>
+                                <behaviors:InvokeCommandAction Command="{Binding SelectedProviderChanged}" />
+                            </behaviors:ActionCollection>
+                        </behaviors:EventHandlerBehavior>
+
+                    </Picker.Behaviors>
                 </Picker>
-                </StackLayout>
-                <StackLayout>
+            </StackLayout>
+            <StackLayout>
                 <Label Margin="10,0,0,0" Text="Välj vilken användare"/>
-            <ListView ItemsSource="{Binding UsersNotInGroup}" SelectedItem="{Binding SelectedUser}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextCell Text="{Binding FirstName}"
+                <ListView ItemsSource="{Binding UsersNotInGroup}" SelectedItem="{Binding SelectedUser}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding FirstName}"
                                   Detail="{Binding LastName}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-                </StackLayout>
-                <StackLayout>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout>
                 <Label Text="{Binding Message}"/>
                 <Button Text="Lägg till användare" Command="{Binding AddUserToGroup}"/>
             </StackLayout>
-            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
