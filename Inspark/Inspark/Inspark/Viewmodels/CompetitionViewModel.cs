@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 
 namespace Inspark.Viewmodels
@@ -84,7 +85,7 @@ namespace Inspark.Viewmodels
         public async void LoadResult()
         {
             var score = await _api.GetAllScore();
-            score = new ObservableCollection<Score>(score);
+            score = new ObservableCollection<Score>(score.OrderByDescending(i => i.TotalPoints));
             Score = score;
 
             var groups = await _api.GetAllGroups();
