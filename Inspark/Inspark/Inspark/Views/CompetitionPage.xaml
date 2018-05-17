@@ -11,17 +11,25 @@
                 </StackLayout.BindingContext>
                 <StackLayout IsVisible="{Binding IsAdmin}">
                     <Button Text="Lägg in resultat till grupp" Clicked="AddScore_Clicked"/>
-                    <Button Text="Ta bort resultat från gruppyughijopk" Clicked="DeleteScore_Clicked"/>
+                    <Button Text="Ta bort resultat från grupp" Clicked="DeleteScore_Clicked"/>
                 </StackLayout>
                 <StackLayout>
                     <ListView ItemsSource="{Binding Competition}">
                         <ListView.ItemTemplate>
-                            <DataTemplate>  
+                            <DataTemplate>
                                 <ViewCell>
-                                    <Label Text="{Binding Name}"/>
-                                </ViewCell>
-                                <ViewCell>
-                                    <Label Text="{Binding TotalScore}"/>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="100"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="1" Text="{Binding Name}"/>
+                                        <Label Grid.Column="2" Text="{Binding TotalScore}"/>
+                                    </Grid>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>

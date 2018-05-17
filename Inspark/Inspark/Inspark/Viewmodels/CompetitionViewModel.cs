@@ -84,17 +84,6 @@ namespace Inspark.Viewmodels
         public async void LoadResult()
         {
             var score = await _api.GetAllScore();
-            //if (score.Count < 1)
-            //{
-            //    var example = new Score
-            //    {
-            //        Id = 1,
-            //        TotalPoints = 100,
-            //        GroupID = 2
-            //    };
-            //    score.Add(example);
-            //}
-
             score = new ObservableCollection<Score>(score);
             Score = score;
 
