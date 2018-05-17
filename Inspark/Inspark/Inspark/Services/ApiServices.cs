@@ -34,25 +34,28 @@ namespace Inspark.Services
             return response.IsSuccessStatusCode;
         }
 
-        //public async Task<ObservableRangeCollection<Chat>> GetAllChatsByUser(User user)
-        //{
-        //    var client = new HttpClient();
-        //    var json = JsonConvert.SerializeObject(user);
-        //    HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-        //    var response = await client.GetAsync(ConnectionString + "api/Chat/GetChatsByUser/", content);
-            
-        //    response.EnsureSuccessStatusCode();
-        //    var result = await response.Content.ReadAsStringAsync();
-        //    var list = JsonConvert.DeserializeObject<ObservableRangeCollection<Chat>>(result);
-        //    if(list == null)
-        //    {
-        //        return new ObservableRangeCollection<Chat>();
-        //    }
-        //    else
-        //    {
-        //        return list;
-        //    }
-        //}
+        public async Task<bool> PostPrivateMessage(int chatId, Message message)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(message);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/PrivateMessage/AddPrivateMessage/" + chatId.ToString() + "/", content);
+            return response.IsSuccessStatusCode;
+        }
+
+        // All API calls for GroupChat
+        // All API calls for GroupChat
+        // All API calls for GroupChat
+
+        public async Task<bool> CreateGroupChat(GroupChat chat)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(chat);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/GroupChat/CreateGroupChat/", content);
+            return response.IsSuccessStatusCode;
+        }
+
 
         // All API calls for Events.
         // All API calls for Events.

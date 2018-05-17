@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModel="clr-namespace:Inspark.Viewmodels;assembly=Inspark"
+             xmlns:ci="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
              x:Class="Inspark.Views.CreateGroupPage">
     <ContentView>
         <ContentPage.Content>
@@ -10,11 +11,17 @@
                     <StackLayout.BindingContext>
                         <viewModel:CreateGroupViewModel/>
                     </StackLayout.BindingContext>
-                    <Label Text="Antons grupp" HorizontalOptions="Center"/>
+                    <Label Text="Skapa grupp" HorizontalOptions="Center"/>
 
                     <StackLayout>
                         <Entry x:Name="EntryName" Placeholder="Namn på grupp"
                                Text="{Binding GroupName}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Button Text="Lägg till bild" Command="{Binding AddPicCommand}" IsVisible="{Binding IsAddPicVisible}"/>
+                        <ci:CircleImage Source="{Binding ImagePath}" Aspect="AspectFill" HeightRequest="60" WidthRequest="60"/>
+                        <Button Text="Ta bort bild" Command="{Binding RemovePicCommand}" IsVisible="{Binding IsRemovePicVisible}"/>
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal">

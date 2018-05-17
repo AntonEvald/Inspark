@@ -223,7 +223,7 @@ namespace Inspark.Viewmodels
                     }
                     GroupChatDisplayModels.Add(gcdm);
                 }
-                GroupChatDisplayModels.OrderByDescending(x => x.LatestMessageDate);
+                GroupChatDisplayModels = new ObservableRangeCollection<GroupChatDisplayModel>(GroupChatDisplayModels.OrderByDescending(x => x.LatestMessageDate));
             }
             if(Chats.Count != 0)
             {
@@ -248,7 +248,7 @@ namespace Inspark.Viewmodels
                     }
                     ChatDisplayModels.Add(chatView);
                 }
-                ChatDisplayModels.OrderByDescending(x => x.LatestMessageDate);
+                ChatDisplayModels = new ObservableRangeCollection<ChatDisplayModel>(ChatDisplayModels.OrderByDescending(x => x.LatestMessageDate));
             }
         }
     }

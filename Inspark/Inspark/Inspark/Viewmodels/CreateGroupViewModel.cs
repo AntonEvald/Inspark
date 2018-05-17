@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Input;
@@ -10,6 +12,7 @@ using Inspark.Annotations;
 using Inspark.Models;
 using Inspark.Services;
 using Inspark.Views;
+using Plugin.Media;
 using Xamarin.Forms;
 
 namespace Inspark.Viewmodels
@@ -82,6 +85,65 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private bool _isAddPicVisible;
+
+        public bool IsAddPicVisible
+        {
+            get { return _isAddPicVisible; }
+            set { _isAddPicVisible = value; OnPropertyChanged(); }
+        }
+
+        private bool _isRemovePicVisible;
+
+        public bool IsRemovePicVisible
+        {
+            get { return _isRemovePicVisible; }
+            set { _isRemovePicVisible = value; OnPropertyChanged(); }
+        }
+
+        private string _imagePath;
+
+        public string ImagePath
+        {
+            get { return _imagePath; }
+            set { _imagePath = value; OnPropertyChanged(); }
+        }
+
+        private byte[] _groupPic;
+
+        public byte[] GroupPic
+        {
+            get { return _groupPic; }
+            set { _groupPic = value; }
+        }
+
+
+        public ICommand AddPicCommand => new Command(async () =>
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                Message = "Att välja bild stöds inte på denna enhet.";
+            }
+            var file = await CrossMedia.Current.PickPhotoAsync();
+            if (file == null)
+            {
+                return;
+            }
+            ImagePath = file.Path;
+            IsRemovePicVisible = true;
+            IsAddPicVisible = false;
+        });
+
+        public ICommand RemovePicCommand => new Command(() =>
+        {
+            ImagePath = "";
+            GroupPic = null;
+            IsRemovePicVisible = false;
+            IsAddPicVisible = true;
+        });
+
         public ICommand GroupCommand => new Command(async () =>
         {
             var group = new Group()
@@ -90,10 +152,29 @@ namespace Inspark.Viewmodels
                 IsIntroGroup = _isIntroGroup,
                 Section = _groupSection
             };
-            if(await _api.CreateGroup(group))
+            if (ImagePath == "")
+            {
+                var assembly = Assembly.GetExecutingAssembly();
+                var pic = EmbeddedResourceToByteArray.GetEmbeddedResourceBytes(assembly, "group.png");
+                GroupPic = pic;
+            }
+            else
+            {
+                GroupPic = File.ReadAllBytes(ImagePath);
+            }
+            group.GroupPic = GroupPic;
+            var groupChat = new GroupChat
+            {
+                Group = group,
+                GroupChatPic = group.GroupPic,
+                GroupName = group.Name,
+                Messages = new ObservableCollection<Message>(),
+                Users = new ObservableCollection<User>()
+            };
+            if (await _api.CreateGroup(group))
             {
                 Message = "Gruppen har skapats!";
-
+                await _api.CreateGroupChat(groupChat);
                 Application.Current.MainPage = new MainPage(new HomePage());
             }
             else
@@ -104,7 +185,8 @@ namespace Inspark.Viewmodels
 
         public async void PopulateLists()
         {
-
+            IsAddPicVisible = true;
+            IsRemovePicVisible = false;
             var sections = await _api.GetAllSections();
             sections = new ObservableCollection<Section>(sections);
             SectionsList = sections;

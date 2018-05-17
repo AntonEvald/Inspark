@@ -54,10 +54,11 @@ namespace Inspark.Viewmodels
             set { _isLoading = value; OnPropertyChanged(); }
         }
 
+        public int ChatId { get; set; }
 
         public User User { get; set; }
 
-        public ICommand SendCommand => new Command(() =>
+        public ICommand SendCommand => new Command(async() =>
         {
             var message = new Message
             {
@@ -68,6 +69,7 @@ namespace Inspark.Viewmodels
                 SenderId = User.Id,
             };
             _messages.Add(message);
+            await _api.PostPrivateMessage(ChatId, message);
             OutgoingText = string.Empty;
         });
 
@@ -83,22 +85,38 @@ namespace Inspark.Viewmodels
 
         async void OnLoad(GroupChat chat)
         {
+            ChatId = chat.Id;
             User = await _api.GetLoggedInUser();
             ChatName = chat.GroupName;
             if (chat.Messages.Count != 0)
             {
                 Messages.AddRange(chat.Messages);
             }
+            foreach (var message in Messages)
+            {
+                if (message.SenderId != User.Id)
+                {
+                    message.IsIncoming = true;
+                }
+            }
         }
 
         async void OnLoad(Chat chat)
         {
+            ChatId = chat.Id;
             User = await _api.GetLoggedInUser();
             var otherUser = chat.Users.Where(x => x.Id != User.Id).First();
             ChatName = otherUser.FirstName + " " + otherUser.LastName;
             if(chat.Messages.Count != 0)
             {
                 Messages.AddRange(chat.Messages);
+            }
+            foreach(var message in Messages)
+            {
+                if(message.SenderId != User.Id)
+                {
+                    message.IsIncoming = true;
+                }
             }
         }
 
