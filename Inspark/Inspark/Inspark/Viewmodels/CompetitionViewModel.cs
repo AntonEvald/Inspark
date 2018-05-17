@@ -102,7 +102,11 @@ namespace Inspark.Viewmodels
                             Name = i.Name,
                             TotalScore = item.TotalPoints
                         };
-                        Competition.Add(comp);
+
+                        if (i.IsIntroGroup == true)
+                        {
+                            Competition.Add(comp);
+                        }
                     }
                 }
             }
