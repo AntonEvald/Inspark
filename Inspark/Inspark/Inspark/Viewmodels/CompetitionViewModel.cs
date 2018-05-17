@@ -37,6 +37,36 @@ namespace Inspark.Viewmodels
             }
         }
 
+        private ObservableCollection<Competition> _competition;
+
+        public ObservableCollection<Competition> Competition
+        {
+            get { return _competition; }
+            set
+            {
+                if (_competition != value)
+                {
+                    _competition = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private ObservableCollection<Group> _groups;
+
+        public ObservableCollection<Group> Groups
+        {
+            get { return _groups; }
+            set
+            {
+                if (_groups != value)
+                {
+                    _groups = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public async void OnLoad()
         {
             User = await _api.GetLoggedInUser();
@@ -54,23 +84,37 @@ namespace Inspark.Viewmodels
         public async void LoadResult()
         {
             var score = await _api.GetAllScore();
-            if (score.Count < 1)
-            {
-                var example = new Score
-                {
-                    Id = 1,
-                    TotalPoints = 100,
-                    GroupID = 2
-                };
-                score.Add(example);
-            }
-
             score = new ObservableCollection<Score>(score);
             Score = score;
+
+            var groups = await _api.GetAllGroups();
+            groups = new ObservableCollection<Group>(groups);
+            Groups = groups;
+
+            foreach (var item in Score)
+            {
+                foreach (var i in Groups)
+                {
+                    if (i.Id == item.Id)
+                    {
+                        var comp = new Competition
+                        {
+                            Name = i.Name,
+                            TotalScore = item.TotalPoints
+                        };
+
+                        if (i.IsIntroGroup == true)
+                        {
+                            Competition.Add(comp);
+                        }
+                    }
+                }
+            }
         }
 
         public CompetitionViewModel()
         {
+            Competition = new ObservableCollection<Competition>();
             OnLoad();
             LoadResult();
         }

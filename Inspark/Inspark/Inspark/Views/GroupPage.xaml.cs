@@ -20,7 +20,7 @@ namespace Inspark.Views
 
         public void Members_Tapped(object sender, EventArgs e)
         {
-
+			GroupView.Content = new GroupMembersPage().Content;
         }
 
         public void Events_Tapped(object sender, EventArgs e)

@@ -33,30 +33,30 @@
 
                 <StackLayout>
                     <Entry Placeholder="Beskrivning" Text="{Binding Description}">
-                                            <Entry.Behaviors>
-                        <validation:EmptyFieldValidation/>
-                    </Entry.Behaviors>
+                        <Entry.Behaviors>
+                            <validation:EmptyFieldValidation/>
+                        </Entry.Behaviors>
                     </Entry>
                 </StackLayout>
 
-                <StackLayout>  
-                <DatePicker Format="dd/MM/yyyy" Date="{Binding StartDate}" MinimumDate="{x:Static system:DateTime.Today}"/>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
+                <StackLayout>
+                    <DatePicker Format="dd/MM/yyyy" Date="{Binding StartDate}" MinimumDate="{x:Static system:DateTime.Today}"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                    <Label Text="Start Time" Grid.Row="0" Grid.Column="0"/>
-                    <custom:CustomTimePicker24H Time="{Binding StartTime}" Format="HH:mm"/>
-                </Grid>
+                        <Label Text="Start Time" Grid.Row="0" Grid.Column="0"/>
+                        <custom:CustomTimePicker24H Time="{Binding StartTime}" Format="HH:mm"/>
+                    </Grid>
                 </StackLayout>
                 <Label Text="{Binding Message}"></Label>
                 <Button Text="Create Event" IsEnabled="{Binding IsButtonEnabled}" Command="{Binding CreateEventCommand}"></Button>
             </StackLayout>
-        </ScrollView>   
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

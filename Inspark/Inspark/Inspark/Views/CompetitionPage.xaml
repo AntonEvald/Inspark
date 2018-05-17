@@ -10,15 +10,28 @@
                     <viewmodels:CompetitionViewModel/>
                 </StackLayout.BindingContext>
                 <StackLayout IsVisible="{Binding IsAdmin}">
-                    <Button Text="Lägg in resultat till grupp" Clicked="AddScore_Clicked"/>
-                    <Button Text="Ta bort resultat från grupp" Clicked="DeleteScore_Clicked"/>
+                    <Button Text="Lägg in resultat till grupp" BackgroundColor="LightBlue" Clicked="AddScore_Clicked"/>
+                    <Button Text="Ta bort resultat från grupp" BackgroundColor="LightCoral" Clicked="DeleteScore_Clicked"/>
                 </StackLayout>
                 <StackLayout>
-                    <ListView ItemsSource="{Binding Score}">
+                    <Label Text="Här är följande ställning i tävlingen:" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center"/>
+                </StackLayout>
+                <StackLayout>
+                    <ListView ItemsSource="{Binding Competition}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <Label Text="{Binding TotalPoints}"/>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="100"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Text="{Binding Name}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                        <Label Grid.Column="1" Text="{Binding TotalScore}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    </Grid>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>

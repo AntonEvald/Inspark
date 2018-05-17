@@ -11,12 +11,12 @@
                         <viewModel:CreateGroupViewModel/>
                     </StackLayout.BindingContext>
                     <Label Text="Antons grupp" HorizontalOptions="Center"/>
-                        
+
                     <StackLayout>
                         <Entry x:Name="EntryName" Placeholder="Namn på grupp"
                                Text="{Binding GroupName}"/>
                     </StackLayout>
-                    
+
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Är gruppen en introgrupp?"/>
                         <Switch x:Name="IsIntroGroup"

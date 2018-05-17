@@ -8,8 +8,8 @@
             <StackLayout.BindingContext>
                 <viewmodels:GroupViewModel/>
             </StackLayout.BindingContext>
-            <ListView  ItemsSource="{Binding Groups}"/>
+            <ListView ItemsSource="{Binding Groups}"/>
         </StackLayout>
-        
+
     </ContentPage.Content>
 </ContentPage>
