@@ -12,6 +12,7 @@ namespace Inspark.Models
         public bool IsIntroGroup { get; set; }
         public Section Section { get; set; }
         public int SectionId { get; set; }
+        public byte[] GroupPic { get; set; }
         public ICollection<User> Users { get; set; }
     }
 }

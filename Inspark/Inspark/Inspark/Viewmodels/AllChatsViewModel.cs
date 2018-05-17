@@ -37,6 +37,15 @@ namespace Inspark.Viewmodels
             set { _groupChats = value; OnPropertyChanged(); }
         }
 
+        private ObservableRangeCollection<GroupChatDisplayModel> _groupChatDisplayModels;
+
+        public ObservableRangeCollection<GroupChatDisplayModel> GroupChatDisplayModels
+        {
+            get { return _groupChatDisplayModels; }
+            set { _groupChatDisplayModels = value; OnPropertyChanged(); }
+        }
+
+
 
         private ObservableCollection<User> _allUsers;
 
@@ -120,28 +129,59 @@ namespace Inspark.Viewmodels
             Application.Current.MainPage = new MainPage(new ChatPage(chat));
         }
 
+        public void OpenChat(GroupChat chat)
+        {
+            Application.Current.MainPage = new MainPage(new ChatPage(chat));
+        }
+
+        public void OpenChat(GroupChatDisplayModel gcdm)
+        {
+            var chat = GroupChats.Where(x => x.Id == gcdm.Id).First();
+            Application.Current.MainPage = new MainPage(new ChatPage(chat));
+        }
+
         public async void CreateChat(User reciver)
         {
-            var users = new List<User>
+            bool foundExistingChat = false;
+            if (Chats.Count != 0)
             {
-                User,
-                reciver
-            };
-            var chat = new Chat
-            {
-                Messages = new ObservableCollection<Message>(),
-                Users = users,
-            };
-            if (Chats.Where(x => x.Users == chat.Users).Count() != 0)
-            {
-                //OpenChat());
+                foreach (var chat in Chats)
+                {
+                    var chatMembers = chat.Users;
+                    foreach (var member in chatMembers)
+                    {
+                        if (member.Id == reciver.Id)
+                        {
+                            OpenChat(chat);
+                            foundExistingChat = true;
+                            break;
+                        }
+                    }
+                    if (foundExistingChat)
+                    {
+                        break;
+                    }
+                }
             }
-            else
+            if (foundExistingChat == false)
             {
-                if(await _api.CreatePrivateChat(User.Id, reciver.Id))
+                if (await _api.CreatePrivateChat(User.Id, reciver.Id))
                 {
                     OnLoad();
-                    OpenChat(Chats.Where(x => x.Users == chat.Users).First());
+                    if (Chats.Count != 0)
+                    {
+                        foreach (var chat in Chats)
+                        {
+                            var chatMembers = chat.Users;
+                            foreach (var member in chatMembers)
+                            {
+                                if (member.Id == reciver.Id)
+                                {
+                                    OpenChat(chat);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -150,11 +190,40 @@ namespace Inspark.Viewmodels
         {
             ChatDisplayModels = new ObservableRangeCollection<ChatDisplayModel>();
             Chats = new ObservableRangeCollection<Chat>();
+            GroupChats = new ObservableRangeCollection<GroupChat>();
+            GroupChatDisplayModels = new ObservableRangeCollection<GroupChatDisplayModel>();
             User = await _api.GetLoggedInUser();
             AllUsers = await _api.GetAllUsers();
             if(User.Chats.Count != 0)
             {
                 Chats.AddRange(User.Chats);
+            }
+            if(User.GroupChats.Count != 0)
+            {
+                GroupChats.AddRange(User.GroupChats);
+            }
+            if(GroupChats.Count != 0)
+            {
+                foreach(var gc in GroupChats)
+                {
+                    var gcdm = new GroupChatDisplayModel
+                    {
+                        Id = gc.Id,
+                        ChatName = gc.GroupName,
+                        ChatPic = gc.GroupChatPic,
+                    };
+                    if(gc.Messages.Count != 0)
+                    {
+                        gcdm.LatestMessage = gc.Messages.Last().Text;
+                        gcdm.LatestMessageDate = gc.Messages.Last().MessageDateTime;
+                    }
+                    else
+                    {
+                        gcdm.LatestMessage = "Inga meddelanden skickade";
+                    }
+                    GroupChatDisplayModels.Add(gcdm);
+                }
+                GroupChatDisplayModels.OrderByDescending(x => x.LatestMessageDate);
             }
             if(Chats.Count != 0)
             {

@@ -29,6 +29,21 @@ namespace Inspark.Views
             };
         }
 
+        public ChatPage (GroupChat chat)
+        {
+            InitializeComponent();
+            vm = new ChatViewModel(chat);
+            Content.BindingContext = vm;
+            MessageArea.BindingContext = vm;
+            TextArea.BindingContext = vm;
+
+            vm.Messages.CollectionChanged += (sender, e) =>
+            {
+                var target = vm.Messages[vm.Messages.Count - 1];
+                MessagesListView.ScrollTo(target, ScrollToPosition.End, true);
+            };
+        }
+
         void MyListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             MessagesListView.SelectedItem = null;

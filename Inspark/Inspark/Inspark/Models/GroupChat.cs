@@ -7,6 +7,7 @@ namespace Inspark.Models
     public class GroupChat
     {
         public string GroupName { get; set; }
+        public byte[] GroupChatPic { get; set; }
         public virtual Group Group { get; set; }
         public int Id { get; set; }
         public ICollection<User> Users { get; set; }
