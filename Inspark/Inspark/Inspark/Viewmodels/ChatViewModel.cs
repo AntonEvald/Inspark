@@ -76,6 +76,21 @@ namespace Inspark.Viewmodels
             OnLoad(chat);
         }
 
+        public ChatViewModel(GroupChat chat)
+        {
+            OnLoad(chat);
+        }
+
+        async void OnLoad(GroupChat chat)
+        {
+            User = await _api.GetLoggedInUser();
+            ChatName = chat.GroupName;
+            if (chat.Messages.Count != 0)
+            {
+                Messages.AddRange(chat.Messages);
+            }
+        }
+
         async void OnLoad(Chat chat)
         {
             User = await _api.GetLoggedInUser();
@@ -86,5 +101,7 @@ namespace Inspark.Viewmodels
                 Messages.AddRange(chat.Messages);
             }
         }
+
+
     }
 }
