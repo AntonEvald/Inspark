@@ -120,23 +120,39 @@ namespace Inspark.Viewmodels
             var chat = Chats.Where(x => x.Id == cdm.Id).First();
             if (Chats.Contains(chat))
             {
+                //if (!chat.Viewed.Contains(User.Id))
+                //{
+                //    chat.Viewed.Add(User.Id);
+                //}
                 Application.Current.MainPage = new MainPage(new ChatPage(chat));
             }
         }
 
         public void OpenChat(Chat chat)
         {
+            //if (!chat.Viewed.Contains(User.Id))
+            //{
+            //    chat.Viewed.Add(User.Id);
+            //}
             Application.Current.MainPage = new MainPage(new ChatPage(chat));
         }
 
         public void OpenChat(GroupChat chat)
         {
+            //if (!chat.Viewed.Contains(User.Id))
+            //{
+            //    chat.Viewed.Add(User.Id);
+            //}
             Application.Current.MainPage = new MainPage(new ChatPage(chat));
         }
 
         public void OpenChat(GroupChatDisplayModel gcdm)
         {
             var chat = GroupChats.Where(x => x.Id == gcdm.Id).First();
+            //if (!chat.Viewed.Contains(User.Id))
+            //{
+            //    chat.Viewed.Add(User.Id);
+            //}
             Application.Current.MainPage = new MainPage(new ChatPage(chat));
         }
 
@@ -167,21 +183,7 @@ namespace Inspark.Viewmodels
             {
                 if (await _api.CreatePrivateChat(User.Id, reciver.Id))
                 {
-                    OnLoad();
-                    if (Chats.Count != 0)
-                    {
-                        foreach (var chat in Chats)
-                        {
-                            var chatMembers = chat.Users;
-                            foreach (var member in chatMembers)
-                            {
-                                if (member.Id == reciver.Id)
-                                {
-                                    OpenChat(chat);
-                                }
-                            }
-                        }
-                    }
+                    Application.Current.MainPage = new MainPage(new AllChatsPage());
                 }
             }
         }
@@ -206,16 +208,29 @@ namespace Inspark.Viewmodels
             {
                 foreach(var gc in GroupChats)
                 {
+                    bool IsMessagesViewed = true;
                     var gcdm = new GroupChatDisplayModel
                     {
                         Id = gc.Id,
                         ChatName = gc.GroupName,
                         ChatPic = gc.GroupChatPic,
+                        IsLatestMessageViewed = IsMessagesViewed
                     };
                     if(gc.Messages.Count != 0)
                     {
                         gcdm.LatestMessage = gc.Messages.Last().Text;
                         gcdm.LatestMessageDate = gc.Messages.Last().MessageDateTime;
+                        if (gc.Messages.Last().SenderId != User.Id)
+                        {
+                            IsMessagesViewed = false;
+                        }
+                        else
+                        {
+                            if (!gc.Viewed.Contains(User.Id))
+                            {
+                                IsMessagesViewed = false;
+                            }
+                        }
                     }
                     else
                     {
@@ -230,11 +245,12 @@ namespace Inspark.Viewmodels
                 foreach (var c in Chats)
                 {
                     var otherUser = c.Users.Where(x => x.Id != User.Id).First();
+                    bool IsMessagesViewed = true;
                     var chatView = new ChatDisplayModel
                     {
                         Id = c.Id,
                         DisplayName = otherUser.FirstName + " " + otherUser.LastName,
-                        ChatPic = User.ProfilePicture,
+                        ChatPic = otherUser.ProfilePicture
                     };
                         
                     if (c.Messages.Count == 0)
@@ -243,8 +259,31 @@ namespace Inspark.Viewmodels
                     }
                     else
                     {
-                        chatView.LatestMessage = c.Messages.Last().Text;
+                        
+                        if (c.Messages.Last().SenderId != User.Id)
+                        {
+                            IsMessagesViewed = false;
+                        }
+                        else
+                        {
+                            //if (!c.Viewed.Contains(User.Id))
+                            //{
+                            //    IsMessagesViewed = false;
+                            //}
+                        }
+                        string latestMessageSender;
+                        var latestMessageSenderId = c.Messages.Last().SenderId;
+                        if(latestMessageSenderId == User.Id)
+                        {
+                            latestMessageSender = "Du: ";
+                        }
+                        else
+                        {
+                            latestMessageSender = otherUser.FirstName + ": ";
+                        }
+                        chatView.LatestMessage = latestMessageSender + c.Messages.Last().Text;
                         chatView.LatestMessageDate = c.Messages.Last().MessageDateTime;
+                        chatView.IsLatestMessageViewed = true;
                     }
                     ChatDisplayModels.Add(chatView);
                 }

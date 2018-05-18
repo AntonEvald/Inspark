@@ -11,5 +11,6 @@ namespace Inspark.Models
         public byte[] ChatPic { get; set; }
         public string LatestMessage { get; set; }
         public DateTime LatestMessageDate { get; set; }
+        public bool IsLatestMessageViewed { get; set; }
     }
 }

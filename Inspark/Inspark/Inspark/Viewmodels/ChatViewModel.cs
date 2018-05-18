@@ -54,6 +54,8 @@ namespace Inspark.Viewmodels
             set { _isLoading = value; OnPropertyChanged(); }
         }
 
+        public Chat Chat { get; set; }
+        public GroupChat GroupChat { get; set; }
         public int ChatId { get; set; }
 
         public User User { get; set; }
@@ -69,7 +71,11 @@ namespace Inspark.Viewmodels
                 SenderId = User.Id,
             };
             _messages.Add(message);
-            await _api.PostPrivateMessage(ChatId, message);
+            if(await _api.PostPrivateMessage(ChatId, message))
+            {
+                //Chat.Viewed.Clear();
+                //Chat.Viewed.Add(User.Id);
+            }
             OutgoingText = string.Empty;
         });
 
@@ -85,41 +91,49 @@ namespace Inspark.Viewmodels
 
         async void OnLoad(GroupChat chat)
         {
+            GroupChat = chat;
             ChatId = chat.Id;
             User = await _api.GetLoggedInUser();
             ChatName = chat.GroupName;
+            var SortedMessages = new ObservableCollection<Message>();
             if (chat.Messages.Count != 0)
             {
                 Messages.AddRange(chat.Messages);
-            }
-            foreach (var message in Messages)
-            {
-                if (message.SenderId != User.Id)
+                foreach (var message in Messages)
                 {
-                    message.IsIncoming = true;
+                    if (message.SenderId != User.Id)
+                    {
+                        message.IsIncoming = true;
+                    }
+
+                    SortedMessages.Add(message);
                 }
+                Messages.ReplaceRange(SortedMessages);
             }
+
         }
 
         async void OnLoad(Chat chat)
         {
             ChatId = chat.Id;
+            Chat = chat;
             User = await _api.GetLoggedInUser();
             var otherUser = chat.Users.Where(x => x.Id != User.Id).First();
             ChatName = otherUser.FirstName + " " + otherUser.LastName;
-            if(chat.Messages.Count != 0)
+            var SortedMessages = new ObservableCollection<Message>();
+            if (chat.Messages.Count != 0)
             {
                 Messages.AddRange(chat.Messages);
-            }
-            foreach(var message in Messages)
-            {
-                if(message.SenderId != User.Id)
+                foreach (var message in Messages)
                 {
-                    message.IsIncoming = true;
+                    if (message.SenderId != User.Id)
+                    {
+                        message.IsIncoming = true;
+                    }
+                    SortedMessages.Add(message);
                 }
+                Messages.ReplaceRange(SortedMessages);
             }
         }
-
-
     }
 }
