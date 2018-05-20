@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Input;
 using Inspark.Helpers;
 using Xamarin.Forms;
+using Inspark.Models;
+using Inspark.Views;
 
 namespace Inspark.Viewmodels
 {
@@ -26,8 +28,23 @@ namespace Inspark.Viewmodels
                 }
             }
         }
+        
+		private User _user;
 
-        public ICommand PickPhotoCommand => new Command(async () =>
+        public User User
+        {
+			get { return _user; }
+            set
+            {
+				if (_user != value)
+                {
+					_user = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+		public ICommand PickPhotoCommand => new Command(async () =>
         {
             await CrossMedia.Current.Initialize();
 

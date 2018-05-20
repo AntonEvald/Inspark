@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Inspark.Models;
+using Inspark.Services;
 using Inspark.Viewmodels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -17,24 +18,18 @@ namespace Inspark.Views
 
 	    public ProfilePage()
 	    {
-	        InitializeComponent();
+			model = new ProfileViewModel();
+            InitializeComponent();
+			Content.BindingContext = model;
         }
+        
 
 		public ProfilePage (User e)
 		{
-		    model = new ProfileViewModel
-		    {
-		        Id = e.Id,
-                FirstName = e.FirstName,
-                LastName = e.LastName,
-                Email = e.Email,
-		        PhoneNumber = e.PhoneNumber,
-		        Section = e.Section
-            };
-
-			InitializeComponent ();
-
+			model = new ProfileViewModel();         
+			InitializeComponent();
 		    Content.BindingContext = model;
         }
+
 	}
 }
