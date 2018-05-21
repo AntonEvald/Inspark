@@ -90,6 +90,7 @@ namespace Inspark.Viewmodels
                     ProfilePicture = User.ProfilePicture;
                 }
                 FirstName = User.FirstName;
+
                 if (User.Role == "Admin")
                 {
                     IsAdmin = true;

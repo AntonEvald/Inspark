@@ -218,6 +218,9 @@ namespace Inspark.Viewmodels
                     {
                         Settings.UserName = Email;
                         Settings.UserPassword = Password;
+						var loggedInUser = await _api.GetLoggedInUser();
+						Settings.UserId = loggedInUser.Id;
+						Settings.UserRole = loggedInUser.Role;
                         var page = new Views.MainPage(new Views.HomePage());
                         NavigationPage.SetHasNavigationBar(page, false);
                         await Application.Current.MainPage.Navigation.PushAsync(page);
