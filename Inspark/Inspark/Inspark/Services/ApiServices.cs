@@ -27,10 +27,12 @@ namespace Inspark.Services
         //All API calls for chat and messanges
         //All API calls for chat and messanges
 
-        public async Task<bool> AddUserToViewed(string UserId, int ChatId)
+        public async Task<bool> AddUserToViewed(User user, int ChatId)
         {
             var client = new HttpClient();
-            var response = await client.PostAsync(ConnectionString + "api/Chat/AddUserToChatViewed/" + ChatId.ToString() + "/" + UserId + "/", null);
+            var json = JsonConvert.SerializeObject(user);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/Chat/AddUserToChatViewed/" + ChatId.ToString() + "/", content);
             return response.IsSuccessStatusCode;
         }
 

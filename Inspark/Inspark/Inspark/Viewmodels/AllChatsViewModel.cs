@@ -127,26 +127,23 @@ namespace Inspark.Viewmodels
         public async void OpenChat(ChatDisplayModel cdm)
         {
             var chat = Chats.Where(x => x.Id == cdm.Id).First();
-            if (Chats.Contains(chat))
+            if (chat.Viewed != null && chat.Viewed.Count != 0)
             {
-                if (chat.Viewed != null && chat.Viewed.Count != 0)
+                if (!chat.Viewed.Contains(User))
                 {
-                    if (!chat.Viewed.Contains(User.Id))
-                    {
-                        await _api.AddUserToViewed(User.Id, chat.Id);
-                    }
+                    await _api.AddUserToViewed(User, chat.Id);
                 }
-                Application.Current.MainPage = new MainPage(new ChatPage(chat));
             }
+            Application.Current.MainPage = new MainPage(new ChatPage(chat));
         }
 
         public async void OpenChat(Chat chat)
         {
             if (chat.Viewed != null && chat.Viewed.Count != 0)
             {
-                if (!chat.Viewed.Contains(User.Id))
+                if (!chat.Viewed.Contains(User))
                 {
-                    await _api.AddUserToViewed(User.Id, chat.Id);
+                    await _api.AddUserToViewed(User, chat.Id);
                 }
             }
             Application.Current.MainPage = new MainPage(new ChatPage(chat));
@@ -158,7 +155,7 @@ namespace Inspark.Viewmodels
             {
                 if (!chat.Viewed.Contains(User.Id))
                 {
-                    await _api.AddUserToViewed(User.Id, chat.Id);
+                    await _api.AddUserToViewed(User, chat.Id);
                 }
             }
             Application.Current.MainPage = new MainPage(new ChatPage(chat));
@@ -169,9 +166,9 @@ namespace Inspark.Viewmodels
             var chat = GroupChats.Where(x => x.Id == gcdm.Id).First();
             if (chat.Viewed != null)
             {
-                if (!chat.Viewed.Contains(User.Id))
+                if (!chat.Viewed.Contains(User))
                 {
-                    await _api.AddUserToViewed(User.Id, chat.Id);
+                    await _api.AddUserToViewed(User, chat.Id);
                 }
             }
             Application.Current.MainPage = new MainPage(new ChatPage(chat));
