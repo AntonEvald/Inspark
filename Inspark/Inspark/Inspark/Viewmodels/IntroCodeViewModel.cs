@@ -12,7 +12,7 @@ namespace Inspark.Viewmodels
         {
         }
 
-		private string _message = "";
+		private string _message;
 
         public string Message
         {
@@ -27,7 +27,7 @@ namespace Inspark.Viewmodels
             }
         }
 
-		private string _introCode = "";
+		private string _introCode;
 
         public string IntroCode
         {
