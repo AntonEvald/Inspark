@@ -80,6 +80,15 @@ namespace Inspark.Viewmodels
             set { _chatDisplayModels = value; OnPropertyChanged(); }
         }
 
+        private ObservableRangeCollection<string> _viewed;
+
+        public ObservableRangeCollection<string> Viewed
+        {
+            get { return _viewed; }
+            set { _viewed = value; OnPropertyChanged(); }
+        }
+
+
 
         public User User { get; set; }
 
@@ -120,39 +129,51 @@ namespace Inspark.Viewmodels
             var chat = Chats.Where(x => x.Id == cdm.Id).First();
             if (Chats.Contains(chat))
             {
-                //if (!chat.Viewed.Contains(User.Id))
-                //{
-                //    chat.Viewed.Add(User.Id);
-                //}
+                if (chat.Viewed != null && chat.Viewed.Count != 0)
+                {
+                    if (!chat.Viewed.Contains(User.Id))
+                    {
+                        chat.Viewed.Add(User.Id);
+                    }
+                }
                 Application.Current.MainPage = new MainPage(new ChatPage(chat));
             }
         }
 
         public void OpenChat(Chat chat)
         {
-            //if (!chat.Viewed.Contains(User.Id))
-            //{
-            //    chat.Viewed.Add(User.Id);
-            //}
+            if (chat.Viewed != null && chat.Viewed.Count != 0)
+            {
+                if (!chat.Viewed.Contains(User.Id))
+                {
+                    chat.Viewed.Add(User.Id);
+                }
+            }
             Application.Current.MainPage = new MainPage(new ChatPage(chat));
         }
 
         public void OpenChat(GroupChat chat)
         {
-            //if (!chat.Viewed.Contains(User.Id))
-            //{
-            //    chat.Viewed.Add(User.Id);
-            //}
+            if(chat.Viewed != null && chat.Viewed.Count != 0)
+            {
+                if (!chat.Viewed.Contains(User.Id))
+                {
+                    chat.Viewed.Add(User.Id);
+                }
+            }
             Application.Current.MainPage = new MainPage(new ChatPage(chat));
         }
 
         public void OpenChat(GroupChatDisplayModel gcdm)
         {
             var chat = GroupChats.Where(x => x.Id == gcdm.Id).First();
-            //if (!chat.Viewed.Contains(User.Id))
-            //{
-            //    chat.Viewed.Add(User.Id);
-            //}
+            if (chat.Viewed != null)
+            {
+                if (!chat.Viewed.Contains(User.Id))
+                {
+                    chat.Viewed.Add(User.Id);
+                }
+            }
             Application.Current.MainPage = new MainPage(new ChatPage(chat));
         }
 
@@ -194,6 +215,7 @@ namespace Inspark.Viewmodels
             Chats = new ObservableRangeCollection<Chat>();
             GroupChats = new ObservableRangeCollection<GroupChat>();
             GroupChatDisplayModels = new ObservableRangeCollection<GroupChatDisplayModel>();
+            Viewed = new ObservableRangeCollection<string>();
             User = await _api.GetLoggedInUser();
             AllUsers = await _api.GetAllUsers();
             if(User.Chats.Count != 0)
@@ -264,12 +286,12 @@ namespace Inspark.Viewmodels
                         {
                             IsMessagesViewed = false;
                         }
-                        else
+                        else if(c.Viewed != null && c.Viewed.Count != 0)
                         {
-                            //if (!c.Viewed.Contains(User.Id))
-                            //{
-                            //    IsMessagesViewed = false;
-                            //}
+                            if (!c.Viewed.Contains(User.Id))
+                            {
+                               IsMessagesViewed = false;
+                            }
                         }
                         string latestMessageSender;
                         var latestMessageSenderId = c.Messages.Last().SenderId;
