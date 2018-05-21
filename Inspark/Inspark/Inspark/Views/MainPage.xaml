@@ -37,7 +37,10 @@
                 </StackLayout.GestureRecognizers>
             </StackLayout>
 
-            <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
+            <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0" IsVisible="{Binding IsIntro}">
+                <StackLayout.BindingContext>
+                    <vm:MainPageViewModel/>
+                </StackLayout.BindingContext>
                 <Image HeightRequest="30" Source="competition.png"/>
                 <Label Text="Tävling" FontSize="10"
                        HorizontalOptions="Center"/>

@@ -31,7 +31,7 @@ namespace Inspark.Views
 		    Content.BindingContext = model;
         }
 
-		void Handle_Clicked(object sender, System.EventArgs e)
+		void AddCode_Clicked(object sender, EventArgs e)
 		{
 			var page = new IntroCodePage();
 			Profile.Content = page.Content;

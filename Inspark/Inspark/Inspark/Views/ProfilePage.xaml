@@ -27,10 +27,7 @@
                         <Label Text="{Binding Section}" />
                     </StackLayout>
                     <StackLayout HorizontalOptions="Center">
-                        <Button Text="Skriv in din intro kod" Clicked="Handle_Clicked" IsVisible="{Binding IsVisible}" BackgroundColor="Green" />
-                    </StackLayout>
-                    <StackLayout HorizontalOptions="Center">
-                        <Button Text="Skicka meddelande" BackgroundColor="LightBlue" />
+                        <Button Text="Skriv in din intro kod" Clicked="AddCode_Clicked" IsVisible="{Binding IsVisible}" BackgroundColor="Green" />
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
