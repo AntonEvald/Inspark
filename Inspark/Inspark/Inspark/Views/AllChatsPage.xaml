@@ -88,7 +88,7 @@
                                                             Aspect="AspectFill"
                                                             HorizontalOptions="Center"
                                                             VerticalOptions="Center"/>
-                                            <Image Source="info.png" IsVisible="{Binding IsLatestMessageViewed}" Grid.Column="2" Grid.Row="1" HeightRequest="10" WidthRequest="10"/>
+                                            <Image Source="notification.png" IsVisible="{Binding IsLatestMessageNotViewed}" Grid.Column="2" Grid.Row="1" HeightRequest="10" WidthRequest="10"/>
                                         </Grid>
                                     </StackLayout>
                                 </ViewCell>
@@ -135,7 +135,7 @@
                                                             Aspect="AspectFill"
                                                             HorizontalOptions="Center"
                                                             VerticalOptions="Center"/>
-                                            <Image Source="Info.png" IsVisible="{Binding IsLatestMessageViewed}" Grid.Column="2" Grid.Row="1" HeightRequest="10" WidthRequest="10"/>
+                                            <Image Source="notification.png" IsVisible="{Binding IsLatestMessageNotViewed}" Grid.Column="2" Grid.Row="1" HeightRequest="10" WidthRequest="10"/>
                                         </Grid>
                                     </StackLayout>
                                 </ViewCell>

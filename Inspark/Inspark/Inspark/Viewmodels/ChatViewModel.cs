@@ -73,8 +73,10 @@ namespace Inspark.Viewmodels
             _messages.Add(message);
             if(await _api.PostPrivateMessage(ChatId, message))
             {
-                //Chat.Viewed.Clear();
-                //Chat.Viewed.Add(User.Id);
+                if(await _api.ClearViewed(ChatId))
+                {
+                    await _api.AddUserToViewed(User.Id, Chat.Id);
+                }
             }
             OutgoingText = string.Empty;
         });

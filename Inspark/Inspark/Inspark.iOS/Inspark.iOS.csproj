@@ -190,4 +190,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\info.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\notification.png" />
+  </ItemGroup>
 </Project>

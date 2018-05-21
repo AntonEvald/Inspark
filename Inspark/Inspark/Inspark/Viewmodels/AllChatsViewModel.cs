@@ -124,7 +124,7 @@ namespace Inspark.Viewmodels
             OnLoad();
         }
 
-        public void OpenChat(ChatDisplayModel cdm)
+        public async void OpenChat(ChatDisplayModel cdm)
         {
             var chat = Chats.Where(x => x.Id == cdm.Id).First();
             if (Chats.Contains(chat))
@@ -133,45 +133,45 @@ namespace Inspark.Viewmodels
                 {
                     if (!chat.Viewed.Contains(User.Id))
                     {
-                        chat.Viewed.Add(User.Id);
+                        await _api.AddUserToViewed(User.Id, chat.Id);
                     }
                 }
                 Application.Current.MainPage = new MainPage(new ChatPage(chat));
             }
         }
 
-        public void OpenChat(Chat chat)
+        public async void OpenChat(Chat chat)
         {
             if (chat.Viewed != null && chat.Viewed.Count != 0)
             {
                 if (!chat.Viewed.Contains(User.Id))
                 {
-                    chat.Viewed.Add(User.Id);
+                    await _api.AddUserToViewed(User.Id, chat.Id);
                 }
             }
             Application.Current.MainPage = new MainPage(new ChatPage(chat));
         }
 
-        public void OpenChat(GroupChat chat)
+        public async void OpenChat(GroupChat chat)
         {
             if(chat.Viewed != null && chat.Viewed.Count != 0)
             {
                 if (!chat.Viewed.Contains(User.Id))
                 {
-                    chat.Viewed.Add(User.Id);
+                    await _api.AddUserToViewed(User.Id, chat.Id);
                 }
             }
             Application.Current.MainPage = new MainPage(new ChatPage(chat));
         }
 
-        public void OpenChat(GroupChatDisplayModel gcdm)
+        public async void OpenChat(GroupChatDisplayModel gcdm)
         {
             var chat = GroupChats.Where(x => x.Id == gcdm.Id).First();
             if (chat.Viewed != null)
             {
                 if (!chat.Viewed.Contains(User.Id))
                 {
-                    chat.Viewed.Add(User.Id);
+                    await _api.AddUserToViewed(User.Id, chat.Id);
                 }
             }
             Application.Current.MainPage = new MainPage(new ChatPage(chat));
@@ -215,7 +215,6 @@ namespace Inspark.Viewmodels
             Chats = new ObservableRangeCollection<Chat>();
             GroupChats = new ObservableRangeCollection<GroupChat>();
             GroupChatDisplayModels = new ObservableRangeCollection<GroupChatDisplayModel>();
-            Viewed = new ObservableRangeCollection<string>();
             User = await _api.GetLoggedInUser();
             AllUsers = await _api.GetAllUsers();
             if(User.Chats.Count != 0)
@@ -235,8 +234,7 @@ namespace Inspark.Viewmodels
                     {
                         Id = gc.Id,
                         ChatName = gc.GroupName,
-                        ChatPic = gc.GroupChatPic,
-                        IsLatestMessageViewed = IsMessagesViewed
+                        ChatPic = gc.GroupChatPic
                     };
                     if(gc.Messages.Count != 0)
                     {
@@ -258,6 +256,7 @@ namespace Inspark.Viewmodels
                     {
                         gcdm.LatestMessage = "Inga meddelanden skickade";
                     }
+                    gcdm.IsLatestMessageNotViewed = IsMessagesViewed;
                     GroupChatDisplayModels.Add(gcdm);
                 }
                 GroupChatDisplayModels = new ObservableRangeCollection<GroupChatDisplayModel>(GroupChatDisplayModels.OrderByDescending(x => x.LatestMessageDate));
@@ -267,7 +266,7 @@ namespace Inspark.Viewmodels
                 foreach (var c in Chats)
                 {
                     var otherUser = c.Users.Where(x => x.Id != User.Id).First();
-                    bool IsMessagesViewed = true;
+                    bool IsMessagesNotViewed = true;
                     var chatView = new ChatDisplayModel
                     {
                         Id = c.Id,
@@ -278,19 +277,20 @@ namespace Inspark.Viewmodels
                     if (c.Messages.Count == 0)
                     {
                         chatView.LatestMessage = "Inga meddelanden skickade";
+                        IsMessagesNotViewed = false;
                     }
                     else
                     {
                         
-                        if (c.Messages.Last().SenderId != User.Id)
+                        if (c.Messages.Last().SenderId == User.Id)
                         {
-                            IsMessagesViewed = false;
+                            IsMessagesNotViewed = false;
                         }
                         else if(c.Viewed != null && c.Viewed.Count != 0)
                         {
                             if (!c.Viewed.Contains(User.Id))
                             {
-                               IsMessagesViewed = false;
+                                IsMessagesNotViewed = false;
                             }
                         }
                         string latestMessageSender;
@@ -305,7 +305,7 @@ namespace Inspark.Viewmodels
                         }
                         chatView.LatestMessage = latestMessageSender + c.Messages.Last().Text;
                         chatView.LatestMessageDate = c.Messages.Last().MessageDateTime;
-                        chatView.IsLatestMessageViewed = true;
+                        chatView.IsLatestMessageNotViewed = IsMessagesNotViewed;
                     }
                     ChatDisplayModels.Add(chatView);
                 }
