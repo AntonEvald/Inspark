@@ -57,6 +57,24 @@ namespace Inspark.Services
         }
 
 
+        
+
+        //all api calls for IntroCode
+		//all api calls for IntroCode
+		//all api calls for IntroCode
+
+
+
+        public async Task<bool> introCode(string intro)
+        {
+			var user = Settings.UserId;
+            var client = new HttpClient();
+			var response = await client.PostAsync(ConnectionString + "api/Group/AddUserToGroupByCode/"+ intro + "/"+ user + "/", null);
+            return response.IsSuccessStatusCode;
+        }
+
+
+        
         // All API calls for Events.
         // All API calls for Events.
         // All API calls for Events.
