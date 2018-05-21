@@ -26,15 +26,14 @@ namespace Inspark.Viewmodels
 		public ProfileViewModel()
 		{
 			GetUser();
-			IsVisible = true;
-			//if (Settings.UserRole == "Admin" || Settings.UserRole == "Intro")
-			//{
-			//	IsVisible = false;
-			//}
-			//else
-			//{
-			//	IsVisible = true;
-			//}
+			if (Settings.UserRole == "Admin" || Settings.UserRole == "Intro")
+			{
+				IsVisible = false;
+			}
+			else
+			{
+				IsVisible = true;
+			}
 		}
 
 		private async void GetUser()
