@@ -26,10 +26,15 @@ namespace Inspark.Views
 
 		public ProfilePage (User e)
 		{
-			model = new ProfileViewModel();         
+			model = new ProfileViewModel(e);         
 			InitializeComponent();
 		    Content.BindingContext = model;
         }
 
+		void Handle_Clicked(object sender, System.EventArgs e)
+		{
+			var page = new IntroCodePage();
+			Profile.Content = page.Content;
+		}
 	}
 }

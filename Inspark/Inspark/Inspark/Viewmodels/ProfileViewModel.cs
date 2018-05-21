@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using Inspark.Helpers;
 using Inspark.Models;
 using Inspark.Views;
 using Xamarin.Forms;
@@ -19,11 +20,21 @@ namespace Inspark.Viewmodels
 			PhoneNumber = e.PhoneNumber;
 			ProfilePicture = e.ProfilePicture;
 			Section = e.Section;
+			IsVisible = false;
 		}
 
 		public ProfileViewModel()
 		{
 			GetUser();
+			IsVisible = true;
+			//if (Settings.UserRole == "Admin" || Settings.UserRole == "Intro")
+			//{
+			//	IsVisible = false;
+			//}
+			//else
+			//{
+			//	IsVisible = true;
+			//}
 		}
 
 		private async void GetUser()
@@ -36,6 +47,19 @@ namespace Inspark.Viewmodels
             ProfilePicture = e.ProfilePicture;
             Section = e.Section;
 		}
+
+
+		private bool _isVisible;
+
+		public bool IsVisible
+        {
+			get { return _isVisible; }
+            set
+            {
+				_isVisible = value;
+                OnPropertyChanged();
+            }
+        }
 
 		private string _section;
 
