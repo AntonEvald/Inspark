@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inspark.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,7 +36,7 @@ namespace Inspark.Views
 
         public void Messages_Tapped(object sender, EventArgs e)
         {
-
+            GroupView.Content = new AllChatsPage().Content;
         }
 
         public void Home_Tapped(object sender, EventArgs e)

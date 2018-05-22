@@ -163,19 +163,20 @@ namespace Inspark.Viewmodels
                 GroupPic = File.ReadAllBytes(ImagePath);
             }
             group.GroupPic = GroupPic;
-            var groupChat = new GroupChat
-            {
-                Group = group,
-                GroupChatPic = group.GroupPic,
-                GroupName = group.Name,
-                Messages = new ObservableCollection<Message>(),
-                Users = new ObservableCollection<User>()
-            };
             if (await _api.CreateGroup(group))
             {
                 Message = "Gruppen har skapats!";
-                await _api.CreateGroupChat(groupChat);
                 Application.Current.MainPage = new MainPage(new HomePage());
+                var groupId = await _api.GetGroupIdByName(group.Name);
+                if (groupId != -1)
+                {
+                    var groupChat = new GroupChat
+                    {
+                        GroupChatPic = group.GroupPic,
+                        GroupName = group.Name,
+                    };
+                    await _api.CreateGroupChat(groupId, groupChat);               
+                }
             }
             else
             {

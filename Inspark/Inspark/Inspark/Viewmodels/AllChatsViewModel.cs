@@ -1,10 +1,12 @@
 ﻿using Inspark.Models;
+using Inspark.Services;
 using Inspark.Views;
 using MvvmHelpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -127,11 +129,16 @@ namespace Inspark.Viewmodels
         public async void OpenChat(ChatDisplayModel cdm)
         {
             var chat = Chats.Where(x => x.Id == cdm.Id).First();
-            if (chat.Viewed != null && chat.Viewed.Count != 0)
+            if (chat.Views != null && chat.Views.Count != 0)
             {
-                if (!chat.Viewed.Contains(User))
+                var list = chat.Views.Where(x => x.UserId == User.Id);
+                if (list.Count() != 0)
                 {
-                    await _api.AddUserToViewed(User, chat.Id);
+                    var view = new Models.View
+                    {
+                        UserId = User.Id
+                    };
+                    await _api.AddViewToChat(view, chat.Id);
                 }
             }
             Application.Current.MainPage = new MainPage(new ChatPage(chat));
@@ -139,11 +146,16 @@ namespace Inspark.Viewmodels
 
         public async void OpenChat(Chat chat)
         {
-            if (chat.Viewed != null && chat.Viewed.Count != 0)
+            if (chat.Views != null && chat.Views.Count != 0)
             {
-                if (!chat.Viewed.Contains(User))
+                var list = chat.Views.Where(x => x.UserId == User.Id);
+                if (list.Count() != 0)
                 {
-                    await _api.AddUserToViewed(User, chat.Id);
+                    var view = new Models.View
+                    {
+                        UserId = User.Id
+                    };
+                    await _api.AddViewToChat(view, chat.Id);
                 }
             }
             Application.Current.MainPage = new MainPage(new ChatPage(chat));
@@ -151,11 +163,16 @@ namespace Inspark.Viewmodels
 
         public async void OpenChat(GroupChat chat)
         {
-            if(chat.Viewed != null && chat.Viewed.Count != 0)
+            if(chat.Views != null && chat.Views.Count != 0)
             {
-                if (!chat.Viewed.Contains(User.Id))
+                var list = chat.Views.Where(x => x.UserId == User.Id);
+                if (list.Count() != 0)
                 {
-                    await _api.AddUserToViewed(User, chat.Id);
+                    var view = new Models.View
+                    {
+                        UserId = User.Id
+                    };
+                    await _api.AddViewToGroupChat(view, chat.Id);
                 }
             }
             Application.Current.MainPage = new MainPage(new ChatPage(chat));
@@ -164,11 +181,16 @@ namespace Inspark.Viewmodels
         public async void OpenChat(GroupChatDisplayModel gcdm)
         {
             var chat = GroupChats.Where(x => x.Id == gcdm.Id).First();
-            if (chat.Viewed != null)
+            if (chat.Views != null)
             {
-                if (!chat.Viewed.Contains(User))
+                var list = chat.Views.Where(x => x.UserId == User.Id);
+                if (list.Count() != 0)
                 {
-                    await _api.AddUserToViewed(User, chat.Id);
+                    var view = new Models.View
+                    {
+                        UserId = User.Id
+                    };
+                    await _api.AddViewToGroupChat(view, chat.Id);
                 }
             }
             Application.Current.MainPage = new MainPage(new ChatPage(chat));
@@ -220,40 +242,54 @@ namespace Inspark.Viewmodels
             }
             if(User.GroupChats.Count != 0)
             {
-                GroupChats.AddRange(User.GroupChats);
+                //GroupChats.AddRange(User.GroupChats);
             }
             if(GroupChats.Count != 0)
             {
                 foreach(var gc in GroupChats)
                 {
-                    bool IsMessagesViewed = true;
-                    var gcdm = new GroupChatDisplayModel
+                    bool IsMessagesNotViewed = true;
+                    var gcdm = new GroupChatDisplayModel();
+                    gcdm.Id = gc.Id;
+                    if(gc.GroupName != null && gc.GroupName != "" && gc.GroupChatPic != null)
                     {
-                        Id = gc.Id,
-                        ChatName = gc.GroupName,
-                        ChatPic = gc.GroupChatPic
-                    };
-                    if(gc.Messages.Count != 0)
+                        gcdm.ChatName = gc.GroupName;
+                        gcdm.ChatPic = gc.GroupChatPic;
+                    }
+                    else
+                    {
+                        var assembly = Assembly.GetExecutingAssembly();
+                        var pic = EmbeddedResourceToByteArray.GetEmbeddedResourceBytes(assembly, "group.png");
+                        gcdm.ChatName = "GruppChatt";
+                        gcdm.ChatPic = pic;
+                    }
+
+                    if(gc.Messages.Count() != 0 && gc.Messages != null)
                     {
                         gcdm.LatestMessage = gc.Messages.Last().Text;
                         gcdm.LatestMessageDate = gc.Messages.Last().MessageDateTime;
                         if (gc.Messages.Last().SenderId != User.Id)
                         {
-                            IsMessagesViewed = false;
+                            IsMessagesNotViewed = false;
                         }
                         else
                         {
-                            if (!gc.Viewed.Contains(User.Id))
+                            if (gc.Views.Count != 0 && gc.Views != null)
                             {
-                                IsMessagesViewed = false;
+                                var list = gc.Views.Where(x => x.UserId == User.Id);
+                                if (list.Count() != 0)
+                                {
+                                    IsMessagesNotViewed = false;
+                                }
                             }
                         }
                     }
                     else
                     {
                         gcdm.LatestMessage = "Inga meddelanden skickade";
+                        IsMessagesNotViewed = false;
                     }
-                    gcdm.IsLatestMessageNotViewed = IsMessagesViewed;
+                    gcdm.IsLatestMessageNotViewed = IsMessagesNotViewed;
                     GroupChatDisplayModels.Add(gcdm);
                 }
                 GroupChatDisplayModels = new ObservableRangeCollection<GroupChatDisplayModel>(GroupChatDisplayModels.OrderByDescending(x => x.LatestMessageDate));
@@ -283,9 +319,10 @@ namespace Inspark.Viewmodels
                         {
                             IsMessagesNotViewed = false;
                         }
-                        else if(c.Viewed != null && c.Viewed.Count != 0)
+                        else if(c.Views.Count != 0 && c.Views != null)
                         {
-                            if (!c.Viewed.Contains(User.Id))
+                            var list = c.Views.Where(x => x.UserId == User.Id);
+                            if (list.Count() != 0)
                             {
                                 IsMessagesNotViewed = false;
                             }

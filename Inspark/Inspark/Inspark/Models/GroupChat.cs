@@ -12,6 +12,6 @@ namespace Inspark.Models
         public int Id { get; set; }
         public ICollection<User> Users { get; set; }
         public ICollection<Message> Messages { get; set; }
-        public ICollection<string> Viewed { get; set; }
+        public ICollection<View> Views { get; set; }
     }
 }

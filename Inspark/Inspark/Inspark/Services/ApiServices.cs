@@ -27,16 +27,16 @@ namespace Inspark.Services
         //All API calls for chat and messanges
         //All API calls for chat and messanges
 
-        public async Task<bool> AddUserToViewed(User user, int ChatId)
+        public async Task<bool> AddViewToChat(View view, int ChatId)
         {
             var client = new HttpClient();
-            var json = JsonConvert.SerializeObject(user);
+            var json = JsonConvert.SerializeObject(view);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(ConnectionString + "api/Chat/AddUserToChatViewed/" + ChatId.ToString() + "/", content);
+            var response = await client.PostAsync(ConnectionString + "api/View/AddViewToChat/" + ChatId.ToString() + "/", content);
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> ClearViewed(int ChatId)
+        public async Task<bool> ClearViews(int ChatId)
         {
             var client = new HttpClient();
             var response = await client.PostAsync(ConnectionString + "api/Chat/RemoveUsersFromChatViewed/" + ChatId.ToString() + "/", null);
@@ -64,21 +64,45 @@ namespace Inspark.Services
         // All API calls for GroupChat
         // All API calls for GroupChat
 
-        public async Task<bool> CreateGroupChat(GroupChat chat)
+        public async Task<bool> CreateGroupChat(int groupId, GroupChat chat)
         {
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(chat);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(ConnectionString + "api/GroupChat/CreateGroupChat/", content);
+            var response = await client.PostAsync(ConnectionString + "api/GroupChat/AddGroupChat/" + groupId.ToString() + "/", content);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> PostGroupMessage(int chatId, Message message)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(message);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/GroupMessage/AddGroupMessage/" + chatId.ToString() + "/", content);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> AddViewToGroupChat(View view, int ChatId)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(view);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(ConnectionString + "api/View/AddViewToGroupChat/" + ChatId.ToString() + "/", content);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> ClearGroupViews(int ChatId)
+        {
+            var client = new HttpClient();
+            var response = await client.PostAsync(ConnectionString + "api/GroupChat/RemoveUsersFromGroupChatViewed/" + ChatId.ToString() + "/", null);
             return response.IsSuccessStatusCode;
         }
 
 
-        
 
         //all api calls for IntroCode
-		//all api calls for IntroCode
-		//all api calls for IntroCode
+        //all api calls for IntroCode
+        //all api calls for IntroCode
 
 
 
@@ -261,6 +285,23 @@ namespace Inspark.Services
         // All API calls for Groups.
         // All API calls for Groups.
         // All API calls for Groups.
+        
+        public async Task<int> GetGroupIdByName(string groupName)
+        {
+            var client = new HttpClient();
+            var response = await client.GetAsync(ConnectionString + "api/group/GetIdByName/" + groupName + "/");
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                int id = JsonConvert.DeserializeObject<int>(result);
+                return id;
+            } else
+            {
+                return -1;
+            }
+
+        }
+
 
         public async Task<ObservableCollection<Group>> GetAllGroups()
         {

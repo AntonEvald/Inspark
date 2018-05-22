@@ -30,35 +30,35 @@
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Home_Tapped"/>
                     </StackLayout.GestureRecognizers>
-                    <Label Text="Home" HorizontalOptions="Center"/>
+                    <Image Source="home.png" HeightRequest="20" WidthRequest="20"/>
                 </StackLayout>
 
                 <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Members_Tapped"/>
                     </StackLayout.GestureRecognizers>
-                    <Label Text="Members" HorizontalOptions="Center"/>
+                    <Image Source="group.png" HeightRequest="20" WidthRequest="20"/>
                 </StackLayout>
 
                 <StackLayout Grid.Column="2" VerticalOptions="Center" Spacing="0">
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Events_Tapped"/>
                     </StackLayout.GestureRecognizers>
-                    <Label Text="Events" HorizontalOptions="Center"/>
+                    <Image Source="event.png" HeightRequest="20" WidthRequest="20"/>
                 </StackLayout>
 
                 <StackLayout Grid.Column="3" VerticalOptions="Center" Spacing="0">
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Messages_Tapped"/>
                     </StackLayout.GestureRecognizers>
-                    <Label Text="Messages" HorizontalOptions="Center"/>
+                    <Image Source="chat.png" HeightRequest="20" WidthRequest="20"/>
                 </StackLayout>
 
                 <StackLayout Grid.Column="4" VerticalOptions="Center" Spacing="0" IsVisible="{Binding IsVisible}">
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Fadder_Tapped"/>
                     </StackLayout.GestureRecognizers>
-                    <Label Text="Fadder" HorizontalOptions="Center"/>
+                    <Image Source="admin.png" HeightRequest="20" WidthRequest="20"/>
                 </StackLayout>
             </Grid>
 

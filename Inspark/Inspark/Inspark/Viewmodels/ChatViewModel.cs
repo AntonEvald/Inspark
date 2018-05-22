@@ -57,6 +57,7 @@ namespace Inspark.Viewmodels
         public Chat Chat { get; set; }
         public GroupChat GroupChat { get; set; }
         public int ChatId { get; set; }
+        public bool IsGroupChat { get; set; }
 
         public User User { get; set; }
 
@@ -71,13 +72,34 @@ namespace Inspark.Viewmodels
                 SenderId = User.Id,
             };
             _messages.Add(message);
-            if(await _api.PostPrivateMessage(ChatId, message))
+            if (IsGroupChat)
             {
-                if(await _api.ClearViewed(ChatId))
+                if(await _api.PostGroupMessage(ChatId, message))
                 {
-                    await _api.AddUserToViewed(User.Id, Chat.Id);
+                    if(await _api.ClearGroupViews(ChatId))
+                    {
+                        var view = new Models.View
+                        {
+                            UserId = User.Id
+                        };
+                        await _api.AddViewToGroupChat(view, ChatId);
+                    }
+                }
+            } else
+            {
+                if (await _api.PostPrivateMessage(ChatId, message))
+                {
+                    if (await _api.ClearViews(ChatId))
+                    {
+                        var view = new Models.View
+                        {
+                            UserId = User.Id
+                        };
+                        await _api.AddViewToChat(view, Chat.Id);
+                    }
                 }
             }
+           
             OutgoingText = string.Empty;
         });
 
@@ -93,6 +115,7 @@ namespace Inspark.Viewmodels
 
         async void OnLoad(GroupChat chat)
         {
+            IsGroupChat = true;
             GroupChat = chat;
             ChatId = chat.Id;
             User = await _api.GetLoggedInUser();
@@ -117,6 +140,7 @@ namespace Inspark.Viewmodels
 
         async void OnLoad(Chat chat)
         {
+            IsGroupChat = false;
             ChatId = chat.Id;
             Chat = chat;
             User = await _api.GetLoggedInUser();

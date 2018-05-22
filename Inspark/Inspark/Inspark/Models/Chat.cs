@@ -9,6 +9,6 @@ namespace Inspark.Models
         public virtual ICollection<User> Users { get; set; }
         public virtual ICollection<Message> Messages { get; set; }
         public int Id { get; set; }
-        public ICollection<string> Viewed { get; set; }
+        public virtual ICollection<View> Views { get; set; }
     }
 }

@@ -2,9 +2,11 @@
 using Inspark.Models;
 using Inspark.Services;
 using Inspark.Views;
+using MvvmHelpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 
@@ -24,9 +26,9 @@ namespace Inspark.Viewmodels
             }
         }
 
-        private ObservableCollection<Group> _groups;
+        private ObservableRangeCollection<Group> _groups;
 
-        public ObservableCollection<Group> Groups
+        public ObservableRangeCollection<Group> Groups
         {
             get { return _groups; }
             set
@@ -35,6 +37,9 @@ namespace Inspark.Viewmodels
                 OnPropertyChanged();
             }
         }
+
+
+        public User User { get; set; }
 
         private bool _isVisible;
 
@@ -48,14 +53,22 @@ namespace Inspark.Viewmodels
             }
         }
 
-        public  void OnLoad()
+        public async void OnLoad()
         {
-            ////var groups = await _api.GetAllGroupsByUserId();
-            ////if (groups.Count > 1)
-            ////{
-            //    //Groups = groups;
-            //    //Application.Current.MainPage = new MainPage(new SelectGroupPage());
-            //}
+            Groups = new ObservableRangeCollection<Group>();
+            User = await _api.GetLoggedInUser();
+            if(User.Groups != null && User.Groups.Count != 0)
+            {
+                Groups.AddRange(User.Groups);
+                if(Groups.Count > 1)
+                {
+                    Application.Current.MainPage = new MainPage(new SelectGroupPage());
+                }
+                else
+                {
+                    Group = Groups.First();
+                }
+            }
             if (Settings.UserRole == "Admin" || Settings.UserRole == "Fadder")
             {
                 IsVisible = true;
@@ -67,5 +80,9 @@ namespace Inspark.Viewmodels
             OnLoad();
         }
 
+        public GroupViewModel(Group group)
+        {
+
+        }
     }
 }

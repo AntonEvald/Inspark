@@ -20,5 +20,6 @@ namespace Inspark.Models
         public string Section { get; set; }
         public ICollection<Chat> Chats { get; set; }
         public ICollection<GroupChat> GroupChats { get; set; }
+        public ICollection<Group> Groups { get; set; }
     }
 }

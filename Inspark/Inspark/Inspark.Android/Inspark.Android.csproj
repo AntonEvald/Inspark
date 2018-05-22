@@ -152,13 +152,13 @@
     <AndroidResource Include="Resources\drawable\event.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\notification.png" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Inspark\Inspark.csproj">
       <Project>{a4bc6ae8-c1c6-45ba-a416-7cbd579f1d81}</Project>
       <Name>Inspark</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\notification.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
